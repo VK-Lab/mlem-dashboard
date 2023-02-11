@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         protocol: 'https',
-        hostname: 'd2e-dev.s3.ap-southeast-1.amazonaws.com',
+        hostname: 'mlem-dev.s3.ap-southeast-1.amazonaws.com',
         pathname: '/**',
       },
     ],
