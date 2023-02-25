@@ -3,8 +3,9 @@ import { SiweMessage } from 'siwe';
 import { User } from '@/types/user';
 
 export type LoginParams = {
-  signature: string;
-  message: SiweMessage;
+  signature?: string;
+  message?: SiweMessage;
+  address?: string | null;
 };
 
 export type LoginResponse = {

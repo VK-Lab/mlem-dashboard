@@ -1,10 +1,10 @@
 import { useState, SyntheticEvent } from 'react';
 
+import { useAccount } from '@casperdash/usewallet';
 import WalletIcon from '@mui/icons-material/Wallet';
 import { Grid, Tabs, Box, Typography, Container } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import _get from 'lodash/get';
-import { useAccount } from 'wagmi';
 
 import { ButtonAuthWalletModal } from '../core/ButtonAuthWalletModal';
 import ListNfts from './ListNfts';
@@ -50,7 +50,7 @@ export const ProfileInfo = () => {
 };
 
 const UserCollection = () => {
-  const { address } = useAccount();
+  const { publicKey } = useAccount();
   const [value, setValue] = useState(0);
 
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
@@ -93,7 +93,7 @@ const UserCollection = () => {
                 >
                   <StatItem
                     title="Address"
-                    value={address}
+                    value={publicKey}
                     icon={<WalletIcon />}
                   />
                 </Box>

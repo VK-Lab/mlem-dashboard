@@ -1,5 +1,11 @@
 import { useState } from 'react';
 
+import {
+  CasperDashConnector,
+  CasperProvider,
+  CasperSignerConnector,
+  createClient,
+} from '@casperdash/usewallet';
 import { ThemeProvider } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { appWithTranslation } from 'next-i18next';
@@ -8,9 +14,6 @@ import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import { WagmiConfig, createClient, configureChains, chain } from 'wagmi';
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
-import { publicProvider } from 'wagmi/providers/public';
 
 import RouterGuard from '@/hocs/RouterGuard';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,15 +23,9 @@ import theme from '@/theme';
 
 import '@/assets/styles.css';
 
-const { chains, provider } = configureChains(
-  [chain.polygon, chain.polygonMumbai],
-  [publicProvider()]
-);
-
 const client = createClient({
+  connectors: [new CasperSignerConnector(), new CasperDashConnector()],
   autoConnect: true,
-  provider,
-  connectors: [new MetaMaskConnector({ chains })],
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -47,11 +44,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Provider store={store}>
           <QueryClientProvider client={queryClient}>
             <CssBaseline />
-            <WagmiConfig client={client}>
+            <CasperProvider client={client}>
               <RouterGuard>
                 <Component {...pageProps} />
               </RouterGuard>
-            </WagmiConfig>
+            </CasperProvider>
             <ToastContainer
               position="top-right"
               autoClose={5000}

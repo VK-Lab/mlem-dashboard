@@ -43,7 +43,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
     <FormContainer
       defaultValues={{
         name: '',
-        contractType: ContractType.ERC721,
+        contractType: ContractType.CEP78,
         chainId: `${Config.chainId}`,
       }}
       onSuccess={handleOnSubmitForm}
@@ -59,12 +59,8 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
           }}
           options={[
             {
-              id: ContractType.ERC721,
-              label: 'ERC721',
-            },
-            {
-              id: ContractType.ERC1155,
-              label: 'ERC1155',
+              id: ContractType.CEP78,
+              label: 'CEP78',
             },
           ]}
           required
