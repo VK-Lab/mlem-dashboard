@@ -3,7 +3,7 @@ import { ellipsis } from 'polished';
 
 interface IProps {
   title: string;
-  value: string | number | undefined;
+  value: string | number | undefined | null;
   icon: React.ReactNode;
 }
 

@@ -1,7 +1,6 @@
 import { Box, Container } from '@mui/material';
 
 import AdminNftTable from './AdminNftTable';
-import ButtonBulkCreateModal from './ButtonBulkCreateModal';
 import ButtonCreateModal from './ButtonCreateModal';
 import DashboardLayout from '@/layouts/DashboardLayout';
 
@@ -12,9 +11,6 @@ const AdminNft = () => {
         <Box display={'flex'} gap="10px">
           <Box>
             <ButtonCreateModal />
-          </Box>
-          <Box>
-            <ButtonBulkCreateModal />
           </Box>
         </Box>
         <Box mt="2rem">

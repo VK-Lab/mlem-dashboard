@@ -1,8 +1,4 @@
-import { useTriggerAuthWallet } from '@/hooks/useTriggerAuthWallet';
-
 const Web3AuthContainer = () => {
-  useTriggerAuthWallet();
-
   return null;
 };
 

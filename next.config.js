@@ -4,6 +4,17 @@ const { i18n } = require('./next-i18next.config');
 module.exports = {
   i18n,
   reactStrictMode: false,
+  experimental: {
+    forceSwcTransforms: true,
+  },
+  rewrites: () => {
+    return [
+      {
+        source: '/rpc',
+        destination: 'https://node-clarity-testnet.make.services/rpc',
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
@@ -18,7 +29,7 @@ module.exports = {
       },
       {
         protocol: 'https',
-        hostname: 'mlem-dev.s3.ap-southeast-1.amazonaws.com',
+        hostname: 'd2e-dev.s3.ap-southeast-1.amazonaws.com',
         pathname: '/**',
       },
     ],

@@ -1,14 +1,12 @@
-import { useEffect } from 'react';
-
-import { useSDK } from '@thirdweb-dev/react';
+import { useAccount } from '@casperdash/usewallet';
 import _get from 'lodash/get';
 import { useMutation, UseMutationOptions } from 'react-query';
-import { useAccount, useSigner } from 'wagmi';
 
 import { useI18nToast } from '../useToast';
 import { MutationKeys } from '@/enums/mutationKeys.enum';
 import { createNftCollection } from '@/services/admin/nft-collection';
 import { CreateNftCollectionParams } from '@/services/admin/nft-collection/types';
+import { signDeployNftCollection } from '@/utils/casper/contract';
 
 export const useMutateCreateNftCollection = (
   options?: UseMutationOptions<
@@ -19,47 +17,27 @@ export const useMutateCreateNftCollection = (
   >
 ) => {
   const { toastError } = useI18nToast();
-  const { address } = useAccount();
-  const sdk = useSDK();
-  const { data: signer } = useSigner();
-
-  useEffect(() => {
-    if (sdk && signer) {
-      sdk.deployer.updateSignerOrProvider(signer);
-    }
-  }, [signer, sdk]);
+  const { publicKey } = useAccount();
 
   return useMutation({
     ...options,
     mutationFn: async (params) => {
-      if (!sdk || !address) {
-        return;
+      if (!publicKey) {
+        throw new Error('Public key does not exist');
       }
-
-      const contractAddress = await sdk.deployer.deployNFTCollection({
+      const { contractHash } = await signDeployNftCollection({
+        publicKeyHex: publicKey,
         name: params.name,
-        primary_sale_recipient: address as string,
       });
 
       return createNftCollection({
         ...params,
-        tokenAddress: contractAddress,
+        tokenAddress: contractHash,
       });
     },
     onError: (err: Error) => {
-      if (typeof err === 'object') {
-        const isActionRejected = err.message.search(
-          'user rejected transaction'
-        );
-
-        if (isActionRejected) {
-          toastError('action_rejected');
-          return;
-        }
-      }
-
-      toastError(_get(err, 'code', 'gas_fee_balance'));
+      toastError(_get(err, 'message'));
     },
-    mutationKey: MutationKeys.CREATE_NFT_COLLECTION,
+    mutationKey: [MutationKeys.CREATE_NFT_COLLECTION, publicKey],
   });
 };

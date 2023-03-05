@@ -3,15 +3,6 @@ import { useState } from 'react';
 import _get from 'lodash/get';
 import { useMutation, UseMutationResult } from 'react-query';
 import { SiweMessage } from 'siwe';
-import {
-  chainId,
-  useAccount,
-  useConnect,
-  useNetwork,
-  useSignMessage,
-  useSwitchNetwork,
-} from 'wagmi';
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 
 import { useI18nToast } from './useToast';
 import { getNonce, login } from '@/services/auth';
@@ -29,7 +20,6 @@ const useAuthWallet = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { toastError } = useI18nToast();
-  const { signMessageAsync } = useSignMessage();
 
   const signIn = async (walletAddress: string, chainId: number) => {
     setIsLoading(true);
@@ -46,12 +36,10 @@ const useAuthWallet = ({
     });
 
     try {
-      const signature = await signMessageAsync({
-        message: message.prepareMessage(),
-      });
       const result = await loginMutation.mutateAsync({
         message,
-        signature,
+        signature: '',
+        address: walletAddress,
       });
 
       return result;
@@ -68,11 +56,7 @@ const useAuthWallet = ({
   };
 };
 
-const useSignIn = ({ onLoginSuccess, defaultChainId }: Props) => {
-  const { toastError } = useI18nToast();
-  const { address, isConnected } = useAccount();
-  const { switchNetworkAsync } = useSwitchNetwork();
-
+const useSignIn = ({ onLoginSuccess }: Props) => {
   const loginMutation = useMutation({
     mutationFn: login,
     mutationKey: 'login',
@@ -81,18 +65,6 @@ const useSignIn = ({ onLoginSuccess, defaultChainId }: Props) => {
     },
   });
 
-  const { chain: activeChain } = useNetwork();
-  const { connect } = useConnect({
-    chainId: chainId.polygonMumbai,
-    connector: new MetaMaskConnector(),
-    onSuccess: async (data) => {
-      const { account, chain } = data;
-      await handleSignIn(account, chain?.id);
-    },
-    onError: async (err: Error) => {
-      toastError(err.name);
-    },
-  });
   const { signIn, isSigning } = useAuthWallet({
     loginMutation,
   });
@@ -101,18 +73,11 @@ const useSignIn = ({ onLoginSuccess, defaultChainId }: Props) => {
     if (!walletAddress || !chainId) {
       return;
     }
-    if (chainId !== defaultChainId && switchNetworkAsync) {
-      await switchNetworkAsync(defaultChainId);
-    }
     await signIn(walletAddress, chainId);
   };
 
   return {
-    connect,
-    isConnected,
-    address,
     handleSignIn,
-    activeChain,
     isSigning,
   };
 };
