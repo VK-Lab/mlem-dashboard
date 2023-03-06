@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { useDisconnect } from '@casperdash/usewallet';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
@@ -13,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 import { StyledContainer } from './styled';
 import GLogo from '@/components/GLogo';
@@ -37,13 +38,17 @@ function RegularAppbar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const { disconnectAsync } = useDisconnect();
+  const queryClient = useQueryClient();
 
   const logoutMutation = useMutation({
     mutationFn: logout,
     mutationKey: 'logout',
-    onSuccess: () => {
+    onSuccess: async () => {
       Cookies.remove(CookieKeys.TOKEN);
+      await disconnectAsync();
       router.push(PublicPaths.HOME);
+      queryClient.removeQueries();
     },
   });
 

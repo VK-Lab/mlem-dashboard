@@ -1,10 +1,8 @@
-import { SiweMessage } from 'siwe';
-
 import { User } from '@/types/user';
 
 export type LoginParams = {
   signature?: string;
-  message?: SiweMessage;
+  message?: string;
   address?: string | null;
 };
 

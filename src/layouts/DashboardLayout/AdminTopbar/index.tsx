@@ -1,5 +1,6 @@
 import { ReactNode, useState, MouseEvent } from 'react';
 
+import { useDisconnect } from '@casperdash/usewallet';
 import {
   Toolbar,
   Box,
@@ -32,13 +33,15 @@ export type Props = {
 
 const Index = ({ children, drawerWidth }: Props) => {
   const router = useRouter();
+  const { disconnectAsync } = useDisconnect();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const logoutMutation = useMutation({
     mutationFn: logout,
     mutationKey: 'logout',
-    onSuccess: () => {
+    onSuccess: async () => {
       Cookies.remove(CookieKeys.TOKEN);
+      await disconnectAsync();
       router.push(PublicPaths.HOME);
     },
   });
