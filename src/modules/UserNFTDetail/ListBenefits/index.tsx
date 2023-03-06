@@ -5,7 +5,6 @@ import { useQueryClient } from 'react-query';
 import { StyledListItemIcon } from './styled';
 import { QueryKeys } from '@/enums/queryKeys.enum';
 import { useMutateClaimBenefit } from '@/hooks/mutations';
-import { useCheckPhoneVerfied } from '@/hooks/queries';
 import { Benefit } from '@/types/benefit';
 import { NftClaim } from '@/types/nft';
 
@@ -16,8 +15,6 @@ type Props = {
 };
 
 const ListBenefits = ({ nftId, benefits = [], claims = [] }: Props) => {
-  const { data: { isPhoneVerfied } = { isPhoneVerfied: false } } =
-    useCheckPhoneVerfied();
   const queryClient = useQueryClient();
 
   const claimNftMutation = useMutateClaimBenefit({
@@ -55,7 +52,7 @@ const ListBenefits = ({ nftId, benefits = [], claims = [] }: Props) => {
               <Button
                 sx={{ minWidth: 120 }}
                 size="small"
-                disabled={!!foundClaim || isClaiming || !isPhoneVerfied}
+                disabled={!!foundClaim || isClaiming}
                 variant={foundClaim ? 'text' : 'contained'}
                 onClick={() => handleOnClickClaimBenefit(benefit)}
               >
