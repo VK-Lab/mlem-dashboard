@@ -5,7 +5,6 @@ import { useQueryClient } from 'react-query';
 
 import { StyledTextFieldElement } from './styled';
 import ToastMessage from '@/components/Toast';
-import { Config } from '@/config';
 import { ContractType } from '@/enums/contractType.enum';
 import { QueryKeys } from '@/enums/queryKeys.enum';
 import { useMutateCreateNftCollection } from '@/hooks/mutations';
@@ -44,7 +43,6 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       defaultValues={{
         name: '',
         contractType: ContractType.CEP78,
-        chainId: `${Config.chainId}`,
       }}
       onSuccess={handleOnSubmitForm}
     >
@@ -69,7 +67,6 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       <Box mt="1rem">
         <SelectBenefitsField name="benefitIds" />
       </Box>
-      <StyledTextFieldElement name="chainId" label="Chain Id" disabled />
 
       <Box mt="1rem">
         <LoadingButton
