@@ -31,7 +31,7 @@ const DashboardLayout = ({ children, elementTopbar }: Props) => {
           style={{ height: 64, textAlign: 'center', padding: '10px 0' }}
         >
           <Image
-            alt="D2E"
+            alt="MLEM"
             src={logoD2E}
             style={{ width: 64, height: 'auto' }}
           />

@@ -8,7 +8,7 @@ import { CookieKeys } from '@/enums/cookieKeys.enum';
 
 const request = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  timeout: 30 * 1000,
+  timeout: 100 * 1000,
   paramsSerializer: {
     serialize: (params) => qs.stringify(params, { arrayFormat: 'brackets' }),
   },

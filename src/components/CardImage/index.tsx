@@ -19,7 +19,7 @@ export const CardImage = ({
   }
 
   if (!isVideo(src)) {
-    return <LoadingImage src={src} layout="fill" />;
+    return <LoadingImage src={src} layout="fill" alt={''} />;
   }
 
   return (

@@ -45,7 +45,7 @@ export const getDeploy = async (
   deployHash: string,
   nodeURL = Config.nodeRPCUrl
 ) => {
-  await sleep(10000);
+  await sleep(15000);
   const client = new CasperClient(nodeURL);
   let i = 300;
   while (i !== 0) {
@@ -69,7 +69,7 @@ export const getDeploy = async (
       }
     } catch (err) {
       i--;
-      await sleep(1000);
+      await sleep(5000);
       continue;
     }
   }

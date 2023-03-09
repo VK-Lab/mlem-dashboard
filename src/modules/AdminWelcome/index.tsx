@@ -41,7 +41,7 @@ const Welcome = () => {
             Welcome to MLEM Admin Dashboard
           </Typography>
           <Typography variant="body2" gutterBottom sx={{ mb: 3 }}>
-            Connect your wallet to claim the exclusive benefits from D2E Group
+            Connect your wallet to claim the exclusive benefits from MLEM
           </Typography>
           <AdminLoginButton />
         </StyledWelcomeBlock>
