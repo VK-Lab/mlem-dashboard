@@ -45,10 +45,10 @@ function RegularAppbar() {
     mutationFn: logout,
     mutationKey: 'logout',
     onSuccess: async () => {
-      Cookies.remove(CookieKeys.TOKEN);
       await disconnectAsync();
-      router.push(PublicPaths.HOME);
+      Cookies.remove(CookieKeys.TOKEN);
       queryClient.removeQueries();
+      router.replace(PublicPaths.HOME);
     },
   });
 
