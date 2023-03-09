@@ -32,6 +32,21 @@ module.exports = {
         hostname: 'd2e-dev.s3.ap-southeast-1.amazonaws.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.ap-southeast-1.amazonaws.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.eggforce.io',
+        pathname: '/**',
+      },
     ],
   },
   webpack: (config) => {

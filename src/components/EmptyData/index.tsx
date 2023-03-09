@@ -49,7 +49,7 @@ const EmptyData = () => {
   return (
     <Box sx={{ maxWidth: '100%', textAlign: 'center' }}>
       <StyledText variant="h5">
-        You do not have any D2E NFTs yet
+        You do not have any MLEM NFTs yet
         <StyledButtonLink
           variant="contained"
           component={Link}
