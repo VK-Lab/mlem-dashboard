@@ -1213,21 +1213,21 @@
     near-api-js "^0.44.2"
     near-seed-phrase "^0.2.0"
 
-"@casperdash/usewallet-core@0.0.1", "@casperdash/usewallet-core@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@casperdash/usewallet-core/-/usewallet-core-0.0.1.tgz#a858c002cb2beb8e23f1a8d9b520eeb03790eea3"
-  integrity sha512-f4RJJIqvy1U8Ce+mmNwKbcgIQyRdRM6dmKkmHqlaQIz75K7OF9qNZ+gY5Fod7kpiLLZG7yjhSYnh05R0HHNqYQ==
+"@casperdash/usewallet-core@0.0.2", "@casperdash/usewallet-core@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@casperdash/usewallet-core/-/usewallet-core-0.0.2.tgz#4e2b6912e969d26c97d7d51cd157bc48f5ef6577"
+  integrity sha512-F5SoEZcWlsDAqT27S0w+cvVKtq/7OelE11bDisKshvnuH8SPcs4g0dNf4EP14daWKiVBD9EEv5XMGOZB3DO8Lg==
   dependencies:
     eventemitter3 "^4.0.7"
     typedjson "^1.8.0"
     zustand "^4.3.2"
 
-"@casperdash/usewallet@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@casperdash/usewallet/-/usewallet-0.0.1.tgz#b24f959b4202d61973c606355ca5754685b882be"
-  integrity sha512-WUmCl6xzSFAReF1/7ZTduRypHKXJhnYonk2W8d/rJwqc89ye9qbPwwGn+K4ViVGLCkgL5yhfYJWE34cwXaORmw==
+"@casperdash/usewallet@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@casperdash/usewallet/-/usewallet-0.0.2.tgz#500e93b85c971908427ebd90e9dfd11ba484e5b4"
+  integrity sha512-wAzfMWvNXbDhCMxtDvE4b11lTcbwPVKWEMJaWHsdi3lYL7Llff32jPKoPFzTYoBh7EhDGOl47fKfj69vlQbpWw==
   dependencies:
-    "@casperdash/usewallet-core" "0.0.1"
+    "@casperdash/usewallet-core" "0.0.2"
     "@tanstack/query-core" "^4.22.0"
     "@tanstack/query-sync-storage-persister" "^4.22.0"
     "@tanstack/react-query" "^4.22.3"
