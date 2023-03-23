@@ -40,9 +40,9 @@ const Index = ({ children, drawerWidth }: Props) => {
     mutationFn: logout,
     mutationKey: 'logout',
     onSuccess: async () => {
-      Cookies.remove(CookieKeys.TOKEN);
       await disconnectAsync();
-      router.push(PublicPaths.HOME);
+      Cookies.remove(CookieKeys.TOKEN);
+      router.replace(PublicPaths.HOME);
     },
   });
 
