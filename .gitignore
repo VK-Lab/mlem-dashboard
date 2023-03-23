@@ -40,3 +40,4 @@ storybook-static
 
 *.tsbuildinfo
 
+deploy-ecr.sh

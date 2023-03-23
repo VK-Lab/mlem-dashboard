@@ -10,7 +10,7 @@ const GLogo = (props: any) => {
       className="d2e--logo"
       style={{ height: 64, textAlign: 'center', padding: '10px 0' }}
     >
-      <Image alt="MLEM" src={logoD2E} style={{ height: 'auto', width: 54 }} />
+      <Image alt="Melem" src={logoD2E} style={{ height: 'auto', width: 54 }} />
     </div>
   );
 };

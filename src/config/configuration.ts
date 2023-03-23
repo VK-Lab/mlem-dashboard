@@ -2,7 +2,7 @@ import { chainId } from 'wagmi';
 
 export const Config = {
   chainId: Number(process.env.NEXT_PUBLIC_CHAIN_ID || chainId.polygonMumbai),
-  apiBaseUrl: process.env.NEXT_PUBLIC_API_URL || '',
+  apiBaseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://api.melem.io/v1',
   metadataBaseUrl: 'http://localhost:4000/v1/nfts',
   nodeRPCUrl: '/rpc',
   deployUrl: 'https://testnet-api.casperdash.io/deploy',

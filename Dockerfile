@@ -1,9 +1,8 @@
-FROM --platform=linux/amd64 node:16.16.0 as dependencies
+FROM node:16
 WORKDIR /project
 COPY . .
-
-RUN yarn install --no-cache --frozen-lockfile --ignore-scripts --production=false
+RUN yarn install --no-cache --frozen-lockfile --ignore-scripts
 RUN yarn build
 
-EXPOSE 80
+EXPOSE 3000
 CMD ["yarn", "start"]

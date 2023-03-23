@@ -19,7 +19,11 @@ const Welcome = () => {
         className="d2e--logo"
         style={{ position: 'fixed', left: 24, top: 24, zIndex: 1000 }}
       >
-        <Image alt="MLEM" src={logoD2E} style={{ height: 'auto', width: 80 }} />
+        <Image
+          alt="Melem"
+          src={logoD2E}
+          style={{ height: 'auto', width: 80 }}
+        />
       </div>
       <StyledBox className="left">
         <StyledImageOverlay />
@@ -38,7 +42,7 @@ const Welcome = () => {
         <BoxGradientBG />
         <StyledWelcomeBlock elevation={24}>
           <Typography sx={{ fontSize: 32 }} variant="h2" gutterBottom>
-            Welcome to MLEM Dashboard
+            Welcome to Melem Dashboard
           </Typography>
           <Typography variant="body2" gutterBottom sx={{ mb: 3 }}>
             Connect your wallet to claim the exclusive benefits from VK Venture

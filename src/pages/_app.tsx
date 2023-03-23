@@ -43,11 +43,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>MLEM Dashboard</title>
+        <title>Melem Dashboard</title>
         <link rel="shortcut icon" href="/img/chakra-logo.png" />
         <link rel="apple-touch-icon" href="/img/chakra-logo.png" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="description" content="MLEM Dashboard" />
+        <meta name="description" content="Melem Dashboard" />
       </Head>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
