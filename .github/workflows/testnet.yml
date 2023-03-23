@@ -27,39 +27,39 @@ jobs:
       run: |
         yarn
       env:
-        CI: true 
-  
-  deploy:
+        CI: true
 
-    needs: [build]
-    runs-on: ubuntu-latest
+  # deploy:
 
-    steps:
-      - name: SSH and deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.AWS_TESTNET_HOST }}
-          username: ${{ secrets.AWS_DEPLOY_USER }}
-          key: ${{ secrets.AWS_KEY }}
-          script: |
-            cd ~/project/d2e-dashboard
-            git fetch
-            git reset --hard HEAD 
-            git merge origin/develop
-            yarn
-            yarn build
-            yarn run-app
+  #   needs: [build]
+  #   runs-on: ubuntu-latest
 
-  notification:
+  #   steps:
+  #     - name: SSH and deploy
+  #       uses: appleboy/ssh-action@master
+  #       with:
+  #         host: ${{ secrets.AWS_TESTNET_HOST }}
+  #         username: ${{ secrets.AWS_DEPLOY_USER }}
+  #         key: ${{ secrets.AWS_KEY }}
+  #         script: |
+  #           cd ~/project/d2e-dashboard
+  #           git fetch
+  #           git reset --hard HEAD
+  #           git merge origin/develop
+  #           yarn
+  #           yarn build
+  #           yarn run-app
 
-      needs: [deploy]
-      if: github.ref == 'refs/heads/develop'
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - name: Send build result to slack channel
-          uses: rtCamp/action-slack-notify@v2
-          env: 
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_COLOR: ${{ job.status }}
-            SLACK_FOOTER: Powered by CasperDash
+  # notification:
+
+  #     needs: [deploy]
+  #     if: github.ref == 'refs/heads/develop'
+  #     runs-on: ubuntu-latest
+  #     steps:
+  #       - uses: actions/checkout@v2
+  #       - name: Send build result to slack channel
+  #         uses: rtCamp/action-slack-notify@v2
+  #         env:
+  #           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  #           SLACK_COLOR: ${{ job.status }}
+  #           SLACK_FOOTER: Powered by CasperDash
