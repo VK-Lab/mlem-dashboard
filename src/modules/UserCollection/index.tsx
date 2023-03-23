@@ -38,7 +38,7 @@ export const ProfileInfo = () => {
       </Box>
       <Box className="profile--username">
         <Typography className="user-alias" variant="h3">
-          {`${_get(profile, 'cnvLoyaltyUser.firstName', 'MLEM')} ${_get(
+          {`${_get(profile, 'cnvLoyaltyUser.firstName', 'Melem')} ${_get(
             profile,
             'cnvLoyaltyUser.lastName',
             'User'

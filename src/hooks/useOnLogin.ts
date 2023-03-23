@@ -20,9 +20,9 @@ export const useOnLogin = ({ loginType }: UseOnLoginProps) => {
     Cookies.set(CookieKeys.TOKEN, data.accessToken);
 
     if (loginType === LoginTypeEnum.ADMIN) {
-      router.push(PrivatePaths.USER_COLLECTION);
+      router.push(AdminPaths.CAMPAIGNS);
     } else {
-      router.push(AdminPaths.DASHBOARD);
+      router.push(PrivatePaths.USER_COLLECTION);
     }
   };
   const loginMutation = useMutation({

@@ -4,10 +4,11 @@ import { i18n } from 'next-i18next';
 import qs from 'qs';
 import { toast } from 'react-toastify';
 
+import { Config } from '@/config';
 import { CookieKeys } from '@/enums/cookieKeys.enum';
 
 const request = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: Config.apiBaseUrl,
   timeout: 100 * 1000,
   paramsSerializer: {
     serialize: (params) => qs.stringify(params, { arrayFormat: 'brackets' }),
