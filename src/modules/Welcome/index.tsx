@@ -8,7 +8,8 @@ import {
   StyledWelcomePage,
   BoxGradientBG,
 } from './styled';
-import ConnectionButton from '@/modules/core/ConnectionButton';
+import { LoginTypeEnum } from '@/enums';
+import LoginButton from '@/modules/core/LoginButton';
 import imageWelcome from '~/public/img/background.jpeg';
 import logoD2E from '~/public/img/logo--d2e--yellow.png';
 
@@ -47,7 +48,7 @@ const Welcome = () => {
           <Typography variant="body2" gutterBottom sx={{ mb: 3 }}>
             Connect your wallet to claim the exclusive benefits from VK Venture
           </Typography>
-          <ConnectionButton />
+          <LoginButton loginType={LoginTypeEnum.USER} />
         </StyledWelcomeBlock>
       </StyledBox>
     </StyledWelcomePage>
