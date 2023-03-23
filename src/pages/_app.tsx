@@ -23,11 +23,6 @@ import theme from '@/theme';
 
 import '@/assets/styles.css';
 
-const client = createClient({
-  connectors: [new CasperSignerConnector(), new CasperDashConnector()],
-  autoConnect: true,
-});
-
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
     () =>
@@ -38,6 +33,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           },
         },
       })
+  );
+  const [useWalletClient] = useState(() =>
+    createClient({
+      connectors: [new CasperSignerConnector(), new CasperDashConnector()],
+      autoConnect: true,
+    })
   );
 
   return (
@@ -53,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Provider store={store}>
           <QueryClientProvider client={queryClient}>
             <CssBaseline />
-            <CasperProvider client={client}>
+            <CasperProvider client={useWalletClient}>
               <RouterGuard>
                 <Component {...pageProps} />
               </RouterGuard>

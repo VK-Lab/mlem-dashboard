@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 
-import AdminLoginButton from '../core/AdminLoginButton';
+import LoginButton from '../core/LoginButton';
 import {
   StyledImageOverlay,
   StyledBox,
@@ -9,6 +9,7 @@ import {
   StyledWelcomePage,
   BoxGradientBG,
 } from './styled';
+import { LoginTypeEnum } from '@/enums';
 import imageWelcome from '~/public/img/background.jpeg';
 import logoD2E from '~/public/img/logo--d2e--yellow.png';
 
@@ -47,7 +48,7 @@ const Welcome = () => {
           <Typography variant="body2" gutterBottom sx={{ mb: 3 }}>
             Connect your wallet to claim the exclusive benefits from Melem
           </Typography>
-          <AdminLoginButton />
+          <LoginButton loginType={LoginTypeEnum.ADMIN} />
         </StyledWelcomeBlock>
       </StyledBox>
     </StyledWelcomePage>
