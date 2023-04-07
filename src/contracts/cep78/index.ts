@@ -210,7 +210,13 @@ export class CEP78Client {
   }
 
   public async numOfMintedTokens() {
-    return this.contractClient.queryContractData(['number_of_minted_tokens']);
+    const numberOfMintedTokens = await this.contractClient.queryContractData([
+      'number_of_minted_tokens',
+    ]);
+
+    const u8res = (numberOfMintedTokens as BigNumber).toNumber();
+
+    return u8res;
   }
 
   public async getContractWhitelist() {

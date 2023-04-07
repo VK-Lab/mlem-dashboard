@@ -99,13 +99,16 @@ export const signDeployNftCollection = async ({
   };
 };
 
-export const signDeployNft = async ({
-  publicKeyHex,
-  name,
-  tokenAddress,
-  tokenId,
-  paymentAmount = '30000000000',
-}: SignDeployNftParams) => {
+export const signDeployNft = async (
+  {
+    publicKeyHex,
+    name,
+    tokenAddress,
+    tokenId,
+    paymentAmount = '30000000000',
+  }: SignDeployNftParams,
+  { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
+) => {
   const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
 
   const meta = {
@@ -133,5 +136,10 @@ export const signDeployNft = async ({
   });
 
   const deployHash = await deploy(signedDeploy);
-  await getDeploy(deployHash);
+
+  if (isWaiting) {
+    await getDeploy(deployHash);
+  }
+
+  return deployHash;
 };

@@ -1,6 +1,7 @@
 import { useAccount } from '@casperdash/usewallet';
 import { useMutation, UseMutationOptions } from 'react-query';
 
+import { DeployStatusEnum } from '@/enums';
 import { MutationKeys } from '@/enums/mutationKeys.enum';
 import { createNft } from '@/services/admin/nft';
 import { CreateNftParams, CreateNftResponse } from '@/services/admin/nft/types';
@@ -23,13 +24,18 @@ export const useMutateCreateNft = (
         throw new Error('Public key does not exist');
       }
 
-      await signDeployNft({
+      const deployHash = await signDeployNft({
         publicKeyHex: publicKey,
         name: params.name,
         tokenAddress: params.tokenAddress,
         tokenId: params.tokenId,
       });
-      return createNft(params);
+
+      return createNft({
+        ...params,
+        deployHash,
+        deployStatus: DeployStatusEnum.PENDING,
+      });
     },
     mutationKey: [MutationKeys.CREATE_NFT, publicKey],
   });
