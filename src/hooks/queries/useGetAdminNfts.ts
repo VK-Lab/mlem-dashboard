@@ -17,5 +17,7 @@ export const useGetAdminNfts = (
 ) => {
   return useQuery([QueryKeys.LIST_NFTS], () => getNfts(), {
     ...options,
+    refetchInterval: 30 * 1000,
+    refetchOnWindowFocus: true,
   });
 };
