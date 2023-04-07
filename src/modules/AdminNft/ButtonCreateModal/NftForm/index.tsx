@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useAccount } from '@casperdash/usewallet';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
-import { CLPublicKey } from 'casper-js-sdk';
 import {
   AutocompleteElement,
   FormContainer,
@@ -80,9 +79,8 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
         );
         let tokenId = '0';
         try {
-          tokenId = await CEP78ClientInstance.getBalanceOf(
-            CLPublicKey.fromHex(publicKey)
-          );
+          const nextTokenId = await CEP78ClientInstance.numOfMintedTokens();
+          tokenId = `${nextTokenId}`;
           // eslint-disable-next-line no-empty
         } catch (err) {}
 
