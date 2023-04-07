@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { Box, Button } from '@mui/material';
+import { Box, Button, Chip } from '@mui/material';
 import copy from 'copy-to-clipboard';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
@@ -11,6 +11,7 @@ import ToastMessage from '@/components/Toast';
 import { Config } from '@/config';
 import { useGetAdminNfts } from '@/hooks/queries';
 import { Nft } from '@/types/nft';
+import { mapDeployStatus } from '@/utils/status';
 
 const AdminNftTable = () => {
   const { data: { items = [] } = { nfts: [], total: 0 }, isLoading } =
@@ -36,12 +37,12 @@ const AdminNftTable = () => {
   const columns = useMemo<MRT_ColumnDef<Nft>[]>(
     () => [
       {
-        accessorKey: 'id',
-        header: 'Id',
-      },
-      {
         accessorKey: 'name',
         header: 'Name',
+      },
+      {
+        accessorKey: 'tokenId',
+        header: 'Token Id',
       },
       {
         accessorKey: 'description',
@@ -56,8 +57,8 @@ const AdminNftTable = () => {
         header: 'Token Address',
       },
       {
-        accessorKey: 'tokenId',
-        header: 'Token Id',
+        accessorKey: 'deployHash',
+        header: 'Deploy Hash',
       },
       {
         accessorKey: 'createdAt',
@@ -67,6 +68,23 @@ const AdminNftTable = () => {
             {dayjs(row.original.createdAt).format('YYYY-MM-DD h:mm:ss A')}
           </Box>
         ),
+        size: 220,
+      },
+      {
+        accessorKey: 'deployStatus',
+        header: 'Deploy Status',
+        size: 220,
+        Cell: ({ row }) => {
+          const { deployStatus } = row.original;
+
+          return (
+            <Chip
+              label={deployStatus}
+              color={mapDeployStatus(deployStatus)}
+              variant="outlined"
+            />
+          );
+        },
       },
     ],
     []
@@ -82,10 +100,17 @@ const AdminNftTable = () => {
         state={{
           isLoading: isLoading,
           columnPinning: {
-            right: ['mrt-row-actions'],
-            left: ['id'],
+            right: ['deployStatus', 'mrt-row-actions'],
+            left: ['name'],
           },
         }}
+        displayColumnDefOptions={{
+          'mrt-row-actions': {
+            header: 'Actions', //change header text
+            size: 100, //make actions column wider
+          },
+        }}
+        enablePinning={true}
         enableRowActions={true}
         renderRowActions={({ row }) => {
           return (
