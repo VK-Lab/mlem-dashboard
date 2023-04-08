@@ -8,5 +8,6 @@ export enum MutationKeys {
   UPDATE_CAMPAIGN = 'update-campaign',
   BATCH_CREATE_NFTS = 'batch-create-nfts',
   CREATE_NFT_COLLECTION = 'create-nft-collection',
+  CONFIRM_NFT_COLLECTION = 'confirm-nft-collection',
   UPDATE_NFT_COLLECTION = 'update-nft-collection',
 }

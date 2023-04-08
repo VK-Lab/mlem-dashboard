@@ -5,6 +5,8 @@ import {
   GetNftCollectionsResponse,
   UpdateNftCollectionParams,
   UpdateNftCollectionResponse,
+  ConfirmNftCollectionParams,
+  ConfirmNftCollectionResponse,
 } from './types';
 import request from '@/utils/request';
 
@@ -27,4 +29,11 @@ export const createNftCollection = (
   params: CreateNftCollectionParams
 ): Promise<CreateNftCollectionResponse> => {
   return request.post('/admin/nft-collections', params);
+};
+
+export const confirmNftCollection = ({
+  id,
+  ...params
+}: ConfirmNftCollectionParams): Promise<ConfirmNftCollectionResponse> => {
+  return request.post(`/admin/nft-collections/${id}/confirm`, params);
 };
