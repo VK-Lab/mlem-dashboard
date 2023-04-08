@@ -29,7 +29,6 @@ export const getAccountNamedKeyValue = (
   accountInfo: any,
   namedKey: string
 ): string | undefined => {
-  console.log('namedKey: ', namedKey);
   const found = accountInfo.namedKeys.find((i: any) => i.name === namedKey);
   if (found) {
     return found.key;

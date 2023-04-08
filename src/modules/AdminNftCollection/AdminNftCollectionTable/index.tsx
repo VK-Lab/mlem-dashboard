@@ -1,12 +1,15 @@
 import { useMemo } from 'react';
 
-import { Box } from '@mui/material';
+import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
+import ButtonRegisterTokenOwner from './ButtonRegisterTokenOwner';
 import ButtonUpdateModal from './ButtonUpdateModal';
+import { DeployStatusEnum } from '@/enums';
 import { useGetAllNftCollections } from '@/hooks/queries/useGetAllNftCollections';
 import { NftCollection } from '@/types/nft-collection';
+import { mapDeployStatus } from '@/utils/status';
 
 const AdminNftCollectionTable = () => {
   const { data: { items = [] } = { items: [] }, isLoading } =
@@ -31,12 +34,28 @@ const AdminNftCollectionTable = () => {
         header: 'Token Address',
       },
       {
-        accessorKey: 'chainId',
-        header: 'Chain Id',
-      },
-      {
         accessorKey: 'contractType',
         header: 'Contract Type',
+      },
+      {
+        accessorKey: 'deployHash',
+        header: 'Deploy Hash',
+      },
+      {
+        accessorKey: 'deployStatus',
+        header: 'Deploy Status',
+        size: 220,
+        Cell: ({ row }) => {
+          const { deployStatus } = row.original;
+
+          return (
+            <Chip
+              label={deployStatus}
+              color={mapDeployStatus(deployStatus)}
+              variant="outlined"
+            />
+          );
+        },
       },
       {
         accessorKey: 'createdAt',
@@ -46,6 +65,7 @@ const AdminNftCollectionTable = () => {
             {dayjs(row.original.createdAt).format('YYYY-MM-DD h:mm:ss A')}
           </Box>
         ),
+        size: 200,
       },
     ],
     []
@@ -61,15 +81,26 @@ const AdminNftCollectionTable = () => {
         state={{
           isLoading: isLoading,
           columnPinning: {
-            right: ['mrt-row-actions'],
+            right: ['deployStatus', 'mrt-row-actions'],
             left: ['id'],
+          },
+        }}
+        displayColumnDefOptions={{
+          'mrt-row-actions': {
+            header: 'Actions', //change header text
+            size: 220, //make actions column wider
           },
         }}
         enableRowActions={true}
         renderRowActions={({ row }) => {
+          const { deployStatus } = row.original;
+
           return (
             <Box display="flex" gap="10px">
               <ButtonUpdateModal nftCollection={row.original} />
+              {deployStatus === DeployStatusEnum.CONFIRMING && (
+                <ButtonRegisterTokenOwner nftCollection={row.original} />
+              )}
             </Box>
           );
         }}
