@@ -1,3 +1,5 @@
+import { DeployStatusEnum } from '@/enums';
+
 export type NftCollection = {
   id: string;
   name: string;
@@ -8,4 +10,6 @@ export type NftCollection = {
   campaignId?: string;
   benefitIds?: string[];
   createdAt: string;
+  deployHash: string;
+  deployStatus: DeployStatusEnum;
 };

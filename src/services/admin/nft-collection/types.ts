@@ -22,10 +22,18 @@ export type UpdateNftCollectionResponse = {
   id: string;
 };
 
-export type CreateNftCollectionParams = Partial<NftCollection> & {
-  name: string;
-};
+export type CreateNftCollectionParams = Partial<NftCollection> &
+  Pick<NftCollection, 'name'>;
 
 export type CreateNftCollectionResponse = {
+  id: string;
+};
+
+export type ConfirmNftCollectionParams = Pick<
+  NftCollection,
+  'tokenAddress' | 'id'
+>;
+
+export type ConfirmNftCollectionResponse = {
   id: string;
 };
