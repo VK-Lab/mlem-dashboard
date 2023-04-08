@@ -66,13 +66,21 @@ export const signDeployNftCollection = async ({
 
   const deployHash = await deploy(signedDeploy);
 
-  await getDeploy(deployHash);
+  return {
+    deployHash,
+  };
+};
 
+export const registerTokenOwner = async (
+  collectionName: string,
+  publicKeyHex: string
+) => {
+  const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
   const accountInfo = await getAccountInfo(cliPublicKey);
 
   const contractHash = getAccountNamedKeyValue(
     accountInfo,
-    `cep78_contract_hash_${_kebabCase(name)}`
+    `cep78_contract_hash_${_kebabCase(collectionName)}`
   );
   if (!contractHash) {
     throw new Error('Can not get contract hash');
@@ -92,10 +100,12 @@ export const signDeployNftCollection = async ({
     signingPublicKeyHex: publicKeyHex,
     targetPublicKeyHex: publicKeyHex,
   });
-  await deploy(signedRegisterDeploy);
+
+  const deployHash = await deploy(signedRegisterDeploy);
 
   return {
     contractHash: contractHash.replace('hash-', ''),
+    deployHash,
   };
 };
 

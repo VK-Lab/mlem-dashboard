@@ -25,14 +25,14 @@ export const useMutateCreateNftCollection = (
       if (!publicKey) {
         throw new Error('Public key does not exist');
       }
-      const { contractHash } = await signDeployNftCollection({
+      const { deployHash } = await signDeployNftCollection({
         publicKeyHex: publicKey,
         name: params.name,
       });
 
       return createNftCollection({
         ...params,
-        tokenAddress: contractHash,
+        deployHash,
       });
     },
     onError: (err: Error) => {
