@@ -26,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: blhl1210/mlem-api:latest
+          tags: blhl1210/mlem-ui:latest
