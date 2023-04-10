@@ -11,7 +11,7 @@ module.exports = {
     return [
       {
         source: '/rpc',
-        destination: 'https://node-clarity-testnet.make.services/rpc',
+        destination: 'http://76.91.193.251:7777/rpc',
       },
     ];
   },
