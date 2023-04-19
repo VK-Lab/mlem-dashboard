@@ -11,7 +11,7 @@ module.exports = {
     return [
       {
         source: '/rpc',
-        destination: 'http://76.91.193.251:7777/rpc',
+        destination: 'http://138.201.51.197:7777/rpc',
       },
     ];
   },
