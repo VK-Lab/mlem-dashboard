@@ -47,6 +47,11 @@ module.exports = {
         hostname: 'assets.eggforce.io',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'pbs.twimg.com',
+        pathname: '/**',
+      },
     ],
   },
   webpack: (config) => {
