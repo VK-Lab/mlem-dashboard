@@ -23,7 +23,7 @@ export const CardImage = ({
   }
 
   return (
-    <Box position="relative" height={'100%'}>
+    <Box position="relative" height={'300px'}>
       <video
         width="100%"
         height="100%"
@@ -33,7 +33,7 @@ export const CardImage = ({
         style={{
           objectFit: 'contain',
           width: '100%',
-          height: 'auto',
+          height: '300px',
           position: 'absolute',
           top: 0,
           left: 0,
