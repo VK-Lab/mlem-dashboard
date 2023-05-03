@@ -9,6 +9,39 @@ import { useRouter } from 'next/router';
 
 import { AdminPaths } from '@/enums/paths.enum';
 
+const MENU_ITEMS = [
+  {
+    name: 'Campaigns',
+    path: AdminPaths.CAMPAIGNS,
+    icon: <AppsIcon />,
+  },
+  {
+    name: 'Claims',
+    path: AdminPaths.CLAIMS,
+    icon: <AppsIcon />,
+  },
+  {
+    name: 'Benefits',
+    path: AdminPaths.BENEFITS,
+    icon: <AppsIcon />,
+  },
+  {
+    name: 'Benefit Categories',
+    path: AdminPaths.BENEFIT_CATEGORIES,
+    icon: <AppsIcon />,
+  },
+  {
+    name: 'NFTs',
+    path: AdminPaths.NFTS,
+    icon: <AppsIcon />,
+  },
+  {
+    name: 'NFT Collections',
+    path: AdminPaths.NFT_COLLECTIONS,
+    icon: <AppsIcon />,
+  },
+];
+
 export default function NestedList({ maxWidth = 360 }) {
   const router = useRouter();
 
@@ -19,52 +52,18 @@ export default function NestedList({ maxWidth = 360 }) {
   return (
     <>
       <List dense sx={{ maxWidth, pt: 3 }} component="nav">
-        <ListItemButton
-          selected={Boolean(router.asPath === AdminPaths.CAMPAIGNS)}
-          onClick={() => handleOnClick(AdminPaths.CAMPAIGNS)}
-        >
-          <ListItemIcon>
-            <AppsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Campaigns" />
-        </ListItemButton>
-        <ListItemButton
-          selected={Boolean(router.asPath === AdminPaths.CLAIMS)}
-          onClick={() => handleOnClick(AdminPaths.CLAIMS)}
-        >
-          <ListItemIcon>
-            <AppsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Claims" />
-        </ListItemButton>
-        <ListItemButton
-          selected={Boolean(router.asPath === AdminPaths.BENEFITS)}
-          onClick={() => handleOnClick(AdminPaths.BENEFITS)}
-        >
-          <ListItemIcon>
-            <AppsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Benefits" />
-        </ListItemButton>
-        <ListItemButton
-          selected={Boolean(router.asPath === AdminPaths.NFTS)}
-          onClick={() => handleOnClick(AdminPaths.NFTS)}
-        >
-          <ListItemIcon>
-            <AppsIcon />
-          </ListItemIcon>
-          <ListItemText primary="NFTs" />
-        </ListItemButton>
-        <ListItemButton
-          selected={Boolean(router.asPath === AdminPaths.NFT_COLLECTIONS)}
-          onClick={() => handleOnClick(AdminPaths.NFT_COLLECTIONS)}
-        >
-          <ListItemIcon>
-            <AppsIcon />
-          </ListItemIcon>
-          <ListItemText primary="NFT Collections" />
-        </ListItemButton>
+        {MENU_ITEMS.map((item) => (
+          <ListItemButton
+            selected={Boolean(router.asPath === item.path)}
+            key={item.name}
+            onClick={() => handleOnClick(item.path)}
+          >
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.name} />
+          </ListItemButton>
+        ))}
       </List>
+
       {/* <List
         dense
         sx={{ maxWidth }}

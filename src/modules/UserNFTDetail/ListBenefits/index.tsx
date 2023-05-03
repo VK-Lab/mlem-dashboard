@@ -6,6 +6,7 @@ import { StyledListItemIcon } from './styled';
 import { QueryKeys } from '@/enums/queryKeys.enum';
 import { useMutateClaimBenefit } from '@/hooks/mutations';
 import { Benefit } from '@/types/benefit';
+import { ClaimStatusEnum } from '@/types/claim';
 import { NftClaim } from '@/types/nft';
 
 type Props = {
@@ -38,7 +39,13 @@ const ListBenefits = ({ nftId, benefits = [], claims = [] }: Props) => {
         const foundClaim = claims.find(
           (claim: NftClaim) => claim.benefitId === benefit.id
         );
-        const txt = foundClaim ? foundClaim.status : 'Claim';
+        let txt = foundClaim ? foundClaim.status : 'Claim';
+        if (
+          foundClaim?.status === ClaimStatusEnum.ACCEPTED &&
+          foundClaim?.generatedCode
+        ) {
+          txt = foundClaim?.generatedCode;
+        }
         const isClaiming =
           claimNftMutation.isLoading &&
           claimNftMutation.variables?.benefitId === benefit.id;
