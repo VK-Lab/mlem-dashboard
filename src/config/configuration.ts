@@ -1,7 +1,5 @@
-import { chainId } from 'wagmi';
-
 export const Config = {
-  chainId: Number(process.env.NEXT_PUBLIC_CHAIN_ID || chainId.polygonMumbai),
+  chainId: Number(process.env.NEXT_PUBLIC_CHAIN_ID),
   apiBaseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://api.melem.io/v1',
   metadataBaseUrl: 'http://localhost:4000/v1/nfts',
   nodeRPCUrl: '/rpc',

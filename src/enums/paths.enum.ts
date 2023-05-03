@@ -7,6 +7,7 @@ export enum AdminPaths {
   DASHBOARD = '/admin/campaigns',
   CLAIMS = '/admin/claims',
   BENEFITS = '/admin/benefits',
+  BENEFIT_CATEGORIES = '/admin/benefit-categories',
   CAMPAIGNS = '/admin/campaigns',
   CREATE_CAMPAIGN = '/admin/campaigns/create',
   NFTS = '/admin/nfts',
