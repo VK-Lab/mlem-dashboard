@@ -3,14 +3,14 @@ import { useMemo } from 'react';
 import { Box } from '@mui/material';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
-import { useGetBenefits } from '@/hooks/queries';
-import { Benefit } from '@/types/benefit';
+import { useGetAdminBenefitCategories } from '@/hooks/queries';
+import { BenefitCategory } from '@/types/benefit-category';
 
 const AdminBenefitTable = () => {
   const { data: { items = [] } = { items: [], total: 0 }, isLoading } =
-    useGetBenefits();
+    useGetAdminBenefitCategories();
 
-  const columns = useMemo<MRT_ColumnDef<Benefit>[]>(
+  const columns = useMemo<MRT_ColumnDef<BenefitCategory>[]>(
     () => [
       {
         accessorKey: 'id',
@@ -19,19 +19,6 @@ const AdminBenefitTable = () => {
       {
         accessorKey: 'name',
         header: 'Name',
-      },
-      {
-        accessorKey: 'categoryId',
-        header: 'Category',
-        Cell: ({ row }) => (
-          <Box component="div" sx={{ whiteSpace: 'normal' }}>
-            {row.original.category?.name}
-          </Box>
-        ),
-      },
-      {
-        accessorKey: 'description',
-        header: 'Description',
       },
     ],
     []

@@ -4,14 +4,21 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
-import { FormContainer } from 'react-hook-form-mui';
+import { FormContainer, SelectElement, useForm } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
 import { StyledTextFieldElement } from './styled';
 import ToastMessage from '@/components/Toast';
 import { QueryKeys } from '@/enums/queryKeys.enum';
 import { useMutateCreateBenefit } from '@/hooks/mutations';
+import { useGetAdminBenefitCategories } from '@/hooks/queries';
 import { Benefit } from '@/types/benefit';
+import { BenefitCategory } from '@/types/benefit-category';
+
+export enum BeneiftSourceEnum {
+  WOOCOMMERCE = 'woocommerce',
+  MANUAL = 'manual',
+}
 
 const style = {
   position: 'absolute',
@@ -29,10 +36,63 @@ type BenefitFormProps = {
 };
 
 const BenefitForm = ({ onSuccess }: BenefitFormProps) => {
+  const { data: { items } = { items: [] } } = useGetAdminBenefitCategories();
+  const formContext = useForm<Benefit>({
+    defaultValues: {
+      name: '',
+    },
+  });
+
   return (
-    <FormContainer defaultValues={{ name: '' }} onSuccess={onSuccess}>
+    <FormContainer
+      formContext={formContext}
+      defaultValues={{ name: '' }}
+      onSuccess={onSuccess}
+    >
       <StyledTextFieldElement name="name" label="Name" required />
       <StyledTextFieldElement name="description" label="Description" />
+      <Box mt="1rem">
+        <SelectElement
+          label="Benefit Category"
+          name="categoryId"
+          sx={{
+            width: '100%',
+          }}
+          options={items.map((benefitCategory: BenefitCategory) => {
+            return {
+              id: benefitCategory.id,
+              label: benefitCategory.name,
+            };
+          })}
+          required
+        />
+      </Box>
+      <Box mt="1rem">
+        <SelectElement
+          label="Source"
+          name="source"
+          sx={{
+            width: '100%',
+          }}
+          options={[
+            {
+              id: BeneiftSourceEnum.MANUAL,
+              label: 'Manual',
+            },
+            {
+              id: BeneiftSourceEnum.WOOCOMMERCE,
+              label: 'WooCommerce',
+            },
+          ]}
+          required
+        />
+        <StyledTextFieldElement
+          type="number"
+          name="amount"
+          label="Amount"
+          required
+        />
+      </Box>
       <Box mt="1rem">
         <Button type={'submit'} color={'primary'} variant={'contained'}>
           Create
@@ -59,7 +119,10 @@ const ButtonCreateModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleOnSubmitForm = (benefit: Benefit) => {
-    createBenefitMutation.mutate(benefit);
+    createBenefitMutation.mutate({
+      ...benefit,
+      amount: benefit.amount ? Number(benefit.amount) : undefined,
+    });
   };
 
   return (
