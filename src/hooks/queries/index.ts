@@ -12,3 +12,5 @@ export * from './useGetAllCampaigns';
 export * from './useCheckPhoneVerfied';
 
 export * from './useGetMyProfile';
+
+export * from './useGetAdminBenefitCategories';

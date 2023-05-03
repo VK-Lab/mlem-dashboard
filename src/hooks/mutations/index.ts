@@ -10,3 +10,4 @@ export * from './useMutateBatchCreateNfts';
 export * from './useMutateUpdateCampaign';
 export * from './useMutateCreateCampaign';
 export * from './useMutateRegisterTokenOwner';
+export * from './useMutateCreateBenefitCategory';
