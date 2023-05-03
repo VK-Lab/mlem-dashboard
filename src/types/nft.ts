@@ -32,6 +32,7 @@ export type Nft = {
 export type NftClaim = {
   benefitId: string;
   status: ClaimStatusEnum;
+  generatedCode?: string;
 };
 
 export type EvmNft = {
