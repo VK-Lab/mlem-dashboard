@@ -30,6 +30,15 @@ const AdminBenefitTable = () => {
         ),
       },
       {
+        accessorKey: 'amount',
+        header: 'Amount Percentage',
+        Cell: ({ row }) => (
+          <Box component="div" sx={{ whiteSpace: 'normal' }}>
+            {row.original.amount || 0} %
+          </Box>
+        ),
+      },
+      {
         accessorKey: 'description',
         header: 'Description',
       },

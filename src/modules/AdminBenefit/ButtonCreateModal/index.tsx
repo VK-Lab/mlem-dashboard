@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { FormContainer, SelectElement, useForm } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
+import * as yup from 'yup';
 
 import { StyledTextFieldElement } from './styled';
 import ToastMessage from '@/components/Toast';
@@ -35,12 +37,23 @@ type BenefitFormProps = {
   onSuccess: (data: Benefit) => void;
 };
 
+const validationSchema = yup.object({
+  amount: yup
+    .number()
+    .typeError('Total must be number')
+    .required('This field is required')
+    .min(1)
+    .max(100),
+  name: yup.string().required('This field is required'),
+});
+
 const BenefitForm = ({ onSuccess }: BenefitFormProps) => {
   const { data: { items } = { items: [] } } = useGetAdminBenefitCategories();
   const formContext = useForm<Benefit>({
     defaultValues: {
       name: '',
     },
+    resolver: yupResolver(validationSchema),
   });
 
   return (
@@ -89,7 +102,7 @@ const BenefitForm = ({ onSuccess }: BenefitFormProps) => {
         <StyledTextFieldElement
           type="number"
           name="amount"
-          label="Amount"
+          label="Amount Percentage"
           required
         />
       </Box>
