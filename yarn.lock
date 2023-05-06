@@ -1213,7 +1213,7 @@
     near-api-js "^0.44.2"
     near-seed-phrase "^0.2.0"
 
-"@casperdash/usewallet-core@0.0.3", "@casperdash/usewallet-core@^0.0.3":
+"@casperdash/usewallet-core@0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@casperdash/usewallet-core/-/usewallet-core-0.0.3.tgz#69845b22a3ea82f870dfaec2c6546442a97f94cb"
   integrity sha512-Fdufz8r+ZYBn+ZmW7rRNzt7IN2EMDb2yBs42PxU2HlPixyGZnvj+Vpn1DB+VyvApIrTg0gceJaOxKDQqhZACew==
@@ -1222,7 +1222,7 @@
     typedjson "^1.8.0"
     zustand "^4.3.2"
 
-"@casperdash/usewallet@^0.0.3":
+"@casperdash/usewallet@0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@casperdash/usewallet/-/usewallet-0.0.3.tgz#0aebfd5dda37e39e5903f2d5dedaee6bdde913d1"
   integrity sha512-SMGT8qAn79ot7BKl2NeHhvYkHNyAlF2YzZefkFFZVNC7obl9QbwXrSgfUg4yvhj/3L6fRXF01Q7Bv9RB1siFAA==
