@@ -1,4 +1,4 @@
-import { useAccount } from '@casperdash/usewallet';
+import { useAccount } from '@usedapptesthello/usewallet';
 import _get from 'lodash/get';
 import { useMutation, UseMutationOptions } from 'react-query';
 

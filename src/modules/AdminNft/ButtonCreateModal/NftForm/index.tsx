@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { useAccount } from '@casperdash/usewallet';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
+import { useAccount } from '@usedapptesthello/usewallet';
 import {
   AutocompleteElement,
   FormContainer,

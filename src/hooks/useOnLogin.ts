@@ -1,4 +1,4 @@
-import { useAccount, useSignMessage } from '@casperdash/usewallet';
+import { useAccount, useSignMessage } from '@usedapptesthello/usewallet';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
