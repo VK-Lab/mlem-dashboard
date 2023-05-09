@@ -1,13 +1,14 @@
 import { useState } from 'react';
 
+import { ThemeProvider } from '@emotion/react';
+import CssBaseline from '@mui/material/CssBaseline';
 import {
   CasperDashConnector,
   CasperProvider,
   CasperSignerConnector,
+  CasperWalletConnector,
   createClient,
-} from '@casperdash/usewallet';
-import { ThemeProvider } from '@emotion/react';
-import CssBaseline from '@mui/material/CssBaseline';
+} from '@usedapptesthello/usewallet';
 import { appWithTranslation } from 'next-i18next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -34,12 +35,24 @@ function MyApp({ Component, pageProps }: AppProps) {
         },
       })
   );
-  const [useWalletClient] = useState(() =>
-    createClient({
-      connectors: [new CasperSignerConnector(), new CasperDashConnector()],
+  const [useWalletClient] = useState(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    return createClient({
+      connectors: [
+        new CasperSignerConnector(),
+        new CasperDashConnector(),
+        new CasperWalletConnector(),
+      ],
       autoConnect: true,
-    })
-  );
+    });
+  });
+
+  if (!useWalletClient) {
+    return <div></div>;
+  }
 
   return (
     <>
