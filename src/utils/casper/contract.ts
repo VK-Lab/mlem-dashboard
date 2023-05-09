@@ -1,4 +1,4 @@
-import { sign } from '@casperdash/usewallet-core';
+import { sign } from '@usedapptesthello/usewallet-core';
 import { CLPublicKey, DeployUtil } from 'casper-js-sdk';
 import _kebabCase from 'lodash/kebabCase';
 

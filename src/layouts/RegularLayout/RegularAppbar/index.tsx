@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { useDisconnect } from '@casperdash/usewallet';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
@@ -12,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import { useDisconnect } from '@usedapptesthello/usewallet';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useMutation, useQueryClient } from 'react-query';
