@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import {
   CasperDashConnector,
-  CasperSignerConnector,
   CasperWalletConnector,
   useConnect,
 } from '@usedapptesthello/usewallet';
@@ -12,7 +11,6 @@ import Image from 'next/image'; // No wrapper
 import { ButtonStyled, ModalContentStyled } from './styled';
 import { LoginTypeEnum } from '@/enums';
 import { useOnLogin } from '@/hooks/useOnLogin';
-import CasperSignerLogo from '~/public/img/casper-signer-logo.png';
 import CasperWalletLogo from '~/public/img/casper-wallet.png';
 import CasperdashLogo from '~/public/img/casperdash-logo.webp';
 
@@ -26,9 +24,6 @@ const LoginButton = ({ loginType }: Props) => {
 
   const { connectAsync: connectCasperDashAsync } = useConnect({
     connector: new CasperDashConnector(),
-  });
-  const { connectAsync: connectCasperSignerAsync } = useConnect({
-    connector: new CasperSignerConnector(),
   });
   const { connectAsync: connectCasperWalletAsync } = useConnect({
     connector: new CasperWalletConnector(),
@@ -72,22 +67,6 @@ const LoginButton = ({ loginType }: Props) => {
               }
             >
               Casperdash
-            </Button>
-            <Button
-              variant="contained"
-              onClick={() => connectCasperSignerAsync()}
-              startIcon={
-                <Box paddingLeft={'28px'} marginRight="10px" paddingTop="5px">
-                  <Image
-                    alt="casper-signer-logo"
-                    src={CasperSignerLogo}
-                    width="20"
-                    height="20"
-                  />
-                </Box>
-              }
-            >
-              Casper Signer
             </Button>
             <Button
               variant="contained"
