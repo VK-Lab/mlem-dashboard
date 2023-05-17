@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 
-import LoginButton from '../core/LoginButton';
 import {
   StyledImageOverlay,
   StyledBox,
@@ -9,6 +8,7 @@ import {
   StyledWelcomePage,
   BoxGradientBG,
 } from './styled';
+import LoginButton from '../core/LoginButton';
 import { LoginTypeEnum } from '@/enums';
 import imageWelcome from '~/public/img/background.jpeg';
 import logoD2E from '~/public/img/logo--d2e--yellow.png';

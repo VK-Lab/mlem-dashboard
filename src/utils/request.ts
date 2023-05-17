@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 import { i18n } from 'next-i18next';
 import qs from 'qs';
@@ -17,7 +17,8 @@ const request = axios.create({
 });
 
 // request interceptor
-request.interceptors.request.use((axiosConfig: AxiosRequestConfig) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+request.interceptors.request.use((axiosConfig: any) => {
   axiosConfig.headers = {
     ...axiosConfig.headers,
     Authorization: `Bearer ${Cookies.get(CookieKeys.TOKEN)}`,
