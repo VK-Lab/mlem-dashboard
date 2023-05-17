@@ -58,7 +58,7 @@ const DiscountsField = () => {
     <StyledTextFieldElement
       type="number"
       name="amount"
-      label="Discount (%)"
+      label="Discounts (%)"
       required
     />
   );
