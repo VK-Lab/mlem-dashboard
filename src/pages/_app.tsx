@@ -9,9 +9,9 @@ import {
   CasperWalletConnector,
   createClient,
 } from '@usedapptesthello/usewallet';
-import { appWithTranslation } from 'next-i18next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { appWithTranslation } from 'next-i18next';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -35,11 +35,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         },
       })
   );
-  const [useWalletClient] = useState(() => {
-    if (typeof window === 'undefined') {
-      return undefined;
-    }
 
+  const [useWalletClient] = useState(() => {
     return createClient({
       connectors: [
         new CasperSignerConnector(),
@@ -49,10 +46,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       autoConnect: true,
     });
   });
-
-  if (!useWalletClient) {
-    return <div></div>;
-  }
 
   return (
     <>
