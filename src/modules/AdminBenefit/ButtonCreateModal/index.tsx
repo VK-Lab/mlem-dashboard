@@ -5,7 +5,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
-import { FormContainer, SelectElement, useForm } from 'react-hook-form-mui';
+import {
+  FormContainer,
+  SelectElement,
+  useForm,
+  useFormContext,
+  useWatch,
+} from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 import * as yup from 'yup';
 
@@ -37,13 +43,34 @@ type BenefitFormProps = {
   onSuccess: (data: Benefit) => void;
 };
 
+const DiscountsField = () => {
+  const { control } = useFormContext();
+  const source = useWatch({
+    control,
+    name: 'source',
+  });
+
+  if (source !== BeneiftSourceEnum.WOOCOMMERCE) {
+    return null;
+  }
+
+  return (
+    <StyledTextFieldElement
+      type="number"
+      name="amount"
+      label="Discount (%)"
+      required
+    />
+  );
+};
+
 const validationSchema = yup.object({
   amount: yup
     .number()
     .typeError('Total must be number')
-    .required('This field is required')
     .min(1)
-    .max(100),
+    .max(100)
+    .optional(),
   name: yup.string().required('This field is required'),
 });
 
@@ -99,12 +126,7 @@ const BenefitForm = ({ onSuccess }: BenefitFormProps) => {
           ]}
           required
         />
-        <StyledTextFieldElement
-          type="number"
-          name="amount"
-          label="Amount Percentage"
-          required
-        />
+        <DiscountsField />
       </Box>
       <Box mt="1rem">
         <Button type={'submit'} color={'primary'} variant={'contained'}>
