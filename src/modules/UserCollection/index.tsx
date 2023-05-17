@@ -6,13 +6,13 @@ import Avatar from '@mui/material/Avatar';
 import { useAccount } from '@usedapptesthello/usewallet';
 import _get from 'lodash/get';
 
-import { ButtonAuthWalletModal } from '../core/ButtonAuthWalletModal';
 import ListNfts from './ListNfts';
 import {
   BoxProfileUnderbackground,
   BoxProfileWrapper,
   BoxProfile,
 } from './styled';
+import { ButtonAuthWalletModal } from '../core/ButtonAuthWalletModal';
 import {
   StyledNFTTabContent,
   StyledNFTTab,

@@ -11,6 +11,7 @@ import {
 } from '@usedapptesthello/usewallet';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+// eslint-disable-next-line import/order
 import { appWithTranslation } from 'next-i18next';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
