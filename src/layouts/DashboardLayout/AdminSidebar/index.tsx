@@ -11,18 +11,8 @@ import { AdminPaths } from '@/enums/paths.enum';
 
 const MENU_ITEMS = [
   {
-    name: 'Campaigns',
-    path: AdminPaths.CAMPAIGNS,
-    icon: <AppsIcon />,
-  },
-  {
-    name: 'Claims',
-    path: AdminPaths.CLAIMS,
-    icon: <AppsIcon />,
-  },
-  {
-    name: 'Benefits',
-    path: AdminPaths.BENEFITS,
+    name: 'NFT Collections',
+    path: AdminPaths.NFT_COLLECTIONS,
     icon: <AppsIcon />,
   },
   {
@@ -31,13 +21,23 @@ const MENU_ITEMS = [
     icon: <AppsIcon />,
   },
   {
+    name: 'Benefits',
+    path: AdminPaths.BENEFITS,
+    icon: <AppsIcon />,
+  },
+  {
+    name: 'Campaigns',
+    path: AdminPaths.CAMPAIGNS,
+    icon: <AppsIcon />,
+  },
+  {
     name: 'NFTs',
     path: AdminPaths.NFTS,
     icon: <AppsIcon />,
   },
   {
-    name: 'NFT Collections',
-    path: AdminPaths.NFT_COLLECTIONS,
+    name: 'Claims',
+    path: AdminPaths.CLAIMS,
     icon: <AppsIcon />,
   },
 ];
