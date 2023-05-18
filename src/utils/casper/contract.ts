@@ -115,7 +115,7 @@ export const signDeployNft = async (
     name,
     tokenAddress,
     tokenId,
-    paymentAmount = '30000000000',
+    paymentAmount = '20000000000',
   }: SignDeployNftParams,
   { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
 ) => {
