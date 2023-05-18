@@ -1,15 +1,15 @@
 {
-  "name": "NextJS with Chakra-ui Boilerplate",
-  "short_name": "NextJS with Chakra-ui Boilerplate",
+  "name": "Melem",
+  "short_name": "First enterprise-grade platform for creating Web3-powered brand NFT programs on Casper Network",
   "icons": [
     {
-      "src": "/img/chakra-logo.png",
+      "src": "/img/logo--d2e--yellow.png",
       "type": "image/png",
       "sizes": "48x48"
     }
   ],
   "background_color": "#000",
-  "description": "NextJS with Chakra-ui Boilerplate",
+  "description": "Melem is building the first enterprise-grade platform for creating Web3-powered brand NFT programs on Casper Network. By leveraging the secure and scalable infrastructure of Casper Network, Melem provides brands with a powerful toolkit to effortlessly upgrade their Web2 campaigns to Web3 enterprise-grade experiences.",
   "display": "fullscreen",
   "start_url": "/",
   "theme_color": "#000"
