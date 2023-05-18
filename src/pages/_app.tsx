@@ -52,8 +52,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Melem Dashboard</title>
-        <link rel="shortcut icon" href="/img/chakra-logo.png" />
-        <link rel="apple-touch-icon" href="/img/chakra-logo.png" />
+        <link rel="shortcut icon" href="/img/logo.png" />
+        <link rel="apple-touch-icon" href="/img/logo.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="description" content="Melem Dashboard" />
       </Head>
