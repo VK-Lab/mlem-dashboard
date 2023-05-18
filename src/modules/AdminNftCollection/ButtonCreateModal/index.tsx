@@ -31,17 +31,12 @@ const ButtonCreateModal = () => {
   return (
     <Box>
       <Button variant="contained" onClick={handleOpen}>
-        Create Nft Collection
+        Create NFT Collection
       </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Create Nft Collection
+          <Typography variant="h6" component="h2">
+            Create NFT Collection
           </Typography>
           <Box mt={2}>
             <NftForm onSuccess={handleOnSuccess} />

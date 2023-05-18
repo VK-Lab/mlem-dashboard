@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { LoadingButton } from '@mui/lab';
+import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useAccount } from '@usedapptesthello/usewallet';
 import {
@@ -17,6 +18,7 @@ import { CEP78ClientInstance } from '@/contracts/cep78';
 import { QueryKeys } from '@/enums/queryKeys.enum';
 import { useMutateCreateNft } from '@/hooks/mutations';
 import { useGetBenefits, useGetAllNftCollections } from '@/hooks/queries';
+import { useGetAccountBalance } from '@/hooks/queries/useGetAccountBalance';
 import { CreateNftParams } from '@/services/admin/nft/types';
 import { Benefit } from '@/types/benefit';
 import { NftCollection } from '@/types/nft-collection';
@@ -25,11 +27,16 @@ type NftFormProps = {
   onSuccess: () => void;
 };
 
+const ESTIMATE_FEE = 20;
+
 const NftForm = ({ onSuccess }: NftFormProps) => {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const { publicKey } = useAccount();
+  const { data: { balanace = 0 } = { balanace: 0 } } = useGetAccountBalance({
+    publicKey,
+  });
 
   const {
     data: { items = [] } = { items: [], total: 0 },
@@ -96,6 +103,13 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
 
   return (
     <FormContainer formContext={formContext} onSuccess={handleOnSubmitForm}>
+      <Box mb="1rem">
+        <Box display={'flex'} justifyContent={'space-between'}>
+          <Box>Your Balance:</Box>
+          <Box>{balanace} CSPR</Box>
+        </Box>
+      </Box>
+
       <StyledTextFieldElement name="name" label="Name" required />
       <Box mt="1rem">
         <SelectElement
@@ -134,12 +148,21 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
           })}
         />
       </Box>
+
+      <Box mt="1rem">
+        <Divider />
+        <Box display={'flex'} justifyContent={'space-between'} mt="1rem">
+          <Box>Estimate Fee:</Box>
+          <Box>{ESTIMATE_FEE} CSPR</Box>
+        </Box>
+      </Box>
+
       <Box mt="1rem">
         <LoadingButton
           type={'submit'}
           color={'primary'}
           variant={'contained'}
-          disabled={isDisabled}
+          disabled={isDisabled || balanace < ESTIMATE_FEE}
           loading={
             isLoading ||
             isLoadingCollections ||

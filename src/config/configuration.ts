@@ -3,7 +3,7 @@ export const Config = {
   apiBaseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://api.melem.io/v1',
   metadataBaseUrl: 'http://localhost:4000/v1/nfts',
   nodeRPCUrl: '/rpc',
-  deployUrl: 'https://testnet-api.casperdash.io/deploy',
+  casperDashUrl: 'https://testnet-api.casperdash.io',
   networkName: 'casper-test',
   cep78: {
     contractWASM:
