@@ -34,7 +34,7 @@ const ButtonCreateModal = () => {
   return (
     <Box>
       <Button variant="contained" onClick={handleOpen}>
-        Create NFT
+        Mint NFT
       </Button>
       <Modal
         open={open}
@@ -55,7 +55,7 @@ const ButtonCreateModal = () => {
           </Box>
 
           <Typography variant="h6" component="h2">
-            Create NFT
+            Minting NFT
           </Typography>
           <Box mt={2}>
             <NftForm onSuccess={handleOnSuccess} />
