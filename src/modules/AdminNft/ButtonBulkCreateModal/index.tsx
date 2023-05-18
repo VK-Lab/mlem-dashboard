@@ -34,7 +34,7 @@ const ButtonBulkCreateModal = () => {
   return (
     <Box>
       <Button variant="contained" onClick={handleOpen}>
-        Bulk Create Nft
+        Bulk Create NFT
       </Button>
       <Modal
         open={open}
@@ -53,7 +53,7 @@ const ButtonBulkCreateModal = () => {
               <Close sx={{ color: grey[500] }} />
             </IconButton>
           </Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography variant="h6" component="h2">
             Bulk Create NFT
           </Typography>
           <Box mt={2}>
