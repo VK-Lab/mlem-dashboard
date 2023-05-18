@@ -95,6 +95,7 @@ const ButtonRegisterTokenOwner = ({ nftCollection }: Props) => {
             onClick={handleOnConfirm}
             autoFocus
             loading={isLoading}
+            disabled={balanace < ESTIMATE_FEE}
           >
             Confirm
           </LoadingButton>
