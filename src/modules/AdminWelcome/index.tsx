@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import {
@@ -43,10 +43,22 @@ const Welcome = () => {
         <BoxGradientBG />
         <StyledWelcomeBlock elevation={24}>
           <Typography sx={{ fontSize: 32 }} variant="h2" gutterBottom>
-            Welcome to Melem Admin Dashboard
+            Welcome to Melem Campaigner Dashboard
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            Connect your wallet to claim the exclusive benefits from Melem
           </Typography>
           <Typography variant="body2" gutterBottom sx={{ mb: 3 }}>
-            Connect your wallet to claim the exclusive benefits from Melem
+            To access the Beta Dashboard, please go to the Melem Telegram
+            Channel{' '}
+            <Link
+              href="https://t.me/melem_nft"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://t.me/melem_nft
+            </Link>{' '}
+            and request the beta account
           </Typography>
           <LoginButton loginType={LoginTypeEnum.ADMIN} />
         </StyledWelcomeBlock>
