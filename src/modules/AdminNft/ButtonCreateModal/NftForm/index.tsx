@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { LoadingButton } from '@mui/lab';
-import { Divider } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useAccount } from '@usedapptesthello/usewallet';
 import {
@@ -157,8 +157,9 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
         </Box>
       </Box>
 
-      <Box mt="1rem">
+      <Box mt="1.2rem">
         <LoadingButton
+          fullWidth
           type={'submit'}
           color={'primary'}
           variant={'contained'}
@@ -172,6 +173,13 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
         >
           Create
         </LoadingButton>
+      </Box>
+
+      <Box mt="1.5rem">
+        <Typography variant="caption">
+          By default, the NFT will have the benefits of the NFT Collection. You
+          can add extra benefits by choosing more from this list.
+        </Typography>
       </Box>
     </FormContainer>
   );

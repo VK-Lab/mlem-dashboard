@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -85,9 +86,16 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
                 <SelectBenefitsField name="benefitIds" />
               </Box>
               <Box mt="1rem">
-                <Button type={'submit'} color={'primary'} variant={'contained'}>
+                <LoadingButton
+                  fullWidth
+                  type={'submit'}
+                  color={'primary'}
+                  variant={'contained'}
+                  disabled={updateNftMutation.isLoading}
+                  loading={updateNftMutation.isLoading}
+                >
                   Update
-                </Button>
+                </LoadingButton>
               </Box>
             </FormContainer>
           </Box>

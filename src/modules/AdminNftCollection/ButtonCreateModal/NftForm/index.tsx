@@ -92,8 +92,9 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
         </Box>
       </Box>
 
-      <Box mt="1rem">
+      <Box mt="1.5rem">
         <LoadingButton
+          fullWidth
           disabled={
             createNftCollectionMutation.isLoading || balanace < ESTIMATE_FEE
           }
