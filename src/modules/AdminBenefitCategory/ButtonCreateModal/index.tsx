@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -32,10 +33,15 @@ const BenefitCategoryForm = ({ onSuccess }: BenefitCategoryFormProps) => {
   return (
     <FormContainer defaultValues={{ name: '' }} onSuccess={onSuccess}>
       <StyledTextFieldElement name="name" label="Name" required />
-      <Box mt="1rem">
-        <Button type={'submit'} color={'primary'} variant={'contained'}>
+      <Box mt="2rem">
+        <LoadingButton
+          fullWidth
+          type={'submit'}
+          color={'primary'}
+          variant={'contained'}
+        >
           Create
-        </Button>
+        </LoadingButton>
       </Box>
     </FormContainer>
   );
