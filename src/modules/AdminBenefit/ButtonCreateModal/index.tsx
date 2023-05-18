@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -41,6 +42,7 @@ const style = {
 
 type BenefitFormProps = {
   onSuccess: (data: Benefit) => void;
+  isSubmitting: boolean;
 };
 
 const DiscountsField = () => {
@@ -74,7 +76,7 @@ const validationSchema = yup.object({
   name: yup.string().required('This field is required'),
 });
 
-const BenefitForm = ({ onSuccess }: BenefitFormProps) => {
+const BenefitForm = ({ onSuccess, isSubmitting }: BenefitFormProps) => {
   const { data: { items } = { items: [] } } = useGetAdminBenefitCategories();
   const formContext = useForm<Benefit>({
     defaultValues: {
@@ -128,10 +130,17 @@ const BenefitForm = ({ onSuccess }: BenefitFormProps) => {
         />
         <DiscountsField />
       </Box>
-      <Box mt="1rem">
-        <Button type={'submit'} color={'primary'} variant={'contained'}>
+      <Box mt="1.5rem">
+        <LoadingButton
+          type={'submit'}
+          color={'primary'}
+          variant={'contained'}
+          fullWidth
+          disabled={isSubmitting}
+          loading={isSubmitting}
+        >
           Create
-        </Button>
+        </LoadingButton>
       </Box>
     </FormContainer>
   );
@@ -176,7 +185,10 @@ const ButtonCreateModal = () => {
             Create Benefit
           </Typography>
           <Box mt={2}>
-            <BenefitForm onSuccess={handleOnSubmitForm} />
+            <BenefitForm
+              onSuccess={handleOnSubmitForm}
+              isSubmitting={createBenefitMutation.isLoading}
+            />
           </Box>
         </Box>
       </Modal>
