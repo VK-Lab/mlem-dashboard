@@ -1,11 +1,10 @@
-import axios from 'axios';
-
-import { Config } from '@/config';
+import request from './request';
 
 export const deploy = async (signedDeploy: unknown) => {
-  const {
-    data: { deployHash },
-  } = await axios.post(Config.deployUrl, signedDeploy);
+  const data = await request.post<{ deployHash: string }>(
+    '/deploy',
+    signedDeploy
+  );
 
-  return deployHash;
+  return (<{ deployHash: string }>(<unknown>data)).deployHash;
 };
