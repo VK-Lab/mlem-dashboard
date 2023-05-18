@@ -20,6 +20,13 @@ export const getAccountInfo = async (
   return blockState.Account;
 };
 
+export const getAccount = async (publicKeyHex: string) => {
+  const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
+  const accountInfo = await getAccountInfo(cliPublicKey);
+
+  return accountInfo;
+};
+
 /**
  * Returns a value under an on-chain account's storage.
  * @param accountInfo - On-chain account's info.

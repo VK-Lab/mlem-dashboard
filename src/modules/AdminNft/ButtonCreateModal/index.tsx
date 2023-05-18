@@ -53,7 +53,8 @@ const ButtonCreateModal = () => {
               <Close sx={{ color: grey[500] }} />
             </IconButton>
           </Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+
+          <Typography variant="h6" component="h2">
             Create NFT
           </Typography>
           <Box mt={2}>
