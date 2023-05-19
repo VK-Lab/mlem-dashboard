@@ -113,11 +113,17 @@ export class CEP78Client {
       total_token_supply: CLValueBuilder.u64(args.totalTokenSupply),
       ownership_mode: CLValueBuilder.u8(args.ownershipMode),
       nft_kind: CLValueBuilder.u8(args.nftKind),
-      json_schema: CLValueBuilder.string(JSON.stringify(args.jsonSchema)),
       nft_metadata_kind: CLValueBuilder.u8(args.nftMetadataKind),
       identifier_mode: CLValueBuilder.u8(args.identifierMode),
       metadata_mutability: CLValueBuilder.u8(args.metadataMutability),
     });
+
+    if (args.jsonSchema !== undefined) {
+      runtimeArgs.insert(
+        'json_schema',
+        CLValueBuilder.string(JSON.stringify(args.jsonSchema))
+      );
+    }
 
     if (args.mintingMode !== undefined) {
       runtimeArgs.insert('minting_mode', CLValueBuilder.u8(args.mintingMode));
@@ -178,6 +184,10 @@ export class CEP78Client {
         'hash_key_name',
         CLValueBuilder.string(args.hashKeyName)
       );
+    }
+
+    if (args.eventsMode !== undefined) {
+      runtimeArgs.insert('events_mode', CLValueBuilder.u8(args.eventsMode));
     }
 
     return this.contractClient.install(

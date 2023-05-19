@@ -63,6 +63,7 @@ export enum WhitelistMode {
 export enum OwnerReverseLookupMode {
   NoLookup,
   Complete,
+  TransfersOnly,
 }
 
 export interface JSONSchemaEntry {
@@ -80,13 +81,19 @@ export type ConfigurableVariables = {
   contractWhitelist?: string[];
 };
 
+export enum EventsMode {
+  NoEvents,
+  CEP47,
+  CES,
+}
+
 export type InstallArgs = {
   collectionName: string;
   collectionSymbol: string;
   totalTokenSupply: string;
   ownershipMode: NFTOwnershipMode;
   nftKind: NFTKind;
-  jsonSchema: JSONSchemaObject;
+  jsonSchema?: JSONSchemaObject;
   nftMetadataKind: NFTMetadataKind;
   identifierMode: NFTIdentifierMode;
   metadataMutability: MetadataMutability;
@@ -98,6 +105,7 @@ export type InstallArgs = {
   namedKeyConventionMode?: NamedKeyConventionMode;
   accessKeyName?: string;
   hashKeyName?: string;
+  eventsMode?: EventsMode;
 } & ConfigurableVariables;
 
 export interface RegisterArgs {
