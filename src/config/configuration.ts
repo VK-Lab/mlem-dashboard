@@ -7,7 +7,7 @@ export const Config = {
   networkName: 'casper-test',
   cep78: {
     contractWASM:
-      'https://d2e-dev.s3.ap-southeast-1.amazonaws.com/cep78/contract.wasm',
+      'https://s3.ap-southeast-1.amazonaws.com/assets.melem.io/contracts/contract.wasm',
     mintCallWASM:
       'https://d2e-dev.s3.ap-southeast-1.amazonaws.com/cep78/mint_call.wasm',
     transferCallWASM:
