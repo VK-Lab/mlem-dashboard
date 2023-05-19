@@ -33,6 +33,7 @@ export const useMutateCreateNftCollection = (
       return createNftCollection({
         ...params,
         deployHash,
+        ownerPublicKey: publicKey,
       });
     },
     onError: (err: Error) => {

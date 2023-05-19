@@ -12,6 +12,8 @@ import {
   MintingMode,
   CEP78ClientInstance,
   OwnerReverseLookupMode,
+  NFTHolderMode,
+  EventsMode,
 } from '@/contracts/cep78';
 import { deploy } from '@/services/casperdash/deploy';
 import {
@@ -41,20 +43,20 @@ export const signDeployNftCollection = async ({
   const installDeploy = await CEP78ClientInstance.install(
     {
       collectionName: _kebabCase(name),
-      collectionSymbol: 'CEP78',
+      collectionSymbol: 'MELEM',
       totalTokenSupply: '1000',
       ownershipMode: NFTOwnershipMode.Transferable,
       nftKind: NFTKind.Digital,
-      jsonSchema: {
-        properties: {},
-      },
+      mintingMode: MintingMode.Installer,
+      holderMode: NFTHolderMode.Mixed,
+      allowMinting: true,
       nftMetadataKind: NFTMetadataKind.CEP78,
       identifierMode: NFTIdentifierMode.Ordinal,
-      ownerReverseLookupMode: OwnerReverseLookupMode.Complete,
       metadataMutability: MetadataMutability.Immutable,
-      mintingMode: MintingMode.Installer,
+      ownerReverseLookupMode: OwnerReverseLookupMode.TransfersOnly,
+      eventsMode: EventsMode.CES,
     },
-    '250000000000',
+    '300000000000',
     cliPublicKey
   );
 

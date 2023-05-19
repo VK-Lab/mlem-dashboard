@@ -29,6 +29,7 @@ export type CreateNftParams = Partial<Omit<Nft, 'benefits' | 'claims'>> & {
   name: string;
   imageUrl: string;
   deployHash: string;
+  contractPackageHash?: string;
   deployStatus?: DeployStatusEnum;
 };
 
