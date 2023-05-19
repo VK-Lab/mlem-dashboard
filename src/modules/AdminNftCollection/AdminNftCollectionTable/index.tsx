@@ -4,9 +4,7 @@ import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
-import ButtonRegisterTokenOwner from './ButtonRegisterTokenOwner';
 import ButtonUpdateModal from './ButtonUpdateModal';
-import { DeployStatusEnum } from '@/enums';
 import { useGetAllNftCollections } from '@/hooks/queries/useGetAllNftCollections';
 import { NftCollection } from '@/types/nft-collection';
 import { mapDeployStatus } from '@/utils/status';
@@ -93,14 +91,9 @@ const AdminNftCollectionTable = () => {
         }}
         enableRowActions={true}
         renderRowActions={({ row }) => {
-          const { deployStatus } = row.original;
-
           return (
             <Box display="flex" gap="10px">
               <ButtonUpdateModal nftCollection={row.original} />
-              {deployStatus === DeployStatusEnum.CONFIRMING && (
-                <ButtonRegisterTokenOwner nftCollection={row.original} />
-              )}
             </Box>
           );
         }}

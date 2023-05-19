@@ -5,6 +5,7 @@ export type NftCollection = {
   name: string;
   description: string;
   tokenAddress: string;
+  contractPackageHash: string;
   contractType: string;
   chainId: string;
   campaignId?: string;
@@ -12,4 +13,5 @@ export type NftCollection = {
   createdAt: string;
   deployHash: string;
   deployStatus: DeployStatusEnum;
+  ownerPublicKey: string;
 };
