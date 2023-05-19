@@ -60,7 +60,14 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
   });
 
   const handleOnSubmitForm = async (createNftParams: CreateNftParams) => {
-    createNftMutation.mutate(createNftParams);
+    const foundNftCollection = nftCollections.find(
+      (nftCollection) =>
+        nftCollection.tokenAddress === createNftParams.tokenAddress
+    );
+    createNftMutation.mutate({
+      ...createNftParams,
+      contractPackageHash: foundNftCollection?.contractPackageHash,
+    });
   };
 
   const {
