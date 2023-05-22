@@ -52,11 +52,11 @@ const Welcome = () => {
             To access the Beta Dashboard, please go to the Melem Telegram
             Channel{' '}
             <Link
-              href="https://t.me/melem_nft"
+              href=" https://t.me/melem_support_channel"
               target="_blank"
               rel="noopener noreferrer"
             >
-              https://t.me/melem_nft
+              https://t.me/melem_support_channel
             </Link>{' '}
             and request the beta account
           </Typography>
