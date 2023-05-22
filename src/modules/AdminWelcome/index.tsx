@@ -49,14 +49,16 @@ const Welcome = () => {
             Connect your wallet to claim the exclusive benefits from Melem
           </Typography>
           <Typography variant="body2" gutterBottom sx={{ mb: 3 }}>
-            To access the Beta Dashboard, please go to the Melem Telegram
-            Channel{' '}
+            To access the Beta Dashboard, please go to the{' '}
             <Link
               href=" https://t.me/melem_support_channel"
               target="_blank"
               rel="noopener noreferrer"
+              sx={{
+                textDecoration: 'none',
+              }}
             >
-              https://t.me/melem_support_channel
+              Melem Telegram Channel
             </Link>{' '}
             and request the beta account
           </Typography>
