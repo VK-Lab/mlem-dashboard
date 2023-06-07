@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { useAccount } from '@casperdash/usewallet';
 import { LoadingButton } from '@mui/lab';
 import {
   Button,
@@ -11,7 +12,6 @@ import {
   Divider,
 } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useAccount } from '@usedapptesthello/usewallet';
 import { useQueryClient } from 'react-query';
 
 import { QueryKeys } from '@/enums/queryKeys.enum';
