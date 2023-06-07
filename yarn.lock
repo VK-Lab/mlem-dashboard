@@ -1033,6 +1033,29 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@casperdash/usewallet-core@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@casperdash/usewallet-core/-/usewallet-core-0.0.5.tgz#6a429c8fd1baa9994f475d0f118bf91be61da0e4"
+  integrity sha512-0A2FOc+A8MfLhCGZYDiw3aCtdXfkqv1BGjoJnQkWXUPz1UDCOztwq2HCjE2vZqkL/UpTB1ERsKohj2zSqh5xIA==
+  dependencies:
+    casper-js-sdk "^2.10.1"
+    eventemitter3 "^5.0.0"
+    typedjson "^1.8.0"
+    zustand "^4.3.2"
+
+"@casperdash/usewallet@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@casperdash/usewallet/-/usewallet-0.0.5.tgz#93d2c0f2cfeecef2136411f842a5eb584d130f2d"
+  integrity sha512-MyzwBl1xpbYy60SpiVTOZqQotzA/+iVJ0TOlMLl53InFFLnMqJ3GJMN4Kn1NTk55D9PIz1feraXzVhmJWzCVnQ==
+  dependencies:
+    "@casperdash/usewallet-core" "0.0.5"
+    "@tanstack/query-core" "^4.22.0"
+    "@tanstack/query-sync-storage-persister" "^4.22.0"
+    "@tanstack/react-query" "^4.22.3"
+    "@tanstack/react-query-persist-client" "^4.22.3"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+
 "@date-io/core@^2.15.0", "@date-io/core@^2.16.0":
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.16.0.tgz#7871bfc1d9bca9aa35ad444a239505589d0f22f6"
@@ -2029,6 +2052,33 @@
   resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-13.4.2.tgz#8435ab6087046355f5de07122d3097949e8fab10"
   integrity sha512-O7bort1Vld00cu8g0jHZq3cbSTUNMohOEvYqsqE10+yfohhdPHzvzO+ziJRz4Dyyr/fYKREwS7gR4JC0soSOMw==
 
+"@noble/curves@~1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@noble/curves/-/curves-1.0.0.tgz#e40be8c7daf088aaf291887cbc73f43464a92932"
+  integrity sha512-2upgEu0iLiDVDZkNLeFV2+ht0BAVgQnEmCk6JsOch9Rp8xfkMCbvbAZlA2pBHQc73dbl+vFOXfqkf4uemdn0bw==
+  dependencies:
+    "@noble/hashes" "1.3.0"
+
+"@noble/ed25519@^1.7.3":
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/@noble/ed25519/-/ed25519-1.7.3.tgz#57e1677bf6885354b466c38e2b620c62f45a7123"
+  integrity sha512-iR8GBkDt0Q3GyaVcIu7mSsVIqnFbkbRzGLWlvhwunacoLwt4J3swfKhfaM6rN6WY+TBGoYT1GtT1mIh2/jGbRQ==
+
+"@noble/hashes@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.3.0.tgz#085fd70f6d7d9d109671090ccae1d3bec62554a1"
+  integrity sha512-ilHEACi9DwqJB0pw7kv+Apvh50jiiSyR/cQ3y4W7lOR5mhvn/50FLUfsnfJz0BDZtl/RR16kXvptiv6q1msYZg==
+
+"@noble/hashes@^1.2.0", "@noble/hashes@~1.3.0":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.3.1.tgz#8831ef002114670c603c458ab8b11328406953a9"
+  integrity sha512-EbqwksQwz9xDRGfDST86whPBgM65E0OH/pCgqW0GBVzO22bNE+NuIbeTb714+IfSjU3aRk47EUvXIb5bTsenKA==
+
+"@noble/secp256k1@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@noble/secp256k1/-/secp256k1-1.7.1.tgz#b251c70f824ce3ca7f8dc3df08d58f005cc0507c"
+  integrity sha512-hOUk6AyBFmqVrv7k5WAw/LpszxVbj9gGN4JRkIX52fdFAj1UA61KXmZDvqVEm+pOyec3+fIeZB02LYa/pWOArw==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -2111,6 +2161,28 @@
     "@types/estree" "0.0.39"
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
+
+"@scure/base@~1.1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@scure/base/-/base-1.1.1.tgz#ebb651ee52ff84f420097055f4bf46cfba403938"
+  integrity sha512-ZxOhsSyxYwLJj3pLZCefNitxsj093tb2vq90mp2txoYeBqbcjDjqFhyM8eUjq/uFm6zJ+mUuqxlS2FkuSY1MTA==
+
+"@scure/bip32@^1.1.5":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@scure/bip32/-/bip32-1.3.0.tgz#6c8d980ef3f290987736acd0ee2e0f0d50068d87"
+  integrity sha512-bcKpo1oj54hGholplGLpqPHRbIsnbixFtc06nwuNM5/dwSXOq/AAYoIBRsBmnZJSdfeNW5rnff7NTAz3ZCqR9Q==
+  dependencies:
+    "@noble/curves" "~1.0.0"
+    "@noble/hashes" "~1.3.0"
+    "@scure/base" "~1.1.0"
+
+"@scure/bip39@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@scure/bip39/-/bip39-1.2.0.tgz#a207e2ef96de354de7d0002292ba1503538fc77b"
+  integrity sha512-SX/uKq52cuxm4YFXWFaVByaSHJh2w3BnokVSeUJVCv6K7WulT9u2BuNRBhuFl8vAuYnzx9bEu9WgpcNYTrYieg==
+  dependencies:
+    "@noble/hashes" "~1.3.0"
+    "@scure/base" "~1.1.0"
 
 "@sinclair/typebox@^0.25.16":
   version "0.25.24"
@@ -2781,29 +2853,6 @@
     "@typescript-eslint/types" "5.59.6"
     eslint-visitor-keys "^3.3.0"
 
-"@usedapptesthello/usewallet-core@0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@usedapptesthello/usewallet-core/-/usewallet-core-0.0.15.tgz#94d8deccce49f9691bb7b2e9fc88daefbed98d6b"
-  integrity sha512-DwYb0inVhnfl7jEIMlceez/VjEDvQw63iVS9MQj0H37PH6MVC9RfKLB9xyhXYtD8IkOSiH5/evPz1MmdrP4XzQ==
-  dependencies:
-    casper-js-sdk "^2.10.1"
-    eventemitter3 "^5.0.0"
-    typedjson "^1.8.0"
-    zustand "^4.3.2"
-
-"@usedapptesthello/usewallet@0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@usedapptesthello/usewallet/-/usewallet-0.0.12.tgz#03d35f613481d62c82041b6c5cfbe34b9f215196"
-  integrity sha512-kRB/e5+85N7O9sYzb8oRqTRytLmO8PszsMRU5EvE7qDkPtwB3rbHYqTd0jyqKVyxBUgepo5ZSObm9g+tTUclIQ==
-  dependencies:
-    "@tanstack/query-core" "^4.22.0"
-    "@tanstack/query-sync-storage-persister" "^4.22.0"
-    "@tanstack/react-query" "^4.22.3"
-    "@tanstack/react-query-persist-client" "^4.22.3"
-    "@usedapptesthello/usewallet-core" "0.0.15"
-    react "^18.2.0"
-    react-dom "^18.2.0"
-
 acorn-jsx@^5.3.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
@@ -3426,7 +3475,31 @@ capital-case@^1.0.4:
     tslib "^2.0.3"
     upper-case-first "^2.0.2"
 
-casper-js-sdk@^2.10.1, casper-js-sdk@^2.12.1:
+casper-js-sdk@^2.10.1:
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/casper-js-sdk/-/casper-js-sdk-2.13.1.tgz#edafc86e1501bba259f6e8da62d80d7a0bdd3d90"
+  integrity sha512-7YFf3UNO3Xjb57GX/eVjPa53+FSGDn+ymU/ZwFX7H6dwunF1iinULu+J5FUSHyD/u+yAx2V2tJdjLoZHF9mCTw==
+  dependencies:
+    "@ethersproject/bignumber" "^5.0.8"
+    "@ethersproject/bytes" "^5.0.5"
+    "@ethersproject/constants" "^5.0.5"
+    "@noble/ed25519" "^1.7.3"
+    "@noble/hashes" "^1.2.0"
+    "@noble/secp256k1" "^1.7.1"
+    "@open-rpc/client-js" "^1.6.2"
+    "@scure/bip32" "^1.1.5"
+    "@scure/bip39" "^1.2.0"
+    "@types/ws" "^8.2.2"
+    glob "^7.1.6"
+    humanize-duration "^3.24.0"
+    key-encoder "^2.0.3"
+    lodash "^4.17.21"
+    node-fetch "^2.6.11"
+    reflect-metadata "^0.1.13"
+    ts-results "npm:@casperlabs/ts-results@^3.3.4"
+    typedjson "^1.6.0-rc2"
+
+casper-js-sdk@^2.12.1:
   version "2.12.1"
   resolved "https://registry.yarnpkg.com/casper-js-sdk/-/casper-js-sdk-2.12.1.tgz#67f1614cc379334c4726acc32bb75a8e5f96339a"
   integrity sha512-gpqOgIVqWxqK0lvxMjUz8p488++buGQDB5p0c+eMpgA5zdyywC+PP72hINbFxN8aiHJlQzME4U9atY7Qh047aw==
@@ -6566,7 +6639,7 @@ node-addon-api@^2.0.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-2.0.2.tgz#432cfa82962ce494b132e9d72a15b29f71ff5d32"
   integrity sha512-Ntyt4AIXyaLIuMHF6IOoTakB3K+RWxwtsHNRxllEoA6vPwP9o4866g6YWDLUdnucilZhmkxiHwHr11gAENw+QA==
 
-node-fetch@^2.6.1:
+node-fetch@^2.6.1, node-fetch@^2.6.11:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.11.tgz#cde7fc71deef3131ef80a738919f999e6edfff25"
   integrity sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==

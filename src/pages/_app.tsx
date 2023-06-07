@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-import { ThemeProvider } from '@emotion/react';
-import CssBaseline from '@mui/material/CssBaseline';
 import {
   CasperDashConnector,
   CasperProvider,
   CasperSignerConnector,
   CasperWalletConnector,
   createClient,
-} from '@usedapptesthello/usewallet';
+} from '@casperdash/usewallet';
+import { ThemeProvider } from '@emotion/react';
+import CssBaseline from '@mui/material/CssBaseline';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 // eslint-disable-next-line import/order
