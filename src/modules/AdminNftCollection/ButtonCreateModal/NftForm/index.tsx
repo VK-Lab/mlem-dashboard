@@ -1,7 +1,7 @@
+import { useAccount } from '@casperdash/usewallet';
 import { LoadingButton } from '@mui/lab';
 import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useAccount } from '@usedapptesthello/usewallet';
 import { FormContainer, SelectElement } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 

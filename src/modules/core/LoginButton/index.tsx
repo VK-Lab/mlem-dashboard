@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { Box, Button, Modal, Typography } from '@mui/material';
 import {
   CasperDashConnector,
   CasperWalletConnector,
   useConnect,
-} from '@usedapptesthello/usewallet';
+} from '@casperdash/usewallet';
+import { Box, Button, Modal, Typography } from '@mui/material';
 import Image from 'next/image'; // No wrapper
 
 import { ButtonStyled, ModalContentStyled } from './styled';

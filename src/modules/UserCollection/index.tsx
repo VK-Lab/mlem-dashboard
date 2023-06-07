@@ -1,9 +1,9 @@
 import { useState, SyntheticEvent } from 'react';
 
+import { useAccount } from '@casperdash/usewallet';
 import WalletIcon from '@mui/icons-material/Wallet';
 import { Grid, Tabs, Box, Typography, Container } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import { useAccount } from '@usedapptesthello/usewallet';
 import _get from 'lodash/get';
 
 import ListNfts from './ListNfts';

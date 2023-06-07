@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
+import { useAccount } from '@casperdash/usewallet';
 import { LoadingButton } from '@mui/lab';
 import { Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useAccount } from '@usedapptesthello/usewallet';
 import {
   AutocompleteElement,
   FormContainer,
