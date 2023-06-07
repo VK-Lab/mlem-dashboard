@@ -1,4 +1,4 @@
-import { useAccount } from '@usedapptesthello/usewallet';
+import { useAccount } from '@casperdash/usewallet';
 import { useMutation, UseMutationOptions } from 'react-query';
 
 import { DeployStatusEnum } from '@/enums';
