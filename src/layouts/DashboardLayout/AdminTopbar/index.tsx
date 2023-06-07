@@ -1,5 +1,6 @@
 import { ReactNode, useState, MouseEvent } from 'react';
 
+import { useDisconnect } from '@casperdash/usewallet';
 import {
   Toolbar,
   Box,
@@ -10,7 +11,6 @@ import {
   Menu,
   MenuItem,
 } from '@mui/material';
-import { useDisconnect } from '@usedapptesthello/usewallet';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
