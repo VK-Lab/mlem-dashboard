@@ -11,6 +11,7 @@ export const Config = {
     mintCallWASM:
       'https://d2e-dev.s3.ap-southeast-1.amazonaws.com/cep78/mint_call.wasm',
     transferCallWASM:
-      'https://d2e-dev.s3.ap-southeast-1.amazonaws.com/cep78/transfer_call.wasm',
+      'https://s3.ap-southeast-1.amazonaws.com/assets.melem.io/contracts/transfer_call.wasm',
   },
 };
+//       metadataMutability: MetadataMutability.Mutable,

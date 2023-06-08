@@ -560,7 +560,7 @@ export class CEP78Client {
     return (result as CLU8).toJSON();
   }
 
-  public approve(
+  public async approve(
     args: ApproveArgs,
     paymentAmount: string,
     deploySender: CLPublicKey,

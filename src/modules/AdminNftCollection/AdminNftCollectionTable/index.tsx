@@ -4,6 +4,7 @@ import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
+import ButtonRegisterTokenOwner from './ButtonRegisterTokenOwner';
 import ButtonUpdateModal from './ButtonUpdateModal';
 import { useGetAllNftCollections } from '@/hooks/queries/useGetAllNftCollections';
 import { NftCollection } from '@/types/nft-collection';
@@ -93,6 +94,7 @@ const AdminNftCollectionTable = () => {
         renderRowActions={({ row }) => {
           return (
             <Box display="flex" gap="10px">
+              <ButtonRegisterTokenOwner nftCollection={row.original} />
               <ButtonUpdateModal nftCollection={row.original} />
             </Box>
           );

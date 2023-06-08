@@ -16,11 +16,7 @@ import {
   EventsMode,
 } from '@/contracts/cep78';
 import { deploy } from '@/services/casperdash/deploy';
-import {
-  getAccountInfo,
-  getAccountNamedKeyValue,
-  getDeploy,
-} from '@/utils/casper/account';
+import { getDeploy } from '@/utils/casper/account';
 
 export type SignDeployNftCollectionParams = {
   publicKeyHex: string;
@@ -33,6 +29,21 @@ export type SignDeployNftParams = {
   tokenAddress: string;
   tokenId: string;
   paymentAmount?: string;
+};
+
+export type TransferDeployNftParams = {
+  fromPublicKeyHex: string;
+  toPublicKeyHex: string;
+  tokenAddress: string;
+  tokenId: string;
+  paymentAmount?: string;
+};
+
+export type ApproveDeployNftParams = {
+  fromPublicKeyHex: string;
+  tokenId: string;
+  paymentAmount?: string;
+  tokenAddress: string;
 };
 
 export const signDeployNftCollection = async ({
@@ -74,21 +85,12 @@ export const signDeployNftCollection = async ({
 };
 
 export const registerTokenOwner = async (
-  collectionName: string,
+  tokenAddress: string,
   publicKeyHex: string
 ) => {
   const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
-  const accountInfo = await getAccountInfo(cliPublicKey);
 
-  const contractHash = getAccountNamedKeyValue(
-    accountInfo,
-    `cep78_contract_hash_${_kebabCase(collectionName)}`
-  );
-  if (!contractHash) {
-    throw new Error('Can not get contract hash');
-  }
-
-  CEP78ClientInstance.setContractHash(contractHash, undefined);
+  CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
 
   const registerDeployTwo = CEP78ClientInstance.register(
     {
@@ -106,7 +108,7 @@ export const registerTokenOwner = async (
   const deployHash = await deploy(signedRegisterDeploy);
 
   return {
-    contractHash: contractHash.replace('hash-', ''),
+    contractHash: tokenAddress,
     deployHash,
   };
 };
@@ -152,6 +154,76 @@ export const signDeployNft = async (
   if (isWaiting) {
     await getDeploy(deployHash);
   }
+
+  return deployHash;
+};
+
+export const sendNft = async (
+  {
+    fromPublicKeyHex,
+    toPublicKeyHex,
+    tokenAddress,
+    tokenId,
+    paymentAmount = '30000000000',
+  }: TransferDeployNftParams,
+  { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
+) => {
+  const clFromPublicKey = CLPublicKey.fromHex(fromPublicKeyHex);
+  const clToPublicKey = CLPublicKey.fromHex(toPublicKeyHex);
+
+  CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
+
+  const sendDeploy = await CEP78ClientInstance.transfer(
+    {
+      source: clFromPublicKey,
+      target: clToPublicKey,
+      tokenId: tokenId,
+    },
+    { useSessionCode: false },
+    paymentAmount,
+    clFromPublicKey
+  );
+
+  const signedDeploy = await sign({
+    deploy: DeployUtil.deployToJson(sendDeploy),
+    signingPublicKeyHex: fromPublicKeyHex,
+    targetPublicKeyHex: toPublicKeyHex,
+  });
+
+  const deployHash = await deploy(signedDeploy);
+
+  if (isWaiting) {
+    await getDeploy(deployHash);
+  }
+
+  return deployHash;
+};
+
+export const approveNft = async ({
+  fromPublicKeyHex,
+  paymentAmount = '10000000000',
+  tokenId,
+  tokenAddress,
+}: ApproveDeployNftParams) => {
+  const clFromPublicKey = CLPublicKey.fromHex(fromPublicKeyHex);
+  CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
+
+  const approveDeploy = await CEP78ClientInstance.approve(
+    {
+      operator: clFromPublicKey,
+      tokenId: tokenId,
+    },
+    paymentAmount,
+    clFromPublicKey
+  );
+
+  const signedDeploy = await sign({
+    deploy: DeployUtil.deployToJson(approveDeploy),
+    signingPublicKeyHex: fromPublicKeyHex,
+    targetPublicKeyHex: fromPublicKeyHex,
+  });
+
+  const deployHash = await deploy(signedDeploy);
 
   return deployHash;
 };

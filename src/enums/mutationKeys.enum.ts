@@ -11,4 +11,5 @@ export enum MutationKeys {
   CREATE_NFT_COLLECTION = 'create-nft-collection',
   CONFIRM_NFT_COLLECTION = 'confirm-nft-collection',
   UPDATE_NFT_COLLECTION = 'update-nft-collection',
+  SEND_NFT = 'send-nft',
 }

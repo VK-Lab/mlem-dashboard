@@ -48,7 +48,7 @@ const ButtonRegisterTokenOwner = ({ nftCollection }: Props) => {
   const handleOnConfirm = () => {
     mutate({
       id: nftCollection.id,
-      name: nftCollection.name,
+      tokenAddress: nftCollection.tokenAddress,
     });
   };
 

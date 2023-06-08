@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 import urlJoin from 'url-join';
 
+import ButtonSendModal from './ButtonSendModal';
 import ButtonUpdateModal from './ButtonUpdateModal';
 import ToastMessage from '@/components/Toast';
 import { Config } from '@/config';
@@ -115,6 +116,7 @@ const AdminNftTable = () => {
         renderRowActions={({ row }) => {
           return (
             <Box display="flex" gap="10px">
+              <ButtonSendModal nft={row.original} />
               <ButtonUpdateModal nft={row.original} />
               <Box minWidth="80px">
                 <Button
