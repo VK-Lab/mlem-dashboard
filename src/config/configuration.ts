@@ -3,14 +3,15 @@ export const Config = {
   apiBaseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://api.melem.io/v1',
   metadataBaseUrl: 'https://api.melem.io/v1/nfts',
   nodeRPCUrl: '/rpc',
-  casperDashUrl: 'https://testnet-api.casperdash.io',
-  networkName: 'casper-test',
+  casperDashUrl:
+    process.env.NEXT_PUBLIC_CASPERDASH_API_URL || 'https://api.casperdash.io',
+  networkName: process.env.NEXT_PUBLIC_CASPER_NETWORK || 'casper',
   cep78: {
     contractWASM:
       'https://s3.ap-southeast-1.amazonaws.com/assets.melem.io/contracts/contract.wasm',
     mintCallWASM:
       'https://d2e-dev.s3.ap-southeast-1.amazonaws.com/cep78/mint_call.wasm',
     transferCallWASM:
-      'https://d2e-dev.s3.ap-southeast-1.amazonaws.com/cep78/transfer_call.wasm',
+      'https://s3.ap-southeast-1.amazonaws.com/assets.melem.io/contracts/transfer_call.wasm',
   },
 };
