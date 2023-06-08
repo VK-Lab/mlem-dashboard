@@ -3,6 +3,8 @@ import { DeployStatusEnum } from '@/enums';
 export type NftCollection = {
   id: string;
   name: string;
+  symbol: string;
+  totalTokenSupply: number;
   description: string;
   tokenAddress: string;
   contractPackageHash: string;

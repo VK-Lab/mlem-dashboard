@@ -28,6 +28,8 @@ export const useMutateCreateNftCollection = (
       const { deployHash } = await signDeployNftCollection({
         publicKeyHex: publicKey,
         name: params.name,
+        symbol: params.symbol,
+        totalTokenSupply: params.totalTokenSupply,
       });
 
       return createNftCollection({
