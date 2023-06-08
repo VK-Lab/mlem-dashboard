@@ -63,6 +63,13 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       </Box>
 
       <StyledTextFieldElement name="name" label="Name" required />
+      <StyledTextFieldElement name="symbol" label="Symbol" required />
+      <StyledTextFieldElement
+        type="number"
+        name="totalTokenSupply"
+        label="Total Token Supply"
+        required
+      />
       <StyledTextFieldElement name="description" label="Description" />
       <Box mt="1rem">
         <SelectElement

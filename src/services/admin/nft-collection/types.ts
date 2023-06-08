@@ -23,7 +23,7 @@ export type UpdateNftCollectionResponse = {
 };
 
 export type CreateNftCollectionParams = Partial<NftCollection> &
-  Pick<NftCollection, 'name'>;
+  Pick<NftCollection, 'name' | 'totalTokenSupply' | 'symbol'>;
 
 export type CreateNftCollectionResponse = {
   id: string;
