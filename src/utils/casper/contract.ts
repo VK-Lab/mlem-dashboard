@@ -25,6 +25,8 @@ import {
 export type SignDeployNftCollectionParams = {
   publicKeyHex: string;
   name: string;
+  symbol: string;
+  totalTokenSupply: number;
 };
 
 export type SignDeployNftParams = {
@@ -38,13 +40,15 @@ export type SignDeployNftParams = {
 export const signDeployNftCollection = async ({
   publicKeyHex,
   name,
+  symbol,
+  totalTokenSupply,
 }: SignDeployNftCollectionParams) => {
   const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
   const installDeploy = await CEP78ClientInstance.install(
     {
       collectionName: _kebabCase(name),
-      collectionSymbol: 'MELEM',
-      totalTokenSupply: '1000',
+      collectionSymbol: symbol,
+      totalTokenSupply: `${totalTokenSupply}`,
       ownershipMode: NFTOwnershipMode.Transferable,
       nftKind: NFTKind.Digital,
       mintingMode: MintingMode.Installer,
