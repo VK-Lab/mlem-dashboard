@@ -1,10 +1,12 @@
+import _last from 'lodash/last';
+
 export const isVideo = (rawUrl?: string): boolean => {
   if (!rawUrl) {
     return false;
   }
   const videos = ['mp4', '3gp', 'ogg'];
   const url = new URL(rawUrl);
-  const extension = url.pathname.split('.')[1];
+  const extension = _last<string>(url.pathname.split('.'));
 
-  return videos.includes(extension);
+  return !!extension && videos.includes(extension);
 };

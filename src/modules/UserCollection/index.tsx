@@ -12,7 +12,6 @@ import {
   BoxProfileWrapper,
   BoxProfile,
 } from './styled';
-import { ButtonAuthWalletModal } from '../core/ButtonAuthWalletModal';
 import {
   StyledNFTTabContent,
   StyledNFTTab,
@@ -128,9 +127,7 @@ const UserCollection = () => {
                   sx={{ width: '100%', textAlign: 'right' }}
                 >
                   <Box sx={{ ml: 'auto' }}>
-                    <Box mr="1rem">
-                      <ButtonAuthWalletModal />
-                    </Box>
+                    <Box mr="1rem"></Box>
                   </Box>
                 </Box>
               </Grid>
