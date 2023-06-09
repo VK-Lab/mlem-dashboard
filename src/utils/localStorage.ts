@@ -1,6 +1,6 @@
 import { parseJSON } from './parser';
 
-export const readValue = <T>(key: string, initialValue = '') => {
+export const readValue = <T>(key: string, initialValue: T | string = '') => {
   // Prevent build error "window is undefined" but keeps working
   if (typeof window === 'undefined') {
     return initialValue;
