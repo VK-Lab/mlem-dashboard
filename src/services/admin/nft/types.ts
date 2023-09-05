@@ -1,4 +1,5 @@
 import { DeployStatusEnum } from '@/enums';
+import { NftTypeEnum } from '@/enums/nftType.enum';
 import { Nft } from '@/types/nft';
 
 export type GetNftsParams = {
@@ -13,9 +14,13 @@ export type GetNftsResponse = {
 
 export type UpdateNftParams = {
   id: string;
-  name: string;
-  description: string;
-  benefits: string[];
+  name?: string;
+  description?: string;
+  benefits?: string[];
+  deployHash?: string;
+  checksum?: string;
+  deployStatus?: DeployStatusEnum;
+  type?: NftTypeEnum;
 };
 
 export type UpdateNftResponse = {
@@ -23,12 +28,12 @@ export type UpdateNftResponse = {
 };
 
 export type CreateNftParams = Partial<Omit<Nft, 'benefits' | 'claims'>> & {
-  benefits: string[];
-  tokenAddress: string;
-  tokenId: string;
+  benefits?: string[];
+  tokenAddress?: string;
+  tokenId?: string;
   name: string;
   imageUrl: string;
-  deployHash: string;
+  deployHash?: string;
   contractPackageHash?: string;
   deployStatus?: DeployStatusEnum;
 };

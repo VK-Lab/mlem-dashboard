@@ -1,4 +1,7 @@
-import { GetWalletNftsParams, GetWalletNftsResponse } from './types';
+import {
+  GetWalletNftsParams,
+  GetWalletNftsResponse,
+} from '@/services/wallet/types';
 import request from '@/utils/request';
 
 export const getMyWalletNfts = (

@@ -2,6 +2,6 @@ import urlJoin from 'url-join';
 
 import { Config } from '@/config';
 
-export const generateMetadataUrl = (tokenAddress: string, tokenId: string) => {
-  return urlJoin(Config.metadataBaseUrl, tokenAddress, tokenId, 'metadata');
+export const generateMetadataUrl = (nftId: string) => {
+  return urlJoin(Config.metadataBaseUrl, nftId, 'metadata');
 };
