@@ -15,7 +15,7 @@ import {
   NFTHolderMode,
   EventsMode,
 } from '@/contracts/cep78';
-import { deploy } from '@/services/casperdash/deploy';
+import { deploy } from '@/services/proxy';
 import {
   getAccountInfo,
   getAccountNamedKeyValue,
@@ -32,8 +32,7 @@ export type SignDeployNftCollectionParams = {
 export type SignDeployNftParams = {
   publicKeyHex: string;
   name: string;
-  tokenAddress: string;
-  tokenId: string;
+  nftId: string;
   paymentAmount?: string;
 };
 
@@ -119,25 +118,24 @@ export const signDeployNft = async (
   {
     publicKeyHex,
     name,
-    tokenAddress,
-    tokenId,
-    paymentAmount = '20000000000',
+    nftId,
+    paymentAmount = '5000000000',
   }: SignDeployNftParams,
   { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
 ) => {
   const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
-
   const meta = {
     name: name,
-    token_uri: generateMetadataUrl(tokenAddress, tokenId),
+    token_uri: generateMetadataUrl(nftId),
   };
+  const checksum = btoa(JSON.stringify(meta));
 
   const mintDeploy = await CEP78ClientInstance.mint(
     {
       owner: cliPublicKey,
       meta: {
         ...meta,
-        checksum: btoa(JSON.stringify(meta)),
+        checksum,
       },
     },
     { useSessionCode: true },
@@ -157,5 +155,8 @@ export const signDeployNft = async (
     await getDeploy(deployHash);
   }
 
-  return deployHash;
+  return {
+    deployHash,
+    checksum,
+  };
 };

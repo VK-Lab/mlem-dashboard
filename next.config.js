@@ -34,6 +34,11 @@ module.exports = {
       },
       {
         protocol: 'https',
+        hostname: 'picsum.photos',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'i.pinimg.com',
         pathname: '/**',
       },

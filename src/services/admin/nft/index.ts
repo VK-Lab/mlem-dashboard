@@ -28,6 +28,12 @@ export const createNft = (
   return request.post('/admin/nfts', params);
 };
 
+export const createTempNft = (
+  params: CreateNftParams
+): Promise<CreateNftResponse> => {
+  return request.post('/admin/nfts/temp', params);
+};
+
 export const batchCreateNfts = (params: BatchCreateNftsParams) => {
   return request.post('/admin/nfts/batchCreate', params);
 };

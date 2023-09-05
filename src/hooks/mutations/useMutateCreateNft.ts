@@ -3,7 +3,8 @@ import { useMutation, UseMutationOptions } from 'react-query';
 
 import { DeployStatusEnum } from '@/enums';
 import { MutationKeys } from '@/enums/mutationKeys.enum';
-import { createNft } from '@/services/admin/nft';
+import { NftTypeEnum } from '@/enums/nftType.enum';
+import { createTempNft, updateNft } from '@/services/admin/nft';
 import { CreateNftParams, CreateNftResponse } from '@/services/admin/nft/types';
 import { signDeployNft } from '@/utils/casper/contract';
 
@@ -24,17 +25,27 @@ export const useMutateCreateNft = (
         throw new Error('Public key does not exist');
       }
 
-      const deployHash = await signDeployNft({
-        publicKeyHex: publicKey,
-        name: params.name,
-        tokenAddress: params.tokenAddress,
-        tokenId: params.tokenId,
+      const { id } = await createTempNft({
+        ...params,
       });
 
-      return createNft({
+      const { deployHash, checksum } = await signDeployNft({
+        publicKeyHex: publicKey,
+        name: params.name,
+        nftId: id,
+      });
+
+      if (!deployHash) {
+        throw new Error('Deploy hash does not exist');
+      }
+
+      return updateNft({
         ...params,
+        id,
         deployHash,
         deployStatus: DeployStatusEnum.PENDING,
+        type: NftTypeEnum.PERMANENT,
+        checksum,
       });
     },
     mutationKey: [MutationKeys.CREATE_NFT, publicKey],
