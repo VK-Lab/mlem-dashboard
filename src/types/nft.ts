@@ -1,6 +1,8 @@
 import { Benefit } from './benefit';
 import { ClaimStatusEnum } from './claim';
 import { DeployStatusEnum } from '@/enums';
+import { NftCollection } from '@/types/nft-collection';
+import { Tier } from '@/types/tier';
 
 export type NftMetadata = {
   name: string;
@@ -24,9 +26,12 @@ export type Nft = {
   updatedAt: string;
   contractType: string;
   id: string;
+  tierId?: string;
   ownerOf: string;
   deployStatus: DeployStatusEnum;
   deployHash: string;
+  nftCollection: Partial<NftCollection>;
+  tier: Tier;
 };
 
 export type NftClaim = {

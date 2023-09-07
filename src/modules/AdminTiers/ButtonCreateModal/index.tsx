@@ -1,14 +1,11 @@
 import { useState } from 'react';
 
-import { Close } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { grey } from '@mui/material/colors';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 
-import NftForm from './NftForm';
+import TierForm from './TierForm';
 
 const style = {
   position: 'absolute',
@@ -21,7 +18,11 @@ const style = {
   p: 4,
 };
 
-const ButtonCreateModal = () => {
+type Props = {
+  nftCollectionId: string;
+};
+
+const ButtonCreateModal = ({ nftCollectionId }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -34,31 +35,18 @@ const ButtonCreateModal = () => {
   return (
     <Box>
       <Button variant="contained" onClick={handleOpen}>
-        Mint NFT
+        Create Tier
       </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <Box
-            position="absolute"
-            right="3%"
-            top="8px"
-            sx={{ cursor: 'pointer' }}
-          >
-            <IconButton onClick={handleClose}>
-              <Close sx={{ color: grey[500] }} />
-            </IconButton>
-          </Box>
-
           <Typography variant="h6" component="h2">
-            Mint NFT
+            Create Tier
           </Typography>
           <Box mt={2}>
-            <NftForm onSuccess={handleOnSuccess} />
+            <TierForm
+              onSuccess={handleOnSuccess}
+              nftCollectionId={nftCollectionId}
+            />
           </Box>
         </Box>
       </Modal>

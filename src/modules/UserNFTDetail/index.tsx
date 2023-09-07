@@ -71,6 +71,10 @@ const UserNFTDetail = () => {
       label: 'Contract Type',
       value: nft?.contractType,
     },
+    {
+      label: 'Tier',
+      value: nft?.tier.name,
+    },
   ];
   return (
     <RegularLayout>
