@@ -21,6 +21,7 @@ export type UpdateNftParams = {
   checksum?: string;
   deployStatus?: DeployStatusEnum;
   type?: NftTypeEnum;
+  tierId?: string;
 };
 
 export type UpdateNftResponse = {

@@ -1,4 +1,5 @@
 import { NftCollection } from '@/types/nft-collection';
+import { Tier } from '@/types/tier';
 
 export type GetNftCollectionsParams = {
   limit?: number;
@@ -36,4 +37,15 @@ export type ConfirmNftCollectionParams = Pick<
 
 export type ConfirmNftCollectionResponse = {
   id: string;
+};
+
+export type GetTiersByNftCollectionParams = {
+  limit?: number;
+  page?: number;
+  nftCollectionId?: string;
+};
+
+export type GetTiersByNftCollectionResponse = {
+  items: Tier[];
+  total: number;
 };

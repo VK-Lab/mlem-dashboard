@@ -24,6 +24,9 @@ export const useMutateCreateNft = (
       if (!publicKey) {
         throw new Error('Public key does not exist');
       }
+      if (!params.tokenAddress) {
+        throw new Error('Token address does not exist');
+      }
 
       const { id } = await createTempNft({
         ...params,
@@ -33,6 +36,7 @@ export const useMutateCreateNft = (
         publicKeyHex: publicKey,
         name: params.name,
         nftId: id,
+        tokenAddress: params.tokenAddress,
       });
 
       if (!deployHash) {

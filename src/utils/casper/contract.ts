@@ -34,6 +34,7 @@ export type SignDeployNftParams = {
   name: string;
   nftId: string;
   paymentAmount?: string;
+  tokenAddress: string;
 };
 
 export const signDeployNftCollection = async ({
@@ -120,6 +121,7 @@ export const signDeployNft = async (
     name,
     nftId,
     paymentAmount = '5000000000',
+    tokenAddress,
   }: SignDeployNftParams,
   { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
 ) => {
@@ -129,6 +131,7 @@ export const signDeployNft = async (
     token_uri: generateMetadataUrl(nftId),
   };
   const checksum = btoa(JSON.stringify(meta));
+  CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
 
   const mintDeploy = await CEP78ClientInstance.mint(
     {

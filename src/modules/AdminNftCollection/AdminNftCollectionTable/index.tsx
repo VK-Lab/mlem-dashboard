@@ -6,6 +6,7 @@ import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
 import ButtonUpdateModal from './ButtonUpdateModal';
 import { useGetAllNftCollections } from '@/hooks/queries/useGetAllNftCollections';
+import ButtonViewTiers from '@/modules/AdminNftCollection/AdminNftCollectionTable/ButtonViewTiers';
 import { NftCollection } from '@/types/nft-collection';
 import { mapDeployStatus } from '@/utils/status';
 
@@ -86,7 +87,7 @@ const AdminNftCollectionTable = () => {
         displayColumnDefOptions={{
           'mrt-row-actions': {
             header: 'Actions', //change header text
-            size: 220, //make actions column wider
+            size: 300, //make actions column wider
           },
         }}
         enableRowActions={true}
@@ -94,6 +95,7 @@ const AdminNftCollectionTable = () => {
           return (
             <Box display="flex" gap="10px">
               <ButtonUpdateModal nftCollection={row.original} />
+              <ButtonViewTiers nftCollectionId={row.original.id} />
             </Box>
           );
         }}

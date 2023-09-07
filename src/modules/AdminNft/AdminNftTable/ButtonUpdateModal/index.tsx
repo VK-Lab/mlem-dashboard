@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { AutocompleteElement, FormContainer } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
+import SelectTiersField from 'src/modules/core/SelectTiersField';
 
 import { StyledTextFieldElement } from './styled';
 import ToastMessage from '@/components/Toast';
@@ -49,7 +50,6 @@ const ButtonUpdateModal = ({ nft }: ButtonUpdateModalProps) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleOnSubmitForm = (updateNftParams: UpdateNftParams) => {
-    console.log(nft);
     updateNftMutation.mutate({
       ...updateNftParams,
       id: nft.id,
@@ -79,6 +79,7 @@ const ButtonUpdateModal = ({ nft }: ButtonUpdateModalProps) => {
                 benefits: nft.benefits.map((benefit: Benefit) =>
                   benefit.id.toString()
                 ),
+                tierId: nft.tierId,
               }}
               onSuccess={handleOnSubmitForm}
             >
@@ -96,6 +97,12 @@ const ButtonUpdateModal = ({ nft }: ButtonUpdateModalProps) => {
                       label: item.name,
                     };
                   })}
+                />
+              </Box>
+              <Box mt="1rem">
+                <SelectTiersField
+                  name={'tierId'}
+                  nftCollectionId={nft?.nftCollection?.id}
                 />
               </Box>
               <Box mt="1rem">

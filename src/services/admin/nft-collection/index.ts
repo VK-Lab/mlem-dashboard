@@ -7,6 +7,7 @@ import {
   UpdateNftCollectionResponse,
   ConfirmNftCollectionParams,
   ConfirmNftCollectionResponse,
+  GetTiersByNftCollectionParams,
 } from './types';
 import request from '@/utils/request';
 
@@ -15,6 +16,15 @@ export const getNftCollections = (
 ): Promise<GetNftCollectionsResponse> => {
   return request.get('/admin/nft-collections', {
     params,
+  });
+};
+
+export const getTiersByNftCollection = ({
+  nftCollectionId,
+  ...rest
+}: GetTiersByNftCollectionParams): Promise<GetNftCollectionsResponse> => {
+  return request.get(`/admin/nft-collections/${nftCollectionId}/tiers`, {
+    params: rest,
   });
 };
 
