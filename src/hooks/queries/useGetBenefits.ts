@@ -2,9 +2,13 @@ import { useQuery, UseQueryOptions } from 'react-query';
 
 import { QueryKeys } from '@/enums/queryKeys.enum';
 import { getBenefits } from '@/services/admin/benefit';
-import { GetBenefitsResponse } from '@/services/admin/benefit/types';
+import {
+  GetBenefitsParams,
+  GetBenefitsResponse,
+} from '@/services/admin/benefit/types';
 
 export const useGetBenefits = (
+  params?: GetBenefitsParams,
   options?: Omit<
     UseQueryOptions<
       unknown,
@@ -15,7 +19,7 @@ export const useGetBenefits = (
     'queryKey' | 'queryFn'
   >
 ) => {
-  return useQuery([QueryKeys.BENEFITS], () => getBenefits(), {
+  return useQuery([QueryKeys.BENEFITS], () => getBenefits(params), {
     ...options,
   });
 };

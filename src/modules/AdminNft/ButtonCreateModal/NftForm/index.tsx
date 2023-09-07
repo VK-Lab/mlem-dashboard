@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
 import { useAccount } from '@casperdash/usewallet';
 import { LoadingButton } from '@mui/lab';
@@ -9,12 +9,13 @@ import {
   FormContainer,
   SelectElement,
   useForm,
+  useWatch,
 } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
+import SelectTiersField from 'src/modules/core/SelectTiersField';
 
 import { StyledTextFieldElement } from './styled';
 import ToastMessage from '@/components/Toast';
-import { CEP78ClientInstance } from '@/contracts/cep78';
 import { QueryKeys } from '@/enums/queryKeys.enum';
 import { useMutateCreateNft } from '@/hooks/mutations';
 import { useGetBenefits, useGetAllNftCollections } from '@/hooks/queries';
@@ -29,10 +30,31 @@ type NftFormProps = {
 
 const ESTIMATE_FEE = 5;
 
+type SelectTiersFieldProps = {
+  nftCollections: NftCollection[];
+};
+
+const SelectTiersFieldWatch = ({ nftCollections }: SelectTiersFieldProps) => {
+  const tokenAddress = useWatch({
+    name: 'tokenAddress',
+  });
+
+  const foundNftCollection = useMemo(() => {
+    return nftCollections.find(
+      (nftCollection) => nftCollection.tokenAddress === tokenAddress
+    );
+  }, [nftCollections, tokenAddress]);
+
+  return (
+    <SelectTiersField
+      name={'tierId'}
+      nftCollectionId={foundNftCollection?.id}
+    />
+  );
+};
+
 const NftForm = ({ onSuccess }: NftFormProps) => {
   const queryClient = useQueryClient();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
   const { publicKey } = useAccount();
   const { data: { balanace = 0 } = { balanace: 0 } } = useGetAccountBalance({
     publicKey,
@@ -75,39 +97,6 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
     isLoading: isLoadingCollections,
   } = useGetAllNftCollections();
 
-  useEffect(() => {
-    const subcriber = formContext.watch(async (value, { name }) => {
-      if (name === 'tokenAddress') {
-        setIsLoading(true);
-        setIsDisabled(false);
-        if (!value.tokenAddress) {
-          return;
-        }
-        if (!publicKey) {
-          return;
-        }
-
-        CEP78ClientInstance.setContractHash(
-          `hash-${value.tokenAddress}`,
-          undefined
-        );
-        let tokenId = '0';
-        try {
-          const nextTokenId = await CEP78ClientInstance.numOfMintedTokens();
-          tokenId = `${nextTokenId}`;
-          // eslint-disable-next-line no-empty
-        } catch (err) {}
-
-        formContext.setValue('tokenId', tokenId.toString());
-        setIsLoading(false);
-      }
-    });
-
-    return () => {
-      subcriber.unsubscribe();
-    };
-  }, [formContext, publicKey]);
-
   return (
     <FormContainer formContext={formContext} onSuccess={handleOnSubmitForm}>
       <Box mb="1rem">
@@ -134,12 +123,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
           required
         />
       </Box>
-      <StyledTextFieldElement
-        name="tokenId"
-        label="Token Id"
-        required
-        disabled
-      />
+
       <StyledTextFieldElement name="imageUrl" label="Image Url" required />
       <Box mt="1rem">
         <AutocompleteElement
@@ -157,6 +141,10 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       </Box>
 
       <Box mt="1rem">
+        <SelectTiersFieldWatch nftCollections={nftCollections} />
+      </Box>
+
+      <Box mt="1rem">
         <Divider />
         <Box display={'flex'} justifyContent={'space-between'} mt="1rem">
           <Box>Estimate Fee:</Box>
@@ -170,9 +158,8 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
           type={'submit'}
           color={'primary'}
           variant={'contained'}
-          disabled={isDisabled || balanace < ESTIMATE_FEE}
+          disabled={balanace < ESTIMATE_FEE}
           loading={
-            isLoading ||
             isLoadingCollections ||
             isLoadingBenefits ||
             createNftMutation.isLoading
