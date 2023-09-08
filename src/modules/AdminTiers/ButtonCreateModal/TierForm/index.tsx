@@ -50,10 +50,12 @@ const TierForm = ({ onSuccess, nftCollectionId }: NftFormProps) => {
       defaultValues={{
         name: '',
         description: '',
+        slug: '',
       }}
       onSuccess={handleOnSubmitForm}
     >
       <StyledTextFieldElement name="name" label="Name" required />
+      <StyledTextFieldElement name="slug" label="Slug" />
       <StyledTextFieldElement name="description" label="Description" />
 
       <Box mt="1.5rem">

@@ -5,6 +5,7 @@ export type CreateTierParams = {
   description?: string;
   nftCollectionId: string;
   benefitIds?: string[];
+  slug?: string;
 };
 
 export type CreateTierResponse = {
