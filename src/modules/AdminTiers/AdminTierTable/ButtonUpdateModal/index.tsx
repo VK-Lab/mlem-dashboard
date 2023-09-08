@@ -67,7 +67,7 @@ const ButtonUpdateModal = ({ tier }: ButtonUpdateModalProps) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Update Nft
+            Update Tier
           </Typography>
           <Box mt={2}>
             <FormContainer
@@ -75,10 +75,12 @@ const ButtonUpdateModal = ({ tier }: ButtonUpdateModalProps) => {
                 name: tier.name,
                 description: tier.description,
                 benefitIds: tier.benefitIds,
+                slug: tier.slug,
               }}
               onSuccess={handleOnSubmitForm}
             >
               <StyledTextFieldElement name="name" label="Name" required />
+              <StyledTextFieldElement name="slug" label="slug" />
               <StyledTextFieldElement name="description" label="Description" />
               <Box mt="1rem">
                 <SelectBenefitsField name="benefitIds" />

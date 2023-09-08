@@ -7,4 +7,6 @@ export type Tier = {
   nftCollectionId: string;
   benefitIds: string[];
   benefits?: Benefit[];
+  slug?: string;
+  createdAt?: string;
 };

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import { Box } from '@mui/material';
+import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
 import ButtonUpdateModal from './ButtonUpdateModal';
@@ -28,8 +29,22 @@ const AdminTierTable = ({ nftCollectionId }: Props) => {
         header: 'Name',
       },
       {
+        accessorKey: 'slug',
+        header: 'Slug',
+      },
+      {
         accessorKey: 'description',
         header: 'Description',
+      },
+      {
+        accessorKey: 'createdAt',
+        header: 'Created At',
+        size: 220,
+        Cell: ({ row }) => (
+          <Box component="div" sx={{ whiteSpace: 'normal' }}>
+            {dayjs(row.original.createdAt).format('YYYY-MM-DD h:mm:ss A')}
+          </Box>
+        ),
       },
     ],
     []
