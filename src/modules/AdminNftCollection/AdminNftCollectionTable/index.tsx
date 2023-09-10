@@ -77,6 +77,14 @@ const AdminNftCollectionTable = () => {
         data={items}
         positionActionsColumn={'last'}
         muiTableContainerProps={{ sx: { maxHeight: '500px' } }}
+        initialState={{
+          columnVisibility: {
+            deployHash: false,
+            contractType: false,
+            tokenAddress: false,
+            createdAt: false,
+          },
+        }}
         state={{
           isLoading: isLoading,
           columnPinning: {
