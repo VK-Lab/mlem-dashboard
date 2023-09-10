@@ -1,11 +1,12 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
-import { Box } from '@mui/material';
+import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
 import ButtonUpdateModal from './ButtonUpdateModal';
 import { useGetTiersByNftCollection } from '@/hooks/queries/useGetTiersByNftCollection';
+import { Benefit } from '@/types/benefit';
 import { Tier } from '@/types/tier';
 
 type Props = {
@@ -35,6 +36,27 @@ const AdminTierTable = ({ nftCollectionId }: Props) => {
       {
         accessorKey: 'description',
         header: 'Description',
+      },
+      {
+        accessorKey: 'benefits',
+        header: 'Benefits',
+        maxSize: 100,
+        Cell: ({ row }) => {
+          const { benefits: tierBenefits } = row.original;
+
+          return (
+            <Box display={'flex'} gap={'4px'} flexWrap={'wrap'}>
+              {tierBenefits?.map((benefit: Benefit) => (
+                <Chip
+                  key={`benefit-${benefit.id}`}
+                  label={benefit.name}
+                  size="small"
+                  variant="outlined"
+                />
+              ))}
+            </Box>
+          );
+        },
       },
       {
         accessorKey: 'createdAt',
@@ -68,6 +90,12 @@ const AdminTierTable = ({ nftCollectionId }: Props) => {
           'mrt-row-actions': {
             header: 'Actions', //change header text
             size: 220, //make actions column wider
+          },
+        }}
+        initialState={{
+          columnVisibility: {
+            description: false,
+            createdAt: false,
           },
         }}
         enableRowActions={true}
