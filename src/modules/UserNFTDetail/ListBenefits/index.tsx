@@ -1,10 +1,12 @@
 import CheckIcon from '@mui/icons-material/Check';
 import { Button, Box, ListItem, ListItemText } from '@mui/material';
+import copy from 'copy-to-clipboard';
 import { useQueryClient } from 'react-query';
 
 import { StyledListItemIcon } from './styled';
 import { QueryKeys } from '@/enums/queryKeys.enum';
 import { useMutateClaimBenefit } from '@/hooks/mutations';
+import { useI18nToast } from '@/hooks/useToast';
 import { Benefit } from '@/types/benefit';
 import { ClaimStatusEnum } from '@/types/claim';
 import { NftClaim } from '@/types/nft';
@@ -17,6 +19,7 @@ type Props = {
 
 const ListBenefits = ({ nftId, benefits = [], claims = [] }: Props) => {
   const queryClient = useQueryClient();
+  const toast = useI18nToast();
 
   const claimNftMutation = useMutateClaimBenefit({
     onSuccess: async () => {
@@ -33,6 +36,11 @@ const ListBenefits = ({ nftId, benefits = [], claims = [] }: Props) => {
     claimNftMutation.mutate({ nftId, benefitId: benefit.id });
   };
 
+  const handleOnCopy = (code: string) => {
+    copy(code);
+    toast.toastSuccess('copied_to_clipboard');
+  };
+
   return (
     <Box sx={{ maxWidth: 480 }}>
       {benefits.map((benefit: Benefit) => {
@@ -40,11 +48,13 @@ const ListBenefits = ({ nftId, benefits = [], claims = [] }: Props) => {
           (claim: NftClaim) => claim.benefitId === benefit.id
         );
         let txt = foundClaim ? foundClaim.status : 'Claim';
+        let isCode = false;
         if (
           foundClaim?.status === ClaimStatusEnum.ACCEPTED &&
           foundClaim?.generatedCode
         ) {
           txt = foundClaim?.generatedCode;
+          isCode = true;
         }
         const isClaiming =
           claimNftMutation.isLoading &&
@@ -56,15 +66,26 @@ const ListBenefits = ({ nftId, benefits = [], claims = [] }: Props) => {
             sx={{ mb: 1 }}
             className="item"
             secondaryAction={
-              <Button
-                sx={{ minWidth: 120 }}
-                size="small"
-                disabled={!!foundClaim || isClaiming}
-                variant={foundClaim ? 'text' : 'contained'}
-                onClick={() => handleOnClickClaimBenefit(benefit)}
-              >
-                {isClaiming ? 'Claiming...' : txt}
-              </Button>
+              isCode ? (
+                <Button
+                  sx={{ minWidth: 120 }}
+                  size="small"
+                  variant={'outlined'}
+                  onClick={() => handleOnCopy(txt)}
+                >
+                  {isClaiming ? 'Claiming...' : txt}
+                </Button>
+              ) : (
+                <Button
+                  sx={{ minWidth: 120 }}
+                  size="small"
+                  disabled={!!foundClaim || isClaiming}
+                  variant={foundClaim ? 'text' : 'contained'}
+                  onClick={() => handleOnClickClaimBenefit(benefit)}
+                >
+                  {isClaiming ? 'Claiming...' : txt}
+                </Button>
+              )
             }
           >
             <StyledListItemIcon>
@@ -73,6 +94,7 @@ const ListBenefits = ({ nftId, benefits = [], claims = [] }: Props) => {
             <ListItemText
               sx={{
                 m: 0,
+                maxWidth: '260px',
               }}
               primaryTypographyProps={{
                 variant: 'subtitle2',
