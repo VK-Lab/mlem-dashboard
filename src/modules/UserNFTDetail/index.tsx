@@ -73,7 +73,7 @@ const UserNFTDetail = () => {
     },
     {
       label: 'Tier',
-      value: nft?.tier.name,
+      value: nft?.tier?.name,
     },
   ];
   return (
