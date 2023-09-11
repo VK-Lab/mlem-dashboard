@@ -31,7 +31,7 @@ export type Nft = {
   deployStatus: DeployStatusEnum;
   deployHash: string;
   nftCollection: Partial<NftCollection>;
-  tier: Tier;
+  tier?: Tier;
 };
 
 export type NftClaim = {
