@@ -1,7 +1,8 @@
 {
   "hello": "Hello :)",
   "success": {
-    "signup_success": "Success, your account has been synced with Loyalty app"
+    "signup_success": "Success, your account has been synced with Loyalty app",
+    "copied_to_clipboard": "Copied to clipboard"
   },
   "error" : {
     "default": "Oops, something went wrong!",

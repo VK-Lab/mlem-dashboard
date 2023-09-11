@@ -147,7 +147,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       <Box mt="1rem">
         <Divider />
         <Box display={'flex'} justifyContent={'space-between'} mt="1rem">
-          <Box>Estimate Fee:</Box>
+          <Box>Estimated Fee:</Box>
           <Box>{ESTIMATE_FEE} CSPR</Box>
         </Box>
       </Box>
