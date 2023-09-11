@@ -84,7 +84,7 @@ const ButtonRegisterTokenOwner = ({ nftCollection }: Props) => {
           </Box>
           <Box mt="1rem">
             <Box display={'flex'} justifyContent={'space-between'} mt="1rem">
-              <Box>Estimate Fee:</Box>
+              <Box>Estimated Fee:</Box>
               <Box>{ESTIMATE_FEE} CSPR</Box>
             </Box>
           </Box>
