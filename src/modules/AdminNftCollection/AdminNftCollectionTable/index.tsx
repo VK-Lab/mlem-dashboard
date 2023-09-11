@@ -79,6 +79,7 @@ const AdminNftCollectionTable = () => {
         muiTableContainerProps={{ sx: { maxHeight: '500px' } }}
         initialState={{
           columnVisibility: {
+            id: false,
             deployHash: false,
             contractType: false,
             tokenAddress: false,
@@ -89,7 +90,7 @@ const AdminNftCollectionTable = () => {
           isLoading: isLoading,
           columnPinning: {
             right: ['deployStatus', 'mrt-row-actions'],
-            left: ['id'],
+            left: ['name'],
           },
         }}
         displayColumnDefOptions={{

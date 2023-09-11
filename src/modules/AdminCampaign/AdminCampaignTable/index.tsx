@@ -85,6 +85,11 @@ const AdminCampaignTable = () => {
             left: ['name'],
           },
         }}
+        initialState={{
+          columnVisibility: {
+            id: false,
+          },
+        }}
         enableRowActions={true}
         renderRowActions={({ row }) => {
           return (

@@ -51,6 +51,11 @@ const AdminBenefitTable = () => {
       <MaterialReactTable
         columns={columns}
         data={items}
+        initialState={{
+          columnVisibility: {
+            id: false,
+          },
+        }}
         positionActionsColumn={'last'}
         state={{ isLoading: isLoading }}
         muiTableContainerProps={{ sx: { maxHeight: '500px' } }}

@@ -44,29 +44,20 @@ const AdminClaimTable = () => {
         header: 'id',
       },
       {
-        accessorKey: 'createdBy',
-        header: 'User Phone Number',
-        Cell: ({ row }) => (
-          <Box component="div" sx={{ whiteSpace: 'normal' }}>
-            {_get(row, 'original.createdBy.phoneNumber', '-')}
-          </Box>
-        ),
-      },
-      {
-        accessorKey: 'nftId',
-        header: 'Nft',
-        Cell: ({ row }) => (
-          <Box component="div" sx={{ whiteSpace: 'normal' }}>
-            {_get(row, 'original.nft.name', '-')}
-          </Box>
-        ),
-      },
-      {
         accessorKey: 'benefitId',
         header: 'Benefit',
         Cell: ({ row }) => (
           <Box component="div" sx={{ whiteSpace: 'normal' }}>
             {_get(row, 'original.benefit.name', '-')}
+          </Box>
+        ),
+      },
+      {
+        accessorKey: 'createdBy',
+        header: 'User',
+        Cell: ({ row }) => (
+          <Box component="div" sx={{ whiteSpace: 'normal' }}>
+            {_get(row, 'original.createdBy.name', '-')}
           </Box>
         ),
       },
@@ -101,6 +92,11 @@ const AdminClaimTable = () => {
           columnPinning: {
             right: ['mrt-row-actions'],
             left: ['id'],
+          },
+        }}
+        initialState={{
+          columnVisibility: {
+            id: false,
           },
         }}
         renderRowActions={({ row }) => {
