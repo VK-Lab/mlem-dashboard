@@ -10,12 +10,10 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  CircularProgress,
 } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import ListBenefits from './ListBenefits';
-// import nft from './mock';
 import {
   StyledBoxRight,
   StyledAccordionDetails,
@@ -33,7 +31,7 @@ const UserNFTDetail = () => {
   const router = useRouter();
   const { tokenAddress, tokenId } = router.query;
 
-  const { data: nft, isLoading } = useGetNft(
+  const { data: nft } = useGetNft(
     {
       tokenAddress: tokenAddress as string,
       tokenId: tokenId as string,
@@ -42,21 +40,6 @@ const UserNFTDetail = () => {
       enabled: router.isReady,
     }
   );
-
-  if (isLoading) {
-    return (
-      <Box width="100%" height="100vh" position="relative">
-        <Box
-          position="absolute"
-          top="50%"
-          left="50%"
-          sx={{ transform: 'translate(-50%, -50%)' }}
-        >
-          <CircularProgress />
-        </Box>
-      </Box>
-    );
-  }
 
   const data = [
     {
