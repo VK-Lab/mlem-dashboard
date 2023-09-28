@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import EmptyData from '@/components/EmptyData';
 // import mockResult from './mock';
@@ -10,22 +10,7 @@ import { Nft } from '@/types/nft';
 import { generatePath } from '@/utils/path';
 
 const ListNfts = () => {
-  const { data: nfts = [], isLoading } = useGetNfts();
-
-  if (isLoading) {
-    return (
-      <Box width="100%" height="100vh" position="relative">
-        <Box
-          position="absolute"
-          top="30%"
-          left="50%"
-          sx={{ transform: 'translate(-50%, -50%)' }}
-        >
-          <CircularProgress />
-        </Box>
-      </Box>
-    );
-  }
+  const { data: nfts = [] } = useGetNfts();
 
   if (!nfts?.length) {
     return (

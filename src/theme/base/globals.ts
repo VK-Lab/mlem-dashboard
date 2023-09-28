@@ -17,4 +17,5 @@ export default {
   'a.link:hover, .link:hover, a.link:focus, .link:focus': {
     color: `#1A73E8 !important`,
   },
+  /* Make clicks pass-through */
 };
