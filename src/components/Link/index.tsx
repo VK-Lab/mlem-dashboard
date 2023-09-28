@@ -11,7 +11,6 @@ const WrappedLink = ({ href, passHref = false, children }: Props) => {
     textDecoration: 'none',
     color: '#3c3c3c',
   };
-  console.log('href: ', href);
 
   return (
     <Link passHref={passHref} href={href} style={style}>
