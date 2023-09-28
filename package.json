@@ -46,7 +46,6 @@
     "@mui/styled-engine": "^5.10.8",
     "@mui/x-date-pickers": "^5.0.8",
     "@reduxjs/toolkit": "^1.8.6",
-    "@types/js-cookie": "^3.0.2",
     "axios": "^1.4.0",
     "big.js": "^6.2.1",
     "casper-js-sdk": "^2.12.1",
@@ -60,11 +59,11 @@
     "lodash": "^4.17.21",
     "material-react-table": "^1.14.0",
     "material-ui-popup-state": "^4.1.0",
-    "mui-one-time-password-input": "^1.0.3",
     "mui-tel-input": "^2.0.4",
     "next": "^13.4.19",
     "next-i18next": "^13.2.2",
     "next-pwa": "^5.6.0",
+    "nextjs-progressbar": "^0.0.16",
     "polished": "^4.2.2",
     "qs": "^6.11.2",
     "react": "^18.2.0",
@@ -80,6 +79,7 @@
     "yup": "^1.0.0"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
     "@babel/core": "^7.14.3",
     "@babel/preset-typescript": "^7.13.0",
     "@emotion/babel-plugin": "^11.3.0",
