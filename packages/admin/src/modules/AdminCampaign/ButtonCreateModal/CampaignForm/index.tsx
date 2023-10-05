@@ -1,8 +1,8 @@
-import ToastMessage from '@mlem/admin/components/Toast';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateCreateCampaign } from '@mlem/admin/hooks/mutations';
-import SelectNftCollectionsField from '@mlem/admin/modules/core/SelectNftCollectionsField';
-import { CreateCampaignParams } from '@mlem/admin/services/admin/campaign/types';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateCampaign } from '@mlem-admin/hooks/mutations';
+import SelectNftCollectionsField from '@mlem-admin/modules/core/SelectNftCollectionsField';
+import { CreateCampaignParams } from '@mlem-admin/services/admin/campaign/types';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import { DatePickerElement, FormContainer } from 'react-hook-form-mui';

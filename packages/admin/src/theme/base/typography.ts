@@ -1,4 +1,4 @@
-import pxToRem from '@mlem/admin/theme/functions/pxToRem';
+import pxToRem from '@mlem-admin/theme/functions/pxToRem';
 import { TypographyOptions } from '@mui/material/styles/createTypography';
 
 const baseProperties = {

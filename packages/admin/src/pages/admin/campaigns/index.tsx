@@ -1,4 +1,4 @@
-import AdminCampaign from '@mlem/admin/modules/AdminCampaign';
+import AdminCampaign from '@mlem-admin/modules/AdminCampaign';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {

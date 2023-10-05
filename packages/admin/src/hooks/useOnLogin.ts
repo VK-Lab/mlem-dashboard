@@ -1,9 +1,9 @@
 import { useAccount, useSignMessage } from '@casperdash/usewallet';
-import { LoginTypeEnum } from '@mlem/admin/enums';
-import { CookieKeys } from '@mlem/admin/enums/cookieKeys.enum';
-import { AdminPaths, PrivatePaths } from '@mlem/admin/enums/paths.enum';
-import { login } from '@mlem/admin/services/auth';
-import { LoginResponse } from '@mlem/admin/services/auth/types';
+import { LoginTypeEnum } from '@mlem-admin/enums';
+import { CookieKeys } from '@mlem-admin/enums/cookieKeys.enum';
+import { AdminPaths, PrivatePaths } from '@mlem-admin/enums/paths.enum';
+import { login } from '@mlem-admin/services/auth';
+import { LoginResponse } from '@mlem-admin/services/auth/types';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';

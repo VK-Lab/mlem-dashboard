@@ -1,4 +1,4 @@
-import AdminNftCollection from '@mlem/admin/modules/AdminNftCollection';
+import AdminNftCollection from '@mlem-admin/modules/AdminNftCollection';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {

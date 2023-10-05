@@ -1,8 +1,7 @@
+import ImgNoData from '@mlem-admin/assets/images/img--no-data.webp';
 import { Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Image from 'next/image'; // No wrapper
-
-import ImgNoData from '@mlem/assets/images/img--no-data.webp';
 
 // interface ButtonLinkProps extends ButtonProps {
 //   component: React.ComponentType;

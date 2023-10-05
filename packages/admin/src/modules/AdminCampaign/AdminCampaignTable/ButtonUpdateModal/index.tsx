@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import ToastMessage from '@mlem/admin/components/Toast';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateUpdateCampaign } from '@mlem/admin/hooks/mutations';
-import SelectNftCollectionsField from '@mlem/admin/modules/core/SelectNftCollectionsField';
-import { UpdateCampaignParams } from '@mlem/admin/services/admin/campaign/types';
-import { Campaign } from '@mlem/admin/types/campaign';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateUpdateCampaign } from '@mlem-admin/hooks/mutations';
+import SelectNftCollectionsField from '@mlem-admin/modules/core/SelectNftCollectionsField';
+import { UpdateCampaignParams } from '@mlem-admin/services/admin/campaign/types';
+import { Campaign } from '@mlem-admin/types/campaign';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

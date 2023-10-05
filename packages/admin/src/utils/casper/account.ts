@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Config } from '@mlem/admin/config';
+import { Config } from '@mlem-admin/config';
 import {
   CLPublicKey,
   CasperServiceByJsonRPC,
@@ -57,7 +57,7 @@ export const getDeploy = async (
     try {
       const [deploy, raw] = await client.getDeploy(deployHash);
       if (raw.execution_results.length !== 0) {
-        if (raw.execution_results[0].result.Success) {
+        if (raw!.execution_results[0]!.result.Success) {
           return deploy;
         } else {
           throw Error(

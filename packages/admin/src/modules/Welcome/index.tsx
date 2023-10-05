@@ -1,5 +1,5 @@
-import { LoginTypeEnum } from '@mlem/admin/enums';
-import LoginButton from '@mlem/admin/modules/core/LoginButton';
+import { LoginTypeEnum } from '@mlem-admin/enums';
+import LoginButton from '@mlem-admin/modules/core/LoginButton';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 

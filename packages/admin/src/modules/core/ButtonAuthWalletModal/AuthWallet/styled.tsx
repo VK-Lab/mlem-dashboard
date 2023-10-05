@@ -1,7 +1,6 @@
 import { Box, Container } from '@mui/material';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { MuiOtpInput } from 'mui-one-time-password-input';
 import { MuiTelInput } from 'mui-tel-input';
 
 export const StyledWelcomePage = styled(Container)`
@@ -43,20 +42,6 @@ export const StyledMuiTelInput = styled(MuiTelInput)(({ theme }) => ({
     },
     '&:hover .MuiInputBase-input + fieldset': {
       borderColor: theme.palette.primary.main,
-    },
-  },
-}));
-
-export const StyledOTPInput = styled(MuiOtpInput)(({ theme }) => ({
-  '& .MuiInputBase-root': {
-    '&:hover .MuiInputBase-input + fieldset': {
-      borderColor: theme.palette.primary.main,
-    },
-  },
-  '& .MuiInputBase-input': {
-    color: 'white',
-    '& + fieldset': {
-      borderColor: theme.palette.primary.light,
     },
   },
 }));

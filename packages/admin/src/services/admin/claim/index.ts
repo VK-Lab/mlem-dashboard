@@ -1,4 +1,4 @@
-import request from '@mlem/admin/utils/request';
+import request from '@mlem-admin/utils/request';
 
 import {
   GetClaimsParams,

@@ -1,4 +1,4 @@
-import { BenefitCategory } from '@mlem/admin/types/benefit-category';
+import { BenefitCategory } from '@mlem-admin/types/benefit-category';
 
 export type GetBenefitCategoriesParams = {
   limit: number;

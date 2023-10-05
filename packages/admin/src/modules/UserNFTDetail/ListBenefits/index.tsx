@@ -1,9 +1,9 @@
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateClaimBenefit } from '@mlem/admin/hooks/mutations';
-import { useI18nToast } from '@mlem/admin/hooks/useToast';
-import { Benefit } from '@mlem/admin/types/benefit';
-import { ClaimStatusEnum } from '@mlem/admin/types/claim';
-import { NftClaim } from '@mlem/admin/types/nft';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateClaimBenefit } from '@mlem-admin/hooks/mutations';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import { Benefit } from '@mlem-admin/types/benefit';
+import { ClaimStatusEnum } from '@mlem-admin/types/claim';
+import { NftClaim } from '@mlem-admin/types/nft';
 import CheckIcon from '@mui/icons-material/Check';
 import { Button, Box, ListItem, ListItemText } from '@mui/material';
 import copy from 'copy-to-clipboard';

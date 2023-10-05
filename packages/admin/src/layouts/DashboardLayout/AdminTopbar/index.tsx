@@ -1,9 +1,9 @@
 import { ReactNode, useState, MouseEvent } from 'react';
 
 import { useDisconnect } from '@casperdash/usewallet';
-import { CookieKeys } from '@mlem/admin/enums/cookieKeys.enum';
-import { PublicPaths } from '@mlem/admin/enums/paths.enum';
-import { logout } from '@mlem/admin/services/auth';
+import { CookieKeys } from '@mlem-admin/enums/cookieKeys.enum';
+import { PublicPaths } from '@mlem-admin/enums/paths.enum';
+import { logout } from '@mlem-admin/services/auth';
 import {
   Toolbar,
   Box,

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import ToastMessage from '@mlem/admin/components/Toast';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateCreateBenefit } from '@mlem/admin/hooks/mutations';
-import { useGetAdminBenefitCategories } from '@mlem/admin/hooks/queries';
-import { Benefit } from '@mlem/admin/types/benefit';
-import { BenefitCategory } from '@mlem/admin/types/benefit-category';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateBenefit } from '@mlem-admin/hooks/mutations';
+import { useGetAdminBenefitCategories } from '@mlem-admin/hooks/queries';
+import { Benefit } from '@mlem-admin/types/benefit';
+import { BenefitCategory } from '@mlem-admin/types/benefit-category';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

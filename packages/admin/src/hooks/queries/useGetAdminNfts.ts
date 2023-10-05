@@ -1,6 +1,6 @@
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { getNfts } from '@mlem/admin/services/admin/nft';
-import { GetNftsResponse } from '@mlem/admin/services/admin/nft/types';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { getNfts } from '@mlem-admin/services/admin/nft';
+import { GetNftsResponse } from '@mlem-admin/services/admin/nft/types';
 import { useQuery, UseQueryOptions } from 'react-query';
 
 export const useGetAdminNfts = (

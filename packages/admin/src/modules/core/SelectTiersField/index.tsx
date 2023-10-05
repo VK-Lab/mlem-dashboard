@@ -1,5 +1,5 @@
-import { useGetTiersByNftCollection } from '@mlem/admin/hooks/queries/useGetTiersByNftCollection';
-import { Tier } from '@mlem/admin/types/tier';
+import { useGetTiersByNftCollection } from '@mlem-admin/hooks/queries/useGetTiersByNftCollection';
+import { Tier } from '@mlem-admin/types/tier';
 import { AutocompleteElement } from 'react-hook-form-mui';
 
 type Props = {

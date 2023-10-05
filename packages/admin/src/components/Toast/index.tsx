@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { toast, TypeOptions } from 'react-toastify';
 
 const ToastMessage = ({
@@ -18,11 +17,6 @@ const ToastMessage = ({
       type,
     }
   );
-
-ToastMessage.propTypes = {
-  message: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-};
 
 ToastMessage.dismiss = toast.dismiss;
 

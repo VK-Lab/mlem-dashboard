@@ -1,4 +1,4 @@
-import breakpoints from '@mlem/admin/theme/base/breakpoints';
+import breakpoints from '@mlem-admin/theme/base/breakpoints';
 import { createTheme, ThemeOptions } from '@mui/material/styles';
 
 // import globals from './base/globals';

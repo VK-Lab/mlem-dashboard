@@ -1,4 +1,4 @@
-import UserNFTDetail from '@mlem/admin/modules/UserNFTDetail';
+import UserNFTDetail from '@mlem-admin/modules/UserNFTDetail';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {

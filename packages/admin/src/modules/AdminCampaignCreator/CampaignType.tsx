@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import FormGroupDivider from '@mlem/admin/components/FormGroupDivider';
+import FormGroupDivider from '@mlem-admin/components/FormGroupDivider';
 import {
   FormControl,
   InputLabel,

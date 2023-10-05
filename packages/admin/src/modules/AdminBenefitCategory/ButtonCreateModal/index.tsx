@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import ToastMessage from '@mlem/admin/components/Toast';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateCreateBenefitCategory } from '@mlem/admin/hooks/mutations';
-import { BenefitCategory } from '@mlem/admin/types/benefit-category';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateBenefitCategory } from '@mlem-admin/hooks/mutations';
+import { BenefitCategory } from '@mlem-admin/types/benefit-category';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

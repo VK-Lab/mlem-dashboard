@@ -1,4 +1,4 @@
-import DashboardLayout from '@mlem/admin/layouts/DashboardLayout';
+import DashboardLayout from '@mlem-admin/layouts/DashboardLayout';
 import { Container } from '@mui/material';
 
 import AdminClaimTable from './AdminClaimTable';

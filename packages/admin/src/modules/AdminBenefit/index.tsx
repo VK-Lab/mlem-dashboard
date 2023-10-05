@@ -1,4 +1,4 @@
-import DashboardLayout from '@mlem/admin/layouts/DashboardLayout';
+import DashboardLayout from '@mlem-admin/layouts/DashboardLayout';
 import { Box, Container } from '@mui/material';
 
 import AdminBenefitTable from './AdminBenefitTable';

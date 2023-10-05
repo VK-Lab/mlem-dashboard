@@ -1,6 +1,6 @@
-import { DeployStatusEnum } from '@mlem/admin/enums';
-import { NftTypeEnum } from '@mlem/admin/enums/nftType.enum';
-import { Nft } from '@mlem/admin/types/nft';
+import { DeployStatusEnum } from '@mlem-admin/enums';
+import { NftTypeEnum } from '@mlem-admin/enums/nftType.enum';
+import { Nft } from '@mlem-admin/types/nft';
 
 export type GetNftsParams = {
   limit: number;

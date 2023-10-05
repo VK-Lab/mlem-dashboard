@@ -1,5 +1,5 @@
-import { useGetAllNftCollections } from '@mlem/admin/hooks/queries';
-import { NftCollection } from '@mlem/admin/types/nft-collection';
+import { useGetAllNftCollections } from '@mlem-admin/hooks/queries';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { AutocompleteElement } from 'react-hook-form-mui';
 
 type Props = {

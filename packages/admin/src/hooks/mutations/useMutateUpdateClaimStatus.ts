@@ -1,9 +1,9 @@
-import { MutationKeys } from '@mlem/admin/enums/mutationKeys.enum';
-import { updateClaimStatus } from '@mlem/admin/services/admin/claim';
+import { MutationKeys } from '@mlem-admin/enums/mutationKeys.enum';
+import { updateClaimStatus } from '@mlem-admin/services/admin/claim';
 import {
   UpdateClaimParams,
   UpdateClaimStatusResponse,
-} from '@mlem/admin/services/admin/claim/types';
+} from '@mlem-admin/services/admin/claim/types';
 import { useMutation, UseMutationOptions } from 'react-query';
 
 export const useMutateUpdateClaimStatus = (
