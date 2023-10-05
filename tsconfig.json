@@ -24,8 +24,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@mlem/admin": ["packages/admin/src"],
-      "@mlem/assets": ["packages/admin/src/assets"],
       "@mlem-user": ["packages/user/src"],
       "@mlem-user/*": ["packages/user/src/*"],
     },

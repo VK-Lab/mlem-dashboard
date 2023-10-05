@@ -1,4 +1,4 @@
-import { DeployStatusEnum } from '@mlem/admin/enums';
+import { DeployStatusEnum } from '@mlem-admin/enums';
 import { describe, expect, it } from 'vitest';
 
 import { mapDeployStatus } from './status';

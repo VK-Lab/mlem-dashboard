@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import { useAccount } from '@casperdash/usewallet';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateRegisterTokenOwner } from '@mlem/admin/hooks/mutations';
-import { useGetAccountBalance } from '@mlem/admin/hooks/queries/useGetAccountBalance';
-import { useI18nToast } from '@mlem/admin/hooks/useToast';
-import { NftCollection } from '@mlem/admin/types/nft-collection';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateRegisterTokenOwner } from '@mlem-admin/hooks/mutations';
+import { useGetAccountBalance } from '@mlem-admin/hooks/queries/useGetAccountBalance';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { LoadingButton } from '@mui/lab';
 import {
   Button,

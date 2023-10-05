@@ -1,9 +1,9 @@
-import { MutationKeys } from '@mlem/admin/enums/mutationKeys.enum';
-import { updateNftCollection } from '@mlem/admin/services/admin/nft-collection';
+import { MutationKeys } from '@mlem-admin/enums/mutationKeys.enum';
+import { updateNftCollection } from '@mlem-admin/services/admin/nft-collection';
 import {
   UpdateNftCollectionParams,
   UpdateNftCollectionResponse,
-} from '@mlem/admin/services/admin/nft-collection/types';
+} from '@mlem-admin/services/admin/nft-collection/types';
 import { useMutation, UseMutationOptions } from 'react-query';
 
 export const useMutateUpdateNftCollection = (

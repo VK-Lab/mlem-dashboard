@@ -1,5 +1,5 @@
-import { Config } from '@mlem/admin/config';
-import { CookieKeys } from '@mlem/admin/enums/cookieKeys.enum';
+import { Config } from '@mlem-admin/config';
+import { CookieKeys } from '@mlem-admin/enums/cookieKeys.enum';
 import axios, { AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 import { i18n } from 'next-i18next';

@@ -1,4 +1,4 @@
-import { Config } from '@mlem/admin/config';
+import { Config } from '@mlem-admin/config';
 import axios, { AxiosResponse } from 'axios';
 import qs from 'qs';
 

@@ -1,6 +1,6 @@
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { getAccounts } from '@mlem/admin/services/casperdash/user';
-import { hexToNumber } from '@mlem/admin/utils/format';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { getAccounts } from '@mlem-admin/services/casperdash/user';
+import { hexToNumber } from '@mlem-admin/utils/format';
 import _get from 'lodash/get';
 import { useQuery, UseQueryOptions } from 'react-query';
 

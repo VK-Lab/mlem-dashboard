@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 
-import { useGetTiersByNftCollection } from '@mlem/admin/hooks/queries/useGetTiersByNftCollection';
-import { Benefit } from '@mlem/admin/types/benefit';
-import { Tier } from '@mlem/admin/types/tier';
+import { useGetTiersByNftCollection } from '@mlem-admin/hooks/queries/useGetTiersByNftCollection';
+import { Benefit } from '@mlem-admin/types/benefit';
+import { Tier } from '@mlem-admin/types/tier';
 import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';

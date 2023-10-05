@@ -10,13 +10,13 @@ import {
   OwnerReverseLookupMode,
   NFTHolderMode,
   EventsMode,
-} from '@mlem/admin/contracts/cep78';
-import { deploy } from '@mlem/admin/services/proxy';
+} from '@mlem-admin/contracts/cep78';
+import { deploy } from '@mlem-admin/services/proxy';
 import {
   getAccountInfo,
   getAccountNamedKeyValue,
   getDeploy,
-} from '@mlem/admin/utils/casper/account';
+} from '@mlem-admin/utils/casper/account';
 import { CLPublicKey, DeployUtil } from 'casper-js-sdk';
 import _kebabCase from 'lodash/kebabCase';
 

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import ToastMessage from '@mlem/admin/components/Toast';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateUpdateNft } from '@mlem/admin/hooks/mutations';
-import { useGetBenefits } from '@mlem/admin/hooks/queries';
-import SelectTiersField from '@mlem/admin/modules/core/SelectTiersField';
-import { UpdateNftParams } from '@mlem/admin/services/admin/nft/types';
-import { Benefit } from '@mlem/admin/types/benefit';
-import { Nft } from '@mlem/admin/types/nft';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateUpdateNft } from '@mlem-admin/hooks/mutations';
+import { useGetBenefits } from '@mlem-admin/hooks/queries';
+import SelectTiersField from '@mlem-admin/modules/core/SelectTiersField';
+import { UpdateNftParams } from '@mlem-admin/services/admin/nft/types';
+import { Benefit } from '@mlem-admin/types/benefit';
+import { Nft } from '@mlem-admin/types/nft';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';

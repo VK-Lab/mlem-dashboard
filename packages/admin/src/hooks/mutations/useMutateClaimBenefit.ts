@@ -1,9 +1,9 @@
-import { MutationKeys } from '@mlem/admin/enums/mutationKeys.enum';
-import { claimNftBenefit } from '@mlem/admin/services/nft';
+import { MutationKeys } from '@mlem-admin/enums/mutationKeys.enum';
+import { claimNftBenefit } from '@mlem-admin/services/nft';
 import {
   ClaimNftBenefitParams,
   ClaimNftBenefitResponse,
-} from '@mlem/admin/services/nft/types';
+} from '@mlem-admin/services/nft/types';
 import { useMutation, UseMutationOptions } from 'react-query';
 
 export const useMutateClaimBenefit = (

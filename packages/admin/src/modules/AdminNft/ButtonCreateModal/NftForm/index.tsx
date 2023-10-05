@@ -1,18 +1,18 @@
 import { useMemo } from 'react';
 
 import { useAccount } from '@casperdash/usewallet';
-import ToastMessage from '@mlem/admin/components/Toast';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateCreateNft } from '@mlem/admin/hooks/mutations';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateNft } from '@mlem-admin/hooks/mutations';
 import {
   useGetBenefits,
   useGetAllNftCollections,
-} from '@mlem/admin/hooks/queries';
-import { useGetAccountBalance } from '@mlem/admin/hooks/queries/useGetAccountBalance';
-import SelectTiersField from '@mlem/admin/modules/core/SelectTiersField';
-import { CreateNftParams } from '@mlem/admin/services/admin/nft/types';
-import { Benefit } from '@mlem/admin/types/benefit';
-import { NftCollection } from '@mlem/admin/types/nft-collection';
+} from '@mlem-admin/hooks/queries';
+import { useGetAccountBalance } from '@mlem-admin/hooks/queries/useGetAccountBalance';
+import SelectTiersField from '@mlem-admin/modules/core/SelectTiersField';
+import { CreateNftParams } from '@mlem-admin/services/admin/nft/types';
+import { Benefit } from '@mlem-admin/types/benefit';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { LoadingButton } from '@mui/lab';
 import { Divider, Typography } from '@mui/material';
 import Box from '@mui/material/Box';

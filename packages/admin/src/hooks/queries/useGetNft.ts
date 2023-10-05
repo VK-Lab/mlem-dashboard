@@ -1,6 +1,6 @@
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { getNft } from '@mlem/admin/services/nft';
-import { Nft } from '@mlem/admin/types/nft';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { getNft } from '@mlem-admin/services/nft';
+import { Nft } from '@mlem-admin/types/nft';
 import { useQuery, UseQueryOptions } from 'react-query';
 
 type Props = {

@@ -1,11 +1,11 @@
-import EmptyData from '@mlem/admin/components/EmptyData';
+import EmptyData from '@mlem-admin/components/EmptyData';
 // import mockResult from './mock';
-import WrappedLink from '@mlem/admin/components/Link';
-import NFTItem from '@mlem/admin/components/NFTItem';
-import { Paths } from '@mlem/admin/enums/paths.enum';
-import { useGetNfts } from '@mlem/admin/hooks/queries';
-import { Nft } from '@mlem/admin/types/nft';
-import { generatePath } from '@mlem/admin/utils/path';
+import WrappedLink from '@mlem-admin/components/Link';
+import NFTItem from '@mlem-admin/components/NFTItem';
+import { Paths } from '@mlem-admin/enums/paths.enum';
+import { useGetNfts } from '@mlem-admin/hooks/queries';
+import { Nft } from '@mlem-admin/types/nft';
+import { generatePath } from '@mlem-admin/utils/path';
 import { Grid } from '@mui/material';
 
 const ListNfts = () => {

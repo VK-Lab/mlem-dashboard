@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import { useDisconnect } from '@casperdash/usewallet';
-import GLogo from '@mlem/admin/components/GLogo';
-import { CookieKeys } from '@mlem/admin/enums/cookieKeys.enum';
-import { PublicPaths } from '@mlem/admin/enums/paths.enum';
-import { logout } from '@mlem/admin/services/auth';
+import GLogo from '@mlem-admin/components/GLogo';
+import { CookieKeys } from '@mlem-admin/enums/cookieKeys.enum';
+import { PublicPaths } from '@mlem-admin/enums/paths.enum';
+import { logout } from '@mlem-admin/services/auth';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';

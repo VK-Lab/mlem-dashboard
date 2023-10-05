@@ -1,9 +1,9 @@
-import { MutationKeys } from '@mlem/admin/enums/mutationKeys.enum';
-import { createCampaign } from '@mlem/admin/services/admin/campaign';
+import { MutationKeys } from '@mlem-admin/enums/mutationKeys.enum';
+import { createCampaign } from '@mlem-admin/services/admin/campaign';
 import {
   CreateCampaignParams,
   CreateCampaignResponse,
-} from '@mlem/admin/services/admin/campaign/types';
+} from '@mlem-admin/services/admin/campaign/types';
 import { useMutation, UseMutationOptions } from 'react-query';
 
 export const useMutateCreateCampaign = (

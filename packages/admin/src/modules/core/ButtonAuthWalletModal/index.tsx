@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useCheckPhoneVerfied } from '@mlem/admin/hooks/queries';
+import { useCheckPhoneVerfied } from '@mlem-admin/hooks/queries';
 import { Box, Modal } from '@mui/material';
 
 import AuthWallet from './AuthWallet';

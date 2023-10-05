@@ -1,4 +1,4 @@
-import { isVideo } from '@mlem/admin/utils/type';
+import { isVideo } from '@mlem-admin/utils/type';
 import { Box } from '@mui/material';
 
 import LoadingImage from '../LoadingImage';

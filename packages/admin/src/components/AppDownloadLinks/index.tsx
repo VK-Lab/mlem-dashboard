@@ -1,5 +1,5 @@
-import ImgAppleStore from '@mlem/assets/images/apple-store.webp';
-import ImgGooglePlay from '@mlem/assets/images/google-store.webp';
+import ImgAppleStore from '@mlem-admin/assets/images/apple-store.webp';
+import ImgGooglePlay from '@mlem-admin/assets/images/google-store.webp';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Image from 'next/image'; // No wrapper

@@ -1,4 +1,4 @@
-import { ICustomTheme } from '@mlem/admin/theme/index';
+import { ICustomTheme } from '@mlem-admin/theme/index';
 import { AppBar, AppBarProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 

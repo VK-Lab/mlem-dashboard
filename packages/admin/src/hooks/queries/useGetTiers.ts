@@ -1,9 +1,9 @@
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { getTiers } from '@mlem/admin/services/admin/tier';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { getTiers } from '@mlem-admin/services/admin/tier';
 import {
   GetTiersParams,
   GetTiersResponse,
-} from '@mlem/admin/services/admin/tier/types';
+} from '@mlem-admin/services/admin/tier/types';
 import { useQuery, UseQueryOptions } from 'react-query';
 
 export const useGetTiers = (

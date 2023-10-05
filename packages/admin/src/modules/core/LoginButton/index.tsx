@@ -5,8 +5,8 @@ import {
   CasperWalletConnector,
   useConnect,
 } from '@casperdash/usewallet';
-import { LoginTypeEnum } from '@mlem/admin/enums';
-import { useOnLogin } from '@mlem/admin/hooks/useOnLogin';
+import { LoginTypeEnum } from '@mlem-admin/enums';
+import { useOnLogin } from '@mlem-admin/hooks/useOnLogin';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import Image from 'next/image'; // No wrapper
 

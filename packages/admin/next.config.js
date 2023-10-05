@@ -7,9 +7,6 @@ module.exports = {
   experimental: {
     forceSwcTransforms: true,
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   rewrites: () => {
     return [
       {

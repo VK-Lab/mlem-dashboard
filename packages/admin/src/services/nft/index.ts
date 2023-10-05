@@ -1,5 +1,5 @@
-import { Nft } from '@mlem/admin/types/nft';
-import request from '@mlem/admin/utils/request';
+import { Nft } from '@mlem-admin/types/nft';
+import request from '@mlem-admin/utils/request';
 
 import { ClaimNftBenefitParams, ClaimNftBenefitResponse } from './types';
 

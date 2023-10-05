@@ -8,9 +8,9 @@ import {
   createClient,
 } from '@casperdash/usewallet';
 import { ThemeProvider } from '@emotion/react';
-import RouterGuard from '@mlem/admin/hocs/RouterGuard';
-import store from '@mlem/admin/store';
-import theme from '@mlem/admin/theme';
+import RouterGuard from '@mlem-admin/hocs/RouterGuard';
+import store from '@mlem-admin/store';
+import theme from '@mlem-admin/theme';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -24,7 +24,7 @@ import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import '@mlem/assets/styles.css';
+import '@mlem-admin/assets/styles.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
