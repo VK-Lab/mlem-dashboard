@@ -1,4 +1,5 @@
-import { Campaign } from '@mlem/admin/types/campaign';
+import { Campaign } from '@mlem-admin/types/campaign';
+import { Dayjs } from 'dayjs';
 
 export type GetCampaignsParams = {
   limit: number;
@@ -13,11 +14,11 @@ export type GetCampaignsResponse = {
 export type UpdateCampaignParams = {
   id: string;
   name: string;
-  imageUrl: string;
+  imageUrl?: string;
   description: string;
   nftCollectionIds: string[];
-  startDate: string;
-  endDate: string;
+  startDate?: Dayjs | string;
+  endDate?: Dayjs | string;
 };
 
 export type UpdateCampaignResponse = {

@@ -1,4 +1,4 @@
-import { Claim, ClaimStatusEnum } from '@mlem/admin/types/claim';
+import { Claim, ClaimStatusEnum } from '@mlem-admin/types/claim';
 
 export type GetClaimsParams = {
   limit: number;

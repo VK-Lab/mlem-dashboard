@@ -1,16 +1,16 @@
 import { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import ToastMessage from '@mlem/admin/components/Toast';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateBatchCreateNfts } from '@mlem/admin/hooks/mutations';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateBatchCreateNfts } from '@mlem-admin/hooks/mutations';
 import {
   useGetBenefits,
   useGetAllNftCollections,
-} from '@mlem/admin/hooks/queries';
-import { CreateNftParams } from '@mlem/admin/services/admin/nft/types';
-import { Benefit } from '@mlem/admin/types/benefit';
-import { NftCollection } from '@mlem/admin/types/nft-collection';
+} from '@mlem-admin/hooks/queries';
+import { CreateNftParams } from '@mlem-admin/services/admin/nft/types';
+import { Benefit } from '@mlem-admin/types/benefit';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { LoadingButton } from '@mui/lab';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';

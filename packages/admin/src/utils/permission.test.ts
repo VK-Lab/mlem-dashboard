@@ -1,4 +1,4 @@
-import { RoleEnum, User } from '@mlem/admin/types/user';
+import { RoleEnum, User } from '@mlem-admin/types/user';
 import { describe, expect, it } from 'vitest';
 
 import { isAdmin } from './permission';

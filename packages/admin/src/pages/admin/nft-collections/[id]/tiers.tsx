@@ -1,4 +1,4 @@
-import AdminTiers from '@mlem/admin/modules/AdminTiers';
+import AdminTiers from '@mlem-admin/modules/AdminTiers';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type Props = {

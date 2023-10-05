@@ -1,7 +1,7 @@
-import ToastMessage from '@mlem/admin/components/Toast';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateCreateTier } from '@mlem/admin/hooks/mutations/useMutateCreateTier';
-import { CreateTierParams } from '@mlem/admin/services/admin/tier/types';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateTier } from '@mlem-admin/hooks/mutations/useMutateCreateTier';
+import { CreateTierParams } from '@mlem-admin/services/admin/tier/types';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import { FormContainer } from 'react-hook-form-mui';

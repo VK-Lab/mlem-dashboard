@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 
-import ToastMessage from '@mlem/admin/components/Toast';
-import { Config } from '@mlem/admin/config';
-import { useGetAdminNfts } from '@mlem/admin/hooks/queries';
-import { Nft } from '@mlem/admin/types/nft';
-import { mapDeployStatus } from '@mlem/admin/utils/status';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { Config } from '@mlem-admin/config';
+import { useGetAdminNfts } from '@mlem-admin/hooks/queries';
+import { Nft } from '@mlem-admin/types/nft';
+import { mapDeployStatus } from '@mlem-admin/utils/status';
 import { Box, Button, Chip } from '@mui/material';
 import copy from 'copy-to-clipboard';
 import dayjs from 'dayjs';

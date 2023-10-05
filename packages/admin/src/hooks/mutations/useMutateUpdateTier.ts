@@ -1,11 +1,10 @@
-import { MutationKeys } from '@mlem/admin/enums/mutationKeys.enum';
-import { updateTier } from '@mlem/admin/services/admin/tier';
+import { MutationKeys } from '@mlem-admin/enums/mutationKeys.enum';
+import { updateTier } from '@mlem-admin/services/admin/tier';
 import {
   UpdateTierParams,
   UpdateTierResponse,
-} from '@mlem/admin/services/admin/tier/types';
-import { useMutation } from '@tanstack/react-query';
-import { UseMutationOptions } from 'react-query';
+} from '@mlem-admin/services/admin/tier/types';
+import { UseMutationOptions, useMutation } from 'react-query';
 
 type Params = UpdateTierParams & {
   id: string;

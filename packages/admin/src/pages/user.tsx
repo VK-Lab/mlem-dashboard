@@ -1,4 +1,4 @@
-import UserCollection from '@mlem/admin/modules/UserCollection';
+import UserCollection from '@mlem-admin/modules/UserCollection';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {

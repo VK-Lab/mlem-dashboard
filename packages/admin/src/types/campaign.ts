@@ -10,4 +10,7 @@ export type Campaign = {
   nftCollectionIds: string[];
   benefitIds: string[];
   nftCollections: NftCollection[];
+  startDate?: string;
+  endDate?: string;
+  imageUrl?: string;
 };

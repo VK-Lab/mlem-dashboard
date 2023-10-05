@@ -1,4 +1,4 @@
-import { LoginTypeEnum } from '@mlem/admin/enums';
+import { LoginTypeEnum } from '@mlem-admin/enums';
 import { Link, Typography } from '@mui/material';
 import Image from 'next/image';
 

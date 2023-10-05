@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import { useGetAllCampaigns } from '@mlem/admin/hooks/queries';
-import { Campaign } from '@mlem/admin/types/campaign';
-import { NftCollection } from '@mlem/admin/types/nft-collection';
+import { useGetAllCampaigns } from '@mlem-admin/hooks/queries';
+import { Campaign } from '@mlem-admin/types/campaign';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import _get from 'lodash/get';

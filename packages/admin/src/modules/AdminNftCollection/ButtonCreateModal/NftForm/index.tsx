@@ -1,11 +1,11 @@
 import { useAccount } from '@casperdash/usewallet';
-import ToastMessage from '@mlem/admin/components/Toast';
-import { ContractType } from '@mlem/admin/enums/contractType.enum';
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateCreateNftCollection } from '@mlem/admin/hooks/mutations';
-import { useGetAccountBalance } from '@mlem/admin/hooks/queries/useGetAccountBalance';
-import SelectBenefitsField from '@mlem/admin/modules/core/SelectBenefitsField';
-import { CreateNftCollectionParams } from '@mlem/admin/services/admin/nft-collection/types';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { ContractType } from '@mlem-admin/enums/contractType.enum';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateNftCollection } from '@mlem-admin/hooks/mutations';
+import { useGetAccountBalance } from '@mlem-admin/hooks/queries/useGetAccountBalance';
+import SelectBenefitsField from '@mlem-admin/modules/core/SelectBenefitsField';
+import { CreateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
 import { LoadingButton } from '@mui/lab';
 import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';

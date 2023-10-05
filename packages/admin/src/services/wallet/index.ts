@@ -1,8 +1,8 @@
 import {
   GetWalletNftsParams,
   GetWalletNftsResponse,
-} from '@mlem/admin/services/wallet/types';
-import request from '@mlem/admin/utils/request';
+} from '@mlem-admin/services/wallet/types';
+import request from '@mlem-admin/utils/request';
 
 export const getMyWalletNfts = (
   params?: GetWalletNftsParams

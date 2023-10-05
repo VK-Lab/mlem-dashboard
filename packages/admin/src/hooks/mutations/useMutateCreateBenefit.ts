@@ -1,9 +1,9 @@
-import { MutationKeys } from '@mlem/admin/enums/mutationKeys.enum';
-import { createBenefit } from '@mlem/admin/services/admin/benefit';
+import { MutationKeys } from '@mlem-admin/enums/mutationKeys.enum';
+import { createBenefit } from '@mlem-admin/services/admin/benefit';
 import {
   CreateBenefitParams,
   CreateBenefitResponse,
-} from '@mlem/admin/services/admin/benefit/types';
+} from '@mlem-admin/services/admin/benefit/types';
 import { useMutation, UseMutationOptions } from 'react-query';
 
 export const useMutateCreateBenefit = (

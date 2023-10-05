@@ -1,8 +1,8 @@
 import { useAccount } from '@casperdash/usewallet';
-import { MutationKeys } from '@mlem/admin/enums/mutationKeys.enum';
-import { createNftCollection } from '@mlem/admin/services/admin/nft-collection';
-import { CreateNftCollectionParams } from '@mlem/admin/services/admin/nft-collection/types';
-import { signDeployNftCollection } from '@mlem/admin/utils/casper/contract';
+import { MutationKeys } from '@mlem-admin/enums/mutationKeys.enum';
+import { createNftCollection } from '@mlem-admin/services/admin/nft-collection';
+import { CreateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
+import { signDeployNftCollection } from '@mlem-admin/utils/casper/contract';
 import _get from 'lodash/get';
 import { useMutation, UseMutationOptions } from 'react-query';
 

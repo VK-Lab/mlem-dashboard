@@ -1,8 +1,8 @@
 import { useAccount } from '@casperdash/usewallet';
-import { MutationKeys } from '@mlem/admin/enums/mutationKeys.enum';
-import { confirmNftCollection } from '@mlem/admin/services/admin/nft-collection';
-import { ConfirmNftCollectionResponse } from '@mlem/admin/services/admin/nft-collection/types';
-import { registerTokenOwner } from '@mlem/admin/utils/casper/contract';
+import { MutationKeys } from '@mlem-admin/enums/mutationKeys.enum';
+import { confirmNftCollection } from '@mlem-admin/services/admin/nft-collection';
+import { ConfirmNftCollectionResponse } from '@mlem-admin/services/admin/nft-collection/types';
+import { registerTokenOwner } from '@mlem-admin/utils/casper/contract';
 import { useMutation, UseMutationOptions } from 'react-query';
 
 export const useMutateRegisterTokenOwner = (

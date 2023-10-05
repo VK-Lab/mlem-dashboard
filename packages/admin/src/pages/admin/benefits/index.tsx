@@ -1,4 +1,4 @@
-import AdminBenefit from '@mlem/admin/modules/AdminBenefit';
+import AdminBenefit from '@mlem-admin/modules/AdminBenefit';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {

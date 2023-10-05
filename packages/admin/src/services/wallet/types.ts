@@ -1,4 +1,4 @@
-import { Nft } from '@mlem/admin/types/nft';
+import { Nft } from '@mlem-admin/types/nft';
 
 export type GetWalletNftsResponse = {
   total: number;

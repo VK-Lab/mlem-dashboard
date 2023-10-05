@@ -1,5 +1,5 @@
-import { checkUser } from '@mlem/admin/services/auth';
-import { CheckUserResponse } from '@mlem/admin/services/auth/types';
+import { checkUser } from '@mlem-admin/services/auth';
+import { CheckUserResponse } from '@mlem-admin/services/auth/types';
 import { useMutation, UseMutationOptions } from 'react-query';
 
 export const useMutateCheckUser = (

@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
-import ToastMessage from '@mlem/admin/components/Toast';
-import { useMutateUpdateClaimStatus } from '@mlem/admin/hooks/mutations/useMutateUpdateClaimStatus';
-import { useGetClaims } from '@mlem/admin/hooks/queries/useGetClaims';
-import { Claim, ClaimStatusEnum } from '@mlem/admin/types/claim';
+import ToastMessage from '@mlem-admin/components/Toast';
+import { useMutateUpdateClaimStatus } from '@mlem-admin/hooks/mutations/useMutateUpdateClaimStatus';
+import { useGetClaims } from '@mlem-admin/hooks/queries/useGetClaims';
+import { Claim, ClaimStatusEnum } from '@mlem-admin/types/claim';
 import { Box } from '@mui/material';
 import dayjs from 'dayjs';
 import _get from 'lodash/get';

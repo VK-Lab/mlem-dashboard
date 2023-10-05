@@ -1,9 +1,9 @@
-import BackButton from '@mlem/admin/components/BackButton';
-import { CardImage } from '@mlem/admin/components/CardImage';
-import { useGetNft } from '@mlem/admin/hooks/queries';
-import { StyledDashboardSection } from '@mlem/admin/layouts/DashboardLayout/styled';
-import RegularLayout from '@mlem/admin/layouts/RegularLayout';
-import { formatAddress } from '@mlem/admin/utils/format';
+import BackButton from '@mlem-admin/components/BackButton';
+import { CardImage } from '@mlem-admin/components/CardImage';
+import { useGetNft } from '@mlem-admin/hooks/queries';
+import { StyledDashboardSection } from '@mlem-admin/layouts/DashboardLayout/styled';
+import RegularLayout from '@mlem-admin/layouts/RegularLayout';
+import { formatAddress } from '@mlem-admin/utils/format';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import {

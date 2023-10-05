@@ -1,4 +1,4 @@
-import AdminHome from '@mlem/admin/modules/AdminHome';
+import AdminHome from '@mlem-admin/modules/AdminHome';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {

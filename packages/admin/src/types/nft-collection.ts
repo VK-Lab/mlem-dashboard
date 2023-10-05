@@ -1,4 +1,4 @@
-import { DeployStatusEnum } from '@mlem/admin/enums';
+import { DeployStatusEnum } from '@mlem-admin/enums';
 
 export type NftCollection = {
   id: string;

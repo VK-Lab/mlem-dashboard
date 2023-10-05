@@ -1,6 +1,6 @@
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { checkPhoneVerfied } from '@mlem/admin/services/auth';
-import { CheckPhoneVerfiedResponse } from '@mlem/admin/services/auth/types';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { checkPhoneVerfied } from '@mlem-admin/services/auth';
+import { CheckPhoneVerfiedResponse } from '@mlem-admin/services/auth/types';
 import { useQuery, UseQueryOptions } from 'react-query';
 
 export const useCheckPhoneVerfied = (

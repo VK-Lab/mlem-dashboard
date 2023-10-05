@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Config } from '@mlem/admin/config';
+import { Config } from '@mlem-admin/config';
 import {
   CLMap,
   CLString,

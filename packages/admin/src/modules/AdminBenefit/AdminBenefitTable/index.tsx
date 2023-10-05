@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
-import { useGetBenefits } from '@mlem/admin/hooks/queries';
-import { Benefit } from '@mlem/admin/types/benefit';
+import { useGetBenefits } from '@mlem-admin/hooks/queries';
+import { Benefit } from '@mlem-admin/types/benefit';
 import { Box } from '@mui/material';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 

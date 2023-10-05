@@ -1,9 +1,9 @@
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { getTiersByNftCollection } from '@mlem/admin/services/admin/nft-collection';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { getTiersByNftCollection } from '@mlem-admin/services/admin/nft-collection';
 import {
   GetTiersByNftCollectionParams,
   GetTiersByNftCollectionResponse,
-} from '@mlem/admin/services/admin/nft-collection/types';
+} from '@mlem-admin/services/admin/nft-collection/types';
 import { useQuery, UseQueryOptions } from 'react-query';
 
 export const useGetTiersByNftCollection = (

@@ -1,9 +1,9 @@
 import { useEffect, useCallback } from 'react';
 
-import { AdminPaths, PublicPaths } from '@mlem/admin/enums/paths.enum';
-import { checkUser } from '@mlem/admin/services/auth';
-import { User } from '@mlem/admin/types/user';
-import { isAdmin } from '@mlem/admin/utils/permission';
+import { AdminPaths, PublicPaths } from '@mlem-admin/enums/paths.enum';
+import { checkUser } from '@mlem-admin/services/auth';
+import { User } from '@mlem-admin/types/user';
+import { isAdmin } from '@mlem-admin/utils/permission';
 import { useRouter } from 'next/router';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,7 +15,7 @@ const RouterGuard = ({ children }: { children: any }) => {
       // redirect to login page if accessing a private page and not logged in
       const publicPaths: string[] = Object.values(PublicPaths);
       const path = url.split('?')[0];
-      if (publicPaths.includes(path)) {
+      if (publicPaths.includes(path as string)) {
         return;
       }
 
@@ -27,7 +27,7 @@ const RouterGuard = ({ children }: { children: any }) => {
             return;
           }
 
-          if (!adminPaths.includes(path)) {
+          if (!adminPaths.includes(path as string)) {
             return;
           }
 

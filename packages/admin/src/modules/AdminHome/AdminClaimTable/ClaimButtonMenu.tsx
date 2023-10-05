@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ClaimStatusEnum } from '@mlem/admin/types/claim';
+import { ClaimStatusEnum } from '@mlem-admin/types/claim';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';

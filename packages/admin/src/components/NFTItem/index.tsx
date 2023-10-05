@@ -1,4 +1,4 @@
-import { CardImage } from '@mlem/admin/components/CardImage';
+import { CardImage } from '@mlem-admin/components/CardImage';
 import { Chip, Typography, Box } from '@mui/material';
 
 import { StyledNFTItem } from './styled';
