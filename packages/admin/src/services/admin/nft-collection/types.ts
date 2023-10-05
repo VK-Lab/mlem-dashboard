@@ -1,5 +1,5 @@
-import { NftCollection } from '@mlem/admin/types/nft-collection';
-import { Tier } from '@mlem/admin/types/tier';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
+import { Tier } from '@mlem-admin/types/tier';
 
 export type GetNftCollectionsParams = {
   limit?: number;

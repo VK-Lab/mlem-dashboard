@@ -1,4 +1,4 @@
-import { Benefit } from '@mlem/admin/types/benefit';
+import { Benefit } from '@mlem-admin/types/benefit';
 
 export type GetBenefitsParams = {
   limit: number;

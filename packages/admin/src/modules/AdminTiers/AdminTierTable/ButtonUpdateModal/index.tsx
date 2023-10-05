@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateUpdateTier } from '@mlem/admin/hooks/mutations/useMutateUpdateTier';
-import { useI18nToast } from '@mlem/admin/hooks/useToast';
-import SelectBenefitsField from '@mlem/admin/modules/core/SelectBenefitsField';
-import { UpdateTierParams } from '@mlem/admin/services/admin/tier/types';
-import { Tier } from '@mlem/admin/types/tier';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateUpdateTier } from '@mlem-admin/hooks/mutations/useMutateUpdateTier';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import SelectBenefitsField from '@mlem-admin/modules/core/SelectBenefitsField';
+import { UpdateTierParams } from '@mlem-admin/services/admin/tier/types';
+import { Tier } from '@mlem-admin/types/tier';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

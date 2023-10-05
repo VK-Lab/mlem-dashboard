@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import DashboardLayout from '@mlem/admin/layouts/DashboardLayout';
-import { StyledDashboardSection } from '@mlem/admin/layouts/DashboardLayout/styled';
+import DashboardLayout from '@mlem-admin/layouts/DashboardLayout';
+import { StyledDashboardSection } from '@mlem-admin/layouts/DashboardLayout/styled';
 import {
   Box,
   Button,

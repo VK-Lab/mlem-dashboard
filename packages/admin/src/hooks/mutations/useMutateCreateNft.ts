@@ -1,13 +1,13 @@
 import { useAccount } from '@casperdash/usewallet';
-import { DeployStatusEnum } from '@mlem/admin/enums';
-import { MutationKeys } from '@mlem/admin/enums/mutationKeys.enum';
-import { NftTypeEnum } from '@mlem/admin/enums/nftType.enum';
-import { createTempNft, updateNft } from '@mlem/admin/services/admin/nft';
+import { DeployStatusEnum } from '@mlem-admin/enums';
+import { MutationKeys } from '@mlem-admin/enums/mutationKeys.enum';
+import { NftTypeEnum } from '@mlem-admin/enums/nftType.enum';
+import { createTempNft, updateNft } from '@mlem-admin/services/admin/nft';
 import {
   CreateNftParams,
   CreateNftResponse,
-} from '@mlem/admin/services/admin/nft/types';
-import { signDeployNft } from '@mlem/admin/utils/casper/contract';
+} from '@mlem-admin/services/admin/nft/types';
+import { signDeployNft } from '@mlem-admin/utils/casper/contract';
 import { useMutation, UseMutationOptions } from 'react-query';
 
 export const useMutateCreateNft = (

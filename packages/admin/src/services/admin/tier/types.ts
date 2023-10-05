@@ -1,4 +1,4 @@
-import { Tier } from '@mlem/admin/types/tier';
+import { Tier } from '@mlem-admin/types/tier';
 
 export type CreateTierParams = {
   name: string;

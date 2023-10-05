@@ -1,6 +1,6 @@
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { getMyProfile } from '@mlem/admin/services/user';
-import { GetMyProfileResponse } from '@mlem/admin/services/user/types';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { getMyProfile } from '@mlem-admin/services/user';
+import { GetMyProfileResponse } from '@mlem-admin/services/user/types';
 import { useQuery, UseQueryOptions } from 'react-query';
 
 export const useGetMyProfile = (

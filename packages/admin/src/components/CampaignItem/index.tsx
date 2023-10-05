@@ -16,7 +16,6 @@ import {
   StyledCampaignFeatureList,
   StyledCampaignItemRoot,
 } from './styled';
-import iconMetaMask from '@mlem/assets/images/icon--metamask.svg';
 
 const data = [
   '$1000 off for Dinner',
@@ -95,7 +94,6 @@ const CampaignItem = () => {
         <Avatar
           variant="square"
           alt="Remy Sharp"
-          src={iconMetaMask}
           sx={{ width: 24, height: 24 }}
         />
       </Box>

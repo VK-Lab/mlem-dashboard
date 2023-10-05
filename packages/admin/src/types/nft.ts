@@ -1,6 +1,6 @@
-import { DeployStatusEnum } from '@mlem/admin/enums';
-import { NftCollection } from '@mlem/admin/types/nft-collection';
-import { Tier } from '@mlem/admin/types/tier';
+import { DeployStatusEnum } from '@mlem-admin/enums';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
+import { Tier } from '@mlem-admin/types/tier';
 
 import { Benefit } from './benefit';
 import { ClaimStatusEnum } from './claim';

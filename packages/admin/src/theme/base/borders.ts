@@ -1,4 +1,4 @@
-import pxToRem from '@mlem/admin/theme/functions/pxToRem';
+import pxToRem from '@mlem-admin/theme/functions/pxToRem';
 import { grey } from '@mui/material/colors';
 
 const borders = {

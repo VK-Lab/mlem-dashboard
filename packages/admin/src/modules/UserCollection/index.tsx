@@ -4,13 +4,13 @@ import { useAccount } from '@casperdash/usewallet';
 import {
   StyledNFTTabContent,
   StyledNFTTab,
-} from '@mlem/admin/components/NFTCollectionGroup/StyledNFTCollectionGroup';
-import { Profile } from '@mlem/admin/components/Profile/StyledProfile';
-import StatItem from '@mlem/admin/components/StatItem';
-import TabPanel from '@mlem/admin/components/TabPanel';
-import { useGetMyProfile } from '@mlem/admin/hooks/queries';
-import { StyledDashboardSection } from '@mlem/admin/layouts/DashboardLayout/styled';
-import RegularLayout from '@mlem/admin/layouts/RegularLayout';
+} from '@mlem-admin/components/NFTCollectionGroup/StyledNFTCollectionGroup';
+import { Profile } from '@mlem-admin/components/Profile/StyledProfile';
+import StatItem from '@mlem-admin/components/StatItem';
+import TabPanel from '@mlem-admin/components/TabPanel';
+import { useGetMyProfile } from '@mlem-admin/hooks/queries';
+import { StyledDashboardSection } from '@mlem-admin/layouts/DashboardLayout/styled';
+import RegularLayout from '@mlem-admin/layouts/RegularLayout';
 import WalletIcon from '@mui/icons-material/Wallet';
 import { Grid, Tabs, Box, Typography, Container } from '@mui/material';
 import Avatar from '@mui/material/Avatar';

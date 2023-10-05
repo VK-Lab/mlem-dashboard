@@ -1,4 +1,4 @@
-import rgba from '@mlem/admin/theme/functions/rgba';
+import rgba from '@mlem-admin/theme/functions/rgba';
 
 function gradientChartLine(
   chart: HTMLCanvasElement,

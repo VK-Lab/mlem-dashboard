@@ -1,20 +1,15 @@
 import { useState } from 'react';
 
-import AppDownloadLinks from '@mlem/admin/components/AppDownloadLinks';
-import { useI18nToast } from '@mlem/admin/hooks/useToast';
+import AppDownloadLinks from '@mlem-admin/components/AppDownloadLinks';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import {
   registerPhoneNumber,
   verifyPhoneNumber,
-} from '@mlem/admin/services/auth';
+} from '@mlem-admin/services/auth';
 import { Box, Typography } from '@mui/material';
 import { useMutation } from 'react-query';
 
-import {
-  StyledButton,
-  StyledMuiTelInput,
-  StyledWelcomeBlock,
-  StyledOTPInput,
-} from './styled';
+import { StyledButton, StyledMuiTelInput, StyledWelcomeBlock } from './styled';
 
 type Props = {
   onSuccess?: () => void;
@@ -25,7 +20,7 @@ const AuthWallet = ({ onSuccess }: Props) => {
 
   const [step, setStep] = useState<number>(0);
   const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [otp, setOtp] = useState<string>('');
+  const [otp] = useState<string>('');
 
   const verifyPhoneNumbertMutation = useMutation({
     mutationFn: verifyPhoneNumber,
@@ -43,10 +38,6 @@ const AuthWallet = ({ onSuccess }: Props) => {
       setStep((prevStep) => prevStep + 1);
     },
   });
-
-  const onOTPChange = (newValue: string) => {
-    setOtp(newValue);
-  };
 
   const onPhoneChange = (newValue: string) => {
     setPhoneNumber(newValue);
@@ -97,9 +88,6 @@ const AuthWallet = ({ onSuccess }: Props) => {
               className="test"
               fullWidth
             />
-          )}
-          {step === 1 && (
-            <StyledOTPInput length={6} value={otp} onChange={onOTPChange} />
           )}
         </Box>
       </Box>

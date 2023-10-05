@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { QueryKeys } from '@mlem/admin/enums/queryKeys.enum';
-import { useMutateUpdateNftCollection } from '@mlem/admin/hooks/mutations';
-import { useI18nToast } from '@mlem/admin/hooks/useToast';
-import SelectBenefitsField from '@mlem/admin/modules/core/SelectBenefitsField';
-import { UpdateNftCollectionParams } from '@mlem/admin/services/admin/nft-collection/types';
-import { NftCollection } from '@mlem/admin/types/nft-collection';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateUpdateNftCollection } from '@mlem-admin/hooks/mutations';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import SelectBenefitsField from '@mlem-admin/modules/core/SelectBenefitsField';
+import { UpdateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

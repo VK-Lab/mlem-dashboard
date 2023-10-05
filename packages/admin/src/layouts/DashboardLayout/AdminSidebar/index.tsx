@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { AdminPaths } from '@mlem/admin/enums/paths.enum';
+import { AdminPaths } from '@mlem-admin/enums/paths.enum';
 import AppsIcon from '@mui/icons-material/Apps';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';

@@ -1,5 +1,5 @@
-import { useGetBenefits } from '@mlem/admin/hooks/queries';
-import { Benefit } from '@mlem/admin/types/benefit';
+import { useGetBenefits } from '@mlem-admin/hooks/queries';
+import { Benefit } from '@mlem-admin/types/benefit';
 import { AutocompleteElement } from 'react-hook-form-mui';
 
 type Props = {

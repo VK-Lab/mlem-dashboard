@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import RegularAppbar from '@mlem/admin/layouts/RegularLayout/RegularAppbar';
+import RegularAppbar from '@mlem-admin/layouts/RegularLayout/RegularAppbar';
 import { Toolbar, Box, Container } from '@mui/material';
 
 type Props = {

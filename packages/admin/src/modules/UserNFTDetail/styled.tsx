@@ -1,4 +1,4 @@
-import { ICustomTheme } from '@mlem/admin/theme/index';
+import { ICustomTheme } from '@mlem-admin/theme/index';
 import { Box, BoxProps, Accordion, AccordionProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
