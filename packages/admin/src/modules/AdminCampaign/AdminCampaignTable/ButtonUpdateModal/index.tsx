@@ -81,12 +81,17 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
                   : undefined,
                 endDate: campaign.endDate ? dayjs(campaign.endDate) : undefined,
                 imageUrl: campaign.imageUrl,
+                thumbnailUrl: campaign.thumbnailUrl,
               }}
               onSuccess={handleOnSubmitForm}
             >
               <StyledTextFieldElement name="name" label="Name" required />
               <StyledTextFieldElement name="description" label="Description" />
               <StyledTextFieldElement name="imageUrl" label="Image URL" />
+              <StyledTextFieldElement
+                name="thumbnailUrl"
+                label="Thumbnail URL"
+              />
               <Box mt="18px">
                 <DatePickerElement name="startDate" label="Start Date" />
               </Box>
