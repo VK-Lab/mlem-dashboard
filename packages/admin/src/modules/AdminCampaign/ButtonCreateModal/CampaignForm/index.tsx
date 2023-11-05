@@ -43,11 +43,13 @@ const NftForm = ({ onSuccess }: Props) => {
         endDate: undefined,
         imageUrl: undefined,
         nftCollectionIds: undefined,
+        thumbnailUrl: undefined,
       }}
       onSuccess={handleOnSubmitForm}
     >
       <StyledTextFieldElement name="name" label="Name" required />
       <StyledTextFieldElement name="description" label="Description" />
+      <StyledTextFieldElement name="thumbnailUrl" label="Thumbnail URL" />
       <StyledTextFieldElement name="imageUrl" label="Image URL" />
       <Box mt="18px">
         <DatePickerElement name="startDate" label="Start Date" />

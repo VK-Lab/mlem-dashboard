@@ -18,6 +18,8 @@
     "play:no-ledger": "pnpm --filter example-react-not-ledger dev",
     "build:example": "pnpm --filter example-react build",
     "dev": "pnpm -r --filter './packages/**' dev",
+    "dev:user": "pnpm -r --filter './packages/user' dev",
+    "dev:admin": "pnpm -r --filter './packages/admin' dev",
     "changeset:release": "pnpm build && changeset publish",
     "changeset:version": "changeset version && pnpm install --lockfile-only",
     "docs:build": "pnpm -r --filter './docs' build",
