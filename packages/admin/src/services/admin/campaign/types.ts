@@ -15,6 +15,7 @@ export type UpdateCampaignParams = {
   id: string;
   name: string;
   imageUrl?: string;
+  thumbnailUrl?: string;
   description: string;
   nftCollectionIds: string[];
   startDate?: Dayjs | string;
