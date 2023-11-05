@@ -13,4 +13,5 @@ export type Campaign = {
   startDate?: string;
   endDate?: string;
   imageUrl?: string;
+  thumbnailUrl?: string;
 };
