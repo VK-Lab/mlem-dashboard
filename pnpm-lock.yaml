@@ -351,6 +351,9 @@ importers:
       boring-avatars:
         specifier: ^1.10.1
         version: 1.10.1
+      casper-js-sdk:
+        specifier: ^2.15.3
+        version: 2.15.3
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -411,6 +414,9 @@ importers:
       ts-pattern:
         specifier: ^5.0.5
         version: 5.0.5
+      url-join:
+        specifier: ^5.0.0
+        version: 5.0.0
     devDependencies:
       '@types/js-cookie':
         specifier: ^3.0.4
@@ -1714,7 +1720,7 @@ packages:
   /@casperdash/usewallet-core@1.0.1(@types/react@18.2.24)(react@18.2.0):
     resolution: {integrity: sha512-vh0R9r1J19va60F1u3NHy1qYM8Je7ghnoMRyKqEU4LelT6BWsrMDpTZVRfSen30f1klFuQ/nWw4nzAU5NT2FDw==}
     dependencies:
-      casper-js-sdk: 2.15.2
+      casper-js-sdk: 2.15.3
       eventemitter3: 5.0.1
       typedjson: 1.8.0
       zustand: 4.4.1(@types/react@18.2.24)(react@18.2.0)
@@ -6018,6 +6024,33 @@ packages:
 
   /casper-js-sdk@2.15.2:
     resolution: {integrity: sha512-q0UlXeJuyVMR5I07OQMLTn2LXMzYcN+eC+QxTUP4JkUGgSMaJKpNxLKaS9uRQeY24BpqVjV6SNBFw0dfeq7AoQ==}
+    dependencies:
+      '@ethersproject/bignumber': 5.7.0
+      '@ethersproject/bytes': 5.7.0
+      '@ethersproject/constants': 5.7.0
+      '@noble/ed25519': 1.7.3
+      '@noble/hashes': 1.3.2
+      '@noble/secp256k1': 1.7.1
+      '@open-rpc/client-js': 1.8.1
+      '@scure/bip32': 1.3.2
+      '@scure/bip39': 1.2.1
+      '@types/ws': 8.5.6
+      glob: 7.2.3
+      humanize-duration: 3.30.0
+      key-encoder: 2.0.3
+      lodash: 4.17.21
+      node-fetch: 2.7.0
+      reflect-metadata: 0.1.13
+      ts-results: /@casperlabs/ts-results@3.3.5
+      typedjson: 1.8.0
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - utf-8-validate
+    dev: false
+
+  /casper-js-sdk@2.15.3:
+    resolution: {integrity: sha512-6Py8aUBIFZDKjQzchtitJBc5X8aYEnHEDE6QPndHx6mqJHgow4RV9JIyZzBJkrcTMTAK0R/b08pjQ+8xe3QXvw==}
     dependencies:
       '@ethersproject/bignumber': 5.7.0
       '@ethersproject/bytes': 5.7.0
