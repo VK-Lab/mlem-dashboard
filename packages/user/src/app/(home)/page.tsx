@@ -1,9 +1,9 @@
 import { BaseContainer } from "@mlem-user/components/container";
 import { QueryKeys } from "@mlem-user/enums/queryKeys";
 import { getQueryClient } from "@mlem-user/lib/query-client";
+import { FeatureCampaigns } from "@mlem-user/modules/campaign/feature-campaigns";
+import { RunningCampaigns } from "@mlem-user/modules/campaign/running-campaigns";
 import { ReactQueryHydrate } from "@mlem-user/modules/core/hydrate-client";
-import { FeatureCampaigns } from "@mlem-user/modules/feature-campaigns";
-import { RunningCampaigns } from "@mlem-user/modules/running-campaigns";
 import {
   getFeaturedCampaigns,
   getRunningCampaigns,
