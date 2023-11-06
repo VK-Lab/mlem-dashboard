@@ -16,4 +16,5 @@ export type NftCollection = {
   deployHash: string;
   deployStatus: DeployStatusEnum;
   ownerPublicKey: string;
+  nftImageUrl: string;
 };

@@ -1,10 +1,10 @@
 "use client";
 
 import { formatDate } from "@mlem-user/lib/date";
+import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
 import { useGetCampaign } from "@mlem-user/services/campaign/hooks/useGetCampaign";
+import _first from "lodash-es/first";
 import Image from "next/image";
-
-import { ListCampaigns } from "../list-campaigns";
 
 type CampaignDetailProps = {
   campaignId: string;
@@ -16,6 +16,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
     return <div>loading...</div>;
   }
 
+  const nftCollection = _first(data?.nftCollections || []);
   return (
     <div>
       <div className="flex justify-center flex-col items-center">
@@ -27,12 +28,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
         <div className="mt-4">
           {formatDate(data?.startDate)} - {formatDate(data?.endDate)}
         </div>
-      </div>
-      <div className="mt-10">
-        <div className="typo-h4">Explore More</div>
-        <div className="mt-4">
-          <ListCampaigns />
-        </div>
+        <NFTMinter nftCollection={nftCollection} className="mt-10" />
       </div>
     </div>
   );

@@ -77,11 +77,17 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
                 name: nftCollection.name,
                 description: nftCollection.description,
                 benefitIds: nftCollection.benefitIds,
+                nftImageUrl: nftCollection.nftImageUrl,
               }}
               onSuccess={handleOnSubmitForm}
             >
               <StyledTextFieldElement name="name" label="Name" required />
               <StyledTextFieldElement name="description" label="Description" />
+              <StyledTextFieldElement
+                name="nftImageUrl"
+                label="NFT Image URL"
+              />
+
               <Box mt="1rem">
                 <SelectBenefitsField name="benefitIds" />
               </Box>

@@ -1,4 +1,4 @@
-import { UserHeader } from "@mlem-user/modules/user-header";
+import { UserHeader } from "@mlem-user/modules/user/user-header";
 import { cn } from "@mlem-user/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
