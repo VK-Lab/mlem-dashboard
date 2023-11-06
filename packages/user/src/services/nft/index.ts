@@ -1,6 +1,12 @@
 import { NFT } from "@mlem-user/types/nft";
 
-import { ClaimNftBenefitParams, ClaimNftBenefitResponse } from "./types";
+import {
+  ClaimNftBenefitParams,
+  ClaimNftBenefitResponse,
+  CreateTempNftParams,
+  CreateTempNftResponse,
+  UpdateTempNftParams,
+} from "./types";
 import request from "../request";
 
 export const getNft = (
@@ -19,4 +25,17 @@ export const claimNftBenefit = ({
   benefitId,
 }: ClaimNftBenefitParams): Promise<ClaimNftBenefitResponse> => {
   return request.post(`/nfts/${nftId}/benefits/${benefitId}/claim`);
+};
+
+export const createTempNft = (
+  params: CreateTempNftParams
+): Promise<CreateTempNftResponse> => {
+  return request.post("/nfts/temp", params);
+};
+
+export const updateTempNft = (
+  nftId: string,
+  params: UpdateTempNftParams
+): Promise<CreateTempNftResponse> => {
+  return request.put(`/nfts/${nftId}/temp`, params);
 };

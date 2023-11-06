@@ -1,4 +1,4 @@
-import { NFTDetail } from "@mlem-user/modules/nft-detail";
+import { NFTDetail } from "@mlem-user/modules/nft/nft-detail";
 
 type Props = {
   params: {
