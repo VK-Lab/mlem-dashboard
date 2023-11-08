@@ -13,7 +13,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@mlem-user/components/ui/dropdown-menu";
+import { CookieKeys } from "@mlem-user/enums/cookieKeys";
 import { Paths } from "@mlem-user/enums/paths";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 export const UserNav = () => {
@@ -21,6 +23,7 @@ export const UserNav = () => {
   const { publicKey } = useAccount();
   const { disconnect } = useDisconnect({
     onSuccess: () => {
+      Cookies.remove(CookieKeys.TOKEN);
       router.push(Paths.HOME);
     },
   });

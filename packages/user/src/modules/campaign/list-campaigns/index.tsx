@@ -1,10 +1,14 @@
 "use client";
 
 import { CampaignItem } from "@mlem-user/components/cards/CampaignItem";
-import { useGetCampaigns } from "@mlem-user/services/campaign/hooks/useGetCampaigns";
+import { useGetCampaigns } from "@mlem-user/services/app/campaign/hooks/useGetCampaigns";
 
 export const ListCampaigns = () => {
-  const { data } = useGetCampaigns();
+  const { data, isLoading } = useGetCampaigns();
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <div className="fex">

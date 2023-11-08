@@ -7,7 +7,7 @@ import { ReactQueryHydrate } from "@mlem-user/modules/core/hydrate-client";
 import {
   getFeaturedCampaigns,
   getRunningCampaigns,
-} from "@mlem-user/services/campaign";
+} from "@mlem-user/services/app/campaign";
 import { dehydrate } from "@tanstack/react-query";
 
 export default async function Home() {

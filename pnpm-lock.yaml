@@ -319,8 +319,8 @@ importers:
   packages/user:
     dependencies:
       '@casperdash/usewallet':
-        specifier: ^1.0.1
-        version: 1.0.1(@types/react@18.2.24)(react@18.2.0)
+        specifier: ^1.0.3
+        version: 1.0.3(@types/react@18.2.24)(react@18.2.0)
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.2.8)(@types/react@18.2.24)(react-dom@18.2.0)(react@18.2.0)
@@ -372,6 +372,9 @@ importers:
       lint-staged:
         specifier: ^13.0.3
         version: 13.3.0
+      localforage:
+        specifier: ^1.10.0
+        version: 1.10.0
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1717,8 +1720,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@casperdash/usewallet-core@1.0.1(@types/react@18.2.24)(react@18.2.0):
-    resolution: {integrity: sha512-vh0R9r1J19va60F1u3NHy1qYM8Je7ghnoMRyKqEU4LelT6BWsrMDpTZVRfSen30f1klFuQ/nWw4nzAU5NT2FDw==}
+  /@casperdash/usewallet-core@1.0.3(@types/react@18.2.24)(react@18.2.0):
+    resolution: {integrity: sha512-ReGIvFGiyxy4oev4+JItauCIafPn0L4jhOUfrcZOF4yyoSx6XSU8xDFQYwZhCMIBFElEHuvf0N9DJksVzqpjKw==}
     dependencies:
       casper-js-sdk: 2.15.3
       eventemitter3: 5.0.1
@@ -1757,15 +1760,15 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@casperdash/usewallet@1.0.1(@types/react@18.2.24)(react@18.2.0):
-    resolution: {integrity: sha512-JV9ENvpSci0RSnAewNMWYq0gK8qayjCCrK9hPagtU0lJF5PlFcPVAPBFvd0YLYvG8P+4ZhxfvFLTN/GV9m3etQ==}
+  /@casperdash/usewallet@1.0.3(@types/react@18.2.24)(react@18.2.0):
+    resolution: {integrity: sha512-BGYW0z2ntixKbxMroNP4G/ZvqfgFuDu2D44H93pxZs1aXyF+qm22/UG9Bfv4xmkb3cebTR6yic6RzsZpfjj4kw==}
     peerDependencies:
       react: '>=17.0.0'
     peerDependenciesMeta:
       react:
         optional: true
     dependencies:
-      '@casperdash/usewallet-core': 1.0.1(@types/react@18.2.24)(react@18.2.0)
+      '@casperdash/usewallet-core': 1.0.3(@types/react@18.2.24)(react@18.2.0)
       '@tanstack/query-core': 4.35.3
       '@tanstack/query-sync-storage-persister': 4.35.3
       '@tanstack/react-query': 4.35.3(react-dom@18.2.0)(react@18.2.0)
@@ -8185,6 +8188,10 @@ packages:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
 
+  /immediate@3.0.6:
+    resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
+    dev: false
+
   /immer@9.0.21:
     resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
     dev: false
@@ -8921,6 +8928,12 @@ packages:
     resolution: {integrity: sha512-eeHcvGafEYCaKB4fo2uBINfG7j7PcGwBHUaTVfbwl/6KcjCgIKNlIOsSXVRp9BH10NQwmvvk+nQ1e/Yp4BGB7w==}
     dev: false
 
+  /lie@3.1.1:
+    resolution: {integrity: sha512-RiNhHysUjhrDQntfYSfY4MU24coXXdEOgw9WGcKHNeEwffDYbF//u87M1EWaMGzuFoSbqW0C9C6lEEhDOAswfw==}
+    dependencies:
+      immediate: 3.0.6
+    dev: false
+
   /liftoff@4.0.0:
     resolution: {integrity: sha512-rMGwYF8q7g2XhG2ulBmmJgWv25qBsqRbDn5gH0+wnuyeFt7QBJlHJmtg5qEdn4pN6WVAUMgXnIxytMFRX9c1aA==}
     engines: {node: '>=10.13.0'}
@@ -9008,6 +9021,12 @@ packages:
     resolution: {integrity: sha512-SFppqq5p42fe2qcZQqqEOiVRXl+WCP1MdT6k7BDEW1j++sp5fIY+/fdRQitvKgB5BrBcmrs5m/L0v2FrU5MY1g==}
     engines: {node: '>=14'}
     dev: true
+
+  /localforage@1.10.0:
+    resolution: {integrity: sha512-14/H1aX7hzBBmmh7sGPd+AOMkkIrHM3Z1PAyGgZigA1H1p5O5ANnMyWzvpAETtG68/dC4pC0ncy3+PPGzXZHPg==}
+    dependencies:
+      lie: 3.1.1
+    dev: false
 
   /locate-path@5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}

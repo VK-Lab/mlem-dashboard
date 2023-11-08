@@ -3,7 +3,8 @@
 import { useAccount } from "@casperdash/usewallet";
 import { GradientAvatar } from "@mlem-user/components/avatar/gradient-avatar";
 import { NFTAsset } from "@mlem-user/components/nft-asset";
-import { useGetNFT } from "@mlem-user/services/nft/hooks/useGetNFT";
+import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
+import { useGetNFT } from "@mlem-user/services/app/nft/hooks/useGetNFT";
 
 import { BenefitItem } from "./components/benefit-item";
 import { TokenDetails } from "./components/token-details";
@@ -24,7 +25,11 @@ export const NFTDetail = ({ tokenAddress, tokenId }: NFTDetailProps) => {
   console.log("data: ", data);
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return (
+      <div className="mt-10">
+        <SpinLoader />
+      </div>
+    );
   }
 
   return (
