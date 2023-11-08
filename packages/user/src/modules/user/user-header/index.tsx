@@ -3,7 +3,7 @@ import React from "react";
 
 import { useAccount } from "@casperdash/usewallet";
 import LogoImg from "@mlem-user/assets/images/logo.png";
-import { useOnLogin } from "@mlem-user/services/auth/hooks/useOnLogin";
+import { useOnLogin } from "@mlem-user/services/app/auth/hooks/useOnLogin";
 import Image from "next/image";
 import Link from "next/link";
 

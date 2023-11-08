@@ -3,6 +3,7 @@ export enum QueryKeys {
   LIST_NFTS = "nfts",
   CLAIMS = "claims",
   BENEFITS = "benefits",
+  TRANSACTIONS = "transactions",
   BENEFIT_CATEGORIES = "benefit_categories",
   NFT_COLLECTIONS = "nft-collections",
   TIERS = "tiers",
