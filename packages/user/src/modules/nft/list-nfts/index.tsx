@@ -1,5 +1,5 @@
 "use client";
-import { useGetNFTs } from "@mlem-user/services/nft/hooks/useGetNFTs";
+import { useGetNFTs } from "@mlem-user/services/app/nft/hooks/useGetNFTs";
 import Link from "next/link";
 
 import { NFTItem } from "./components/nft-item";
