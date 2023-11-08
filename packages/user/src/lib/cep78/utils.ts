@@ -2,7 +2,7 @@
 
 import { sign } from "@casperdash/usewallet-core";
 import { Config } from "@mlem-user/config";
-import { deploy } from "@mlem-user/services/proxy";
+import { deploy } from "@mlem-user/services/app/proxy";
 import { CLPublicKey, DeployUtil } from "casper-js-sdk";
 import urlJoin from "url-join";
 

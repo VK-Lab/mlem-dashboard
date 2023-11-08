@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@mlem-user/components/ui/button";
-import { useGetFeaturedCampaigns } from "@mlem-user/services/campaign/hooks/useGetFeaturedCampaigns";
+import { useGetFeaturedCampaigns } from "@mlem-user/services/app/campaign/hooks/useGetFeaturedCampaigns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Slider from "react-slick";
 

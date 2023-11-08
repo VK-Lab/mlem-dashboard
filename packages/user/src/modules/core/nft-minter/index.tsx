@@ -1,7 +1,5 @@
 "use client";
 
-import { useAccount } from "@casperdash/usewallet";
-import { Button, ButtonLoading } from "@mlem-user/components/ui/button";
 import {
   Card,
   CardContent,
@@ -22,6 +20,10 @@ type NFTMinterProps = {
 };
 
 export const NFTMinter = ({ className, nftCollection }: NFTMinterProps) => {
+  if (!nftCollection) {
+    return null;
+  }
+
   return (
     <Card className={cn("w-[320px]", className)}>
       <CardHeader className="relative h-[240px]">

@@ -1,8 +1,9 @@
 "use client";
 
+import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
 import { formatDate } from "@mlem-user/lib/date";
 import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
-import { useGetCampaign } from "@mlem-user/services/campaign/hooks/useGetCampaign";
+import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
 import _first from "lodash-es/first";
 import Image from "next/image";
 
@@ -13,7 +14,11 @@ type CampaignDetailProps = {
 export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
   const { data, isLoading } = useGetCampaign(campaignId);
   if (isLoading) {
-    return <div>loading...</div>;
+    return (
+      <div className="mt-10 flex justify-center">
+        <SpinLoader />
+      </div>
+    );
   }
 
   const nftCollection = _first(data?.nftCollections || []);
