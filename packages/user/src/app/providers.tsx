@@ -27,7 +27,7 @@ export const Providers = ({ children }: Props) => {
         new CasperDashConnector(),
         new CasperWalletConnector(),
       ],
-      autoConnect: true,
+      autoConnect: false,
     });
   });
 
