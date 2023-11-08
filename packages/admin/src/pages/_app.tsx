@@ -45,7 +45,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         new CasperDashConnector(),
         new CasperWalletConnector(),
       ],
-      autoConnect: true,
     });
   });
 
