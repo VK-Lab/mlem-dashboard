@@ -31,17 +31,15 @@ export const ButtonMint = ({ params }: Props) => {
   };
 
   const isOwned = useMemo(() => {
-    return false;
-
     return nfts.some((nft) => nft.tokenAddress === params.tokenAddress);
   }, [nfts, params]);
 
-  if (isLoadingNfts) {
-    return <ButtonLoading>Loading</ButtonLoading>;
-  }
-
   if (!publicKey) {
     return null;
+  }
+
+  if (isLoadingNfts) {
+    return <ButtonLoading>Loading</ButtonLoading>;
   }
 
   if (isOwned) {
