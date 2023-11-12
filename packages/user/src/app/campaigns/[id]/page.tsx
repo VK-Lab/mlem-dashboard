@@ -1,6 +1,6 @@
 import { BaseContainer } from "@mlem-user/components/container";
 import { CampaignDetail } from "@mlem-user/modules/campaign/campaign-detail";
-import { ListCampaigns } from "@mlem-user/modules/campaign/list-campaigns";
+import { ExplorerCampaigns } from "@mlem-user/modules/campaign/explorer-campaigns";
 
 type Props = { params: { id: string } };
 
@@ -13,7 +13,7 @@ export default function Campaign({ params }: Props) {
       <div className="mt-10">
         <div className="typo-h4">Explore More</div>
         <div className="mt-4">
-          <ListCampaigns />
+          <ExplorerCampaigns excludedIds={[id]} />
         </div>
       </div>
     </BaseContainer>
