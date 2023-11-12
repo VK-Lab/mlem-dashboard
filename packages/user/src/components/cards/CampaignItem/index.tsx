@@ -1,3 +1,4 @@
+import { Badge } from "@mlem-user/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -15,13 +16,27 @@ type CampaignItemProps = {
   campaign: Campaign;
 };
 
+const statusColorMap = {
+  running: "bg-green-500",
+  pending: "bg-yellow-500",
+  ended: "bg-gray-500",
+};
+
 export const CampaignItem = ({ className, campaign }: CampaignItemProps) => {
   return (
-    <Card className={cn("h-[300px] w-[240px]", className)}>
+    <Card className={cn("h-[300px] w-[240px] relative capitalize", className)}>
       <Link key={`item-${campaign?.id}`} href={`/campaigns/${campaign?.id}`}>
+        <Badge
+          className={cn(
+            "absolute z-10 top-2 right-2",
+            statusColorMap[campaign.status as keyof typeof statusColorMap]
+          )}
+        >
+          {campaign.status}
+        </Badge>
         <CardHeader className="relative h-[180px]">
           <Image
-            src={campaign?.imageUrl}
+            src={campaign?.thumbnailUrl || campaign?.imageUrl}
             fill={true}
             alt="Campaign Image"
             className="p-2 rounded-xl"

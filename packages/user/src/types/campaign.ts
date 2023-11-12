@@ -1,3 +1,5 @@
+import { CampaignStatusEnum } from "@mlem-user/enums/campaign-status";
+
 import { Benefit } from "./benefit";
 import { NftCollection } from "./nft-collection";
 
@@ -6,8 +8,10 @@ export type Campaign = {
   name: string;
   description: string;
   startDate: string;
+  status: CampaignStatusEnum;
   endDate: string;
   imageUrl: string;
+  thumbnailUrl: string;
   benefits: Benefit[];
   createdAt: string;
   nftCollectionIds: string[];
