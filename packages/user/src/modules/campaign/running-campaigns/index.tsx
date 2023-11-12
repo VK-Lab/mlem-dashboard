@@ -49,6 +49,7 @@ export const RunningCampaigns = () => {
     dots: false,
     infinite: true,
     speed: 500,
+    // Limit the number of slides to show based on the available data the
     slidesToShow: Math.min(4, Math.max(1, data?.length || 0)),
     slidesToScroll: 1,
     draggable: false,
