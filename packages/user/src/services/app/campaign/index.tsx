@@ -4,11 +4,11 @@ import { GetCampaignsResponse } from "./types";
 import request from "../request";
 
 export const getFeaturedCampaigns = async (): Promise<Campaign[]> => {
-  return request.get("/campaigns/features");
+  return request.get("/campaigns/featured");
 };
 
 export const getRunningCampaigns = async (): Promise<Campaign[]> => {
-  return request.get("/campaigns/runnings");
+  return request.get("/campaigns/running");
 };
 
 export const getCampaigns = async (): Promise<GetCampaignsResponse> => {

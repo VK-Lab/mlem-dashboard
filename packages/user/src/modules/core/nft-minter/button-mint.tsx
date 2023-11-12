@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { useAccount } from "@casperdash/usewallet";
 import { Button, ButtonLoading } from "@mlem-user/components/ui/button";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
+import { ButtonConnect } from "@mlem-user/modules/user/user-header/components/button-connect";
 import { useGetNFTs } from "@mlem-user/services/app/nft/hooks/useGetNFTs";
 import { CreateTempNftParams } from "@mlem-user/services/app/nft/types";
 
@@ -35,7 +36,7 @@ export const ButtonMint = ({ params }: Props) => {
   }, [nfts, params]);
 
   if (!publicKey) {
-    return null;
+    return <ButtonConnect />;
   }
 
   if (isLoadingNfts) {
