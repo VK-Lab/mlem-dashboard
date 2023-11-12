@@ -43,18 +43,19 @@ const PrevArrow = (props: ArrowProp) => {
 };
 
 export const RunningCampaigns = () => {
+  const { data } = useGetRunningCampaigns();
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: Math.min(4, Math.max(1, data?.length || 0)),
     slidesToScroll: 1,
     draggable: false,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     arrows: true,
   };
-  const { data } = useGetRunningCampaigns();
 
   return (
     <div className="w-full">
