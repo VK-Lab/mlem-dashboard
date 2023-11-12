@@ -1,8 +1,10 @@
 "use client";
 
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
+import { CampaignTypesEnum } from "@mlem-user/enums/campaign-types";
 import { formatDate } from "@mlem-user/lib/date";
 import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
+import { ButtonMint } from "@mlem-user/modules/core/nft-minter/button-mint";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
 import _first from "lodash-es/first";
 import Image from "next/image";
@@ -21,7 +23,6 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
     );
   }
 
-  const nftCollection = _first(data?.nftCollections || []);
   return (
     <div>
       <div className="flex justify-center flex-col items-center">
@@ -33,7 +34,18 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
         <div className="mt-4">
           {formatDate(data?.startDate)} - {formatDate(data?.endDate)}
         </div>
-        <NFTMinter nftCollection={nftCollection} className="mt-10" />
+        <div>
+          {data?.type === CampaignTypesEnum.FREE_MINT &&
+            data?.nftCollections && (
+              <div className="mt-4 flex gap-4">
+                {data.nftCollections.map((nftCollection) => (
+                  <div key={nftCollection.id}>
+                    <NFTMinter nftCollection={nftCollection} />
+                  </div>
+                ))}
+              </div>
+            )}
+        </div>
       </div>
     </div>
   );
