@@ -3,7 +3,7 @@ name: Build And Deploy Dev
 on:
   push:
     branches:
-      - refactor/structure-and-new-ui
+      - develop
 
 jobs:
   build:

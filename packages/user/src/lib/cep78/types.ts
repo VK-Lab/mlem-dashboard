@@ -1,4 +1,4 @@
-import { CLKeyParameters } from 'casper-js-sdk';
+import { CLKeyParameters } from "casper-js-sdk";
 
 export interface CallConfig {
   useSessionCode: boolean;
