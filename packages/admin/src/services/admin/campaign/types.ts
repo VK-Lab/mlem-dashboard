@@ -20,6 +20,7 @@ export type UpdateCampaignParams = {
   nftCollectionIds: string[];
   startDate?: Dayjs | string;
   endDate?: Dayjs | string;
+  type?: string;
 };
 
 export type UpdateCampaignResponse = {

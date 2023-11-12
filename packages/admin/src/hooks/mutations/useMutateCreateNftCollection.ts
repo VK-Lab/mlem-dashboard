@@ -25,11 +25,13 @@ export const useMutateCreateNftCollection = (
       if (!publicKey) {
         throw new Error('Public key does not exist');
       }
+
       const { deployHash } = await signDeployNftCollection({
         publicKeyHex: publicKey,
         name: params.name,
         symbol: params.symbol,
         totalTokenSupply: params.totalTokenSupply,
+        mintingMode: params.mintingMode,
       });
 
       return createNftCollection({
