@@ -27,6 +27,7 @@ export type SignDeployNftCollectionParams = {
   name: string;
   symbol: string;
   totalTokenSupply: number;
+  mintingMode: MintingMode;
 };
 
 export type SignDeployNftParams = {
@@ -42,6 +43,7 @@ export const signDeployNftCollection = async ({
   name,
   symbol,
   totalTokenSupply,
+  mintingMode,
 }: SignDeployNftCollectionParams) => {
   const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
   const installDeploy = await CEP78ClientInstance.install(
@@ -51,7 +53,7 @@ export const signDeployNftCollection = async ({
       totalTokenSupply: `${totalTokenSupply}`,
       ownershipMode: NFTOwnershipMode.Transferable,
       nftKind: NFTKind.Digital,
-      mintingMode: MintingMode.Installer,
+      mintingMode,
       holderMode: NFTHolderMode.Mixed,
       allowMinting: true,
       nftMetadataKind: NFTMetadataKind.CEP78,

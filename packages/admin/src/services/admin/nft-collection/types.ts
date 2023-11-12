@@ -1,3 +1,4 @@
+import { MintingMode } from '@mlem-admin/contracts/cep78';
 import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { Tier } from '@mlem-admin/types/tier';
 
@@ -5,6 +6,7 @@ export type GetNftCollectionsParams = {
   limit?: number;
   page?: number;
   campaignId?: string;
+  mintingMode?: MintingMode;
 };
 
 export type GetNftCollectionsResponse = {
@@ -25,7 +27,7 @@ export type UpdateNftCollectionResponse = {
 };
 
 export type CreateNftCollectionParams = Partial<NftCollection> &
-  Pick<NftCollection, 'name' | 'totalTokenSupply' | 'symbol'>;
+  Pick<NftCollection, 'name' | 'totalTokenSupply' | 'symbol' | 'mintingMode'>;
 
 export type CreateNftCollectionResponse = {
   id: string;
