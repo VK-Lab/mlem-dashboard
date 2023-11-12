@@ -4,9 +4,7 @@ import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
 import { CampaignTypesEnum } from "@mlem-user/enums/campaign-types";
 import { formatDate } from "@mlem-user/lib/date";
 import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
-import { ButtonMint } from "@mlem-user/modules/core/nft-minter/button-mint";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
-import _first from "lodash-es/first";
 import Image from "next/image";
 
 type CampaignDetailProps = {
@@ -26,7 +24,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
   return (
     <div>
       <div className="flex justify-center flex-col items-center">
-        <div className="relative h-80 w-full">
+        <div className="relative h-[520px] w-full">
           <Image src={data?.imageUrl || ""} fill={true} alt="Campaign Image" />
         </div>
         <h3 className="mt-8 typo-h3">{data?.name}</h3>
