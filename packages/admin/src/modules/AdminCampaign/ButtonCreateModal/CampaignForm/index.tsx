@@ -5,7 +5,11 @@ import SelectNftCollectionsField from '@mlem-admin/modules/core/SelectNftCollect
 import { CreateCampaignParams } from '@mlem-admin/services/admin/campaign/types';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
-import { DatePickerElement, FormContainer } from 'react-hook-form-mui';
+import {
+  DatePickerElement,
+  FormContainer,
+  SelectElement,
+} from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
 import { StyledTextFieldElement } from './styled';
@@ -44,18 +48,33 @@ const NftForm = ({ onSuccess }: Props) => {
         imageUrl: undefined,
         nftCollectionIds: undefined,
         thumbnailUrl: undefined,
+        type: 'free_mint',
       }}
       onSuccess={handleOnSubmitForm}
     >
       <StyledTextFieldElement name="name" label="Name" required />
-      <StyledTextFieldElement name="description" label="Description" />
+      <StyledTextFieldElement name="description" label="Description" required />
+      <Box mt="1rem">
+        <SelectElement
+          label="Type"
+          name="type"
+          options={[
+            {
+              id: 'free_mint',
+              label: 'Free Mint',
+            },
+          ]}
+          required
+        />
+      </Box>
       <StyledTextFieldElement name="thumbnailUrl" label="Thumbnail URL" />
-      <StyledTextFieldElement name="imageUrl" label="Image URL" />
+      <StyledTextFieldElement name="imageUrl" label="Image URL" required />
+
       <Box mt="18px">
-        <DatePickerElement name="startDate" label="Start Date" />
+        <DatePickerElement name="startDate" label="Start Date" required />
       </Box>
       <Box mt="18px">
-        <DatePickerElement name="endDate" label="End Date" />
+        <DatePickerElement name="endDate" label="End Date" required />
       </Box>
 
       <Box mt="1rem">

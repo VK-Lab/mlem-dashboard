@@ -1,5 +1,6 @@
 import { useAccount } from '@casperdash/usewallet';
 import ToastMessage from '@mlem-admin/components/Toast';
+import { MintingMode } from '@mlem-admin/contracts/cep78';
 import { ContractType } from '@mlem-admin/enums/contractType.enum';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
 import { useMutateCreateNftCollection } from '@mlem-admin/hooks/mutations';
@@ -52,6 +53,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       defaultValues={{
         name: '',
         contractType: ContractType.CEP78,
+        mintingMode: MintingMode.Public,
       }}
       onSuccess={handleOnSubmitForm}
     >
@@ -64,6 +66,26 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
 
       <StyledTextFieldElement name="name" label="Name" required />
       <StyledTextFieldElement name="symbol" label="Symbol" required />
+      <Box mt="1rem">
+        <SelectElement
+          label="Minting Mode"
+          name="mintingMode"
+          sx={{
+            width: '100%',
+          }}
+          options={[
+            {
+              id: MintingMode.Public,
+              label: 'Public',
+            },
+            {
+              id: MintingMode.Installer,
+              label: 'Installer',
+            },
+          ]}
+          required
+        />
+      </Box>
       <StyledTextFieldElement
         type="number"
         name="totalTokenSupply"

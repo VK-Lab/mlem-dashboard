@@ -1,4 +1,4 @@
-import { useGetAllNftCollections } from '@mlem-admin/hooks/queries';
+import { useGetPublicNftCollections } from '@mlem-admin/hooks/queries/useGetPublicNftCollections';
 import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { AutocompleteElement } from 'react-hook-form-mui';
 
@@ -11,7 +11,7 @@ const SelectNftCollectionsField = ({ name, campaignId }: Props) => {
   const {
     data: { items: nftCollections = [] } = { items: [], total: 0 },
     isLoading,
-  } = useGetAllNftCollections();
+  } = useGetPublicNftCollections();
 
   return (
     <AutocompleteElement

@@ -1,3 +1,4 @@
+import { MintingMode } from '@mlem-admin/contracts/cep78';
 import { DeployStatusEnum } from '@mlem-admin/enums';
 
 export type NftCollection = {
@@ -17,4 +18,5 @@ export type NftCollection = {
   deployStatus: DeployStatusEnum;
   ownerPublicKey: string;
   nftImageUrl: string;
+  mintingMode: MintingMode;
 };
