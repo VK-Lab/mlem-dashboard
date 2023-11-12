@@ -85,7 +85,7 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
               }}
               onSuccess={handleOnSubmitForm}
             >
-              <StyledTextFieldElement name="name" label="Name" required />
+              <StyledTextFieldElement name="name" label="Name" />
               <StyledTextFieldElement name="description" label="Description" />
               <StyledTextFieldElement name="imageUrl" label="Image URL" />
               <StyledTextFieldElement
@@ -96,7 +96,7 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
                 <DatePickerElement name="startDate" label="Start Date" />
               </Box>
               <Box mt="18px">
-                <DatePickerElement name="endDate" label="End Date" />
+                <DatePickerElement name="endDate" label="End Date" required />
               </Box>
 
               <Box mt="1rem">
