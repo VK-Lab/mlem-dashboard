@@ -2,6 +2,7 @@ import { useMemo } from "react";
 
 import { useAccount } from "@casperdash/usewallet";
 import { Button, ButtonLoading } from "@mlem-user/components/ui/button";
+import { useToast } from "@mlem-user/components/ui/use-toast";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
 import { ButtonConnect } from "@mlem-user/modules/user/user-header/components/button-connect";
 import { useGetNFTs } from "@mlem-user/services/app/nft/hooks/useGetNFTs";
@@ -15,7 +16,15 @@ type Props = {
 };
 
 export const ButtonMint = ({ params }: Props) => {
-  const { mutate, isLoading } = useCreateNFT();
+  const { toast } = useToast();
+  const { mutate, isLoading } = useCreateNFT({
+    onSuccess: () => {
+      toast({
+        title: "Deployed your transaction successfully!",
+        description: "Waiting for transaction to be mined",
+      });
+    },
+  });
   const { isPending } = useGetPendingTransaction({
     contractPackageHash: params.contractPackageHash,
     action: DeployActionsEnum.MINT,
@@ -28,6 +37,7 @@ export const ButtonMint = ({ params }: Props) => {
     if (!params) {
       return;
     }
+
     mutate(params);
   };
 
@@ -52,7 +62,7 @@ export const ButtonMint = ({ params }: Props) => {
   return (
     <>
       {!isMinting && <Button onClick={handleOnMintClick}>Mint</Button>}
-      {isMinting && <ButtonLoading>Mintting</ButtonLoading>}
+      {isMinting && <ButtonLoading>Minting</ButtonLoading>}
     </>
   );
 };
