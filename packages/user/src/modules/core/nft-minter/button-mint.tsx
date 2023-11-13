@@ -37,10 +37,7 @@ export const ButtonMint = ({ params }: Props) => {
     if (!params) {
       return;
     }
-    toast({
-      title: "Deployed your transaction successfully!",
-      description: "Waiting for transaction to be mined",
-    });
+
     mutate(params);
   };
 

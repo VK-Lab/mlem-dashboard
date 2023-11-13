@@ -44,7 +44,11 @@ const AdminNftCollectionTable = () => {
           const { mintingMode } = row.original;
 
           const name =
-            mintingMode === MintingMode.Installer ? 'Installer' : 'Public';
+            mintingMode === MintingMode.Installer
+              ? 'Installer'
+              : mintingMode === MintingMode.Public
+              ? 'Public'
+              : 'Unknown';
 
           return name;
         },
