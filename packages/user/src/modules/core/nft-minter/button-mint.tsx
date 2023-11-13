@@ -62,7 +62,7 @@ export const ButtonMint = ({ params }: Props) => {
   return (
     <>
       {!isMinting && <Button onClick={handleOnMintClick}>Mint</Button>}
-      {isMinting && <ButtonLoading>Mintting</ButtonLoading>}
+      {isMinting && <ButtonLoading>Minting</ButtonLoading>}
     </>
   );
 };
