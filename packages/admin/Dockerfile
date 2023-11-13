@@ -24,7 +24,7 @@ ENV NEXT_FILE_ENV=$NEXT_FILE_ENV
 COPY . .
 COPY public .
 
-# COPY ./.env.$NEXT_FILE_ENV ./.env.production
+COPY ./.env.$NEXT_FILE_ENV ./.env.production
 
 RUN pnpm build
 
@@ -35,6 +35,7 @@ WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/next.config.js ./next.config.js
+COPY --from=build /app/next-i18next.config.js ./next-i18next.config.js
 COPY --from=build /app/public ./public
 COPY --from=build /app/package.json ./package.json
 
