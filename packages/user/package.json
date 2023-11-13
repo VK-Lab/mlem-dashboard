@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@casperdash/usewallet": "^1.0.3",
+    "@ethersproject/bignumber": "^5.7.0",
     "localforage": "^1.10.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-avatar": "^1.0.4",

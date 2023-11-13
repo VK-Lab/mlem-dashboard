@@ -24,7 +24,7 @@ ENV NEXT_FILE_ENV=$NEXT_FILE_ENV
 COPY . .
 COPY public .
 
-# COPY ./.env.$NEXT_FILE_ENV ./.env.production
+COPY ./.env.$NEXT_FILE_ENV ./.env.production
 
 RUN pnpm build
 
