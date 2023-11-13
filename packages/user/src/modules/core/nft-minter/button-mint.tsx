@@ -42,7 +42,7 @@ export const ButtonMint = ({ params }: Props) => {
   };
 
   const isOwned = useMemo(() => {
-    return !nfts.some((nft) => nft.tokenAddress === params.tokenAddress);
+    return nfts.some((nft) => nft.tokenAddress === params.tokenAddress);
   }, [nfts, params]);
 
   if (!publicKey) {
