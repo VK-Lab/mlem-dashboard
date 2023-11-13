@@ -11,6 +11,7 @@ import {
   createClient,
 } from "@casperdash/usewallet";
 import { ThemeProvider } from "@mlem-user/components/theme-provider/theme-provider";
+import { Toaster } from "@mlem-user/components/ui/toaster";
 import BackgroundTransactions from "@mlem-user/modules/background-script";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -42,6 +43,7 @@ export const Providers = ({ children }: Props) => {
         <CasperProvider client={useWalletClient}>
           {children}
           <BackgroundTransactions />
+          <Toaster />
         </CasperProvider>
       </QueryClientProvider>
     </ThemeProvider>
