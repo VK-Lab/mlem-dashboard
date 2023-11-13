@@ -1,6 +1,7 @@
 "use client";
 
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
+import { CampaignStatusEnum } from "@mlem-user/enums/campaign-status";
 import { CampaignTypesEnum } from "@mlem-user/enums/campaign-types";
 import { formatDate } from "@mlem-user/lib/date";
 import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
@@ -34,6 +35,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
         </div>
         <div>
           {data?.type === CampaignTypesEnum.FREE_MINT &&
+            data?.status === CampaignStatusEnum.RUNNING &&
             data?.nftCollections && (
               <div className="mt-4 flex gap-4">
                 {data.nftCollections.map((nftCollection) => (
