@@ -78,11 +78,11 @@ importers:
   packages/admin:
     dependencies:
       '@casperdash/usewallet':
-        specifier: 1.0.0
-        version: 1.0.0(@types/react@18.2.23)(react@18.2.0)
+        specifier: 1.0.3
+        version: 1.0.3(@types/react@18.2.23)(react@18.2.0)
       '@casperdash/usewallet-core':
-        specifier: 1.0.0
-        version: 1.0.0(@types/react@18.2.23)(react@18.2.0)
+        specifier: 1.0.3
+        version: 1.0.3(@types/react@18.2.23)(react@18.2.0)
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.11.1(@types/react@18.2.23)(react@18.2.0)
@@ -321,6 +321,9 @@ importers:
       '@casperdash/usewallet':
         specifier: ^1.0.3
         version: 1.0.3(@types/react@18.2.24)(react@18.2.0)
+      '@ethersproject/bignumber':
+        specifier: ^5.7.0
+        version: 5.7.0
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.2.8)(@types/react@18.2.24)(react-dom@18.2.0)(react@18.2.0)
@@ -1704,10 +1707,10 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@casperdash/usewallet-core@1.0.0(@types/react@18.2.23)(react@18.2.0):
-    resolution: {integrity: sha512-24EMOSobIiA5pdUEAau9evQd1D8HH8QYahAwRdbFvrip6Q6SP87OS54HtHupY/zCmGsTGk2AySqLsNcev3TdDA==}
+  /@casperdash/usewallet-core@1.0.3(@types/react@18.2.23)(react@18.2.0):
+    resolution: {integrity: sha512-ReGIvFGiyxy4oev4+JItauCIafPn0L4jhOUfrcZOF4yyoSx6XSU8xDFQYwZhCMIBFElEHuvf0N9DJksVzqpjKw==}
     dependencies:
-      casper-js-sdk: 2.15.2
+      casper-js-sdk: 2.15.3
       eventemitter3: 5.0.1
       typedjson: 1.8.0
       zustand: 4.4.1(@types/react@18.2.23)(react@18.2.0)
@@ -1736,15 +1739,15 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@casperdash/usewallet@1.0.0(@types/react@18.2.23)(react@18.2.0):
-    resolution: {integrity: sha512-5CXkuF0iFogwYEvDPHN9Rg20TjlY6I3YI485/enqM2UkyfRqv7tmy2+eU+7fcFVqAer+5Dye0rNFmqiLG2mIdA==}
+  /@casperdash/usewallet@1.0.3(@types/react@18.2.23)(react@18.2.0):
+    resolution: {integrity: sha512-BGYW0z2ntixKbxMroNP4G/ZvqfgFuDu2D44H93pxZs1aXyF+qm22/UG9Bfv4xmkb3cebTR6yic6RzsZpfjj4kw==}
     peerDependencies:
       react: '>=17.0.0'
     peerDependenciesMeta:
       react:
         optional: true
     dependencies:
-      '@casperdash/usewallet-core': 1.0.0(@types/react@18.2.23)(react@18.2.0)
+      '@casperdash/usewallet-core': 1.0.3(@types/react@18.2.23)(react@18.2.0)
       '@tanstack/query-core': 4.35.3
       '@tanstack/query-sync-storage-persister': 4.35.3
       '@tanstack/react-query': 4.35.3(react-dom@18.2.0)(react@18.2.0)

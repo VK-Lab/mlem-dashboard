@@ -61,5 +61,4 @@
     "vitest.config.ts",
     "next-env.d.ts"
   ],
-  "extends": "../../tsconfig.json"
 }
