@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 
+import { MintingMode } from '@mlem-admin/contracts/cep78';
 import { useGetAllNftCollections } from '@mlem-admin/hooks/queries/useGetAllNftCollections';
 import ButtonViewTiers from '@mlem-admin/modules/AdminNftCollection/AdminNftCollectionTable/ButtonViewTiers';
 import { NftCollection } from '@mlem-admin/types/nft-collection';
@@ -35,6 +36,18 @@ const AdminNftCollectionTable = () => {
       {
         accessorKey: 'contractType',
         header: 'Contract Type',
+      },
+      {
+        accessorKey: 'mintingMode',
+        header: 'Minting Mode',
+        Cell: ({ row }) => {
+          const { mintingMode } = row.original;
+
+          const name =
+            mintingMode === MintingMode.Installer ? 'Installer' : 'Public';
+
+          return name;
+        },
       },
       {
         accessorKey: 'deployHash',
@@ -79,6 +92,7 @@ const AdminNftCollectionTable = () => {
         muiTableContainerProps={{ sx: { maxHeight: '500px' } }}
         initialState={{
           columnVisibility: {
+            id: false,
             deployHash: false,
             contractType: false,
             tokenAddress: false,
@@ -89,7 +103,7 @@ const AdminNftCollectionTable = () => {
           isLoading: isLoading,
           columnPinning: {
             right: ['deployStatus', 'mrt-row-actions'],
-            left: ['id'],
+            left: ['name'],
           },
         }}
         displayColumnDefOptions={{
