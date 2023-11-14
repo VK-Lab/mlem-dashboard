@@ -9,7 +9,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "lint": "eslint . --cache",
+    "lint": "pnpm -r --filter './packages/**' lint",
+    "typecheck": "pnpm -r --filter './packages/**' typecheck",
     "lint:fix": "pnpm lint --fix",
     "lint:format": "prettier --write",
     "build": "pnpm -r --filter './packages/**' build",
@@ -31,7 +32,6 @@
     "test:typecheck": "vitest typecheck",
     "test:ui": "vitest --ui",
     "test:update": "vitest --update",
-    "typecheck": "tsc --noEmit",
     "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
