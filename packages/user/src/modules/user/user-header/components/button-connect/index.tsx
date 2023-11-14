@@ -33,7 +33,7 @@ export const ButtonConnect = () => {
           <DialogTitle className="text-center mb-4">Connect Wallet</DialogTitle>
           <DialogDescription className="flex justify-center flex-col align-center gap-4">
             <Button className="w-full" onClick={connectCasperDashAsync}>
-              Casper Dash
+              CasperDash
             </Button>
             <Button className="w-full" onClick={connectCasperWalletAsync}>
               Casper Wallet
