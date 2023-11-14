@@ -10,7 +10,6 @@ import Link from "next/link";
 import { ButtonConnect } from "./components/button-connect";
 import { MainNav } from "./components/main-nav";
 import { UserNav } from "./components/user-nav";
-import { ModeToggle } from "../../core/mode-toggle";
 
 export const UserHeader = () => {
   const { publicKey } = useAccount();
