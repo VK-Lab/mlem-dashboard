@@ -45,7 +45,8 @@
     "tailwindcss-animate": "^1.0.7",
     "ts-pattern": "^5.0.5",
     "url-join": "^5.0.0",
-    "sonner": "^1.2.0"
+    "sonner": "^1.2.0",
+    "big.js": "^6.2.1"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.4",
