@@ -1,8 +1,8 @@
-import Welcome from '@mlem-admin/modules/Welcome';
+import AdminWelcome from '@mlem-admin/modules/AdminWelcome';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {
-  return <Welcome />;
+  return <AdminWelcome />;
 };
 
 export const getStaticProps = async ({ locale }: { locale: string }) => {
