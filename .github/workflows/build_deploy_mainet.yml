@@ -9,6 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -23,10 +24,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v3
         with:
+          context: ./packages/user
+          file: ./packages/user/Dockerfile
           push: true
-          tags: blhl1210/mlem-ui:latest
+          tags: blhl1210/mlem-ui:mainnet
 
   deploy:
     needs: build
@@ -40,5 +43,5 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          sudo docker pull blhl1210/mlem-ui:latest
+          sudo docker pull blhl1210/mlem-ui:mainnet
           cd /home/ubuntu/mlem-dashboard && sudo docker compose -f "docker-compose.yml" up -d --build
