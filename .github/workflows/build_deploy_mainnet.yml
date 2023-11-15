@@ -1,10 +1,9 @@
-name: Build And Deploy Admin Dev
+name: Build And Deploy Mainnet
 
 on:
   push:
     branches:
-      - develop
-      - ci/deploy-new-structure-to-testnet
+      - main
 
 jobs:
   build:
@@ -27,11 +26,11 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./packages/admin
-          file: ./packages/admin/Dockerfile
+          context: ./packages/user
+          file: ./packages/user/Dockerfile
           push: true
-          tags: blhl1210/mlem-admin-ui:testnet
-          
+          tags: blhl1210/mlem-ui:mainnet
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -44,5 +43,5 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          sudo docker pull blhl1210/mlem-admin-ui:testnet
+          sudo docker pull blhl1210/mlem-ui:mainnet
           cd /home/ubuntu/mlem-dashboard && sudo docker compose -f "docker-compose.yml" up -d --build
