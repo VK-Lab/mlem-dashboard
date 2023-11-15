@@ -1,6 +1,7 @@
 {
   "hello": "Hello :)",
   "success": {
+    "default": "Your action has been successfully",
     "signup_success": "Success, your account has been synced with Loyalty app",
     "copied_to_clipboard": "Copied to clipboard"
   },
