@@ -7,4 +7,6 @@ export const Config = {
   casperDashBaseUrl:
     process.env.NEXT_PUBLIC_CASPERDASH_API_URL ||
     "https://api.casperdash.com/v1",
+  campaignerUrl:
+    process.env.NEXT_PUBLIC_CAMPAIGNER_URL || "https://campaigner.melem.io",
 };
