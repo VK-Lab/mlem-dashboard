@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./packages/admin
-          file: ./packages/admin/Dockerfile
+          file: ./packages/admin/Dockerfile.dev
           push: true
           tags: blhl1210/mlem-admin-ui:testnet
           
