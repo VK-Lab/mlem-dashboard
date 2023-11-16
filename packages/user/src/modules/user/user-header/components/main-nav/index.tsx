@@ -1,7 +1,10 @@
 import React from "react";
 
 import { useAccount } from "@casperdash/usewallet";
+import BlueHeartSvg from "@mlem-user/assets/svgs/blue-heart.svg";
+import { Config } from "@mlem-user/config";
 import { cn } from "@mlem-user/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 
 export const MainNav = ({
@@ -26,6 +29,20 @@ export const MainNav = ({
         className="text-sm font-medium transition-colors hover:text-primary"
       >
         Explore
+      </Link>
+      <Link
+        href={Config.campaignerUrl}
+        target="_blank"
+        className="text-sm font-medium transition-colors hover:text-primary"
+      >
+        <div>
+          Become a Campaigner
+          <Image
+            src={BlueHeartSvg}
+            alt="Blue Heart"
+            className="inline-block w-4 h-4 ml-1"
+          />
+        </div>
       </Link>
       {!!publicKey && (
         <Link
