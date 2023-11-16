@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  mlem-admin-ui:
+    image: blhl1210/mlem-admin-ui:testnet
+    container_name: "mlem-admin-ui-testnet"
+    cpus: 0.5
+    mem_limit: 512m
+    environment:
+        - PORT=3000
+        - NEXT_PUBLIC_API_URL=https://testnet-api.melem.io/v1
+        - NEXT_PUBLIC_METADATA_BASE_URL=https://testnet-api.melem.io/v1/nfts
+    restart: on-failure
+    ports:
+        - 8085:8080
+
+  mlem-dev:
+    image: blhl1210/mlem-ui:dev
+    container_name: "mlem-ui-dev"
+    cpus: 0.5
+    mem_limit: 512m
+    environment:
+        - PORT=3000
+        - NEXT_PUBLIC_API_URL=https://testnet-api.melem.io/v1
+        - NEXT_PUBLIC_METADATA_BASE_URL=https://testnet-api.melem.io/v1/nfts
+    restart: on-failure
+    ports:
+        - 8088:3000
