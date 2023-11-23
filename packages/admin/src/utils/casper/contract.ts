@@ -8,7 +8,6 @@ import {
   MintingMode,
   CEP78ClientInstance,
   OwnerReverseLookupMode,
-  NFTHolderMode,
   EventsMode,
 } from '@mlem-admin/contracts/cep78';
 import { deploy } from '@mlem-admin/services/proxy';

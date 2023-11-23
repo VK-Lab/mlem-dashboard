@@ -25,7 +25,7 @@ type NftFormProps = {
   onSuccess?: () => void;
 };
 
-const ESTIMATE_FEE = 250;
+const ESTIMATE_FEE = 300;
 
 const NftForm = ({ onSuccess }: NftFormProps) => {
   const queryClient = useQueryClient();

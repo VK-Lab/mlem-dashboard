@@ -20,6 +20,8 @@ export const generateMetadataUrl = (nftId: string) => {
   return urlJoin(Config.metadataBaseUrl, nftId, "metadata");
 };
 
+const ESTIMATED_FEE = 17140849620;
+
 export const signDeployNft = async ({
   publicKeyHex,
   name,
@@ -49,7 +51,7 @@ export const signDeployNft = async ({
         },
       },
       mintingFee || 0,
-      `${17140849620}`,
+      `${ESTIMATED_FEE}`,
       cliPublicKey
     );
   } else {
