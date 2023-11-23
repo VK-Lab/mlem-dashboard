@@ -17,6 +17,7 @@ import {
   getAccountNamedKeyValue,
   getDeploy,
 } from '@mlem-admin/utils/casper/account';
+import Big from 'big.js';
 import { CLPublicKey, DeployUtil } from 'casper-js-sdk';
 import _kebabCase from 'lodash/kebabCase';
 
@@ -28,6 +29,7 @@ export type SignDeployNftCollectionParams = {
   symbol: string;
   totalTokenSupply: number;
   mintingMode: MintingMode;
+  mintingFee?: string | number;
 };
 
 export type SignDeployNftParams = {
@@ -44,28 +46,40 @@ export const signDeployNftCollection = async ({
   symbol,
   totalTokenSupply,
   mintingMode,
+  mintingFee,
 }: SignDeployNftCollectionParams) => {
   const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
-  const installDeploy = await CEP78ClientInstance.install(
-    {
-      collectionName: _kebabCase(name),
-      collectionSymbol: symbol,
-      totalTokenSupply: `${totalTokenSupply}`,
-      ownershipMode: NFTOwnershipMode.Transferable,
-      nftKind: NFTKind.Digital,
-      mintingMode,
-      holderMode: NFTHolderMode.Mixed,
-      allowMinting: true,
-      nftMetadataKind: NFTMetadataKind.CEP78,
-      identifierMode: NFTIdentifierMode.Ordinal,
-      metadataMutability: MetadataMutability.Immutable,
-      ownerReverseLookupMode: OwnerReverseLookupMode.TransfersOnly,
-      eventsMode: EventsMode.CES,
-    },
-    '300000000000',
-    cliPublicKey
-  );
+  const args = {
+    collectionName: _kebabCase(name),
+    collectionSymbol: symbol,
+    totalTokenSupply: `${totalTokenSupply}`,
+    ownershipMode: NFTOwnershipMode.Transferable,
+    nftKind: NFTKind.Digital,
+    nftMetadataKind: NFTMetadataKind.CEP78,
+    identifierMode: NFTIdentifierMode.Ordinal,
+    metadataMutability: MetadataMutability.Immutable,
+    ownerReverseLookupMode: OwnerReverseLookupMode.Complete,
+    eventsMode: EventsMode.CES,
+    mintingMode,
+  };
 
+  let installDeploy;
+  if (mintingFee) {
+    installDeploy = await CEP78ClientInstance.installMintingFeeContract(
+      {
+        ...args,
+        mintingFee: new Big(mintingFee).mul(10 ** 9).toString(),
+      },
+      `${300_000_000_000}`,
+      cliPublicKey
+    );
+  } else {
+    installDeploy = await CEP78ClientInstance.install(
+      args,
+      `${300_000_000_000}`,
+      cliPublicKey
+    );
+  }
   const signedDeploy = await sign({
     deploy: DeployUtil.deployToJson(installDeploy),
     signingPublicKeyHex: publicKeyHex,

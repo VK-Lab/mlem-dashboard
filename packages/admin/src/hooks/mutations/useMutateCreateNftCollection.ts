@@ -26,18 +26,21 @@ export const useMutateCreateNftCollection = (
         throw new Error('Public key does not exist');
       }
 
-      const { deployHash } = await signDeployNftCollection({
-        publicKeyHex: publicKey,
-        name: params.name,
-        symbol: params.symbol,
-        totalTokenSupply: params.totalTokenSupply,
-        mintingMode: params.mintingMode,
-      });
+      // const { deployHash } = await signDeployNftCollection({
+      //   publicKeyHex: publicKey,
+      //   name: params.name,
+      //   symbol: params.symbol,
+      //   totalTokenSupply: params.totalTokenSupply,
+      //   mintingMode: params.mintingMode,
+      //   mintingFee: params.mintingFee,
+      // });
 
       return createNftCollection({
         ...params,
-        deployHash,
+        // deployHash,
         ownerPublicKey: publicKey,
+        isAllowMintingFee: params.mintingFee ? true : false,
+        mintingFee: params.mintingFee,
       });
     },
     onError: (err: Error) => {

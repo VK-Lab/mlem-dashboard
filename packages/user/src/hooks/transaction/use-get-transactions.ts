@@ -25,8 +25,6 @@ export const useGetTransactions = (
   >
 ) => {
   const clientQuery = useQueryClient();
-  console.log("publicKey", publicKey);
-
   return useQuery(
     [QueryKeys.TRANSACTIONS, publicKey],
     async () => {
@@ -36,7 +34,6 @@ export const useGetTransactions = (
       );
       const transactionHistories =
         await transactionHistoryStorage.getTransactionHistories();
-      console.log("transactionHistories", transactionHistories);
       const pendingTransactionHistories = transactionHistories.filter(
         (transactionHistory: Transaction) =>
           transactionHistory.status === DeployStatusEnum.PENDING

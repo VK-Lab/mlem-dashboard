@@ -10,9 +10,15 @@ import { CreateNftCollectionParams } from '@mlem-admin/services/admin/nft-collec
 import { LoadingButton } from '@mui/lab';
 import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
-import { FormContainer, SelectElement } from 'react-hook-form-mui';
+import Big from 'big.js';
+import {
+  CheckboxElement,
+  FormContainer,
+  SelectElement,
+} from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
+import FeeFields from './FeeFields';
 import { StyledTextFieldElement } from './styled';
 
 type NftFormProps = {
@@ -36,15 +42,19 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
     },
   });
   const { publicKey } = useAccount();
-  const { data: { balanace = 0 } = { balanace: 0 } } = useGetAccountBalance({
-    publicKey,
-  });
+  const { data: { balanace = 0 } = { balanace: 0 }, isLoading } =
+    useGetAccountBalance({
+      publicKey,
+    });
 
   const handleOnSubmitForm = async (
     createNftCollectionParams: CreateNftCollectionParams
   ) => {
     createNftCollectionMutation.mutate({
       ...createNftCollectionParams,
+      mintingFee:
+        createNftCollectionParams.mintingFee &&
+        new Big(createNftCollectionParams.mintingFee).toNumber(),
     });
   };
 
@@ -60,7 +70,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       <Box mb="1rem">
         <Box display={'flex'} justifyContent={'space-between'}>
           <Box>Your Balance:</Box>
-          <Box>{balanace} CSPR</Box>
+          <Box>{isLoading ? 'Loading...' : balanace} CSPR</Box>
         </Box>
       </Box>
 
@@ -114,6 +124,12 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       </Box>
 
       <Box mt="1rem">
+        <CheckboxElement name="isAllowMintingFee" label="Use Minting Fee" />
+      </Box>
+
+      <FeeFields />
+
+      <Box mt="1rem">
         <Divider />
         <Box display={'flex'} justifyContent={'space-between'} mt="1rem">
           <Box>Estimated Fee:</Box>
@@ -124,9 +140,9 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       <Box mt="1.5rem">
         <LoadingButton
           fullWidth
-          disabled={
-            createNftCollectionMutation.isLoading || balanace < ESTIMATE_FEE
-          }
+          // disabled={
+          //   createNftCollectionMutation.isLoading || balanace < ESTIMATE_FEE
+          // }
           loading={createNftCollectionMutation.isLoading}
           type={'submit'}
           color={'primary'}

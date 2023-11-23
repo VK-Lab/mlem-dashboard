@@ -50,6 +50,8 @@ export const NFTMinter = ({ className, nftCollection }: NFTMinterProps) => {
                 contractPackageHash: nftCollection.contractPackageHash,
                 imageUrl: nftCollection.nftImageUrl,
                 tokenAddress: nftCollection.tokenAddress,
+                isAllowMintingFee: nftCollection.isAllowMintingFee,
+                mintingFee: nftCollection.mintingFee,
               }}
             />
           )}

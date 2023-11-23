@@ -1,5 +1,6 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { Config } from "@mlem-user/config";
+import Big from "big.js";
 import {
   CLPublicKey,
   CLKey,
@@ -23,6 +24,7 @@ import {
   NFTKind,
   OwnerReverseLookupMode,
 } from "./types";
+import MintFeeWasm from "./wasm/mint_fee.wasm";
 
 const { Contract } = Contracts;
 
@@ -206,6 +208,24 @@ export class CEP78Client {
     return preparedDeploy;
   }
 
+  public async mintWithFee(
+    args: MintArgs,
+    mintingFee: number,
+    paymentAmount: string,
+    deploySender: CLPublicKey
+  ) {
+    return this.mint(
+      {
+        ...args,
+        mintingFee: new Big(mintingFee).mul(10 ** 9).toString(),
+      },
+      { useSessionCode: true },
+      paymentAmount,
+      deploySender,
+      MintFeeWasm
+    );
+  }
+
   public async mint(
     args: MintArgs,
     config: CallConfig,
@@ -220,6 +240,21 @@ export class CEP78Client {
       token_owner: CLValueBuilder.key(args.owner),
       token_meta_data: CLValueBuilder.string(JSON.stringify(args.meta)),
     });
+
+    if (config.useSessionCode) {
+      runtimeArgs.insert("nft_contract_hash", this.contractHashKey);
+      runtimeArgs.insert("amount", CLValueBuilder.u512(args.mintingFee!));
+
+      const preparedDeploy = this.contractClient.install(
+        wasm!,
+        runtimeArgs,
+        paymentAmount,
+        deploySender,
+        this.networkName
+      );
+
+      return preparedDeploy;
+    }
 
     const preparedDeploy = this.contractClient.callEntrypoint(
       "mint",

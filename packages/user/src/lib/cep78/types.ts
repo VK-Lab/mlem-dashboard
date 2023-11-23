@@ -115,6 +115,7 @@ export interface RegisterArgs {
 export interface MintArgs {
   owner: CLKeyParameters;
   meta: Record<string, string>;
+  mintingFee?: string;
 }
 
 export interface TokenArgs {
