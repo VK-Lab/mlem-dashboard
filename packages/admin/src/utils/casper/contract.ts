@@ -156,8 +156,6 @@ export const signDeployNft = async (
 
   let mintDeploy;
 
-  console.log('isAllowMintingFee', isAllowMintingFee);
-
   if (isAllowMintingFee) {
     mintDeploy = await CEP78ClientInstance.mintWithFeeContract(
       {
@@ -172,7 +170,6 @@ export const signDeployNft = async (
       cliPublicKey
     );
   } else {
-    console.log('paymentAmount', paymentAmount);
     mintDeploy = await CEP78ClientInstance.mint(
       {
         owner: cliPublicKey,
