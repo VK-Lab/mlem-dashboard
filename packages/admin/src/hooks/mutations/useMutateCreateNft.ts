@@ -8,13 +8,19 @@ import {
   CreateNftResponse,
 } from '@mlem-admin/services/admin/nft/types';
 import { signDeployNft } from '@mlem-admin/utils/casper/contract';
+import _omit from 'lodash/omit';
 import { useMutation, UseMutationOptions } from 'react-query';
+
+export type UseCreateNftParams = CreateNftParams & {
+  isAllowMintingFee?: boolean;
+  mintingFee?: number;
+};
 
 export const useMutateCreateNft = (
   options?: UseMutationOptions<
     CreateNftResponse,
     unknown,
-    CreateNftParams,
+    UseCreateNftParams,
     unknown
   >
 ) => {
@@ -22,7 +28,7 @@ export const useMutateCreateNft = (
 
   return useMutation({
     ...options,
-    mutationFn: async (params: CreateNftParams) => {
+    mutationFn: async (params: UseCreateNftParams) => {
       if (!publicKey) {
         throw new Error('Public key does not exist');
       }
@@ -39,6 +45,8 @@ export const useMutateCreateNft = (
         name: params.name,
         nftId: id,
         tokenAddress: params.tokenAddress,
+        isAllowMintingFee: params.isAllowMintingFee,
+        mintingFee: params.mintingFee,
       });
 
       if (!deployHash) {
@@ -46,7 +54,7 @@ export const useMutateCreateNft = (
       }
 
       return updateNft({
-        ...params,
+        ..._omit(params, ['isAllowMintingFee', 'mintingFee']),
         id,
         deployHash,
         deployStatus: DeployStatusEnum.PENDING,
