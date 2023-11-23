@@ -63,7 +63,7 @@ export const signDeployNft = async ({
           checksum,
         },
       },
-      { useSessionCode: true },
+      { useSessionCode: false },
       paymentAmount,
       cliPublicKey
     );

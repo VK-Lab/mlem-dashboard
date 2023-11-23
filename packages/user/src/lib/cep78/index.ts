@@ -243,7 +243,9 @@ export class CEP78Client {
 
     if (config.useSessionCode) {
       runtimeArgs.insert("nft_contract_hash", this.contractHashKey);
-      runtimeArgs.insert("amount", CLValueBuilder.u512(args.mintingFee!));
+      if (args.mintingFee !== undefined) {
+        runtimeArgs.insert("amount", CLValueBuilder.u512(args.mintingFee));
+      }
 
       const preparedDeploy = this.contractClient.install(
         wasm!,
