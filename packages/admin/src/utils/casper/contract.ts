@@ -36,6 +36,8 @@ export type SignDeployNftParams = {
   name: string;
   nftId: string;
   paymentAmount?: string;
+  isAllowMintingFee?: boolean;
+  mintingFee?: number;
   tokenAddress: string;
 };
 
@@ -130,13 +132,17 @@ export const registerTokenOwner = async (
   };
 };
 
+const ESTIMATED_FEE = 17_140_849_620;
+
 export const signDeployNft = async (
   {
     publicKeyHex,
     name,
     nftId,
-    paymentAmount = '5000000000',
+    paymentAmount = `${5_000_000_000}`,
     tokenAddress,
+    isAllowMintingFee,
+    mintingFee,
   }: SignDeployNftParams,
   { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
 ) => {
@@ -148,18 +154,38 @@ export const signDeployNft = async (
   const checksum = btoa(JSON.stringify(meta));
   CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
 
-  const mintDeploy = await CEP78ClientInstance.mint(
-    {
-      owner: cliPublicKey,
-      meta: {
-        ...meta,
-        checksum,
+  let mintDeploy;
+
+  console.log('isAllowMintingFee', isAllowMintingFee);
+
+  if (isAllowMintingFee) {
+    mintDeploy = await CEP78ClientInstance.mintWithFeeContract(
+      {
+        owner: cliPublicKey,
+        meta: {
+          ...meta,
+          checksum,
+        },
+        mintingFee: new Big(mintingFee || 0).mul(10 ** 9).toString(),
       },
-    },
-    { useSessionCode: true },
-    paymentAmount,
-    cliPublicKey
-  );
+      `${ESTIMATED_FEE}`,
+      cliPublicKey
+    );
+  } else {
+    console.log('paymentAmount', paymentAmount);
+    mintDeploy = await CEP78ClientInstance.mint(
+      {
+        owner: cliPublicKey,
+        meta: {
+          ...meta,
+          checksum,
+        },
+      },
+      { useSessionCode: false },
+      paymentAmount,
+      cliPublicKey
+    );
+  }
 
   const signedDeploy = await sign({
     deploy: DeployUtil.deployToJson(mintDeploy),

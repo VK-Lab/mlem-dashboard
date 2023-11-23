@@ -387,11 +387,16 @@ export class CEP78Client {
 
   public async mintWithFeeContract(
     args: MintArgs,
-    config: CallConfig,
     paymentAmount: string,
     deploySender: CLPublicKey
   ) {
-    return this.mint(args, config, paymentAmount, deploySender, MintFeeWasm);
+    return this.mint(
+      args,
+      { useSessionCode: true },
+      paymentAmount,
+      deploySender,
+      MintFeeWasm
+    );
   }
 
   public async mint(
@@ -411,6 +416,9 @@ export class CEP78Client {
 
     if (config.useSessionCode) {
       runtimeArgs.insert('nft_contract_hash', this.contractHashKey);
+      if (args.mintingFee !== undefined) {
+        runtimeArgs.insert('amount', CLValueBuilder.u512(args.mintingFee));
+      }
 
       const preparedDeploy = this.contractClient.install(
         wasm!,
@@ -422,6 +430,8 @@ export class CEP78Client {
 
       return preparedDeploy;
     }
+
+    console.log('runtimeArgs', runtimeArgs);
 
     const preparedDeploy = this.contractClient.callEntrypoint(
       'mint',
