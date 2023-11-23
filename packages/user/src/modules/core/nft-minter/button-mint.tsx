@@ -52,9 +52,9 @@ export const ButtonMint = ({ params }: Props) => {
     return <ButtonLoading>Loading</ButtonLoading>;
   }
 
-  // if (isOwned) {
-  //   return <Button disabled>Owned</Button>;
-  // }
+  if (isOwned) {
+    return <Button disabled>Owned</Button>;
+  }
 
   const isMinting = isPending || isLoading;
 
