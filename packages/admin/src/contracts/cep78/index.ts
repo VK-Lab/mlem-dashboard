@@ -431,6 +431,8 @@ export class CEP78Client {
       return preparedDeploy;
     }
 
+    console.log('runtimeArgs', runtimeArgs);
+
     const preparedDeploy = this.contractClient.callEntrypoint(
       'mint',
       runtimeArgs,
