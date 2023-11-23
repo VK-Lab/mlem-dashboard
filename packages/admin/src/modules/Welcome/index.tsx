@@ -48,7 +48,7 @@ const Welcome = () => {
           <Typography variant="body2" gutterBottom sx={{ mb: 3 }}>
             Connect your wallet to claim the exclusive benefits from VK Venture
           </Typography>
-          <LoginButton loginType={LoginTypeEnum.USER} />
+          <LoginButton />
         </StyledWelcomeBlock>
       </StyledBox>
     </StyledWelcomePage>

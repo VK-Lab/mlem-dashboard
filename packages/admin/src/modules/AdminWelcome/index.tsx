@@ -62,7 +62,7 @@ const Welcome = () => {
             </Link>{' '}
             and request the beta account
           </Typography>
-          <LoginButton loginType={LoginTypeEnum.ADMIN} />
+          <LoginButton />
         </StyledWelcomeBlock>
       </StyledBox>
     </StyledWelcomePage>
