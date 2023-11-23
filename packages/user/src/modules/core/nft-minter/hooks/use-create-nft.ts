@@ -7,7 +7,10 @@ import { DeployContextEnum } from "@mlem-user/enums/deployContext";
 import { DeployTypesEnum } from "@mlem-user/enums/deployTypes";
 import { MutationKeys } from "@mlem-user/enums/mutationKeys";
 import { useAddTransaction } from "@mlem-user/hooks/transaction/use-add-transaction";
-import { signDeployNft } from "@mlem-user/lib/cep78/utils";
+import {
+  signDeployNft,
+  signDeployNftWithFee,
+} from "@mlem-user/lib/cep78/utils";
 import { createTempNft, updateTempNft } from "@mlem-user/services/app/nft";
 import {
   CreateTempNftParams,
@@ -19,6 +22,8 @@ import { DeployUtil } from "casper-js-sdk";
 import dayjs from "dayjs";
 import _omit from "lodash-es/omit";
 import _pick from "lodash-es/pick";
+
+const ESTIMATED_FEE = 17140849620;
 
 export type UseCreateNFTParams = CreateTempNftParams & {
   isAllowMintingFee?: boolean;
@@ -52,15 +57,28 @@ export const useCreateNFT = (
 
       const paymentAmount = 5_000_000_000;
 
-      const { deploy: deployData, checksum } = await signDeployNft({
-        publicKeyHex: publicKey,
-        name: params.name,
-        nftId: id,
-        tokenAddress: params.tokenAddress,
-        paymentAmount: `${5_000_000_000}`,
-        isAllowMintingFee: params.isAllowMintingFee,
-        mintingFee: params.mintingFee,
-      });
+      let deployResponse;
+
+      if (params.isAllowMintingFee) {
+        deployResponse = await signDeployNftWithFee({
+          publicKeyHex: publicKey,
+          name: params.name,
+          nftId: id,
+          tokenAddress: params.tokenAddress,
+          paymentAmount: `${ESTIMATED_FEE}`,
+          mintingFee: params.mintingFee,
+        });
+      } else {
+        deployResponse = await signDeployNft({
+          publicKeyHex: publicKey,
+          name: params.name,
+          nftId: id,
+          tokenAddress: params.tokenAddress,
+          paymentAmount: `${paymentAmount}`,
+        });
+      }
+
+      const { deploy: deployData, checksum } = deployResponse;
 
       const signedDeploy = await signAsync({
         deploy: DeployUtil.deployToJson(deployData),
