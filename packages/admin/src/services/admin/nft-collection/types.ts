@@ -27,7 +27,12 @@ export type UpdateNftCollectionResponse = {
 };
 
 export type CreateNftCollectionParams = Partial<NftCollection> &
-  Pick<NftCollection, 'name' | 'totalTokenSupply' | 'symbol' | 'mintingMode'>;
+  Pick<
+    NftCollection,
+    'name' | 'totalTokenSupply' | 'symbol' | 'mintingMode'
+  > & {
+    mintingFee?: number;
+  };
 
 export type CreateNftCollectionResponse = {
   id: string;

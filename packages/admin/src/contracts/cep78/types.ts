@@ -1,4 +1,5 @@
 import { CLKeyParameters } from 'casper-js-sdk';
+import { BigNumberish } from 'ethers';
 
 export interface CallConfig {
   useSessionCode: boolean;
@@ -106,6 +107,7 @@ export type InstallArgs = {
   accessKeyName?: string;
   hashKeyName?: string;
   eventsMode?: EventsMode;
+  mintingFee?: BigNumberish;
 } & ConfigurableVariables;
 
 export interface RegisterArgs {

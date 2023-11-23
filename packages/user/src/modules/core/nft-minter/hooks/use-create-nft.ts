@@ -17,13 +17,19 @@ import { deploy } from "@mlem-user/services/app/proxy";
 import { UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { DeployUtil } from "casper-js-sdk";
 import dayjs from "dayjs";
+import _omit from "lodash-es/omit";
 import _pick from "lodash-es/pick";
+
+export type UseCreateNFTParams = CreateTempNftParams & {
+  isAllowMintingFee?: boolean;
+  mintingFee?: number;
+};
 
 export const useCreateNFT = (
   options?: UseMutationOptions<
     CreateTempNftResponse,
     unknown,
-    CreateTempNftParams,
+    UseCreateNFTParams,
     unknown
   >
 ) => {
@@ -33,7 +39,7 @@ export const useCreateNFT = (
 
   return useMutation({
     ...options,
-    mutationFn: async (params: CreateTempNftParams) => {
+    mutationFn: async (params: UseCreateNFTParams) => {
       if (!publicKey) {
         throw new Error("Public key does not exist");
       }
@@ -52,6 +58,8 @@ export const useCreateNFT = (
         nftId: id,
         tokenAddress: params.tokenAddress,
         paymentAmount: `${5_000_000_000}`,
+        isAllowMintingFee: params.isAllowMintingFee,
+        mintingFee: params.mintingFee,
       });
 
       const signedDeploy = await signAsync({
@@ -87,7 +95,7 @@ export const useCreateNFT = (
       });
 
       const result = await updateTempNft(id, {
-        ...params,
+        ..._omit(params, ["isAllowMintingFee", "mintingFee"]),
         deployHash,
         deployStatus: DeployStatusEnum.PENDING,
         checksum,

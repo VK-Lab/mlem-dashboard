@@ -6,13 +6,12 @@ import { useToast } from "@mlem-user/components/ui/use-toast";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
 import { ButtonConnect } from "@mlem-user/modules/user/user-header/components/button-connect";
 import { useGetNFTs } from "@mlem-user/services/app/nft/hooks/useGetNFTs";
-import { CreateTempNftParams } from "@mlem-user/services/app/nft/types";
 
-import { useCreateNFT } from "./hooks/use-create-nft";
+import { UseCreateNFTParams, useCreateNFT } from "./hooks/use-create-nft";
 import { useGetPendingTransaction } from "./hooks/use-get-pending-transaction";
 
 type Props = {
-  params: CreateTempNftParams;
+  params: UseCreateNFTParams;
 };
 
 export const ButtonMint = ({ params }: Props) => {

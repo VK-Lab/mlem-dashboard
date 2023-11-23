@@ -22,8 +22,6 @@ export const NFTDetail = ({ tokenAddress, tokenId }: NFTDetailProps) => {
   });
   const { publicKey } = useAccount();
 
-  console.log("data: ", data);
-
   if (isLoading) {
     return (
       <div className="mt-10">
