@@ -17,4 +17,6 @@ export type NftCollection = {
   deployStatus: DeployStatusEnum;
   ownerPublicKey: string;
   nftImageUrl?: string;
+  isAllowMintingFee?: boolean;
+  mintingFee?: number;
 };

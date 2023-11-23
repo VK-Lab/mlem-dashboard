@@ -35,6 +35,8 @@ import {
   TokenMetadataArgs,
   OwnerReverseLookupMode,
 } from './types';
+import ContractFeeWasm from './wasm/contract.wasm';
+import MintFeeWasm from './wasm/mint_fee.wasm';
 
 const { Contract } = Contracts;
 
@@ -89,11 +91,18 @@ export class CEP78Client {
     this.contractClient = new Contract(this.casperClient);
   }
 
+  public async installMintingFeeContract(
+    args: InstallArgs & Required<Pick<InstallArgs, 'mintingFee'>>,
+    paymentAmount: string,
+    deploySender: CLPublicKey
+  ) {
+    return this.install(args, paymentAmount, deploySender, ContractFeeWasm);
+  }
+
   public async install(
     args: InstallArgs,
     paymentAmount: string,
     deploySender: CLPublicKey,
-    keys?: Keys.AsymmetricKey[],
     wasm?: Uint8Array
   ) {
     const wasmToInstall = wasm || (await fetchContractWASM());
@@ -117,6 +126,10 @@ export class CEP78Client {
       identifier_mode: CLValueBuilder.u8(args.identifierMode),
       metadata_mutability: CLValueBuilder.u8(args.metadataMutability),
     });
+
+    if (args.mintingFee !== undefined) {
+      runtimeArgs.insert('minting_fee', CLValueBuilder.u512(args.mintingFee));
+    }
 
     if (args.jsonSchema !== undefined) {
       runtimeArgs.insert(
@@ -196,7 +209,7 @@ export class CEP78Client {
       paymentAmount,
       deploySender,
       this.networkName,
-      keys || []
+      []
     );
   }
 
@@ -372,6 +385,15 @@ export class CEP78Client {
     return preparedDeploy;
   }
 
+  public async mintWithFeeContract(
+    args: MintArgs,
+    config: CallConfig,
+    paymentAmount: string,
+    deploySender: CLPublicKey
+  ) {
+    return this.mint(args, config, paymentAmount, deploySender, MintFeeWasm);
+  }
+
   public async mint(
     args: MintArgs,
     config: CallConfig,
@@ -387,22 +409,19 @@ export class CEP78Client {
       token_meta_data: CLValueBuilder.string(JSON.stringify(args.meta)),
     });
 
-    // if (config.useSessionCode) {
-    //   const wasmToCall = wasm || (await fetchMintCallWASM());
-    //   console.log('runtimeArgs: ', runtimeArgs);
+    if (config.useSessionCode) {
+      runtimeArgs.insert('nft_contract_hash', this.contractHashKey);
 
-    //   runtimeArgs.insert('nft_contract_hash', this.contractHashKey);
+      const preparedDeploy = this.contractClient.install(
+        wasm!,
+        runtimeArgs,
+        paymentAmount,
+        deploySender,
+        this.networkName
+      );
 
-    //   const preparedDeploy = this.contractClient.install(
-    //     wasmToCall,
-    //     runtimeArgs,
-    //     paymentAmount,
-    //     deploySender,
-    //     this.networkName
-    //   );
-
-    //   return preparedDeploy;
-    // }
+      return preparedDeploy;
+    }
 
     const preparedDeploy = this.contractClient.callEntrypoint(
       'mint',

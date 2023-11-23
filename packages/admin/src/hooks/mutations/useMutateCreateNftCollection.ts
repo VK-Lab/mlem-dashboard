@@ -32,12 +32,15 @@ export const useMutateCreateNftCollection = (
         symbol: params.symbol,
         totalTokenSupply: params.totalTokenSupply,
         mintingMode: params.mintingMode,
+        mintingFee: params.mintingFee,
       });
 
       return createNftCollection({
         ...params,
         deployHash,
         ownerPublicKey: publicKey,
+        isAllowMintingFee: params.mintingFee ? true : false,
+        mintingFee: params.mintingFee,
       });
     },
     onError: (err: Error) => {
