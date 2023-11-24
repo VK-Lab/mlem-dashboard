@@ -242,13 +242,17 @@ export class CEP78Client {
     });
 
     if (config.useSessionCode) {
+      if (!wasm) {
+        throw new Error("Missing wasm");
+      }
+
       runtimeArgs.insert("nft_contract_hash", this.contractHashKey);
       if (args.mintingFee !== undefined) {
         runtimeArgs.insert("amount", CLValueBuilder.u512(args.mintingFee));
       }
 
       const preparedDeploy = this.contractClient.install(
-        wasm!,
+        wasm,
         runtimeArgs,
         paymentAmount,
         deploySender,

@@ -7,7 +7,10 @@ import {
   CreateNftParams,
   CreateNftResponse,
 } from '@mlem-admin/services/admin/nft/types';
-import { signDeployNft } from '@mlem-admin/utils/casper/contract';
+import {
+  signDeployNft,
+  signDeployNftWithFee,
+} from '@mlem-admin/utils/casper/contract';
 import _omit from 'lodash/omit';
 import { useMutation, UseMutationOptions } from 'react-query';
 
@@ -40,14 +43,26 @@ export const useMutateCreateNft = (
         ...params,
       });
 
-      const { deployHash, checksum } = await signDeployNft({
-        publicKeyHex: publicKey,
-        name: params.name,
-        nftId: id,
-        tokenAddress: params.tokenAddress,
-        isAllowMintingFee: params.isAllowMintingFee,
-        mintingFee: params.mintingFee,
-      });
+      let deployResponse;
+
+      if (params.isAllowMintingFee) {
+        deployResponse = await signDeployNftWithFee({
+          publicKeyHex: publicKey,
+          name: params.name,
+          nftId: id,
+          tokenAddress: params.tokenAddress,
+          mintingFee: params.mintingFee,
+        });
+      } else {
+        deployResponse = await signDeployNft({
+          publicKeyHex: publicKey,
+          name: params.name,
+          nftId: id,
+          tokenAddress: params.tokenAddress,
+        });
+      }
+
+      const { deployHash, checksum } = deployResponse;
 
       if (!deployHash) {
         throw new Error('Deploy hash does not exist');

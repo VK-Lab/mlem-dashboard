@@ -70,7 +70,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       <Box mb="1rem">
         <Box display={'flex'} justifyContent={'space-between'}>
           <Box>Your Balance:</Box>
-          <Box>{isLoading ? 'Loading...' : balanace} CSPR</Box>
+          <Box>{isLoading ? '...' : balanace} CSPR</Box>
         </Box>
       </Box>
 
