@@ -1,4 +1,3 @@
-import { LoginTypeEnum } from '@mlem-admin/enums';
 import { Link, Typography } from '@mui/material';
 import Image from 'next/image';
 
@@ -62,7 +61,7 @@ const Welcome = () => {
             </Link>{' '}
             and request the beta account
           </Typography>
-          <LoginButton loginType={LoginTypeEnum.ADMIN} />
+          <LoginButton />
         </StyledWelcomeBlock>
       </StyledBox>
     </StyledWelcomePage>

@@ -20,15 +20,46 @@ export const generateMetadataUrl = (nftId: string) => {
   return urlJoin(Config.metadataBaseUrl, nftId, "metadata");
 };
 
-const ESTIMATED_FEE = 17140849620;
-
 export const signDeployNft = async ({
   publicKeyHex,
   name,
   nftId,
   paymentAmount = `${5_000_000_000}`,
   tokenAddress,
-  isAllowMintingFee,
+}: SignDeployNftParams) => {
+  const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
+  const meta = {
+    name: name,
+    token_uri: generateMetadataUrl(nftId),
+  };
+  const checksum = btoa(JSON.stringify(meta));
+  CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
+
+  const deploy = await CEP78ClientInstance.mint(
+    {
+      owner: cliPublicKey,
+      meta: {
+        ...meta,
+        checksum,
+      },
+    },
+    { useSessionCode: false },
+    paymentAmount,
+    cliPublicKey
+  );
+
+  return {
+    deploy,
+    checksum,
+  };
+};
+
+export const signDeployNftWithFee = async ({
+  publicKeyHex,
+  name,
+  nftId,
+  paymentAmount = `${5_000_000_000}`,
+  tokenAddress,
   mintingFee,
 }: SignDeployNftParams) => {
   const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
@@ -39,35 +70,22 @@ export const signDeployNft = async ({
   const checksum = btoa(JSON.stringify(meta));
   CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
 
-  let deploy;
-
-  if (isAllowMintingFee) {
-    deploy = await CEP78ClientInstance.mintWithFee(
-      {
-        owner: cliPublicKey,
-        meta: {
-          ...meta,
-          checksum,
-        },
-      },
-      mintingFee || 0,
-      `${ESTIMATED_FEE}`,
-      cliPublicKey
-    );
-  } else {
-    deploy = await CEP78ClientInstance.mint(
-      {
-        owner: cliPublicKey,
-        meta: {
-          ...meta,
-          checksum,
-        },
-      },
-      { useSessionCode: false },
-      paymentAmount,
-      cliPublicKey
-    );
+  if (!mintingFee) {
+    throw new Error("Minting fee is required");
   }
+
+  const deploy = await CEP78ClientInstance.mintWithFee(
+    {
+      owner: cliPublicKey,
+      meta: {
+        ...meta,
+        checksum,
+      },
+    },
+    mintingFee,
+    paymentAmount,
+    cliPublicKey
+  );
 
   return {
     deploy,

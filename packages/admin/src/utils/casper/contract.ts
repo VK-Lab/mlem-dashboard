@@ -141,8 +141,6 @@ export const signDeployNft = async (
     nftId,
     paymentAmount = `${5_000_000_000}`,
     tokenAddress,
-    isAllowMintingFee,
-    mintingFee,
   }: SignDeployNftParams,
   { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
 ) => {
@@ -154,35 +152,65 @@ export const signDeployNft = async (
   const checksum = btoa(JSON.stringify(meta));
   CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
 
-  let mintDeploy;
+  const mintDeploy = await CEP78ClientInstance.mint(
+    {
+      owner: cliPublicKey,
+      meta: {
+        ...meta,
+        checksum,
+      },
+    },
+    { useSessionCode: false },
+    paymentAmount,
+    cliPublicKey
+  );
 
-  if (isAllowMintingFee) {
-    mintDeploy = await CEP78ClientInstance.mintWithFeeContract(
-      {
-        owner: cliPublicKey,
-        meta: {
-          ...meta,
-          checksum,
-        },
-        mintingFee: new Big(mintingFee || 0).mul(10 ** 9).toString(),
-      },
-      `${ESTIMATED_FEE}`,
-      cliPublicKey
-    );
-  } else {
-    mintDeploy = await CEP78ClientInstance.mint(
-      {
-        owner: cliPublicKey,
-        meta: {
-          ...meta,
-          checksum,
-        },
-      },
-      { useSessionCode: false },
-      paymentAmount,
-      cliPublicKey
-    );
+  const signedDeploy = await sign({
+    deploy: DeployUtil.deployToJson(mintDeploy),
+    signingPublicKeyHex: publicKeyHex,
+    targetPublicKeyHex: publicKeyHex,
+  });
+
+  const deployHash = await deploy(signedDeploy);
+
+  if (isWaiting) {
+    await getDeploy(deployHash);
   }
+
+  return {
+    deployHash,
+    checksum,
+  };
+};
+
+export const signDeployNftWithFee = async (
+  { publicKeyHex, name, nftId, tokenAddress, mintingFee }: SignDeployNftParams,
+  { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
+) => {
+  const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
+  const meta = {
+    name: name,
+    token_uri: generateMetadataUrl(nftId),
+  };
+  const checksum = btoa(JSON.stringify(meta));
+  CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
+
+  if (!mintingFee) {
+    throw new Error('Minting fee is required');
+  }
+
+  const mintDeploy = await CEP78ClientInstance.mintWithFeeContract(
+    {
+      owner: cliPublicKey,
+      meta: {
+        ...meta,
+        checksum,
+      },
+      mintingFee: new Big(mintingFee).mul(10 ** 9).toString(),
+    },
+    `${ESTIMATED_FEE}`,
+    cliPublicKey
+  );
 
   const signedDeploy = await sign({
     deploy: DeployUtil.deployToJson(mintDeploy),

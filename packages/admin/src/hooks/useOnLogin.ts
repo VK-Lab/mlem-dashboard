@@ -1,7 +1,9 @@
-import { useAccount, useSignMessage } from '@casperdash/usewallet';
+import { useCallback } from 'react';
+
+import { useSignMessage } from '@casperdash/usewallet';
 import { LoginTypeEnum } from '@mlem-admin/enums';
 import { CookieKeys } from '@mlem-admin/enums/cookieKeys.enum';
-import { AdminPaths, PrivatePaths } from '@mlem-admin/enums/paths.enum';
+import { AdminPaths } from '@mlem-admin/enums/paths.enum';
 import { login } from '@mlem-admin/services/auth';
 import { LoginResponse } from '@mlem-admin/services/auth/types';
 import Cookies from 'js-cookie';
@@ -12,17 +14,13 @@ export type UseOnLoginProps = {
   loginType: LoginTypeEnum;
 };
 
-export const useOnLogin = ({ loginType }: UseOnLoginProps) => {
+export const useOnLogin = () => {
   const router = useRouter();
   const { signMessageAsync, isLoading } = useSignMessage();
   const onLoginSuccess = (data: LoginResponse) => {
     Cookies.set(CookieKeys.TOKEN, data.accessToken);
 
-    if (loginType === LoginTypeEnum.ADMIN) {
-      router.push(AdminPaths.CAMPAIGNS);
-    } else {
-      router.push(PrivatePaths.USER_COLLECTION);
-    }
+    router.push(AdminPaths.CAMPAIGNS);
   };
   const loginMutation = useMutation({
     mutationFn: login,
@@ -32,14 +30,14 @@ export const useOnLogin = ({ loginType }: UseOnLoginProps) => {
     },
   });
 
-  useAccount({
-    onConnect: async ({ publicKey: publicKeyOnConnect }) => {
+  const handleOnConnect = useCallback(
+    async (publicKey: string) => {
       if (isLoading) {
         return;
       }
       const signature = await signMessageAsync({
-        signingPublicKeyHex: publicKeyOnConnect,
-        message: `mlem-${publicKeyOnConnect}`,
+        signingPublicKeyHex: publicKey,
+        message: `mlem-${publicKey}`,
       });
 
       if (!signature) {
@@ -48,9 +46,12 @@ export const useOnLogin = ({ loginType }: UseOnLoginProps) => {
 
       await loginMutation.mutateAsync({
         signature,
-        message: `mlem-${publicKeyOnConnect}`,
-        address: publicKeyOnConnect,
+        message: `mlem-${publicKey}`,
+        address: publicKey,
       });
     },
-  });
+    [isLoading, loginMutation, signMessageAsync]
+  );
+
+  return { handleOnConnect };
 };

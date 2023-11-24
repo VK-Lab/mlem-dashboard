@@ -3,9 +3,9 @@ import { useState } from 'react';
 import {
   CasperDashConnector,
   CasperWalletConnector,
+  useAccount,
   useConnect,
 } from '@casperdash/usewallet';
-import { LoginTypeEnum } from '@mlem-admin/enums';
 import { useOnLogin } from '@mlem-admin/hooks/useOnLogin';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import Image from 'next/image'; // No wrapper
@@ -14,19 +14,30 @@ import { ButtonStyled, ModalContentStyled } from './styled';
 import CasperWalletLogo from '~/public/img/casper-wallet.png';
 import CasperdashLogo from '~/public/img/casperdash-logo.webp';
 
-type Props = {
-  loginType: LoginTypeEnum;
-};
-
-const LoginButton = ({ loginType }: Props) => {
+const LoginButton = () => {
   const [open, setOpen] = useState(false);
-  useOnLogin({ loginType });
+  const { publicKey } = useAccount({
+    onConnect: async ({ publicKey }) => {
+      if (publicKey) {
+        await handleOnConnect(publicKey);
+      }
+    },
+  });
+  const { handleOnConnect } = useOnLogin();
+
+  const processOnConnect = async () => {
+    if (publicKey) {
+      await handleOnConnect(publicKey);
+    }
+  };
 
   const { connectAsync: connectCasperDashAsync } = useConnect({
     connector: new CasperDashConnector(),
+    onSuccess: processOnConnect,
   });
   const { connectAsync: connectCasperWalletAsync } = useConnect({
     connector: new CasperWalletConnector(),
+    onSuccess: processOnConnect,
   });
 
   const handleClose = () => {

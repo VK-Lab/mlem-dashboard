@@ -1,4 +1,3 @@
-import { LoginTypeEnum } from '@mlem-admin/enums';
 import LoginButton from '@mlem-admin/modules/core/LoginButton';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
@@ -48,7 +47,7 @@ const Welcome = () => {
           <Typography variant="body2" gutterBottom sx={{ mb: 3 }}>
             Connect your wallet to claim the exclusive benefits from VK Venture
           </Typography>
-          <LoginButton loginType={LoginTypeEnum.USER} />
+          <LoginButton />
         </StyledWelcomeBlock>
       </StyledBox>
     </StyledWelcomePage>

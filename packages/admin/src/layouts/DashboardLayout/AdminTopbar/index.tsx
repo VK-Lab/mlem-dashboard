@@ -42,7 +42,7 @@ const Index = ({ children, drawerWidth }: Props) => {
     onSuccess: async () => {
       await disconnectAsync();
       Cookies.remove(CookieKeys.TOKEN);
-      router.replace(PublicPaths.HOME);
+      router.push(PublicPaths.HOME, undefined, { shallow: true });
     },
   });
 

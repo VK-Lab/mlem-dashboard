@@ -1,45 +1,57 @@
+'use client';
 import { useEffect, useCallback } from 'react';
 
+import { useAccount } from '@casperdash/usewallet';
 import { AdminPaths, PublicPaths } from '@mlem-admin/enums/paths.enum';
 import { checkUser } from '@mlem-admin/services/auth';
-import { User } from '@mlem-admin/types/user';
 import { isAdmin } from '@mlem-admin/utils/permission';
 import { useRouter } from 'next/router';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const RouterGuard = ({ children }: { children: any }) => {
   const router = useRouter();
+  const { publicKey, status } = useAccount();
 
-  const authCheck = useCallback(
+  const isPublicPath = useCallback(
     (url: string) => {
-      // redirect to login page if accessing a private page and not logged in
       const publicPaths: string[] = Object.values(PublicPaths);
       const path = url.split('?')[0];
-      if (publicPaths.includes(path as string)) {
+      return publicPaths.includes(path as string);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  const authCheck = useCallback(
+    async (url: string) => {
+      // redirect to login page if accessing a private page and not logged in
+      if (isPublicPath(url)) {
         return;
       }
 
       const adminPaths: string[] = Object.values(AdminPaths);
 
-      checkUser()
-        .then((user: User) => {
-          if (isAdmin(user)) {
-            return;
-          }
+      try {
+        const user = await checkUser();
 
-          if (!adminPaths.includes(path as string)) {
-            return;
-          }
+        if (isAdmin(user)) {
+          return;
+        }
 
-          router.push({
-            pathname: PublicPaths.HOME,
-          });
-        })
-        .catch(() => {
-          router.push({
-            pathname: PublicPaths.HOME,
-          });
+        const path = url.split('?')[0];
+        if (!adminPaths.includes(path as string)) {
+          return;
+        }
+
+        router.push({
+          pathname: PublicPaths.HOME,
         });
+      } catch (error) {
+        router.push({
+          pathname: PublicPaths.HOME,
+        });
+      }
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
     },
     [router]
@@ -49,7 +61,7 @@ const RouterGuard = ({ children }: { children: any }) => {
     if (!router.isReady) {
       return;
     }
-    // on initial load - run auth check
+
     authCheck(router.asPath);
 
     router.events.on('routeChangeComplete', authCheck);
@@ -59,7 +71,29 @@ const RouterGuard = ({ children }: { children: any }) => {
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.isReady]);
+  }, [router.isReady, status]);
+
+  useEffect(() => {
+    if (!router.isReady) {
+      return;
+    }
+
+    if (status === 'connecting') {
+      return;
+    }
+
+    if (status !== 'connected' && !publicKey) {
+      if (isPublicPath(router.asPath)) {
+        return;
+      }
+
+      router.push({
+        pathname: PublicPaths.HOME,
+      });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady, status, publicKey]);
 
   return children;
 };
