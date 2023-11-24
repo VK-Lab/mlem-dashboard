@@ -82,7 +82,7 @@ export const signDeployNftWithFee = async ({
         checksum,
       },
     },
-    mintingFee || 0,
+    mintingFee,
     paymentAmount,
     cliPublicKey
   );
