@@ -6,7 +6,7 @@ import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import SelectBenefitsField from '@mlem-admin/modules/core/SelectBenefitsField';
 import SelectBrokerField from '@mlem-admin/modules/core/SelectBrokerField';
 import { UpdateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
-import { NftCollection } from '@mlem-admin/types/nft-collection';
+import { Broker } from '@mlem-admin/types/broker';
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -29,10 +29,10 @@ const style = {
 };
 
 type ButtonUpdateModalProps = {
-  nftCollection: NftCollection;
+  broker: Broker;
 };
 
-const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
+const ButtonUpdateModal = ({ broker }: ButtonUpdateModalProps) => {
   const queryClient = useQueryClient();
   const { toastSuccess } = useI18nToast();
   const [open, setOpen] = useState(false);
@@ -53,7 +53,7 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
   ) => {
     updateNftMutation.mutate({
       ...updateNftCollectionParams,
-      id: nftCollection.id,
+      id: broker.id,
     });
   };
 
@@ -70,33 +70,19 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Update NFT Collection
+            Update Nft
           </Typography>
           <Box mt={2}>
             <FormContainer
               defaultValues={{
-                name: nftCollection.name,
-                description: nftCollection.description,
-                benefitIds: nftCollection.benefitIds,
-                nftImageUrl: nftCollection.nftImageUrl,
-                brokerId: nftCollection.brokerId,
+                name: broker.name,
+                description: broker.description,
               }}
               onSuccess={handleOnSubmitForm}
             >
               <StyledTextFieldElement name="name" label="Name" required />
               <StyledTextFieldElement name="description" label="Description" />
-              <StyledTextFieldElement
-                name="nftImageUrl"
-                label="NFT Image URL"
-              />
 
-              <Box mt="1rem">
-                <SelectBrokerField name="brokerId" />
-              </Box>
-
-              <Box mt="1rem">
-                <SelectBenefitsField name="benefitIds" />
-              </Box>
               <Box mt="1rem">
                 <LoadingButton
                   fullWidth

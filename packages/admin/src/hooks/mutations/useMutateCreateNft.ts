@@ -43,24 +43,12 @@ export const useMutateCreateNft = (
         ...params,
       });
 
-      let deployResponse;
-
-      if (params.isAllowMintingFee) {
-        deployResponse = await signDeployNftWithFee({
-          publicKeyHex: publicKey,
-          name: params.name,
-          nftId: id,
-          tokenAddress: params.tokenAddress,
-          mintingFee: params.mintingFee,
-        });
-      } else {
-        deployResponse = await signDeployNft({
-          publicKeyHex: publicKey,
-          name: params.name,
-          nftId: id,
-          tokenAddress: params.tokenAddress,
-        });
-      }
+      const deployResponse = await signDeployNft({
+        publicKeyHex: publicKey,
+        name: params.name,
+        nftId: id,
+        tokenAddress: params.tokenAddress,
+      });
 
       const { deployHash, checksum } = deployResponse;
 

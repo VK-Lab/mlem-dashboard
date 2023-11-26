@@ -32,7 +32,7 @@ export const getTiersByNftCollection = ({
 export const updateNftCollection = ({
   id,
   ...rest
-}: UpdateNftCollectionParams): Promise<UpdateNftCollectionResponse> => {
+}: Partial<UpdateNftCollectionParams>): Promise<UpdateNftCollectionResponse> => {
   return request.put(`/admin/nft-collections/${id}`, rest);
 };
 

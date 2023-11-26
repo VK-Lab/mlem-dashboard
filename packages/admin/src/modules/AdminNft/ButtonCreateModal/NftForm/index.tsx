@@ -92,8 +92,6 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
     createNftMutation.mutate({
       ...createNftParams,
       contractPackageHash: foundNftCollection?.contractPackageHash,
-      isAllowMintingFee: foundNftCollection?.isAllowMintingFee,
-      mintingFee: foundNftCollection?.mintingFee,
     });
   };
 

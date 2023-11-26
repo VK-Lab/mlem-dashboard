@@ -32,7 +32,7 @@ type ButtonUpdateModalProps = {
   nftCollection: NftCollection;
 };
 
-const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
+const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
   const queryClient = useQueryClient();
   const { toastSuccess } = useI18nToast();
   const [open, setOpen] = useState(false);
@@ -60,7 +60,7 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
   return (
     <Box>
       <Button variant="contained" onClick={handleOpen}>
-        Update
+        Broker
       </Button>
       <Modal
         open={open}
@@ -70,33 +70,19 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Update NFT Collection
+            Process With Broker
           </Typography>
           <Box mt={2}>
             <FormContainer
               defaultValues={{
-                name: nftCollection.name,
-                description: nftCollection.description,
-                benefitIds: nftCollection.benefitIds,
-                nftImageUrl: nftCollection.nftImageUrl,
                 brokerId: nftCollection.brokerId,
               }}
               onSuccess={handleOnSubmitForm}
             >
-              <StyledTextFieldElement name="name" label="Name" required />
-              <StyledTextFieldElement name="description" label="Description" />
-              <StyledTextFieldElement
-                name="nftImageUrl"
-                label="NFT Image URL"
-              />
-
               <Box mt="1rem">
                 <SelectBrokerField name="brokerId" />
               </Box>
 
-              <Box mt="1rem">
-                <SelectBenefitsField name="benefitIds" />
-              </Box>
               <Box mt="1rem">
                 <LoadingButton
                   fullWidth
@@ -117,4 +103,4 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
   );
 };
 
-export default ButtonUpdateModal;
+export default ButtonCustomWithBroker;

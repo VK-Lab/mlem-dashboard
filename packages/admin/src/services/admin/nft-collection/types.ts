@@ -20,6 +20,7 @@ export type UpdateNftCollectionParams = {
   description: string;
   benefitIds: string[];
   nftImageUrl: string;
+  brokerId?: string;
 };
 
 export type UpdateNftCollectionResponse = {
@@ -27,12 +28,7 @@ export type UpdateNftCollectionResponse = {
 };
 
 export type CreateNftCollectionParams = Partial<NftCollection> &
-  Pick<
-    NftCollection,
-    'name' | 'totalTokenSupply' | 'symbol' | 'mintingMode'
-  > & {
-    mintingFee?: number;
-  };
+  Pick<NftCollection, 'name' | 'totalTokenSupply' | 'symbol' | 'mintingMode'>;
 
 export type CreateNftCollectionResponse = {
   id: string;

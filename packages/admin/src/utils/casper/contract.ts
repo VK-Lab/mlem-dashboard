@@ -1,4 +1,6 @@
 import { sign } from '@casperdash/usewallet-core';
+import { BrokerClientInstance } from '@mlem-admin/contracts/broker';
+import { InstallArgs } from '@mlem-admin/contracts/broker/types';
 import {
   NFTOwnershipMode,
   NFTKind,
@@ -41,13 +43,17 @@ export type SignDeployNftParams = {
   tokenAddress: string;
 };
 
+export type SignDeployBrokerParams = {
+  publicKeyHex: string;
+  paymentAmount?: string;
+} & InstallArgs;
+
 export const signDeployNftCollection = async ({
   publicKeyHex,
   name,
   symbol,
   totalTokenSupply,
   mintingMode,
-  mintingFee,
 }: SignDeployNftCollectionParams) => {
   const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
   const args = {
@@ -64,23 +70,12 @@ export const signDeployNftCollection = async ({
     mintingMode,
   };
 
-  let installDeploy;
-  if (mintingFee) {
-    installDeploy = await CEP78ClientInstance.installMintingFeeContract(
-      {
-        ...args,
-        mintingFee: new Big(mintingFee).mul(10 ** 9).toString(),
-      },
-      `${300_000_000_000}`,
-      cliPublicKey
-    );
-  } else {
-    installDeploy = await CEP78ClientInstance.install(
-      args,
-      `${300_000_000_000}`,
-      cliPublicKey
-    );
-  }
+  const installDeploy = await CEP78ClientInstance.install(
+    args,
+    `${300_000_000_000}`,
+    cliPublicKey
+  );
+
   const signedDeploy = await sign({
     deploy: DeployUtil.deployToJson(installDeploy),
     signingPublicKeyHex: publicKeyHex,
@@ -183,6 +178,41 @@ export const signDeployNft = async (
   };
 };
 
+export const signDeployBroker = async (
+  {
+    publicKeyHex,
+    paymentAmount = `${110_000_000_000}`,
+    ...installArgs
+  }: SignDeployBrokerParams,
+  { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
+) => {
+  const clPublicKey = CLPublicKey.fromHex(publicKeyHex);
+
+  const mintDeploy = await BrokerClientInstance.install(
+    {
+      ...installArgs,
+    },
+    paymentAmount,
+    clPublicKey
+  );
+
+  const signedDeploy = await sign({
+    deploy: DeployUtil.deployToJson(mintDeploy),
+    signingPublicKeyHex: publicKeyHex,
+    targetPublicKeyHex: publicKeyHex,
+  });
+
+  const deployHash = await deploy(signedDeploy);
+
+  if (isWaiting) {
+    await getDeploy(deployHash);
+  }
+
+  return {
+    deployHash,
+  };
+};
+
 export const signDeployNftWithFee = async (
   { publicKeyHex, name, nftId, tokenAddress, mintingFee }: SignDeployNftParams,
   { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
@@ -206,7 +236,6 @@ export const signDeployNftWithFee = async (
         ...meta,
         checksum,
       },
-      mintingFee: new Big(mintingFee).mul(10 ** 9).toString(),
     },
     `${ESTIMATED_FEE}`,
     cliPublicKey

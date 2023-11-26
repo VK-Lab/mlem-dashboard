@@ -1,22 +1,18 @@
 import { useMemo } from 'react';
 
-import { MintingMode } from '@mlem-admin/contracts/cep78';
-import { useGetAllNftCollections } from '@mlem-admin/hooks/queries/useGetAllNftCollections';
-import ButtonViewTiers from '@mlem-admin/modules/AdminNftCollection/AdminNftCollectionTable/ButtonViewTiers';
-import { NftCollection } from '@mlem-admin/types/nft-collection';
+import { useGetBrokers } from '@mlem-admin/hooks/queries/useGetBrokers';
+import { Broker } from '@mlem-admin/types/broker';
 import { mapDeployStatus } from '@mlem-admin/utils/status';
 import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
-import ButtonCustomWithBroker from './ButtonCustomWithBroker';
 import ButtonUpdateModal from './ButtonUpdateModal';
 
-const AdminNftCollectionTable = () => {
-  const { data: { items = [] } = { items: [] }, isLoading } =
-    useGetAllNftCollections();
+const BrokerTable = () => {
+  const { data: { items = [] } = { items: [] }, isLoading } = useGetBrokers();
 
-  const columns = useMemo<MRT_ColumnDef<NftCollection>[]>(
+  const columns = useMemo<MRT_ColumnDef<Broker>[]>(
     () => [
       {
         accessorKey: 'id',
@@ -31,30 +27,12 @@ const AdminNftCollectionTable = () => {
         header: 'Description',
       },
       {
-        accessorKey: 'tokenAddress',
-        header: 'Token Address',
+        accessorKey: 'contractHash',
+        header: 'Contract Hash',
       },
       {
-        accessorKey: 'contractType',
-        header: 'Contract Type',
-      },
-      {
-        accessorKey: 'mintingMode',
-        header: 'Minting Mode',
-        Cell: ({ row }) => {
-          const { mintingMode } = row.original;
-
-          const name =
-            mintingMode == MintingMode.Installer
-              ? 'Installer'
-              : mintingMode == MintingMode.Public
-              ? 'Public'
-              : mintingMode == MintingMode.ACL
-              ? 'ACL (Custom with Broker)'
-              : 'Unknown';
-
-          return name;
-        },
+        accessorKey: 'contractPackageHash',
+        header: 'Contract Package Hash',
       },
       {
         accessorKey: 'deployHash',
@@ -63,7 +41,6 @@ const AdminNftCollectionTable = () => {
       {
         accessorKey: 'deployStatus',
         header: 'Deploy Status',
-        size: 220,
         Cell: ({ row }) => {
           const { deployStatus } = row.original;
 
@@ -84,7 +61,6 @@ const AdminNftCollectionTable = () => {
             {dayjs(row.original.createdAt).format('YYYY-MM-DD h:mm:ss A')}
           </Box>
         ),
-        size: 200,
       },
     ],
     []
@@ -101,8 +77,8 @@ const AdminNftCollectionTable = () => {
           columnVisibility: {
             id: false,
             deployHash: false,
-            contractType: false,
-            tokenAddress: false,
+            contractHash: false,
+            contractPackageHash: false,
             createdAt: false,
           },
         }}
@@ -123,11 +99,7 @@ const AdminNftCollectionTable = () => {
         renderRowActions={({ row }) => {
           return (
             <Box display="flex" gap="10px">
-              <ButtonUpdateModal nftCollection={row.original} />
-              <ButtonViewTiers nftCollectionId={row.original.id} />
-              {row.original.mintingMode == MintingMode.ACL && (
-                <ButtonCustomWithBroker nftCollection={row.original} />
-              )}
+              <ButtonUpdateModal broker={row.original} />
             </Box>
           );
         }}
@@ -136,4 +108,4 @@ const AdminNftCollectionTable = () => {
   );
 };
 
-export default AdminNftCollectionTable;
+export default BrokerTable;

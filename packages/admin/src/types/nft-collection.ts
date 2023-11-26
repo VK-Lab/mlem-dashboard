@@ -19,6 +19,5 @@ export type NftCollection = {
   ownerPublicKey: string;
   nftImageUrl: string;
   mintingMode: MintingMode;
-  isAllowMintingFee?: boolean;
-  mintingFee?: number;
+  brokerId?: string;
 };
