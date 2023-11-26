@@ -9,33 +9,43 @@ const CountdownRender = ({
 }: CountdownRenderProps) => {
   return (
     <div className="happy-hour-countdown">
-      <ul id="countdown" className="happy-hour-countdown--wrapper">
-        <li id="days" className="block">
-          <div className="number">
-            <div className="value">{completed ? 0 : days}</div>
-          </div>
-          <div className="label">Days</div>
-        </li>
-        <li id="hours" className="block">
-          <div className="number">
-            <div className="value">{completed ? 0 : hours}</div>
-          </div>
-          <div className="label">Hours</div>
-        </li>
-        <li id="minutes" className="block">
-          <div className="number">
-            <div className="value">{completed ? 0 : minutes}</div>
-          </div>
-          <div className="label">Minutes</div>
-        </li>
-        <li id="seconds" className="block">
-          <div className="number">
-            <div className="value">{completed ? 0 : seconds}</div>
-          </div>
-          <div className="label">Seconds</div>
-        </li>
+      <ul
+        id="countdown"
+        className="text-gray-50 gap-4 flex items-center justify-center happy-hour-countdown--wrapper mx-auto pt-8 font-bold"
+      >
+        {[
+          {
+            label: "Days",
+            value: days,
+          },
+          {
+            label: "Hours",
+            value: hours,
+          },
+          {
+            label: "Minutes",
+            value: minutes,
+          },
+          {
+            label: "Seconds",
+            value: seconds,
+          },
+        ].map((time) => (
+          <li
+            key={`time-${time.label}`}
+            id={time.label}
+            className="m-0 p-0 flex flex-col items-center text-center w-1/4 text-5xl"
+          >
+            <div className="number w-22 h-22 rounded flex items-center justify-center">
+              <div className="value">{completed ? 0 : time.value}</div>
+            </div>
+            <div className="label mt-1 text-lg">{time.label}</div>
+          </li>
+        ))}
       </ul>
-      <span className="time-note">(Time is set as UTC Timezone)</span>
+      <div className="text-md px-4 py-2 rounded time-note text-gray-50 text-center mx-auto text-sm italic">
+        (Time is set as UTC Timezone)
+      </div>
     </div>
   );
 };
