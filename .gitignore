@@ -44,3 +44,6 @@ deploy-ecr.sh
 
 .idea
 .next
+
+packages/admin/node_modules
+packages/user/node_modules
