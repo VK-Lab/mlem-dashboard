@@ -3,18 +3,11 @@ import { useMemo } from "react";
 
 import { Button } from "@mlem-user/components/ui/button";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
-import { CampaignStatusEnum } from "@mlem-user/enums/campaign-status";
-import { CampaignTypesEnum } from "@mlem-user/enums/campaign-types";
 import { formatDate } from "@mlem-user/lib/date";
-import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
 import cn from "classnames";
-import isAfter from "date-fns/isAfter";
+import dayjs from "dayjs";
 import { Space_Grotesk } from "next/font/google";
-import Image from "next/image";
-import Countdown, { CountdownRenderProps } from "react-countdown";
-
-import CountdownRender from "./CountdownRender";
 
 type CampaignDetailProps = {
   campaignId: string;
@@ -26,27 +19,14 @@ const font = Space_Grotesk({
 });
 export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
   const { data, isLoading } = useGetCampaign(campaignId);
-  const time = useMemo(() => {
-    // UTC time string;
-    const deadline = "2023-10-27-00"; // 27/11/2023 00:00
-    const [year, monthFromIndex0, date, hour] = deadline
-      .split("-")
-      .map((str) => parseInt(str, 10));
-    // return new Date(Date.UTC(year, monthFromIndex0, date, hour));
-    return data?.endDate ? new Date(data?.endDate) : undefined;
-  }, [data?.endDate]);
 
   const isFinishedCampaign = useMemo(() => {
     if (data?.endDate) {
-      return isAfter(new Date(), data.endDate);
+      return dayjs(data?.endDate).isAfter(dayjs());
     }
 
     return false;
   }, [data]);
-
-  const renderer = (props: CountdownRenderProps) => {
-    return <CountdownRender {...props} />;
-  };
 
   if (isLoading) {
     return (
@@ -74,9 +54,6 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
             <div className="shadow-md">
               <img src={data?.imageUrl} />
             </div>
-            <div className="mt-0 countdown-wrapper">
-              <Countdown date={time} renderer={renderer} />
-            </div>
           </div>
         </div>
         <div className="md:w-3/5 text-center px-6 text-gray-50 pb-12 pt-12 md:justify-center md:flex md:flex-col">
@@ -102,15 +79,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 </h5>
               </div>
               <div className="text-sm description max-w-xl mx-auto">
-                <p className="text-gray-300">
-                  Unveil the mystique of Jasper, a ghostly ensemble of 07
-                  distinct shades, divided into the elite echelons of Duke,
-                  Marquess, and Earl. Limited of 99 NFTs to early adopters with
-                  whitelisted wallets, each Jasper NFT unlocks a founder badge,
-                  exclusive fee reductions, and future airdrop opportunities.
-                  Dive into the spectral realm of Jasper, where rarity meets
-                  distinction in the CasperDash NFT Marketplace!.
-                </p>
+                <p className="text-gray-300">{data?.description}</p>
                 {/* <p>{data?.description}</p> */}
               </div>
             </div>
