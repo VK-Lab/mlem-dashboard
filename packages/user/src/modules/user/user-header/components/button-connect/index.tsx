@@ -15,7 +15,12 @@ import {
   DialogTrigger,
 } from "@mlem-user/components/ui/dialog";
 
-export const ButtonConnect = () => {
+type Props = {
+  className?: string;
+  buttonText?: string;
+};
+
+export const ButtonConnect = ({ className, buttonText = "Connect" }: Props) => {
   const { connectAsync: connectCasperDashAsync } = useConnect({
     connector: new CasperDashConnector(),
   });
@@ -26,7 +31,7 @@ export const ButtonConnect = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>Connect</Button>
+        <Button className={className}>{buttonText}</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
