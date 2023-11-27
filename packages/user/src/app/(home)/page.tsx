@@ -23,7 +23,7 @@ export default async function Home() {
   const dehydratedState = dehydrate(queryClient);
 
   return (
-    <BaseContainer>
+    <BaseContainer className="mt-4">
       <ReactQueryHydrate state={dehydratedState}>
         <FeatureCampaigns />
         <div className="mt-8">
