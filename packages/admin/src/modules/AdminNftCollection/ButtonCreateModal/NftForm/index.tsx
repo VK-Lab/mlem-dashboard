@@ -36,7 +36,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
     },
   });
   const { publicKey } = useAccount();
-  const { data: { balanace = 0 } = { balanace: 0 }, isLoading } =
+  const { data: { balance = 0 } = { balance: 0 }, isLoading } =
     useGetAccountBalance({
       publicKey,
     });
@@ -61,7 +61,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       <Box mb="1rem">
         <Box display={'flex'} justifyContent={'space-between'}>
           <Box>Your Balance:</Box>
-          <Box>{isLoading ? '...' : balanace} CSPR</Box>
+          <Box>{isLoading ? '...' : balance} CSPR</Box>
         </Box>
       </Box>
 
@@ -129,9 +129,9 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       <Box mt="1.5rem">
         <LoadingButton
           fullWidth
-          // disabled={
-          //   createNftCollectionMutation.isLoading || balanace < ESTIMATE_FEE
-          // }
+          disabled={
+            createNftCollectionMutation.isLoading || balance < ESTIMATE_FEE
+          }
           loading={createNftCollectionMutation.isLoading}
           type={'submit'}
           color={'primary'}

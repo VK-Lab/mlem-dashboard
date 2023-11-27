@@ -59,7 +59,7 @@ const SelectTiersFieldWatch = ({ nftCollections }: SelectTiersFieldProps) => {
 const NftForm = ({ onSuccess }: NftFormProps) => {
   const queryClient = useQueryClient();
   const { publicKey } = useAccount();
-  const { data: { balanace = 0 } = { balanace: 0 } } = useGetAccountBalance({
+  const { data: { balance = 0 } = { balance: 0 } } = useGetAccountBalance({
     publicKey,
   });
 
@@ -105,7 +105,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       <Box mb="1rem">
         <Box display={'flex'} justifyContent={'space-between'}>
           <Box>Your Balance:</Box>
-          <Box>{balanace} CSPR</Box>
+          <Box>{balance} CSPR</Box>
         </Box>
       </Box>
 
@@ -161,7 +161,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
           type={'submit'}
           color={'primary'}
           variant={'contained'}
-          disabled={balanace < ESTIMATE_FEE}
+          disabled={balance < ESTIMATE_FEE}
           loading={
             isLoadingCollections ||
             isLoadingBenefits ||

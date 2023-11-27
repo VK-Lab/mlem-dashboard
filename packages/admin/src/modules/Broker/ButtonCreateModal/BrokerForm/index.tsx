@@ -33,7 +33,7 @@ const BrokerForm = ({ onSuccess }: BrokerFormProps) => {
     },
   });
   const { publicKey } = useAccount();
-  const { data: { balanace = 0 } = { balanace: 0 }, isLoading } =
+  const { data: { balance = 0 } = { balance: 0 }, isLoading } =
     useGetAccountBalance({
       publicKey,
     });
@@ -55,7 +55,7 @@ const BrokerForm = ({ onSuccess }: BrokerFormProps) => {
       <Box mb="1rem">
         <Box display={'flex'} justifyContent={'space-between'}>
           <Box>Your Balance:</Box>
-          <Box>{isLoading ? '...' : balanace} CSPR</Box>
+          <Box>{isLoading ? '...' : balance} CSPR</Box>
         </Box>
       </Box>
 
@@ -85,7 +85,7 @@ const BrokerForm = ({ onSuccess }: BrokerFormProps) => {
       <Box mt="1.5rem">
         <LoadingButton
           fullWidth
-          disabled={createBrokerMutation.isLoading || balanace < ESTIMATE_FEE}
+          disabled={createBrokerMutation.isLoading || balance < ESTIMATE_FEE}
           loading={createBrokerMutation.isLoading}
           type={'submit'}
           color={'primary'}
