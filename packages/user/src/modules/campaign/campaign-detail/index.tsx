@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { Button } from "@mlem-user/components/ui/button";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
 import { formatDate } from "@mlem-user/lib/date";
+import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
 import cn from "classnames";
 import dayjs from "dayjs";
@@ -26,6 +27,14 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
     }
 
     return false;
+  }, [data]);
+
+  const nftCollection = useMemo(() => {
+    if (!data?.nftCollections) {
+      return;
+    }
+
+    return data?.nftCollections[0];
   }, [data]);
 
   if (isLoading) {
@@ -84,7 +93,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
               </div>
             </div>
             <div className="mt-7 mb-12">
-              <div className="mx-auto max-w-md progressbar-wrapper">
+              {/* <div className="mx-auto max-w-md progressbar-wrapper">
                 <div className="relative pt-1">
                   <div className="flex mb-1 items-center justify-center">
                     <div className="text-center">
@@ -100,7 +109,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                     ></div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="mx-auto max-w-xl grid gap-1 grid-cols-3 mb-4">
                 <div className="">
                   <div className="px-4 py-1">
@@ -146,7 +155,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
               </Button>
             ) : (
               <div>
-                <Button className="px-8 h-12">Connect Wallet</Button>
+                <NFTMinter nftCollection={nftCollection} />
               </div>
             )}
 
