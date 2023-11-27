@@ -15,7 +15,7 @@ export const BaseContainer = ({
   return (
     <main
       className={cn(
-        "container mx-auto min-h-screen justify-between px-24-X py-8-X",
+        "container mx-auto min-h-screen justify-between",
         className
       )}
       {...props}

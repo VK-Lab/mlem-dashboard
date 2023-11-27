@@ -3,7 +3,7 @@ import { ListCampaigns } from "@mlem-user/modules/campaign/list-campaigns";
 
 export default function Explore() {
   return (
-    <BaseContainer>
+    <BaseContainer className="mt-4">
       <ListCampaigns />
     </BaseContainer>
   );
