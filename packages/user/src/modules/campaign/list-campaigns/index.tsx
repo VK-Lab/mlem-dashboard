@@ -11,7 +11,7 @@ export const ListCampaigns = () => {
   }
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div className="mt-4 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {data?.items?.map((item) => (
         <CampaignItem key={item.id} campaign={item} />
       ))}
