@@ -23,7 +23,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
 
   const isFinishedCampaign = useMemo(() => {
     if (data?.endDate) {
-      return dayjs(data?.endDate).isAfter(dayjs());
+      return dayjs().isAfter(dayjs(data?.endDate));
     }
 
     return false;
@@ -51,12 +51,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
         style={{
           minHeight: "75vh",
         }}
-        className="relative flex flex-col md:flex-row align-center mb-10 
-        bg-gradient-to-b from-red-900 to-stone-900 
-        before:absolute 
-        before:bg-gradient-to-b before:from-red-900 before:to-stone-900
-        before:w-full before:h-full before:left-full before:top-0
-        after:absolute after:bg-gradient-to-b after:from-red-900 after:to-stone-900 after:w-full after:h-full after:right-100 after:top-0 after:right-full"
+        className="bg-campaign"
       >
         <div className="md:w-2/5 px-2 py-6 md:py-12 md:px-3 md:pl-6  md:justify-center md:flex md:flex-col">
           <div>
@@ -149,7 +144,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 </div>
               </div>
             </div>
-            {!isFinishedCampaign ? (
+            {isFinishedCampaign ? (
               <Button disabled className="disabled px-8 h-12">
                 Campaign ended
               </Button>
