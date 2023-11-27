@@ -21,6 +21,7 @@ export type UpdateNftCollectionParams = {
   benefitIds: string[];
   nftImageUrl: string;
   brokerId?: string;
+  brokerDeployHash?: string;
 };
 
 export type UpdateNftCollectionResponse = {

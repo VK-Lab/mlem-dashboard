@@ -20,4 +20,6 @@ export type NftCollection = {
   nftImageUrl: string;
   mintingMode: MintingMode;
   brokerId?: string;
+  brokerDeployHash?: string;
+  brokerDeployStatus?: DeployStatusEnum;
 };

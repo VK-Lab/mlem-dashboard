@@ -18,7 +18,7 @@ const SelectNftCollectionsField = ({ name, campaignId }: Props) => {
       multiple
       loading={isLoading}
       matchId
-      label="Nft Collection Ids"
+      label="Nft Collections"
       name={name}
       options={nftCollections
         .filter(

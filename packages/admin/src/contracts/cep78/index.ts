@@ -332,7 +332,7 @@ export class CEP78Client {
 
     if (args.contractWhitelist !== undefined) {
       const list = buildKeyHashList(args.contractWhitelist);
-      runtimeArgs.insert('contract_whitelist', CLValueBuilder.list(list));
+      runtimeArgs.insert('acl_whitelist', CLValueBuilder.list(list));
     }
 
     const preparedDeploy = this.contractClient.callEntrypoint(

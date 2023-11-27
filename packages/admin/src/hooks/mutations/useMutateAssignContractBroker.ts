@@ -7,6 +7,7 @@ import { CLPublicKey, DeployUtil } from 'casper-js-sdk';
 import { UseMutationOptions, useMutation } from 'react-query';
 
 export type AssignContractBrokerParams = {
+  nftCollectionId: string;
   brokerId: string;
   brokerContractHash: string;
   nftContractHash: string;
@@ -34,7 +35,7 @@ export const useMutateAssignContractBroker = (
         {
           contractWhitelist: [params.brokerContractHash],
         },
-        `${10_000_000_000}`,
+        `${5_000_000_000}`,
         CLPublicKey.fromHex(publicKey)
       );
 
@@ -47,7 +48,9 @@ export const useMutateAssignContractBroker = (
       const deployHash = await deploy(signedRegisterDeploy);
 
       return updateNftCollection({
+        id: params.nftCollectionId,
         brokerId: params.brokerId,
+        brokerDeployHash: deployHash,
       });
     },
   });
