@@ -1,6 +1,10 @@
 import { Campaign } from "@mlem-user/types/campaign";
 
-import { GetCampaignsResponse } from "./types";
+import {
+  AddUserToWhiteListParams,
+  CheckUserInWhiteListParams,
+  GetCampaignsResponse,
+} from "./types";
 import request from "../request";
 
 export const getFeaturedCampaigns = async (): Promise<Campaign[]> => {
@@ -17,4 +21,18 @@ export const getCampaigns = async (): Promise<GetCampaignsResponse> => {
 
 export const getCampaingDetail = async (id: string): Promise<Campaign> => {
   return request.get(`/campaigns/${id}`);
+};
+
+export const addUserToWhitelist = async (
+  data: AddUserToWhiteListParams
+): Promise<void> => {
+  return request.post(`/campaigns/${data.campaignId}/whitelist`, data);
+};
+
+export const checkUserInWhiteList = async (
+  params: CheckUserInWhiteListParams
+): Promise<void> => {
+  return request.get(
+    `/campaigns/${params.campaignId}/whitelist/${params.publicKey}`
+  );
 };

@@ -14,3 +14,18 @@ export type GetCampaignsResponse = {
   items: Campaign[];
   total: number;
 };
+
+export type AddUserToWhiteListParams = {
+  campaignId: string;
+  publicKey: string;
+  email: string;
+};
+
+export type CheckUserInWhiteListParams = {
+  campaignId: string;
+  publicKey: string;
+};
+
+export type CheckUserInWhiteListResponse = {
+  isExisted: boolean;
+};

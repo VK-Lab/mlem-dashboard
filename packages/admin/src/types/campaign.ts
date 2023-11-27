@@ -14,4 +14,5 @@ export type Campaign = {
   endDate?: string;
   imageUrl?: string;
   thumbnailUrl?: string;
+  isOpenWhitelist?: boolean;
 };

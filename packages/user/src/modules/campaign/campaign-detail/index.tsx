@@ -1,14 +1,18 @@
 "use client";
 import { useMemo } from "react";
 
+import { useAccount } from "@casperdash/usewallet";
 import { Button } from "@mlem-user/components/ui/button";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
 import { formatDate } from "@mlem-user/lib/date";
 import { cn } from "@mlem-user/lib/utils";
 import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
+import { ButtonConnect } from "@mlem-user/modules/user/user-header/components/button-connect";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
 import dayjs from "dayjs";
 import { Space_Grotesk } from "next/font/google";
+
+import WhiteListForm from "./WhiteListForm";
 
 type CampaignDetailProps = {
   campaignId: string;
@@ -20,6 +24,7 @@ const font = Space_Grotesk({
 });
 export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
   const { data, isLoading } = useGetCampaign(campaignId);
+  const { publicKey } = useAccount();
 
   const isFinishedCampaign = useMemo(() => {
     if (data?.endDate) {
@@ -144,59 +149,34 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 </div>
               </div>
             </div>
-            {isFinishedCampaign ? (
-              <Button disabled className="disabled px-8 h-12">
-                Campaign ended
-              </Button>
+            {!publicKey ? (
+              <ButtonConnect
+                className="px-8 h-12"
+                buttonText="Connect Wallet"
+              />
             ) : (
-              <div>
-                <NFTMinter nftCollection={nftCollection} />
-              </div>
+              <>
+                {data?.isOpenWhitelist ? (
+                  <WhiteListForm campaignId={campaignId} />
+                ) : (
+                  <>
+                    {isFinishedCampaign ? (
+                      <Button disabled className="disabled px-8 h-12">
+                        Campaign ended
+                      </Button>
+                    ) : (
+                      <div>
+                        <NFTMinter nftCollection={nftCollection} />
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
             )}
-
-            {/* 
-            TODO:
-              Show email register after connecting wallet
-            <div>
-              <span className="sm:flex justify-center">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  aria-label="Email Address"
-                  required
-                  className="bg-transparent border-grey-500 border-2 mb-2 mr-2 placeholder:italic placeholder-gray-50 py-1 px-2 text-grey[500] h-12 w-64 sm:mb-0 rounded"
-                />
-                <Button className="w-32 h-12">Register</Button>
-              </span>
-            </div>
-            */}
           </div>
         </div>
       </div>
-      <div className="flex justify-center flex-col items-center">
-        {/* <div className="relative h-[520px] w-full">
-          <Image src={data?.imageUrl || ""} fill={true} alt="Campaign Image" />p
-        </div>
-        <h3 className="mt-8 typo-h3">{data?.name}</h3>
-        <div className="mt-4 text-center">{data?.description}</div>
-        <div className="mt-4">
-          {formatDate(data?.startDate)} - {formatDate(data?.endDate)}
-        </div>
-        <div>
-          {data?.type === CampaignTypesEnum.FREE_MINT &&
-            data?.status === CampaignStatusEnum.RUNNING &&
-            data?.nftCollections && (
-              <div className="mt-4 flex gap-4">
-                {data.nftCollections.map((nftCollection) => (
-                  <div key={nftCollection.id}>
-                    <NFTMinter nftCollection={nftCollection} />
-                  </div>
-                ))}
-              </div>
-            )}
-        </div>
-         */}
-      </div>
+      <div className="flex justify-center flex-col items-center"></div>
     </div>
   );
 };
