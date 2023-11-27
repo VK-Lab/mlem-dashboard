@@ -1,5 +1,4 @@
 import { CLKeyParameters } from 'casper-js-sdk';
-import { BigNumberish } from 'ethers';
 
 export interface CallConfig {
   useSessionCode: boolean;

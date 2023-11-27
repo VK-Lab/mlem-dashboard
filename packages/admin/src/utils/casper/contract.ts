@@ -18,7 +18,6 @@ import {
   getAccountNamedKeyValue,
   getDeploy,
 } from '@mlem-admin/utils/casper/account';
-import Big from 'big.js';
 import { CLPublicKey, DeployUtil } from 'casper-js-sdk';
 import _kebabCase from 'lodash/kebabCase';
 

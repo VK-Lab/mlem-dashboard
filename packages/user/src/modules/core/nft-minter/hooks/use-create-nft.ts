@@ -8,10 +8,7 @@ import { DeployTypesEnum } from "@mlem-user/enums/deployTypes";
 import { MutationKeys } from "@mlem-user/enums/mutationKeys";
 import { useAddTransaction } from "@mlem-user/hooks/transaction/use-add-transaction";
 import { signDeployBrokerMintNft } from "@mlem-user/lib/broker/utils";
-import {
-  signDeployNft,
-  signDeployNftWithFee,
-} from "@mlem-user/lib/cep78/utils";
+import { signDeployNft } from "@mlem-user/lib/cep78/utils";
 import { toMotes } from "@mlem-user/lib/format";
 import { createTempNft, updateTempNft } from "@mlem-user/services/app/nft";
 import {
@@ -25,8 +22,6 @@ import { DeployUtil } from "casper-js-sdk";
 import dayjs from "dayjs";
 import _omit from "lodash-es/omit";
 import _pick from "lodash-es/pick";
-
-const ESTIMATED_FEE = 17140849620;
 
 export type UseCreateNFTParams = CreateTempNftParams & {
   broker: Broker;

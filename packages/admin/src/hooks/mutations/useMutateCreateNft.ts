@@ -7,10 +7,7 @@ import {
   CreateNftParams,
   CreateNftResponse,
 } from '@mlem-admin/services/admin/nft/types';
-import {
-  signDeployNft,
-  signDeployNftWithFee,
-} from '@mlem-admin/utils/casper/contract';
+import { signDeployNft } from '@mlem-admin/utils/casper/contract';
 import _omit from 'lodash/omit';
 import { useMutation, UseMutationOptions } from 'react-query';
 

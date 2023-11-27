@@ -36,6 +36,12 @@ export const updateNftCollection = ({
   return request.put(`/admin/nft-collections/${id}`, rest);
 };
 
+export const deleteBrokerOnNftCollection = ({
+  id,
+}: Partial<UpdateNftCollectionParams>): Promise<UpdateNftCollectionResponse> => {
+  return request.delete(`/admin/nft-collections/${id}/broker`);
+};
+
 export const createNftCollection = (
   params: CreateNftCollectionParams
 ): Promise<CreateNftCollectionResponse> => {

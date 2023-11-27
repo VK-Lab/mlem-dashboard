@@ -116,7 +116,7 @@ const AdminNftCollectionTable = () => {
         displayColumnDefOptions={{
           'mrt-row-actions': {
             header: 'Actions', //change header text
-            size: 300, //make actions column wider
+            size: 390, //make actions column wider
           },
         }}
         enableRowActions={true}

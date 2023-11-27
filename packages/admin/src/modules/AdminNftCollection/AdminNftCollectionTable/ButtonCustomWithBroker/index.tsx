@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
+import { DeployStatusEnum } from '@mlem-admin/enums';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
-import { useMutateUpdateNftCollection } from '@mlem-admin/hooks/mutations';
 import { useMutateAssignContractBroker } from '@mlem-admin/hooks/mutations/useMutateAssignContractBroker';
 import { useGetBrokers } from '@mlem-admin/hooks/queries/useGetBrokers';
 import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import SelectBrokerField from '@mlem-admin/modules/core/SelectBrokerField';
-import { UpdateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
 import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { LoadingButton } from '@mui/lab';
+import { Chip, Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -53,12 +53,11 @@ const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
     const broker = brokers.find(
       (broker) => broker.id === updateParams.brokerId
     );
-    if (!broker) return;
 
     assignContractBrokerMutation.mutate({
       ...updateParams,
       nftCollectionId: nftCollection.id,
-      brokerContractHash: broker.contractHash,
+      brokerContractHash: broker?.contractHash,
       nftContractHash: nftCollection.tokenAddress,
     });
   };
@@ -66,7 +65,9 @@ const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
   return (
     <Box>
       <Button variant="contained" onClick={handleOpen}>
-        Broker
+        {nftCollection.brokerDeployStatus === DeployStatusEnum.PENDING
+          ? 'Broker (Pending)'
+          : 'Broker'}
       </Button>
       <Modal
         open={open}
@@ -76,7 +77,7 @@ const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Process With Broker
+            Integrate With Broker
           </Typography>
           <Box mt={2}>
             <FormContainer
@@ -89,7 +90,35 @@ const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
                 <SelectBrokerField name="brokerId" />
               </Box>
 
-              <Box mt="1rem">
+              <Box mt="2rem">
+                <Divider />
+              </Box>
+
+              <Box
+                display={'flex'}
+                justifyContent={'space-between'}
+                alignItems={'center'}
+                mt="1rem"
+              >
+                <Box>Integrated Status:</Box>
+                <Box mt="10px">
+                  {nftCollection.brokerDeployStatus ===
+                    DeployStatusEnum.PENDING && (
+                    <Chip label="Pending" color="warning" />
+                  )}
+                  {nftCollection.brokerDeployStatus ===
+                    DeployStatusEnum.COMPLETED && (
+                    <Chip label="Completed" color="success" />
+                  )}
+                </Box>
+              </Box>
+
+              <Box display={'flex'} justifyContent={'space-between'} mt="1rem">
+                <Box>Estimated Fee:</Box>
+                <Box>5 CSPR</Box>
+              </Box>
+
+              <Box mt="1.5rem">
                 <LoadingButton
                   fullWidth
                   type={'submit'}
@@ -98,7 +127,7 @@ const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
                   disabled={assignContractBrokerMutation.isLoading}
                   loading={assignContractBrokerMutation.isLoading}
                 >
-                  Update
+                  Confirm
                 </LoadingButton>
               </Box>
             </FormContainer>

@@ -1,4 +1,5 @@
 import { MintingMode } from '@mlem-admin/contracts/cep78';
+import { DeployStatusEnum } from '@mlem-admin/enums';
 import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { Tier } from '@mlem-admin/types/tier';
 
@@ -22,6 +23,7 @@ export type UpdateNftCollectionParams = {
   nftImageUrl: string;
   brokerId?: string;
   brokerDeployHash?: string;
+  brokerDeployStatus?: DeployStatusEnum;
 };
 
 export type UpdateNftCollectionResponse = {

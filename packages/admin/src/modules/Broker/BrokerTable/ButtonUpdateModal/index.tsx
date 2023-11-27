@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
 import { useMutateUpdateNftCollection } from '@mlem-admin/hooks/mutations';
 import { useI18nToast } from '@mlem-admin/hooks/useToast';
-import SelectBenefitsField from '@mlem-admin/modules/core/SelectBenefitsField';
-import SelectBrokerField from '@mlem-admin/modules/core/SelectBrokerField';
 import { UpdateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
 import { Broker } from '@mlem-admin/types/broker';
 import { LoadingButton } from '@mui/lab';
