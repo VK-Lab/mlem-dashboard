@@ -12,7 +12,11 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
-import { DatePickerElement, FormContainer } from 'react-hook-form-mui';
+import {
+  CheckboxElement,
+  DatePickerElement,
+  FormContainer,
+} from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
 import { StyledTextFieldElement } from './styled';
@@ -82,6 +86,7 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
                 endDate: campaign.endDate ? dayjs(campaign.endDate) : undefined,
                 imageUrl: campaign.imageUrl,
                 thumbnailUrl: campaign.thumbnailUrl,
+                isOpenWhitelist: campaign.isOpenWhitelist,
               }}
               onSuccess={handleOnSubmitForm}
             >
@@ -97,6 +102,13 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
               </Box>
               <Box mt="18px">
                 <DatePickerElement name="endDate" label="End Date" required />
+              </Box>
+
+              <Box mt="1rem">
+                <CheckboxElement
+                  name="isOpenWhitelist"
+                  label="Is Open Whitelist"
+                />
               </Box>
 
               <Box mt="1rem">

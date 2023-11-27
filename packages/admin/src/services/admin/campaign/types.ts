@@ -21,6 +21,7 @@ export type UpdateCampaignParams = {
   startDate?: Dayjs | string;
   endDate?: Dayjs | string;
   type?: string;
+  isOpenWhitelist?: boolean;
 };
 
 export type UpdateCampaignResponse = {
@@ -29,6 +30,7 @@ export type UpdateCampaignResponse = {
 
 export type CreateCampaignParams = Omit<UpdateCampaignParams, 'id'> & {
   nftCollectionIds: string[];
+  isOpenWhitelist?: boolean;
 };
 
 export type CreateCampaignResponse = {
