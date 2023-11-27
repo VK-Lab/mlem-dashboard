@@ -37,15 +37,21 @@ export const ButtonMint = ({ params }: Props) => {
   };
 
   if (!publicKey) {
-    return <ButtonConnect />;
+    return <ButtonConnect className="px-8 h-12" buttonText="Connect Wallet" />;
   }
 
   const isMinting = isPending || isLoading;
 
   return (
     <>
-      {!isMinting && <Button onClick={handleOnMintClick}>Mint</Button>}
-      {isMinting && <ButtonLoading>Minting</ButtonLoading>}
+      {!isMinting && (
+        <Button className="px-8 h-12" onClick={handleOnMintClick}>
+          Mint NFT
+        </Button>
+      )}
+      {isMinting && (
+        <ButtonLoading className="px-8 h-12">Minting</ButtonLoading>
+      )}
     </>
   );
 };
