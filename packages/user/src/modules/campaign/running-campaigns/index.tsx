@@ -41,60 +41,74 @@ const PrevArrow = forwardRef((props: ArrowProp, ref: Ref<HTMLDivElement>) => {
 PrevArrow.displayName = "PrevArrow";
 
 const SLIDE_PER_VIEW = 4;
-const WIDTH = 270;
 
 export const RunningCampaigns = () => {
   const { data = [], isLoading } = useGetRunningCampaigns();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const swiperRef = useRef<any>(null!);
 
-  const isShowNavigation = data?.length > SLIDE_PER_VIEW;
-
-  const calculatedWidth = data?.length * WIDTH;
+  const isUsingSlide = data?.length > SLIDE_PER_VIEW;
 
   if (isLoading) {
     return null;
   }
 
   return (
-    <div
-      style={{
-        width: calculatedWidth,
-      }}
-    >
+    <div>
       <div>
         <p className="typo-h4">Running Campaigns</p>
       </div>
-      <div className="mt-10 flex items-center justify-between">
-        {isShowNavigation && (
+      {isUsingSlide ? (
+        <div className="mt-10 flex items-center justify-between">
           <PrevArrow
             className={"mr-10"}
             onClick={() => swiperRef.current?.slidePrev()}
           />
-        )}
 
-        <Swiper
-          slidesPerView={Math.min(data?.length || 1, SLIDE_PER_VIEW)}
-          spaceBetween={30}
-          scrollbar={{ draggable: true }}
-          navigation
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-        >
-          {data?.map((campaign) => (
-            <SwiperSlide key={`campaign-${campaign.id}`}>
-              <CampaignItem campaign={campaign} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        {isShowNavigation && (
+          <Swiper
+            spaceBetween={30}
+            scrollbar={{ draggable: true }}
+            navigation
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            breakpoints={{
+              360: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              720: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              1080: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+              1360: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+              },
+            }}
+          >
+            {data?.map((campaign) => (
+              <SwiperSlide key={`campaign-${campaign.id}`}>
+                <CampaignItem campaign={campaign} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
           <NextArrow
             className="ml-10"
             onClick={() => swiperRef.current?.slideNext()}
           />
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="mt-10 flex items-center gap-10">
+          {data?.map((campaign) => (
+            <CampaignItem key={`campaign-${campaign.id}`} campaign={campaign} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
