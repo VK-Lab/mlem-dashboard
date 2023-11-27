@@ -1,5 +1,4 @@
 import Big from 'big.js';
-import { BigNumber } from 'ethers';
 const MOTE_RATE = 1_000_000_000;
 
 export const formatAddress = (address?: string) => {
