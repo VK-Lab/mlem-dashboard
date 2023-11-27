@@ -1,76 +1,99 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 "use client";
+
+import { Ref, forwardRef, useRef } from "react";
 
 import { CampaignItem } from "@mlem-user/components/cards/CampaignItem";
 import { Button } from "@mlem-user/components/ui/button";
 import { useGetRunningCampaigns } from "@mlem-user/services/app/campaign/hooks/useGetRunningCampaigns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Slider from "react-slick";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 type ArrowProp = {
   className?: string;
   onClick?: () => void;
-  style?: React.StyleHTMLAttributes<HTMLDivElement>;
 };
 
-const NextArrow = (props: ArrowProp) => {
-  const { onClick, style } = props;
+const NextArrow = forwardRef((props: ArrowProp, ref: Ref<HTMLDivElement>) => {
+  const { className, onClick } = props;
+
   return (
-    <div
-      className={`absolute top-1/2 right-[-46px]`}
-      style={{ ...style }}
-      onClick={onClick}
-    >
+    <div onClick={onClick} ref={ref} className={className}>
       <Button variant="outline" className="p-2 rounded-full">
         <ChevronRight color="black" />
       </Button>
     </div>
   );
-};
+});
+NextArrow.displayName = "NextArrow";
 
-const PrevArrow = (props: ArrowProp) => {
-  const { onClick, style } = props;
+const PrevArrow = forwardRef((props: ArrowProp, ref: Ref<HTMLDivElement>) => {
+  const { className, onClick } = props;
+
   return (
-    <div
-      className={`absolute top-1/2 left-[-46px]`}
-      style={{ ...style }}
-      onClick={onClick}
-    >
+    <div onClick={onClick} ref={ref} className={className}>
       <Button variant="outline" className="p-2 rounded-full">
         <ChevronLeft color="black" />
       </Button>
     </div>
   );
-};
+});
+PrevArrow.displayName = "PrevArrow";
+
+const SLIDE_PER_VIEW = 4;
+const WIDTH = 270;
 
 export const RunningCampaigns = () => {
-  const { data } = useGetRunningCampaigns();
+  const { data = [], isLoading } = useGetRunningCampaigns();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const swiperRef = useRef<any>(null!);
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    // Limit the number of slides to show based on the available data the
-    slidesToShow: Math.min(4, Math.max(1, data?.length || 0)),
-    slidesToScroll: 1,
-    draggable: false,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    arrows: true,
-  };
+  const isShowNavigation = data?.length > SLIDE_PER_VIEW;
+
+  const calculatedWidth = data?.length * WIDTH;
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
-    <div className="w-full">
+    <div
+      style={{
+        width: calculatedWidth,
+      }}
+    >
       <div>
         <p className="typo-h4">Running Campaigns</p>
       </div>
-      <div className="mt-10 ">
-        <Slider {...settings}>
+      <div className="mt-10 flex items-center justify-between">
+        {isShowNavigation && (
+          <PrevArrow
+            className={"mr-10"}
+            onClick={() => swiperRef.current?.slidePrev()}
+          />
+        )}
+
+        <Swiper
+          slidesPerView={Math.min(data?.length || 1, SLIDE_PER_VIEW)}
+          spaceBetween={30}
+          scrollbar={{ draggable: true }}
+          navigation
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+        >
           {data?.map((campaign) => (
-            <div key={`campaign-${campaign.id}`}>
+            <SwiperSlide key={`campaign-${campaign.id}`}>
               <CampaignItem campaign={campaign} />
-            </div>
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
+        {isShowNavigation && (
+          <NextArrow
+            className="ml-10"
+            onClick={() => swiperRef.current?.slideNext()}
+          />
+        )}
       </div>
     </div>
   );
