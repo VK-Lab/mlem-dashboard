@@ -33,7 +33,7 @@ export const toMotes = (amount: number) => {
 };
 
 export const hexToNumber = (balanceHex: string): number => {
-  return balanceHex ? toCSPR(BigNumber.from(balanceHex).toNumber()) : 0;
+  return balanceHex ? toCSPR(new Big(balanceHex).toNumber()) : 0;
 };
 
 export const slugify = (str: string) => {
