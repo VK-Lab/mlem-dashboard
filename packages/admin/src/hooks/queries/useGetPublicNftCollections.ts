@@ -17,7 +17,7 @@ export const useGetPublicNftCollections = (
       [
         QueryKeys.NFT_COLLECTIONS,
         {
-          mintingMode: MintingMode.Public;
+          mintingMode: MintingMode.ACL;
         }
       ]
     >,
@@ -28,13 +28,13 @@ export const useGetPublicNftCollections = (
     [
       QueryKeys.NFT_COLLECTIONS,
       {
-        mintingMode: MintingMode.Public,
+        mintingMode: MintingMode.ACL,
       },
     ],
     () =>
       getNftCollections({
         ...query,
-        mintingMode: MintingMode.Public,
+        mintingMode: MintingMode.ACL,
       }),
     {
       ...options,

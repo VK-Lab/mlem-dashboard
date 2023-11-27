@@ -1,4 +1,6 @@
 import { sign } from '@casperdash/usewallet-core';
+import { BrokerClientInstance } from '@mlem-admin/contracts/broker';
+import { InstallArgs } from '@mlem-admin/contracts/broker/types';
 import {
   NFTOwnershipMode,
   NFTKind,
@@ -16,7 +18,6 @@ import {
   getAccountNamedKeyValue,
   getDeploy,
 } from '@mlem-admin/utils/casper/account';
-import Big from 'big.js';
 import { CLPublicKey, DeployUtil } from 'casper-js-sdk';
 import _kebabCase from 'lodash/kebabCase';
 
@@ -28,7 +29,6 @@ export type SignDeployNftCollectionParams = {
   symbol: string;
   totalTokenSupply: number;
   mintingMode: MintingMode;
-  mintingFee?: string | number;
 };
 
 export type SignDeployNftParams = {
@@ -36,10 +36,13 @@ export type SignDeployNftParams = {
   name: string;
   nftId: string;
   paymentAmount?: string;
-  isAllowMintingFee?: boolean;
-  mintingFee?: number;
   tokenAddress: string;
 };
+
+export type SignDeployBrokerParams = {
+  publicKeyHex: string;
+  paymentAmount?: string;
+} & InstallArgs;
 
 export const signDeployNftCollection = async ({
   publicKeyHex,
@@ -47,7 +50,6 @@ export const signDeployNftCollection = async ({
   symbol,
   totalTokenSupply,
   mintingMode,
-  mintingFee,
 }: SignDeployNftCollectionParams) => {
   const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
   const args = {
@@ -64,23 +66,12 @@ export const signDeployNftCollection = async ({
     mintingMode,
   };
 
-  let installDeploy;
-  if (mintingFee) {
-    installDeploy = await CEP78ClientInstance.installMintingFeeContract(
-      {
-        ...args,
-        mintingFee: new Big(mintingFee).mul(10 ** 9).toString(),
-      },
-      `${300_000_000_000}`,
-      cliPublicKey
-    );
-  } else {
-    installDeploy = await CEP78ClientInstance.install(
-      args,
-      `${300_000_000_000}`,
-      cliPublicKey
-    );
-  }
+  const installDeploy = await CEP78ClientInstance.install(
+    args,
+    `${300_000_000_000}`,
+    cliPublicKey
+  );
+
   const signedDeploy = await sign({
     deploy: DeployUtil.deployToJson(installDeploy),
     signingPublicKeyHex: publicKeyHex,
@@ -132,8 +123,6 @@ export const registerTokenOwner = async (
   };
 };
 
-const ESTIMATED_FEE = 17_140_849_620;
-
 export const signDeployNft = async (
   {
     publicKeyHex,
@@ -183,33 +172,22 @@ export const signDeployNft = async (
   };
 };
 
-export const signDeployNftWithFee = async (
-  { publicKeyHex, name, nftId, tokenAddress, mintingFee }: SignDeployNftParams,
+export const signDeployBroker = async (
+  {
+    publicKeyHex,
+    paymentAmount = `${110_000_000_000}`,
+    ...installArgs
+  }: SignDeployBrokerParams,
   { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
 ) => {
-  const cliPublicKey = CLPublicKey.fromHex(publicKeyHex);
-  const meta = {
-    name: name,
-    token_uri: generateMetadataUrl(nftId),
-  };
-  const checksum = btoa(JSON.stringify(meta));
-  CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
+  const clPublicKey = CLPublicKey.fromHex(publicKeyHex);
 
-  if (!mintingFee) {
-    throw new Error('Minting fee is required');
-  }
-
-  const mintDeploy = await CEP78ClientInstance.mintWithFeeContract(
+  const mintDeploy = await BrokerClientInstance.install(
     {
-      owner: cliPublicKey,
-      meta: {
-        ...meta,
-        checksum,
-      },
-      mintingFee: new Big(mintingFee).mul(10 ** 9).toString(),
+      ...installArgs,
     },
-    `${ESTIMATED_FEE}`,
-    cliPublicKey
+    paymentAmount,
+    clPublicKey
   );
 
   const signedDeploy = await sign({
@@ -226,6 +204,5 @@ export const signDeployNftWithFee = async (
 
   return {
     deployHash,
-    checksum,
   };
 };

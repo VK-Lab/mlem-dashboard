@@ -1,5 +1,4 @@
 import { CLKeyParameters } from 'casper-js-sdk';
-import { BigNumberish } from 'ethers';
 
 export interface CallConfig {
   useSessionCode: boolean;
@@ -49,6 +48,7 @@ export enum MetadataMutability {
 export enum MintingMode {
   Installer,
   Public,
+  ACL,
 }
 
 export enum BurnMode {
@@ -107,7 +107,6 @@ export type InstallArgs = {
   accessKeyName?: string;
   hashKeyName?: string;
   eventsMode?: EventsMode;
-  mintingFee?: BigNumberish;
 } & ConfigurableVariables;
 
 export interface RegisterArgs {
@@ -117,7 +116,6 @@ export interface RegisterArgs {
 export interface MintArgs {
   owner: CLKeyParameters;
   meta: Record<string, string>;
-  mintingFee?: string;
 }
 
 export interface TokenArgs {

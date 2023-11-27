@@ -19,6 +19,19 @@ export const toCSPR = (rawAmount: number) => {
   }
 };
 
+export const toMotes = (amount: number) => {
+  try {
+    const rawAmount = Big(amount)
+      .times(MOTE_RATE)
+      .round(0, Big.roundDown)
+      .toNumber();
+
+    return rawAmount;
+  } catch (error) {
+    return 0;
+  }
+};
+
 export const hexToNumber = (balanceHex: string): number => {
   return balanceHex ? toCSPR(BigNumber.from(balanceHex).toNumber()) : 0;
 };

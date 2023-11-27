@@ -9,6 +9,7 @@ import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
+import ButtonCustomWithBroker from './ButtonCustomWithBroker';
 import ButtonUpdateModal from './ButtonUpdateModal';
 
 const AdminNftCollectionTable = () => {
@@ -44,10 +45,12 @@ const AdminNftCollectionTable = () => {
           const { mintingMode } = row.original;
 
           const name =
-            mintingMode === MintingMode.Installer
+            mintingMode == MintingMode.Installer
               ? 'Installer'
-              : mintingMode === MintingMode.Public
+              : mintingMode == MintingMode.Public
               ? 'Public'
+              : mintingMode == MintingMode.ACL
+              ? 'ACL (Custom with Broker)'
               : 'Unknown';
 
           return name;
@@ -113,7 +116,7 @@ const AdminNftCollectionTable = () => {
         displayColumnDefOptions={{
           'mrt-row-actions': {
             header: 'Actions', //change header text
-            size: 300, //make actions column wider
+            size: 400, //make actions column wider
           },
         }}
         enableRowActions={true}
@@ -122,6 +125,9 @@ const AdminNftCollectionTable = () => {
             <Box display="flex" gap="10px">
               <ButtonUpdateModal nftCollection={row.original} />
               <ButtonViewTiers nftCollectionId={row.original.id} />
+              {row.original.mintingMode == MintingMode.ACL && (
+                <ButtonCustomWithBroker nftCollection={row.original} />
+              )}
             </Box>
           );
         }}

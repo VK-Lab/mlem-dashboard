@@ -1,5 +1,7 @@
 import { DeployStatusEnum } from "@mlem-user/enums";
 
+import { Broker } from "./broker";
+
 export type NftCollection = {
   id: string;
   name: string;
@@ -17,6 +19,5 @@ export type NftCollection = {
   deployStatus: DeployStatusEnum;
   ownerPublicKey: string;
   nftImageUrl?: string;
-  isAllowMintingFee?: boolean;
-  mintingFee?: number;
+  broker: Broker;
 };

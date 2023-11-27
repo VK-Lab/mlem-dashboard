@@ -35,7 +35,7 @@ import {
   TokenMetadataArgs,
   OwnerReverseLookupMode,
 } from './types';
-import ContractFeeWasm from './wasm/contract.wasm';
+import ContractWasm from './wasm/contract.wasm';
 import MintFeeWasm from './wasm/mint_fee.wasm';
 
 const { Contract } = Contracts;
@@ -45,24 +45,6 @@ export * from './types';
 enum ERRORS {
   CONFLICT_CONFIG = 'Conflicting arguments provided',
 }
-
-const fetchWASM = async (url: string): Promise<Uint8Array> => {
-  return fetch(url, {
-    headers: {
-      'Content-Type': 'application/wasm',
-    },
-  })
-    .then((response) => response.arrayBuffer())
-    .then((bytes) => new Uint8Array(bytes));
-};
-
-const fetchContractWASM = async () => {
-  return fetchWASM(Config.cep78.contractWASM);
-};
-
-const fetchTransferCallWASM = async () => {
-  return fetchWASM(Config.cep78.transferCallWASM);
-};
 
 const convertHashStrToHashBuff = (hashStr: string) => {
   let hashHex = hashStr;
@@ -91,21 +73,13 @@ export class CEP78Client {
     this.contractClient = new Contract(this.casperClient);
   }
 
-  public async installMintingFeeContract(
-    args: InstallArgs & Required<Pick<InstallArgs, 'mintingFee'>>,
-    paymentAmount: string,
-    deploySender: CLPublicKey
-  ) {
-    return this.install(args, paymentAmount, deploySender, ContractFeeWasm);
-  }
-
   public async install(
     args: InstallArgs,
     paymentAmount: string,
     deploySender: CLPublicKey,
     wasm?: Uint8Array
   ) {
-    const wasmToInstall = wasm || (await fetchContractWASM());
+    const wasmToInstall = wasm || ContractWasm;
 
     if (
       args.identifierMode === NFTIdentifierMode.Hash &&
@@ -126,10 +100,6 @@ export class CEP78Client {
       identifier_mode: CLValueBuilder.u8(args.identifierMode),
       metadata_mutability: CLValueBuilder.u8(args.metadataMutability),
     });
-
-    if (args.mintingFee !== undefined) {
-      runtimeArgs.insert('minting_fee', CLValueBuilder.u512(args.mintingFee));
-    }
 
     if (args.jsonSchema !== undefined) {
       runtimeArgs.insert(
@@ -348,7 +318,7 @@ export class CEP78Client {
 
     if (args.contractWhitelist !== undefined) {
       const list = buildKeyHashList(args.contractWhitelist);
-      runtimeArgs.insert('contract_whitelist', CLValueBuilder.list(list));
+      runtimeArgs.insert('acl_whitelist', CLValueBuilder.list(list));
     }
 
     const preparedDeploy = this.contractClient.callEntrypoint(
@@ -416,9 +386,6 @@ export class CEP78Client {
 
     if (config.useSessionCode) {
       runtimeArgs.insert('nft_contract_hash', this.contractHashKey);
-      if (args.mintingFee !== undefined) {
-        runtimeArgs.insert('amount', CLValueBuilder.u512(args.mintingFee));
-      }
 
       const preparedDeploy = this.contractClient.install(
         wasm!,
@@ -498,10 +465,10 @@ export class CEP78Client {
 
     if (config.useSessionCode) {
       runtimeArgs.insert('nft_contract_hash', this.contractHashKey);
-      const wasmToCall = wasm || (await fetchTransferCallWASM());
+      const wasmToCall = wasm;
 
       const preparedDeploy = this.contractClient.install(
-        wasmToCall,
+        wasmToCall!,
         runtimeArgs,
         paymentAmount,
         deploySender,

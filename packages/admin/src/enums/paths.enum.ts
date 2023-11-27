@@ -12,6 +12,7 @@ export enum AdminPaths {
   CREATE_CAMPAIGN = '/admin/campaigns/create',
   NFTS = '/admin/nfts',
   NFT_COLLECTIONS = '/admin/nft-collections',
+  BROKERS = '/admin/brokers',
 }
 
 export enum PublicPaths {

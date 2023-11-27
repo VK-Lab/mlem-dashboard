@@ -32,8 +32,14 @@ export const getTiersByNftCollection = ({
 export const updateNftCollection = ({
   id,
   ...rest
-}: UpdateNftCollectionParams): Promise<UpdateNftCollectionResponse> => {
+}: Partial<UpdateNftCollectionParams>): Promise<UpdateNftCollectionResponse> => {
   return request.put(`/admin/nft-collections/${id}`, rest);
+};
+
+export const deleteBrokerOnNftCollection = (
+  id: string
+): Promise<UpdateNftCollectionResponse> => {
+  return request.delete(`/admin/nft-collections/${id}/broker`);
 };
 
 export const createNftCollection = (
