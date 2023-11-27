@@ -6,9 +6,10 @@ import NextTopLoader from "nextjs-toploader";
 
 import { Providers } from "./providers";
 
+import "swiper/css";
+import "swiper/css/pagination";
+
 import "./globals.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

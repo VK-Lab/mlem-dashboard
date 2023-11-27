@@ -28,7 +28,7 @@ export const CampaignCard = ({ className, campaign }: CampaignCardProps) => {
             priority
           />
         </CardHeader>
-        <CardContent className="mt-4 mx-auto">
+        <CardContent className="my-5 mx-auto">
           <CardTitle className="text-center typo-h3">
             {campaign?.name}
           </CardTitle>

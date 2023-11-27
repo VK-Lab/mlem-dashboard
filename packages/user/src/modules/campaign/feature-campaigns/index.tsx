@@ -1,69 +1,35 @@
 "use client";
 
-import { Button } from "@mlem-user/components/ui/button";
 import { useGetFeaturedCampaigns } from "@mlem-user/services/app/campaign/hooks/useGetFeaturedCampaigns";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Slider from "react-slick";
+import { Pagination, Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { CampaignCard } from "./components/CampaignCard";
 
-type ArrowProp = {
-  className?: string;
-  onClick?: () => void;
-  style?: React.StyleHTMLAttributes<HTMLDivElement>;
-};
-
-const NextArrow = (props: ArrowProp) => {
-  const { onClick, style } = props;
-  return (
-    <div
-      className={`absolute top-1/2 right-[-46px]`}
-      style={{ ...style }}
-      onClick={onClick}
-    >
-      <Button variant="outline" className="p-2 rounded-full">
-        <ChevronRight color="black" />
-      </Button>
-    </div>
-  );
-};
-
-const PrevArrow = (props: ArrowProp) => {
-  const { onClick, style } = props;
-  return (
-    <div
-      className={`absolute top-1/2 left-[-46px]`}
-      style={{ ...style }}
-      onClick={onClick}
-    >
-      <Button variant="outline" className="p-2 rounded-full">
-        <ChevronLeft color="black" />
-      </Button>
-    </div>
-  );
-};
-
 export const FeatureCampaigns = () => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    draggable: false,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-  };
-  const { data } = useGetFeaturedCampaigns();
+  const { data = [] } = useGetFeaturedCampaigns();
 
   return (
     <div className="w-full relative">
-      <Slider {...settings}>
+      <Swiper
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Autoplay, Pagination]}
+        className="mySwiper"
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+      >
         {data?.map((campaign) => (
-          <CampaignCard key={campaign.id} campaign={campaign} />
+          <SwiperSlide key={campaign.id}>
+            <CampaignCard campaign={campaign} />
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </div>
   );
 };
