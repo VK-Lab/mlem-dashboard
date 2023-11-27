@@ -4,9 +4,9 @@ import { useMemo } from "react";
 import { Button } from "@mlem-user/components/ui/button";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
 import { formatDate } from "@mlem-user/lib/date";
+import { cn } from "@mlem-user/lib/utils";
 import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
-import cn from "classnames";
 import dayjs from "dayjs";
 import { Space_Grotesk } from "next/font/google";
 
