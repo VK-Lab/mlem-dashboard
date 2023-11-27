@@ -5,7 +5,7 @@ import _get from 'lodash/get';
 import { useQuery, UseQueryOptions } from 'react-query';
 
 type GetAccountBalanceResponse = {
-  balanace: number;
+  balance: number;
 };
 
 export const useGetAccountBalance = (
@@ -35,7 +35,7 @@ export const useGetAccountBalance = (
       const balanceHex = _get(account, 'balance.hex', '');
 
       return {
-        balanace: hexToNumber(balanceHex),
+        balance: hexToNumber(balanceHex),
       };
     },
     {

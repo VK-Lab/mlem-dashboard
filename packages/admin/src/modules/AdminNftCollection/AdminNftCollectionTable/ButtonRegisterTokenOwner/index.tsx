@@ -28,7 +28,7 @@ const ESTIMATE_FEE = 10;
 const ButtonRegisterTokenOwner = ({ nftCollection }: Props) => {
   const [open, setOpen] = useState(false);
   const { publicKey } = useAccount();
-  const { data: { balanace = 0 } = { balanace: 0 } } = useGetAccountBalance({
+  const { data: { balance = 0 } = { balance: 0 } } = useGetAccountBalance({
     publicKey,
   });
 
@@ -78,7 +78,7 @@ const ButtonRegisterTokenOwner = ({ nftCollection }: Props) => {
           <Box mt="2rem">
             <Box display={'flex'} justifyContent={'space-between'}>
               <Box>Your Balance:</Box>
-              <Box>{balanace} CSPR</Box>
+              <Box>{balance} CSPR</Box>
             </Box>
           </Box>
           <Box mt="1rem">
@@ -94,7 +94,7 @@ const ButtonRegisterTokenOwner = ({ nftCollection }: Props) => {
             onClick={handleOnConfirm}
             autoFocus
             loading={isLoading}
-            disabled={balanace < ESTIMATE_FEE}
+            disabled={balance < ESTIMATE_FEE}
           >
             Confirm
           </LoadingButton>

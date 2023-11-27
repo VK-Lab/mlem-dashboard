@@ -7,26 +7,24 @@ import { DeployContextEnum } from "@mlem-user/enums/deployContext";
 import { DeployTypesEnum } from "@mlem-user/enums/deployTypes";
 import { MutationKeys } from "@mlem-user/enums/mutationKeys";
 import { useAddTransaction } from "@mlem-user/hooks/transaction/use-add-transaction";
-import {
-  signDeployNft,
-  signDeployNftWithFee,
-} from "@mlem-user/lib/cep78/utils";
+import { signDeployBrokerMintNft } from "@mlem-user/lib/broker/utils";
+import { signDeployNft } from "@mlem-user/lib/cep78/utils";
+import { toMotes } from "@mlem-user/lib/format";
 import { createTempNft, updateTempNft } from "@mlem-user/services/app/nft";
 import {
   CreateTempNftParams,
   CreateTempNftResponse,
 } from "@mlem-user/services/app/nft/types";
 import { deploy } from "@mlem-user/services/app/proxy";
+import { Broker } from "@mlem-user/types/broker";
 import { UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { DeployUtil } from "casper-js-sdk";
 import dayjs from "dayjs";
 import _omit from "lodash-es/omit";
 import _pick from "lodash-es/pick";
 
-const ESTIMATED_FEE = 17140849620;
-
 export type UseCreateNFTParams = CreateTempNftParams & {
-  isAllowMintingFee?: boolean;
+  broker: Broker;
   mintingFee?: number;
 };
 
@@ -59,15 +57,17 @@ export const useCreateNFT = (
 
       let deployResponse;
 
-      if (params.isAllowMintingFee) {
-        deployResponse = await signDeployNftWithFee({
-          publicKeyHex: publicKey,
-          name: params.name,
-          nftId: id,
-          tokenAddress: params.tokenAddress,
-          paymentAmount: `${ESTIMATED_FEE}`,
-          mintingFee: params.mintingFee,
-        });
+      if (params.broker) {
+        deployResponse = await signDeployBrokerMintNft(
+          params.broker.contractHash,
+          {
+            publicKeyHex: publicKey,
+            name: params.name,
+            nftId: id,
+            token: params.tokenAddress,
+            amount: toMotes(params.broker.mintingFee) || 0,
+          }
+        );
       } else {
         deployResponse = await signDeployNft({
           publicKeyHex: publicKey,

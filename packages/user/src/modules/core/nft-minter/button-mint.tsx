@@ -1,11 +1,8 @@
-import { useMemo } from "react";
-
 import { useAccount } from "@casperdash/usewallet";
 import { Button, ButtonLoading } from "@mlem-user/components/ui/button";
 import { useToast } from "@mlem-user/components/ui/use-toast";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
 import { ButtonConnect } from "@mlem-user/modules/user/user-header/components/button-connect";
-import { useGetNFTs } from "@mlem-user/services/app/nft/hooks/useGetNFTs";
 
 import { UseCreateNFTParams, useCreateNFT } from "./hooks/use-create-nft";
 import { useGetPendingTransaction } from "./hooks/use-get-pending-transaction";
@@ -30,7 +27,6 @@ export const ButtonMint = ({ params }: Props) => {
   });
 
   const { publicKey } = useAccount();
-  const { data: nfts = [], isLoading: isLoadingNfts } = useGetNFTs();
 
   const handleOnMintClick = () => {
     if (!params) {
@@ -40,20 +36,8 @@ export const ButtonMint = ({ params }: Props) => {
     mutate(params);
   };
 
-  const isOwned = useMemo(() => {
-    return nfts.some((nft) => nft.tokenAddress === params.tokenAddress);
-  }, [nfts, params]);
-
   if (!publicKey) {
     return <ButtonConnect />;
-  }
-
-  if (isLoadingNfts) {
-    return <ButtonLoading>Loading</ButtonLoading>;
-  }
-
-  if (isOwned) {
-    return <Button disabled>Owned</Button>;
   }
 
   const isMinting = isPending || isLoading;

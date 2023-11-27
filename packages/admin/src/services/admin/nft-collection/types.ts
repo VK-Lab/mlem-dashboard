@@ -1,4 +1,5 @@
 import { MintingMode } from '@mlem-admin/contracts/cep78';
+import { DeployStatusEnum } from '@mlem-admin/enums';
 import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { Tier } from '@mlem-admin/types/tier';
 
@@ -20,6 +21,9 @@ export type UpdateNftCollectionParams = {
   description: string;
   benefitIds: string[];
   nftImageUrl: string;
+  brokerId?: string;
+  brokerDeployHash?: string;
+  brokerDeployStatus?: DeployStatusEnum;
 };
 
 export type UpdateNftCollectionResponse = {
@@ -27,12 +31,7 @@ export type UpdateNftCollectionResponse = {
 };
 
 export type CreateNftCollectionParams = Partial<NftCollection> &
-  Pick<
-    NftCollection,
-    'name' | 'totalTokenSupply' | 'symbol' | 'mintingMode'
-  > & {
-    mintingFee?: number;
-  };
+  Pick<NftCollection, 'name' | 'totalTokenSupply' | 'symbol' | 'mintingMode'>;
 
 export type CreateNftCollectionResponse = {
   id: string;

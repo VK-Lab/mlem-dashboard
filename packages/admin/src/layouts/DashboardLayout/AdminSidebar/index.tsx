@@ -15,6 +15,11 @@ const MENU_ITEMS = [
     icon: <AppsIcon />,
   },
   {
+    name: 'Brokers',
+    path: AdminPaths.BROKERS,
+    icon: <AppsIcon />,
+  },
+  {
     name: 'Benefit Categories',
     path: AdminPaths.BENEFIT_CATEGORIES,
     icon: <AppsIcon />,

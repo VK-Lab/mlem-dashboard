@@ -4,6 +4,7 @@ import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
 import { useMutateUpdateNftCollection } from '@mlem-admin/hooks/mutations';
 import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import SelectBenefitsField from '@mlem-admin/modules/core/SelectBenefitsField';
+import SelectBrokerField from '@mlem-admin/modules/core/SelectBrokerField';
 import { UpdateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
 import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { LoadingButton } from '@mui/lab';
@@ -69,7 +70,7 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Update Nft
+            Update NFT Collection
           </Typography>
           <Box mt={2}>
             <FormContainer
@@ -78,6 +79,7 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
                 description: nftCollection.description,
                 benefitIds: nftCollection.benefitIds,
                 nftImageUrl: nftCollection.nftImageUrl,
+                brokerId: nftCollection.brokerId,
               }}
               onSuccess={handleOnSubmitForm}
             >
@@ -87,6 +89,10 @@ const ButtonUpdateModal = ({ nftCollection }: ButtonUpdateModalProps) => {
                 name="nftImageUrl"
                 label="NFT Image URL"
               />
+
+              <Box mt="1rem">
+                <SelectBrokerField name="brokerId" />
+              </Box>
 
               <Box mt="1rem">
                 <SelectBenefitsField name="benefitIds" />
