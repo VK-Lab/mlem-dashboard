@@ -34,7 +34,7 @@ export const signDeployBrokerMintNft = async (
   const checksum = btoa(JSON.stringify(meta));
   BrokerClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
 
-  const deploy = await BrokerClientInstance.mint(
+  const deploy = BrokerClientInstance.mint(
     {
       token: token,
       meta: {

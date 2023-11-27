@@ -39,9 +39,7 @@ export const useMutateAssignContractBroker = (
       }
 
       if (!params.brokerId) {
-        await deleteBrokerOnNftCollection({
-          id: params.nftCollectionId,
-        });
+        await deleteBrokerOnNftCollection(params.nftCollectionId);
 
         return;
       }

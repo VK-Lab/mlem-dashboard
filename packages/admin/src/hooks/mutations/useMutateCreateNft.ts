@@ -8,13 +8,9 @@ import {
   CreateNftResponse,
 } from '@mlem-admin/services/admin/nft/types';
 import { signDeployNft } from '@mlem-admin/utils/casper/contract';
-import _omit from 'lodash/omit';
 import { useMutation, UseMutationOptions } from 'react-query';
 
-export type UseCreateNftParams = CreateNftParams & {
-  isAllowMintingFee?: boolean;
-  mintingFee?: number;
-};
+export type UseCreateNftParams = CreateNftParams;
 
 export const useMutateCreateNft = (
   options?: UseMutationOptions<
@@ -54,7 +50,7 @@ export const useMutateCreateNft = (
       }
 
       return updateNft({
-        ..._omit(params, ['isAllowMintingFee', 'mintingFee']),
+        ...params,
         id,
         deployHash,
         deployStatus: DeployStatusEnum.PENDING,

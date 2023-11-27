@@ -33,7 +33,7 @@ type ButtonUpdateModalProps = {
 
 const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
   const queryClient = useQueryClient();
-  const { toastSuccess } = useI18nToast();
+  const { toastSuccess, toastError } = useI18nToast();
   const [open, setOpen] = useState(false);
   const { data: { items: brokers = [] } = { items: [], total: 0 } } =
     useGetBrokers();
@@ -44,6 +44,9 @@ const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
         queryKey: [QueryKeys.NFT_COLLECTIONS],
       });
       handleClose();
+    },
+    onError: () => {
+      toastError('update_nft_collection_error');
     },
   });
 

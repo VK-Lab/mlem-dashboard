@@ -46,20 +46,6 @@ enum ERRORS {
   CONFLICT_CONFIG = 'Conflicting arguments provided',
 }
 
-const fetchWASM = async (url: string): Promise<Uint8Array> => {
-  return fetch(url, {
-    headers: {
-      'Content-Type': 'application/wasm',
-    },
-  })
-    .then((response) => response.arrayBuffer())
-    .then((bytes) => new Uint8Array(bytes));
-};
-
-const fetchTransferCallWASM = async () => {
-  return fetchWASM(Config.cep78.transferCallWASM);
-};
-
 const convertHashStrToHashBuff = (hashStr: string) => {
   let hashHex = hashStr;
   if (hashStr.startsWith('hash-')) {
@@ -479,10 +465,10 @@ export class CEP78Client {
 
     if (config.useSessionCode) {
       runtimeArgs.insert('nft_contract_hash', this.contractHashKey);
-      const wasmToCall = wasm || (await fetchTransferCallWASM());
+      const wasmToCall = wasm;
 
       const preparedDeploy = this.contractClient.install(
-        wasmToCall,
+        wasmToCall!,
         runtimeArgs,
         paymentAmount,
         deploySender,
