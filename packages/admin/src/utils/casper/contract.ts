@@ -29,7 +29,6 @@ export type SignDeployNftCollectionParams = {
   symbol: string;
   totalTokenSupply: number;
   mintingMode: MintingMode;
-  mintingFee?: string | number;
 };
 
 export type SignDeployNftParams = {

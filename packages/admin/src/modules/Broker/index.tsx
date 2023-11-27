@@ -1,7 +1,7 @@
 import DashboardLayout from '@mlem-admin/layouts/DashboardLayout';
 import { Box, Container } from '@mui/material';
 
-import AdminNftCollectionTable from './BrokerTable';
+import BrokerTable from './BrokerTable';
 import ButtonCreateModal from './ButtonCreateModal';
 
 const Broker = () => {
@@ -12,7 +12,7 @@ const Broker = () => {
           <ButtonCreateModal />
         </Box>
         <Box mt="2rem">
-          <AdminNftCollectionTable />
+          <BrokerTable />
         </Box>
       </Container>
     </DashboardLayout>

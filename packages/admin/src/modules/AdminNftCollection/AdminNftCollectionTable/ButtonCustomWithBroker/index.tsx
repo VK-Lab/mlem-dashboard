@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { DeployStatusEnum } from '@mlem-admin/enums';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
 import { useMutateAssignContractBroker } from '@mlem-admin/hooks/mutations/useMutateAssignContractBroker';
+import { useMutateDeleteBrokerOnNftCollection } from '@mlem-admin/hooks/mutations/useMutateDeleteBrokerOnNftCollection';
 import { useGetBrokers } from '@mlem-admin/hooks/queries/useGetBrokers';
 import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import SelectBrokerField from '@mlem-admin/modules/core/SelectBrokerField';
@@ -37,6 +38,19 @@ const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
   const [open, setOpen] = useState(false);
   const { data: { items: brokers = [] } = { items: [], total: 0 } } =
     useGetBrokers();
+
+  const deleteBrokerMutation = useMutateDeleteBrokerOnNftCollection({
+    onSuccess: async () => {
+      toastSuccess('update_nft_collection_success');
+      await queryClient.invalidateQueries({
+        queryKey: [QueryKeys.NFT_COLLECTIONS],
+      });
+      handleClose();
+    },
+    onError: () => {
+      toastError('update_nft_collection_error');
+    },
+  });
   const assignContractBrokerMutation = useMutateAssignContractBroker({
     onSuccess: async () => {
       toastSuccess('update_nft_collection_success');
@@ -57,10 +71,23 @@ const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
       (broker) => broker.id === updateParams.brokerId
     );
 
+    if (!broker) {
+      if (!nftCollection.brokerId) {
+        toastError('update_nft_collection_error');
+        return;
+      }
+
+      deleteBrokerMutation.mutate({
+        nftCollectionId: nftCollection.id,
+      });
+
+      return;
+    }
+
     assignContractBrokerMutation.mutate({
       ...updateParams,
       nftCollectionId: nftCollection.id,
-      brokerContractHash: broker?.contractHash,
+      brokerContractHash: broker.contractHash,
       nftContractHash: nftCollection.tokenAddress,
     });
   };
@@ -69,7 +96,7 @@ const ButtonCustomWithBroker = ({ nftCollection }: ButtonUpdateModalProps) => {
     <Box>
       <Button variant="contained" onClick={handleOpen}>
         {nftCollection.brokerDeployStatus === DeployStatusEnum.PENDING
-          ? 'Broker (Pending)'
+          ? 'Broker (Integrating)'
           : 'Broker'}
       </Button>
       <Modal
