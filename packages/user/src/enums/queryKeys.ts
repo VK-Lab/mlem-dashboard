@@ -15,4 +15,5 @@ export enum QueryKeys {
   GET_RUNNING_CAMPAIGNS = "get-running-campaigns",
   CAMPAIGN = "campaign",
   GET_CAMPAIGNS = "get-campaigns",
+  WHITELIST = "whitelist",
 }

@@ -6,6 +6,7 @@ import { CreateCampaignParams } from '@mlem-admin/services/admin/campaign/types'
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import {
+  CheckboxElement,
   DatePickerElement,
   FormContainer,
   SelectElement,
@@ -75,6 +76,10 @@ const NftForm = ({ onSuccess }: Props) => {
       </Box>
       <Box mt="18px">
         <DatePickerElement name="endDate" label="End Date" required />
+      </Box>
+
+      <Box mt="1rem">
+        <CheckboxElement name="isOpenWhitelist" label="Is Open Whitelist" />
       </Box>
 
       <Box mt="1rem">
