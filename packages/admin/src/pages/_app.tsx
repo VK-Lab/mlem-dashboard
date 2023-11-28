@@ -23,7 +23,8 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
-
+import '@uiw/react-md-editor/markdown-editor.css';
+import '@uiw/react-markdown-preview/markdown.css';
 import '@mlem-admin/assets/styles.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
