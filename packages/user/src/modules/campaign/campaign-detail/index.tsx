@@ -132,7 +132,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                         Max entry per Wallet
                       </dt>
                       <dd className="mt-1 h-12 text-gray-50 text-5xl leading-none font-semibold">
-                        3
+                        1
                       </dd>
                     </dl>
                   </div>
@@ -144,7 +144,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                         Price
                       </dt>
                       <dd className="mt-1 h-12 text-gray-50 text-2xl leading-none font-semibold items-center flex">
-                        1,500 CSPR
+                        299 CSPR
                       </dd>
                     </dl>
                   </div>

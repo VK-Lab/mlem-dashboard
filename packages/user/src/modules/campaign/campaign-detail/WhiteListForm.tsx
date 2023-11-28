@@ -80,7 +80,7 @@ const WhiteListForm = ({ campaignId }: Props) => {
             <input
               {...formMethods.register("email")}
               type="email"
-              placeholder="Enter your email"
+              placeholder="Enter your email to receive WL"
               aria-label="Email Address"
               required
               className="bg-transparent border-grey-500 border-2 mb-2 mr-2 placeholder:italic placeholder-gray-50 py-1 px-2 text-grey[500] h-12 w-64 sm:mb-0 rounded"
