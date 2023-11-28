@@ -85,3 +85,11 @@
       after:absolute after:bg-gradient-to-b after:from-red-900 after:to-stone-900 after:w-full after:h-full after:top-0 after:right-full;
   } 
 }
+
+.markdown--wrapper ul {
+  margin-top: 8px;
+}
+
+.markdown--wrapper ul li {
+  list-style: inside;
+}

@@ -68,18 +68,21 @@ const WhiteListForm = ({ campaignId }: Props) => {
   return (
     <div>
       {data?.isExisted ? (
-        <div className="mt-10 flex justify-center">
-          <div className="max-w-md">
-            You are already registered the Whitelist. Meanwhile please join our
-            <a
-              href="https://t.me/CasperDash_Official"
-              target="_blank"
-              rel="noreferrer"
-              className="ml-1 text-blue-500"
-            >
-              Telegram Group
-            </a>{" "}
-            for upcoming updates.
+        <div className="mt-10 flex">
+          <div className="typo-h6">
+            <p className="max-w-md">
+              You are already registered the Whitelist. Meanwhile please join
+              our{" "}
+              <a
+                href="https://t.me/CasperDash_Official"
+                rel="nofollow noopener noreferrer"
+                target="_blank"
+                className="text-red-600 underline"
+              >
+                Telegram Group
+              </a>{" "}
+              for upcoming updates.
+            </p>
           </div>
         </div>
       ) : (

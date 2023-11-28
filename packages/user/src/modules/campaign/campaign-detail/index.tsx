@@ -55,7 +55,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
     <div>
       <div
         style={{
-          minHeight: "75vh",
+          minHeight: "65vh",
         }}
         className="bg-campaign"
       >
@@ -66,9 +66,9 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
             </div>
           </div>
         </div>
-        <div className="md:w-3/5 text-center px-6 text-gray-50 pb-12 pt-12 md:justify-center md:flex md:flex-col">
+        <div className="md:w-3/5 px-16 text-gray-50 pb-12 pt-12 md:justify-center md:flex md:flex-col">
           <div>
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-2xl">
               <h1
                 className={cn(font.className, "font-bold text-2xl md:text-5xl")}
               >
@@ -77,7 +77,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
               <h2 className={cn(font.className, "font-light text-lg mt-2")}>
                 {data?.shortDescription}
               </h2>
-              <div className="text-center">
+              <div className="mb-3">
                 <h5
                   className="my-4 rounded p-2 px-4 inline-block mx-auto"
                   style={{
@@ -88,8 +88,8 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                   {formatDate(data?.endDate, "MMMM D, YYYY")}
                 </h5>
               </div>
-              <div className="text-sm description mx-auto prose prose-invert max-w-sm">
-                <Markdown className="text-gray-300 prose-h2:text-gray-300 text-left">
+              <div className="text-sm description max-w-xl">
+                <Markdown className="markdown--wrapper text-gray-300">
                   {data?.description}
                 </Markdown>
               </div>
@@ -112,9 +112,9 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                   </div>
                 </div>
               </div> */}
-              <div className="mx-auto max-w-xl grid gap-1 grid-cols-3 mb-4">
+              <div className="max-w-xl grid gap-1 grid-cols-3 mb-4">
                 <div className="">
-                  <div className="px-4 py-1">
+                  <div className="px-0 py-1">
                     <dl>
                       <dt className="text-sm leading-5 text-gray-100 font-medium">
                         Total Supply
@@ -126,7 +126,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                   </div>
                 </div>
                 <div className="">
-                  <div className="px-4 py-1">
+                  <div className="px-0 py-1">
                     <dl>
                       <dt className="text-sm leading-5 text-gray-100 font-medium">
                         Max entry per Wallet
@@ -138,7 +138,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                   </div>
                 </div>
                 <div className="">
-                  <div className="px-4 py-1">
+                  <div className="px-0 py-1">
                     <dl>
                       <dt className="text-sm leading-5 text-gray-100 font-medium">
                         Price
