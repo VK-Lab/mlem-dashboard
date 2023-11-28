@@ -10,12 +10,7 @@ export default function Campaign({ params }: Props) {
   return (
     <BaseContainer>
       <CampaignDetail campaignId={id} />
-      <div className="my-10">
-        <div className="typo-h4">Explore More</div>
-        <div className="mt-4">
-          <ExplorerCampaigns excludedIds={[id]} />
-        </div>
-      </div>
+      <ExplorerCampaigns excludedIds={[id]} />
     </BaseContainer>
   );
 }

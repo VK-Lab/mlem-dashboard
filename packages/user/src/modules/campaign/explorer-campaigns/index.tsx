@@ -22,11 +22,20 @@ export const ExplorerCampaigns = ({ excludedIds }: Props) => {
     return null;
   }
 
+  if (!filteredCampaigns?.length) {
+    return null;
+  }
+
   return (
-    <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-      {filteredCampaigns?.map((item) => (
-        <CampaignItem key={item.id} campaign={item} />
-      ))}
+    <div className="my-10">
+      <div className="typo-h4">Explore More</div>
+      <div className="mt-4">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {filteredCampaigns?.map((item) => (
+            <CampaignItem key={item.id} campaign={item} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
