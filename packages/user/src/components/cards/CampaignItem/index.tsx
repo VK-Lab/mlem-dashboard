@@ -14,6 +14,7 @@ import Link from "next/link";
 type CampaignItemProps = {
   className?: string;
   campaign: Campaign;
+  isShowStatus?: boolean;
 };
 
 const statusColorMap = {
@@ -22,24 +23,31 @@ const statusColorMap = {
   ended: "bg-gray-500",
 };
 
-export const CampaignItem = ({ className, campaign }: CampaignItemProps) => {
+export const CampaignItem = ({
+  className,
+  campaign,
+  isShowStatus = true,
+}: CampaignItemProps) => {
   return (
     <Card className={cn("h-[300px] w-[240px] relative capitalize", className)}>
       <Link key={`item-${campaign?.id}`} href={`/campaigns/${campaign?.id}`}>
-        <Badge
-          className={cn(
-            "absolute z-10 top-2 right-2",
-            statusColorMap[campaign.status as keyof typeof statusColorMap]
-          )}
-        >
-          {campaign.status}
-        </Badge>
+        {isShowStatus && (
+          <Badge
+            className={cn(
+              "absolute z-10 top-2 right-2",
+              statusColorMap[campaign.status as keyof typeof statusColorMap]
+            )}
+          >
+            {campaign.status}
+          </Badge>
+        )}
         <CardHeader className="relative h-[180px]">
           <Image
             src={campaign?.thumbnailUrl || campaign?.imageUrl}
             fill={true}
             alt="Campaign Image"
             className="p-2 rounded-xl"
+            objectFit="contain"
           />
         </CardHeader>
         <CardContent className="mt-4">

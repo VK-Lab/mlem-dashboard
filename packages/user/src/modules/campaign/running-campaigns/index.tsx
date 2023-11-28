@@ -93,7 +93,7 @@ export const RunningCampaigns = () => {
           >
             {data?.map((campaign) => (
               <SwiperSlide key={`campaign-${campaign.id}`}>
-                <CampaignItem campaign={campaign} />
+                <CampaignItem campaign={campaign} isShowStatus={false} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -105,7 +105,11 @@ export const RunningCampaigns = () => {
       ) : (
         <div className="mt-10 flex items-center gap-10 flex-wrap justify-center md:justify-start">
           {data?.map((campaign) => (
-            <CampaignItem key={`campaign-${campaign.id}`} campaign={campaign} />
+            <CampaignItem
+              key={`campaign-${campaign.id}`}
+              campaign={campaign}
+              isShowStatus={false}
+            />
           ))}
         </div>
       )}
