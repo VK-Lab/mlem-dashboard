@@ -66,7 +66,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
             </div>
           </div>
         </div>
-        <div className="md:w-3/5 px-16 text-gray-50 pb-12 pt-12 md:justify-center md:flex md:flex-col">
+        <div className="md:w-3/5 px-2 md:px-16 text-gray-50 pb-12 pt-12 md:justify-center md:flex md:flex-col">
           <div>
             <div className="max-w-2xl">
               <h1
@@ -116,10 +116,10 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 <div className="">
                   <div className="px-0 py-1">
                     <dl>
-                      <dt className="text-sm leading-5 text-gray-100 font-medium">
+                      <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
                         Total Supply
                       </dt>
-                      <dd className="mt-1 h-12 text-gray-50 text-5xl leading-none font-semibold">
+                      <dd className="mt-1 h-12 text-gray-50 text-4xl md:text-5xl leading-none font-semibold">
                         99
                       </dd>
                     </dl>
@@ -128,10 +128,10 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 <div className="">
                   <div className="px-0 py-1">
                     <dl>
-                      <dt className="text-sm leading-5 text-gray-100 font-medium">
+                      <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
                         Max entry per Wallet
                       </dt>
-                      <dd className="mt-1 h-12 text-gray-50 text-5xl leading-none font-semibold">
+                      <dd className="mt-1 h-12 text-gray-50 text-4xl md:text-5xl leading-none font-semibold">
                         1
                       </dd>
                     </dl>
@@ -140,10 +140,10 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 <div className="">
                   <div className="px-0 py-1">
                     <dl>
-                      <dt className="text-sm leading-5 text-gray-100 font-medium">
+                      <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
                         Price
                       </dt>
-                      <dd className="mt-1 h-12 text-gray-50 text-2xl leading-none font-semibold items-center flex">
+                      <dd className="mt-1 h-12 text-gray-50 text-xl md:text-2xl leading-none font-semibold items-center flex">
                         299 CSPR
                       </dd>
                     </dl>
