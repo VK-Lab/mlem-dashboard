@@ -19,13 +19,14 @@ export const CampaignCard = ({ className, campaign }: CampaignCardProps) => {
   return (
     <Link href={`/campaigns/${campaign?.id}`}>
       <Card className={cn("w-full", className)}>
-        <CardHeader className="relative h-[400px]">
+        <CardHeader className="relative h-[400px] ">
           <Image
             src={campaign?.imageUrl || ""}
-            fill={true}
             alt="Campaign Image"
+            fill={true}
             className="p-2 rounded-xl"
             priority
+            objectFit="contain"
           />
         </CardHeader>
         <CardContent className="my-5 mx-auto">
