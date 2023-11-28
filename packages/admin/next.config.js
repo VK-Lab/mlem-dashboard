@@ -1,7 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const removeImports = require('next-remove-imports')();
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { i18n } = require('./next-i18next.config');
 
-module.exports = {
+module.exports = removeImports({
   i18n,
   reactStrictMode: false,
   experimental: {
@@ -84,4 +87,4 @@ module.exports = {
 
     return config;
   },
-};
+});

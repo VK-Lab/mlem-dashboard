@@ -19,6 +19,7 @@ import {
 } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
+import MarkdownField from './MarkdownField';
 import { StyledTextFieldElement } from './styled';
 
 const style = {
@@ -26,7 +27,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 600,
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
@@ -91,7 +92,10 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
               onSuccess={handleOnSubmitForm}
             >
               <StyledTextFieldElement name="name" label="Name" />
-              <StyledTextFieldElement name="description" label="Description" />
+              <Box mt="1rem">
+                <Box>Description</Box>
+                <MarkdownField />
+              </Box>
               <StyledTextFieldElement name="imageUrl" label="Image URL" />
               <StyledTextFieldElement
                 name="thumbnailUrl"
