@@ -95,61 +95,53 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
               </div>
             </div>
             <div className="mt-7 mb-12">
-              {/* <div className="mx-auto max-w-md progressbar-wrapper">
-                <div className="relative pt-1">
-                  <div className="flex mb-1 items-center justify-center">
-                    <div className="text-center">
-                      <span className="text-xs font-semibold inline-block text-gray-200">
-                        0 / 99
-                      </span>
+              {!data?.isOpenWhitelist && (
+                <>
+                  {/* <div className="mx-auto max-w-md progressbar-wrapper">
+                    <div className="relative pt-1">
+                      <div className="flex mb-1 items-center justify-center">
+                        <div className="text-center">
+                          <span className="text-xs font-semibold inline-block text-gray-200">
+                            0 / 99
+                          </span>
+                        </div>
+                      </div>
+                      <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                        <div
+                          style={{ width: "70%" }}
+                          className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-700-X bg-gradient-to-r from-yellow-300 to-pink-600"
+                        ></div>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div className="max-w-xl grid gap-1 grid-cols-3 mb-4">
+                    <div className="">
+                      <div className="px-0 py-1">
+                        <dl>
+                          <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
+                            Max entry per Wallet
+                          </dt>
+                          <dd className="mt-1 h-12 text-gray-50 text-4xl md:text-5xl leading-none font-semibold">
+                            1
+                          </dd>
+                        </dl>
+                      </div>
+                    </div>
+                    <div className="">
+                      <div className="px-0 py-1">
+                        <dl>
+                          <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
+                            Price
+                          </dt>
+                          <dd className="mt-1 h-12 text-gray-50 text-xl md:text-2xl leading-none font-semibold items-center flex">
+                            299 CSPR
+                          </dd>
+                        </dl>
+                      </div>
                     </div>
                   </div>
-                  <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                    <div
-                      style={{ width: "70%" }}
-                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-700-X bg-gradient-to-r from-yellow-300 to-pink-600"
-                    ></div>
-                  </div>
-                </div>
-              </div> */}
-              <div className="max-w-xl grid gap-1 grid-cols-3 mb-4">
-                <div className="">
-                  <div className="px-0 py-1">
-                    <dl>
-                      <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
-                        Total Supply
-                      </dt>
-                      <dd className="mt-1 h-12 text-gray-50 text-4xl md:text-5xl leading-none font-semibold">
-                        99
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-                <div className="">
-                  <div className="px-0 py-1">
-                    <dl>
-                      <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
-                        Max entry per Wallet
-                      </dt>
-                      <dd className="mt-1 h-12 text-gray-50 text-4xl md:text-5xl leading-none font-semibold">
-                        1
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-                <div className="">
-                  <div className="px-0 py-1">
-                    <dl>
-                      <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
-                        Price
-                      </dt>
-                      <dd className="mt-1 h-12 text-gray-50 text-xl md:text-2xl leading-none font-semibold items-center flex">
-                        299 CSPR
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-              </div>
+                </>
+              )}
             </div>
             {!publicKey ? (
               <ButtonConnect
