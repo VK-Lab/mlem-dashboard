@@ -2,7 +2,7 @@ import { useAccount } from "@casperdash/usewallet";
 import { Button, ButtonLoading } from "@mlem-user/components/ui/button";
 import { useToast } from "@mlem-user/components/ui/use-toast";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
-import { ButtonConnect } from "@mlem-user/modules/user/user-header/components/button-connect";
+import { ButtonConnect } from "@mlem-user/modules/core/button-connect";
 
 import { UseCreateNFTParams, useCreateNFT } from "./hooks/use-create-nft";
 import { useGetPendingTransaction } from "./hooks/use-get-pending-transaction";
