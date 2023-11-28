@@ -89,7 +89,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 </h5>
               </div>
               <div className="text-sm description mx-auto prose prose-invert max-w-sm">
-                <Markdown className="text-gray-300 prose-h2:text-gray-300">
+                <Markdown className="text-gray-300 prose-h2:text-gray-300 text-left">
                   {data?.description}
                 </Markdown>
               </div>
