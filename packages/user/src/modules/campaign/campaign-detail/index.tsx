@@ -88,8 +88,8 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                   {formatDate(data?.endDate, "MMMM D, YYYY")}
                 </h5>
               </div>
-              <div className="text-sm description max-w-xl mx-auto">
-                <Markdown className="text-gray-300">
+              <div className="text-sm description mx-auto prose prose-invert max-w-sm">
+                <Markdown className="text-gray-300 prose-h2:text-gray-300">
                   {data?.description}
                 </Markdown>
               </div>
