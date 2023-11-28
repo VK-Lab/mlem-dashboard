@@ -45,7 +45,7 @@ export const CampaignItem = ({ className, campaign }: CampaignItemProps) => {
         <CardContent className="mt-4">
           <CardTitle className="line-clamp-1">{campaign?.name}</CardTitle>
           <CardDescription className="mt-2 truncate line-clamp-2 text-ellipsis overflow-hidden">
-            {campaign?.description}
+            {campaign?.shortDescription}
           </CardDescription>
         </CardContent>
       </Link>

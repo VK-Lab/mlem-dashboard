@@ -33,7 +33,7 @@ export const CampaignCard = ({ className, campaign }: CampaignCardProps) => {
             {campaign?.name}
           </CardTitle>
           <CardDescription className="text-center mt-4">
-            {campaign?.description}
+            {campaign?.shortDescription}
           </CardDescription>
         </CardContent>
       </Card>

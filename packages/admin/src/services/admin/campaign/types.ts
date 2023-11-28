@@ -22,6 +22,7 @@ export type UpdateCampaignParams = {
   endDate?: Dayjs | string;
   type?: string;
   isOpenWhitelist?: boolean;
+  shortDescription?: string;
 };
 
 export type UpdateCampaignResponse = {
