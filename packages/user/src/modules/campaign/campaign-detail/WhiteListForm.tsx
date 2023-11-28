@@ -69,7 +69,18 @@ const WhiteListForm = ({ campaignId }: Props) => {
     <div>
       {data?.isExisted ? (
         <div className="mt-10 flex justify-center">
-          <div className="typo-h4">You are already in the whitelist!</div>
+          <div className="max-w-md">
+            You are already registered the Whitelist. Meanwhile please join our
+            <a
+              href="https://t.me/CasperDash_Official"
+              target="_blank"
+              rel="noreferrer"
+              className="ml-1 text-blue-500"
+            >
+              Telegram Group
+            </a>{" "}
+            for upcoming updates.
+          </div>
         </div>
       ) : (
         <div className="mt-10 flex justify-center">
