@@ -88,10 +88,16 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
                 imageUrl: campaign.imageUrl,
                 thumbnailUrl: campaign.thumbnailUrl,
                 isOpenWhitelist: campaign.isOpenWhitelist,
+                shortDescription: campaign.shortDescription || '',
               }}
               onSuccess={handleOnSubmitForm}
             >
               <StyledTextFieldElement name="name" label="Name" />
+              <StyledTextFieldElement
+                name="shortDescription"
+                label="Short Description"
+              />
+
               <Box mt="1rem">
                 <Box>Description</Box>
                 <MarkdownField />

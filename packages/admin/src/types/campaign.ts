@@ -15,4 +15,5 @@ export type Campaign = {
   imageUrl?: string;
   thumbnailUrl?: string;
   isOpenWhitelist?: boolean;
+  shortDescription?: string;
 };
