@@ -103,7 +103,7 @@ export const RunningCampaigns = () => {
           />
         </div>
       ) : (
-        <div className="mt-10 flex items-center gap-10">
+        <div className="mt-10 flex items-center gap-10 flex-wrap justify-center md:justify-start">
           {data?.map((campaign) => (
             <CampaignItem key={`campaign-${campaign.id}`} campaign={campaign} />
           ))}
