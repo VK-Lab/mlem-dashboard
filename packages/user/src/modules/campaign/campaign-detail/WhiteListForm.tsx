@@ -86,7 +86,7 @@ const WhiteListForm = ({ campaignId }: Props) => {
           </div>
         </div>
       ) : (
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex">
           <form
             className="sm:flex justify-center"
             onSubmit={formMethods.handleSubmit(handleOnSubmit)}
