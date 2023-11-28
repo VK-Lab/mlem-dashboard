@@ -75,7 +75,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 {data?.name}
               </h1>
               <h2 className={cn(font.className, "font-light text-lg mt-2")}>
-                Where Royalty Revives Hand-Drawn NFT Greatness!
+                {data?.shortDescription}
               </h2>
               <div className="text-center">
                 <h5
