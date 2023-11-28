@@ -20,4 +20,5 @@ export type Campaign = {
   benefitIds: string[];
   nftCollections: NftCollection[];
   isOpenWhitelist?: boolean;
+  shortDescription?: string;
 };

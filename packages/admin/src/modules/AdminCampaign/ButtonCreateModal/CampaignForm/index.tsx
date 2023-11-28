@@ -14,6 +14,7 @@ import {
 import { useQueryClient } from 'react-query';
 
 import { StyledTextFieldElement } from './styled';
+import MarkdownField from '../../AdminCampaignTable/ButtonUpdateModal/MarkdownField';
 
 type Props = {
   onSuccess?: () => void;
@@ -50,11 +51,16 @@ const NftForm = ({ onSuccess }: Props) => {
         nftCollectionIds: undefined,
         thumbnailUrl: undefined,
         type: 'free_mint',
+        shortDescription: undefined,
       }}
       onSuccess={handleOnSubmitForm}
     >
       <StyledTextFieldElement name="name" label="Name" required />
-      <StyledTextFieldElement name="description" label="Description" required />
+      <StyledTextFieldElement
+        name="shortDescription"
+        label="Short Description"
+      />
+      <MarkdownField />
       <Box mt="1rem">
         <SelectElement
           label="Type"
