@@ -11,6 +11,7 @@ import { ButtonConnect } from "@mlem-user/modules/user/user-header/components/bu
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
 import dayjs from "dayjs";
 import { Space_Grotesk } from "next/font/google";
+import Markdown from "react-markdown";
 
 import WhiteListForm from "./WhiteListForm";
 
@@ -88,8 +89,9 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 </h5>
               </div>
               <div className="text-sm description max-w-xl mx-auto">
-                <p className="text-gray-300">{data?.description}</p>
-                {/* <p>{data?.description}</p> */}
+                <Markdown className="text-gray-300">
+                  {data?.description}
+                </Markdown>
               </div>
             </div>
             <div className="mt-7 mb-12">
