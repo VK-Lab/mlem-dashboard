@@ -1,6 +1,7 @@
 "use client";
 
 import { useAccount } from "@casperdash/usewallet";
+
 import { GradientAvatar } from "@mlem-user/components/avatar/gradient-avatar";
 import { NFTAsset } from "@mlem-user/components/nft-asset";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";

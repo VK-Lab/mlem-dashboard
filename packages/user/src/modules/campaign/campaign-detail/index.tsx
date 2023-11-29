@@ -10,8 +10,8 @@ import { Button } from "@mlem-user/components/ui/button";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
 import { formatDate } from "@mlem-user/lib/date";
 import { cn } from "@mlem-user/lib/utils";
-import { ButtonConnect } from "@mlem-user/modules/core/button-connect";
-import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
+import { ButtonConnect } from "@mlem-user/modules/@core/button-connect";
+import { NFTMinter } from "@mlem-user/modules/@core/nft-minter";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
 import { useGetTotalWhitelistUsers } from "@mlem-user/services/app/campaign/hooks/useGetTotalWhitelistUsers";
 

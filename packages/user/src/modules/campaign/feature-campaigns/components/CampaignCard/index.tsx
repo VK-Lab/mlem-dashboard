@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import {
   Card,
   CardContent,
@@ -7,8 +10,6 @@ import {
 } from "@mlem-user/components/ui/card";
 import { Campaign } from "@mlem-user/types/campaign";
 import { cn } from "@mlem-user/utils";
-import Image from "next/image";
-import Link from "next/link";
 
 type CampaignCardProps = {
   className?: string;

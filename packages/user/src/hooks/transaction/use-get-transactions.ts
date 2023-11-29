@@ -1,3 +1,10 @@
+import {
+  UseQueryOptions,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import _map from "lodash-es/map";
+
 import { DeployStatusEnum } from "@mlem-user/enums";
 import { DeployContextEnum } from "@mlem-user/enums/deployContext";
 import { QueryKeys } from "@mlem-user/enums/queryKeys";
@@ -5,12 +12,6 @@ import { TransactionHistoryStorage } from "@mlem-user/lib/localForage/transactio
 import { getDeployStatuses } from "@mlem-user/services/casperdash/deploysStatus/deploysStatus.service";
 import { DeployStatus } from "@mlem-user/services/casperdash/deploysStatus/type";
 import { Transaction } from "@mlem-user/types/transaction";
-import {
-  UseQueryOptions,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
-import _map from "lodash-es/map";
 
 export const useGetTransactions = (
   publicKey?: string | null,

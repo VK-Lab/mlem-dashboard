@@ -3,11 +3,12 @@
 import { useCallback, useEffect } from "react";
 
 import { useAccount } from "@casperdash/usewallet";
+import _map from "lodash-es/map";
+
 import { Config } from "@mlem-user/config";
 import { DeployStatusEnum } from "@mlem-user/enums";
 import { TransactionHistoryStorage } from "@mlem-user/lib/localForage/transaction-history";
 import { Transaction } from "@mlem-user/types/transaction";
-import _map from "lodash-es/map";
 
 import { Message, useEventSource } from "./hooks/use-event-source";
 

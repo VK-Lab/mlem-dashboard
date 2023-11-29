@@ -3,11 +3,12 @@
 
 import { Ref, forwardRef, useRef } from "react";
 
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import { CampaignItem } from "@mlem-user/components/cards/CampaignItem";
 import { Button } from "@mlem-user/components/ui/button";
 import { useGetRunningCampaigns } from "@mlem-user/services/app/campaign/hooks/useGetRunningCampaigns";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 type ArrowProp = {
   className?: string;

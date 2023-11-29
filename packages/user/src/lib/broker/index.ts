@@ -1,4 +1,3 @@
-import { Config } from "@mlem-user/config";
 import {
   CLKey,
   CLPublicKey,
@@ -6,6 +5,8 @@ import {
   Contracts,
   RuntimeArgs,
 } from "casper-js-sdk";
+
+import { Config } from "@mlem-user/config";
 
 import { MintArgs } from "./types";
 import MintWasm from "./wasm/mint_fee.wasm";

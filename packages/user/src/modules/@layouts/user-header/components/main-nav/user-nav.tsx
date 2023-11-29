@@ -1,6 +1,9 @@
 "use client";
 
 import { useAccount, useDisconnect } from "@casperdash/usewallet";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+
 import { GradientAvatar } from "@mlem-user/components/avatar/gradient-avatar";
 import { MiddleTruncatedText } from "@mlem-user/components/truncated-text";
 import { Avatar } from "@mlem-user/components/ui/avatar";
@@ -15,8 +18,6 @@ import {
 } from "@mlem-user/components/ui/dropdown-menu";
 import { CookieKeys } from "@mlem-user/enums/cookieKeys";
 import { Paths } from "@mlem-user/enums/paths";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
 
 export const UserNav = () => {
   const router = useRouter();

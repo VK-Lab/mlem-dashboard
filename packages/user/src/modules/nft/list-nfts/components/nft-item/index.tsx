@@ -1,4 +1,5 @@
 import { useAccount } from "@casperdash/usewallet";
+
 import { GradientAvatar } from "@mlem-user/components/avatar/gradient-avatar";
 import { NFTAsset } from "@mlem-user/components/nft-asset";
 import { MiddleTruncatedText } from "@mlem-user/components/truncated-text";

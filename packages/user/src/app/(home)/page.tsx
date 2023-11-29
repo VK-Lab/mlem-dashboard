@@ -1,14 +1,15 @@
+import { dehydrate } from "@tanstack/react-query";
+
 import { BaseContainer } from "@mlem-user/components/container";
 import { QueryKeys } from "@mlem-user/enums/queryKeys";
 import { getQueryClient } from "@mlem-user/lib/query-client";
+import { ReactQueryHydrate } from "@mlem-user/modules/@core/hydrate-client";
 import { FeatureCampaigns } from "@mlem-user/modules/campaign/feature-campaigns";
 import { RunningCampaigns } from "@mlem-user/modules/campaign/running-campaigns";
-import { ReactQueryHydrate } from "@mlem-user/modules/core/hydrate-client";
 import {
   getFeaturedCampaigns,
   getRunningCampaigns,
 } from "@mlem-user/services/app/campaign";
-import { dehydrate } from "@tanstack/react-query";
 
 export default async function Home() {
   const queryClient = getQueryClient();

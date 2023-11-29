@@ -10,10 +10,11 @@ import {
   CasperWalletConnector,
   createClient,
 } from "@casperdash/usewallet";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import { ThemeProvider } from "@mlem-user/components/theme-provider/theme-provider";
 import { Toaster } from "@mlem-user/components/ui/toaster";
 import BackgroundTransactions from "@mlem-user/modules/background-script";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 type Props = {
   children: React.ReactNode;
