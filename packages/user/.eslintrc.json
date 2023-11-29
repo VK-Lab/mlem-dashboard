@@ -33,8 +33,13 @@
         "pathGroups": [
           {
             "pattern": "react",
-            "group": "external",
+            "group": "builtin",
             "position": "before"
+          },
+          {
+            "pattern": "@mlem-user/**",
+            "group": "external",
+            "position": "after"
           }
         ],
         "pathGroupsExcludedImportTypes": ["react"],
