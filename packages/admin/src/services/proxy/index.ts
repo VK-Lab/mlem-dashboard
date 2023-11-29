@@ -8,3 +8,11 @@ export const deploy = async (signedDeploy: unknown) => {
 
   return (<{ deployHash: string }>(<unknown>data)).deployHash;
 };
+
+export const getAccountBalance = async (publicKey: string) => {
+  const data = await request.get<{ balance: string }>(
+    `/proxies/accounts/${publicKey}/balance`
+  );
+
+  return <{ balance: string }>(<unknown>data);
+};

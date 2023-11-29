@@ -1,31 +1,31 @@
-import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
-import { getAccounts } from '@mlem-admin/services/casperdash/user';
-import { getAccountBalance } from '@mlem-admin/services/proxy';
-import { hexToNumber } from '@mlem-admin/utils/format';
-import _get from 'lodash/get';
-import { useQuery, UseQueryOptions } from 'react-query';
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+
+import { QueryKeys } from "@mlem-user/enums/queryKeys";
+import { hexToNumber } from "@mlem-user/lib/format";
+
+import { getAccountBalance } from "..";
 
 type GetAccountBalanceResponse = {
-  balance: number;
+  balanace: number;
 };
 
 export const useGetAccountBalance = (
   { publicKey }: { publicKey?: string | null },
   options?: Omit<
     UseQueryOptions<
-      GetAccountBalanceResponse,
+      unknown,
       unknown,
       GetAccountBalanceResponse,
       [QueryKeys.ACCOUNT_BALANCE, string | null | undefined]
     >,
-    'queryKey' | 'queryFn'
+    "queryKey" | "queryFn"
   >
 ) => {
   return useQuery(
     [QueryKeys.ACCOUNT_BALANCE, publicKey],
     async () => {
       if (!publicKey) {
-        throw new Error('Can not get account');
+        throw new Error("Can not get account");
       }
       const { balance } = await getAccountBalance(publicKey);
 

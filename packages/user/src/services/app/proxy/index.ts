@@ -15,3 +15,11 @@ export const getDeployStatus = async (
 ): Promise<GetDeployStatusResponse> => {
   return request.get(`/proxies/deploys/${deployHash}/status`);
 };
+
+export const getAccountBalance = async (publicKey: string) => {
+  const data = await request.get<{ balance: string }>(
+    `/proxies/accounts/${publicKey}/balance`
+  );
+
+  return <{ balance: string }>(<unknown>data);
+};
