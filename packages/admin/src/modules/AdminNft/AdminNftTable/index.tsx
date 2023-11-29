@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 import ToastMessage from '@mlem-admin/components/Toast';
-import { Config } from '@mlem-admin/config';
 import { useGetAdminNfts } from '@mlem-admin/hooks/queries';
 import { Nft } from '@mlem-admin/types/nft';
 import { generateMetadataUrl } from '@mlem-admin/utils/metadata';
@@ -10,7 +9,6 @@ import { Box, Button, Chip } from '@mui/material';
 import copy from 'copy-to-clipboard';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
-import urlJoin from 'url-join';
 
 import ButtonUpdateModal from './ButtonUpdateModal';
 
