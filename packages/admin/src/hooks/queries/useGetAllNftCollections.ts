@@ -21,5 +21,6 @@ export const useGetAllNftCollections = (
   return useQuery(QueryKeys.NFT_COLLECTIONS, () => getNftCollections(query), {
     ...options,
     refetchOnWindowFocus: true,
+    refetchInterval: 30 * 1000,
   });
 };
