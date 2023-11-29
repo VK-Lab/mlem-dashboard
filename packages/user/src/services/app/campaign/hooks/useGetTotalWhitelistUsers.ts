@@ -27,7 +27,7 @@ export const useGetTotalWhitelistUsers = (
       "total",
     ],
     async () => {
-      const { total } = await getTotalWhitelistUsers(campaignId);
+      const { total = 0 } = await getTotalWhitelistUsers(campaignId);
 
       return Math.min(total + 20, 99);
     },
