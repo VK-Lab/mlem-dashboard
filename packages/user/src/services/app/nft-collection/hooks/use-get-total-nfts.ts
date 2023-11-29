@@ -1,8 +1,7 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 
 import { QueryKeys } from "@mlem-user/enums/queryKeys";
-
-import { getTotalNFTs } from "..";
+import { getTotalNFTs } from "@mlem-user/services/app/nft-collection";
 
 export const useGetTotalNFTs = (
   contractAddress: string,
