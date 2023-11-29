@@ -1,8 +1,9 @@
 "use client";
 
-import { Config } from "@mlem-user/config";
 import { CLPublicKey } from "casper-js-sdk";
 import urlJoin from "url-join";
+
+import { Config } from "@mlem-user/config";
 
 import { BrokerClientInstance } from ".";
 

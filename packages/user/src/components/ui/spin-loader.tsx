@@ -1,5 +1,6 @@
-import { cn } from "@mlem-user/utils";
 import { Loader2 } from "lucide-react";
+
+import { cn } from "@mlem-user/utils";
 
 type Props = {
   className?: string;

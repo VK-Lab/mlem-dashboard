@@ -1,8 +1,9 @@
-import { UserHeader } from "@mlem-user/modules/user/user-header";
-import { cn } from "@mlem-user/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
+
+import { UserHeader } from "@mlem-user/modules/@layouts/user-header";
+import { cn } from "@mlem-user/utils";
 
 import { Providers } from "./providers";
 

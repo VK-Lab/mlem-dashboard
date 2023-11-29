@@ -1,5 +1,6 @@
-import { QueryKeys } from "@mlem-user/enums/queryKeys";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+
+import { QueryKeys } from "@mlem-user/enums/queryKeys";
 
 import { checkUserInWhiteList } from "..";
 import { CheckUserInWhiteListResponse } from "../types";

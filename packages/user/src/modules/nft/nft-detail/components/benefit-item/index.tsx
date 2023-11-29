@@ -1,10 +1,11 @@
+import { useQueryClient } from "@tanstack/react-query";
+import { match } from "ts-pattern";
+
 import { Button } from "@mlem-user/components/ui/button";
 import { QueryKeys } from "@mlem-user/enums/queryKeys";
 import { useClaimNFTBenefit } from "@mlem-user/services/app/nft/hooks/useClaimNFTBenefit";
 import { Benefit } from "@mlem-user/types/benefit";
 import { ClaimStatusEnum } from "@mlem-user/types/claim";
-import { useQueryClient } from "@tanstack/react-query";
-import { match } from "ts-pattern";
 
 type Props = {
   benefit: Benefit;

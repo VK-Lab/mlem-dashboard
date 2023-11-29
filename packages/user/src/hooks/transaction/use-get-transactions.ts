@@ -1,16 +1,15 @@
-import { DeployStatusEnum } from "@mlem-user/enums";
-import { DeployContextEnum } from "@mlem-user/enums/deployContext";
-import { QueryKeys } from "@mlem-user/enums/queryKeys";
-import { TransactionHistoryStorage } from "@mlem-user/lib/localForage/transaction-history";
-import { getDeployStatuses } from "@mlem-user/services/casperdash/deploysStatus/deploysStatus.service";
-import { DeployStatus } from "@mlem-user/services/casperdash/deploysStatus/type";
-import { Transaction } from "@mlem-user/types/transaction";
 import {
   UseQueryOptions,
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
 import _map from "lodash-es/map";
+
+import { DeployStatusEnum } from "@mlem-user/enums";
+import { QueryKeys } from "@mlem-user/enums/queryKeys";
+import { TransactionHistoryStorage } from "@mlem-user/lib/localForage/transaction-history";
+import { getDeployStatus } from "@mlem-user/services/app/proxy";
+import { Transaction } from "@mlem-user/types/transaction";
 
 export const useGetTransactions = (
   publicKey?: string | null,
@@ -24,13 +23,15 @@ export const useGetTransactions = (
     "queryKey" | "queryFn" | "enabled"
   >
 ) => {
-  const clientQuery = useQueryClient();
+  const queryClient = useQueryClient();
   return useQuery(
     [QueryKeys.TRANSACTIONS, publicKey],
     async () => {
+      if (!publicKey) {
+        return [];
+      }
       const transactionHistoryStorage = new TransactionHistoryStorage(
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        publicKey!
+        publicKey
       );
       const transactionHistories =
         await transactionHistoryStorage.getTransactionHistories();
@@ -41,48 +42,27 @@ export const useGetTransactions = (
 
       if (pendingTransactionHistories.length > 0) {
         const deployHashes = _map(pendingTransactionHistories, "deployHash");
-        const deployStatuses = await getDeployStatuses({
-          deployHash: deployHashes,
-        });
+        const promisesMappedTxHistories = transactionHistories.map(
+          async (transactionHistory: Transaction) => {
+            if (!deployHashes.includes(transactionHistory.deployHash)) {
+              return transactionHistory;
+            }
 
-        let trackingUpdatedDeploys: Transaction[] = [];
-
-        const mappedTxHistories = _map(
-          transactionHistories,
-          (txHistory: Transaction) => {
-            const foundDeployStatus = deployStatuses.find(
-              (deployStatus: DeployStatus) =>
-                deployStatus.hash.toLowerCase() ===
-                txHistory.deployHash.toLowerCase()
+            const deployStatus = await getDeployStatus(
+              transactionHistory.deployHash
             );
 
-            if (!foundDeployStatus) {
-              return txHistory;
-            }
-
-            const status = foundDeployStatus.status.toLowerCase();
-            if (status !== DeployStatusEnum.PENDING) {
-              trackingUpdatedDeploys = [...trackingUpdatedDeploys, txHistory];
-            }
-
             return {
-              ...txHistory,
-              status,
+              ...transactionHistory,
+              status: deployStatus.status,
             };
           }
         );
+        const mappedTxHistories = await Promise.all(promisesMappedTxHistories);
+
+        await queryClient.invalidateQueries([QueryKeys.LIST_NFTS]);
 
         await transactionHistoryStorage.setItem(mappedTxHistories);
-
-        const isUpdatedMarketNFTs = trackingUpdatedDeploys.some(
-          (trackingUpdatedDeploy: Transaction) =>
-            trackingUpdatedDeploy.context === DeployContextEnum.NFT
-        );
-
-        if (isUpdatedMarketNFTs) {
-          await clientQuery.invalidateQueries();
-          clientQuery.getQueryCache().clear();
-        }
 
         return mappedTxHistories;
       }
@@ -92,6 +72,7 @@ export const useGetTransactions = (
     {
       ...options,
       enabled: !!publicKey,
+      refetchInterval: 60 * 1000,
     }
   );
 };

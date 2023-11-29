@@ -1,3 +1,5 @@
+import _ from "lodash-es";
+
 import {
   Accordion,
   AccordionContent,
@@ -5,7 +7,6 @@ import {
   AccordionTrigger,
 } from "@mlem-user/components/ui/accordion";
 import { NFT } from "@mlem-user/types/nft";
-import _ from "lodash-es";
 
 import { TokenAttribute } from "./token-attribute";
 

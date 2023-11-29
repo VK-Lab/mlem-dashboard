@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
-import NFTEmptyImg from "@mlem-user/assets/images/nft-empty.png";
 import { ImageProps } from "next/image";
 import Image from "next/image";
+
+import NFTEmptyImg from "@mlem-user/assets/images/nft-empty.png";
 
 interface ImageWithFallbackProps extends Omit<ImageProps, "src"> {
   fallback?: ImageProps["src"];

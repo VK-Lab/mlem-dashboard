@@ -1,7 +1,8 @@
 import { useAccount, useSignMessage } from "@casperdash/usewallet";
-import { CookieKeys } from "@mlem-user/enums/cookieKeys";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
+
+import { CookieKeys } from "@mlem-user/enums/cookieKeys";
 
 import { login } from "..";
 import { LoginResponse } from "../types";

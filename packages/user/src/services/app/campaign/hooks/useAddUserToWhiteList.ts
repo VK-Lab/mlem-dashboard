@@ -1,5 +1,6 @@
-import { MutationKeys } from "@mlem-user/enums/mutationKeys";
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
+
+import { MutationKeys } from "@mlem-user/enums/mutationKeys";
 
 import { addUserToWhitelist } from "..";
 import { AddUserToWhiteListParams } from "../types";

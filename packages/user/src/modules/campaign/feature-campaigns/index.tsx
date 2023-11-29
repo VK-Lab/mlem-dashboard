@@ -1,8 +1,9 @@
 "use client";
 
-import { useGetFeaturedCampaigns } from "@mlem-user/services/app/campaign/hooks/useGetFeaturedCampaigns";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import { useGetFeaturedCampaigns } from "@mlem-user/services/app/campaign/hooks/useGetFeaturedCampaigns";
 
 import { CampaignCard } from "./components/CampaignCard";
 
