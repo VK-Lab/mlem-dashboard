@@ -1,4 +1,4 @@
-import { GetDeployStatusResponse } from "./types";
+import { GetAccountBalanceResponse, GetDeployStatusResponse } from "./types";
 import request from "../request";
 
 export const deploy = async (signedDeploy: unknown) => {
@@ -14,4 +14,10 @@ export const getDeployStatus = async (
   deployHash: string
 ): Promise<GetDeployStatusResponse> => {
   return request.get(`/proxies/deploys/${deployHash}/status`);
+};
+
+export const getAccountBalance = async (
+  publicKey: string
+): Promise<GetAccountBalanceResponse> => {
+  return request.get(`/proxies/accounts/${publicKey}/balance`);
 };

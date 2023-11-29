@@ -1,7 +1,6 @@
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
-import { getAccounts } from '@mlem-admin/services/casperdash/user';
+import { getAccountBalance } from '@mlem-admin/services/proxy';
 import { hexToNumber } from '@mlem-admin/utils/format';
-import _get from 'lodash/get';
 import { useQuery, UseQueryOptions } from 'react-query';
 
 type GetAccountBalanceResponse = {
@@ -23,19 +22,13 @@ export const useGetAccountBalance = (
   return useQuery(
     [QueryKeys.ACCOUNT_BALANCE, publicKey],
     async () => {
-      const accounts = await getAccounts({
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        publicKeys: [publicKey!],
-      });
-      if (!accounts || accounts.length === 0) {
+      if (!publicKey) {
         throw new Error('Can not get account');
       }
-
-      const [account] = accounts;
-      const balanceHex = _get(account, 'balance.hex', '');
+      const { balance } = await getAccountBalance(publicKey);
 
       return {
-        balance: hexToNumber(balanceHex),
+        balance: hexToNumber(balance),
       };
     },
     {
