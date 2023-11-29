@@ -67,7 +67,7 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
   }
 
   const totalFee = mintingFee + 20;
-  if ((data?.balanace || 0) < totalFee) {
+  if ((data?.balance || 0) < totalFee) {
     return (
       <div className="h-12">
         You need at least {totalFee} CSPR to mint this NFT

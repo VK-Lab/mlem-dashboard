@@ -1,13 +1,10 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 
 import { QueryKeys } from "@mlem-user/enums/queryKeys";
-import { hexToNumber } from "@mlem-user/lib/format";
+import { toCSPR } from "@mlem-user/lib/format";
 
 import { getAccountBalance } from "..";
-
-type GetAccountBalanceResponse = {
-  balanace: number;
-};
+import { GetAccountBalanceResponse } from "../types";
 
 export const useGetAccountBalance = (
   { publicKey }: { publicKey?: string | null },
@@ -30,7 +27,7 @@ export const useGetAccountBalance = (
       const { balance } = await getAccountBalance(publicKey);
 
       return {
-        balance: hexToNumber(balance),
+        balance: toCSPR(balance),
       };
     },
     {
