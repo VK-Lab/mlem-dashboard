@@ -4,6 +4,7 @@ import {
   AddUserToWhiteListParams,
   CheckUserInWhiteListParams,
   GetCampaignsResponse,
+  GetTotalWhitelistUsersParams,
 } from "./types";
 import request from "../request";
 
@@ -35,4 +36,10 @@ export const checkUserInWhiteList = async (
   return request.get(
     `/campaigns/${params.campaignId}/whitelist/${params.publicKey}`
   );
+};
+
+export const getTotalWhitelistUsers = async (
+  campaignId: string
+): Promise<GetTotalWhitelistUsersParams> => {
+  return request.get(`/campaigns/${campaignId}/whitelist/total`);
 };

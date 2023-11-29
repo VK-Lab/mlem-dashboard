@@ -9,6 +9,7 @@ import { cn } from "@mlem-user/lib/utils";
 import { ButtonConnect } from "@mlem-user/modules/core/button-connect";
 import { NFTMinter } from "@mlem-user/modules/core/nft-minter";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
+import { useGetTotalWhitelistUsers } from "@mlem-user/services/app/campaign/hooks/useGetTotalWhitelistUsers";
 import dayjs from "dayjs";
 import { Space_Grotesk } from "next/font/google";
 import Markdown from "react-markdown";
@@ -34,6 +35,10 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
 
     return false;
   }, [data]);
+
+  const { data: totalWhiteListUser = 0 } = useGetTotalWhitelistUsers({
+    campaignId,
+  });
 
   const nftCollection = useMemo(() => {
     if (!data?.nftCollections) {
@@ -102,13 +107,13 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                       <div className="flex mb-1 items-center justify-center">
                         <div className="text-center">
                           <span className="text-xs font-semibold inline-block text-gray-200">
-                            70 / 99
+                            {totalWhiteListUser} / 99
                           </span>
                         </div>
                       </div>
                       <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
                         <div
-                          style={{ width: "70%" }}
+                          style={{ width: `${totalWhiteListUser}%` }}
                           className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-700-X bg-gradient-to-r from-yellow-300 to-pink-600"
                         ></div>
                       </div>
