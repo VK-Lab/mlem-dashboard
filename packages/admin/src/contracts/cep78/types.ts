@@ -46,9 +46,9 @@ export enum MetadataMutability {
 }
 
 export enum MintingMode {
-  Installer,
-  Public,
-  ACL,
+  Installer = '0',
+  Public = '1',
+  ACL = '2',
 }
 
 export enum BurnMode {
