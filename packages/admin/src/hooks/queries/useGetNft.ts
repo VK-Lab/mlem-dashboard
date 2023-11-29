@@ -11,7 +11,7 @@ type Props = {
 export const useGetNft = (
   { contractPackageHash, tokenId }: Props,
   options: Omit<
-    UseQueryOptions<unknown, unknown, Nft, Array<string>>,
+    UseQueryOptions<Nft, Error, Nft, Array<string>>,
     'queryKey' | 'queryFn'
   >
 ) => {
