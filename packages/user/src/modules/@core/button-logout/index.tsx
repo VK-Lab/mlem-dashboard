@@ -1,9 +1,10 @@
 import { useDisconnect } from "@casperdash/usewallet";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+
 import { Button } from "@mlem-user/components/ui/button";
 import { CookieKeys } from "@mlem-user/enums/cookieKeys";
 import { Paths } from "@mlem-user/enums/paths";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
 
 type Props = {
   className?: string;

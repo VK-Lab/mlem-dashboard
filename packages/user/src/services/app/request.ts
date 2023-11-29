@@ -1,8 +1,9 @@
-import { Config } from "@mlem-user/config";
-import { CookieKeys } from "@mlem-user/enums/cookieKeys";
 import axios, { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
 import qs from "qs";
+
+import { Config } from "@mlem-user/config";
+import { CookieKeys } from "@mlem-user/enums/cookieKeys";
 
 const request = axios.create({
   baseURL: Config.apiBaseUrl,

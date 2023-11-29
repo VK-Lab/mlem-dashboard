@@ -1,11 +1,12 @@
 import { useMemo } from "react";
 
 import { useAccount } from "@casperdash/usewallet";
+import _get from "lodash-es/get";
+
 import { DeployStatusEnum } from "@mlem-user/enums";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
 import { DeployContextEnum } from "@mlem-user/enums/deployContext";
 import { Transaction } from "@mlem-user/types/transaction";
-import _get from "lodash-es/get";
 
 import { useGetTransactions } from "../../../../hooks/transaction/use-get-transactions";
 

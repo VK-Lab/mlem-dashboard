@@ -5,6 +5,8 @@ import {
   CasperWalletConnector,
   useConnect,
 } from "@casperdash/usewallet";
+import Image from "next/image";
+
 import CasperWalletLogo from "@mlem-user/assets/images/casper-wallet.png";
 import CasperDashLogo from "@mlem-user/assets/images/casperdash-logo.webp";
 import { Button } from "@mlem-user/components/ui/button";
@@ -16,7 +18,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@mlem-user/components/ui/dialog";
-import Image from "next/image";
 
 type Props = {
   className?: string;

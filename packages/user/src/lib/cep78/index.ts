@@ -1,5 +1,4 @@
 import { BigNumber } from "@ethersproject/bignumber";
-import { Config } from "@mlem-user/config";
 import Big from "big.js";
 import {
   CLPublicKey,
@@ -9,6 +8,8 @@ import {
   Keys,
   CLValueBuilder,
 } from "casper-js-sdk";
+
+import { Config } from "@mlem-user/config";
 
 import {
   CallConfig,

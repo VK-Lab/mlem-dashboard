@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
 
-import LogoImg from "@mlem-user/assets/images/logo.png";
-import { useOnLogin } from "@mlem-user/services/app/auth/hooks/useOnLogin";
 import Image from "next/image";
 import Link from "next/link";
+
+import LogoImg from "@mlem-user/assets/images/logo.png";
+import { useOnLogin } from "@mlem-user/services/app/auth/hooks/useOnLogin";
 
 import { MainNav } from "./components/main-nav";
 

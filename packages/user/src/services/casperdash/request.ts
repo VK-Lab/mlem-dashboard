@@ -1,6 +1,7 @@
-import { Config } from "@mlem-user/config";
 import axios, { AxiosResponse } from "axios";
 import qs from "qs";
+
+import { Config } from "@mlem-user/config";
 
 const casperDashRequest = axios.create({
   baseURL: Config.casperDashBaseUrl,

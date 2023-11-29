@@ -1,6 +1,10 @@
 import React from "react";
 
 import { useAccount } from "@casperdash/usewallet";
+import { Menu } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
 import BlueHeartSvg from "@mlem-user/assets/svgs/blue-heart.svg";
 import {
   Sheet,
@@ -11,13 +15,10 @@ import {
 } from "@mlem-user/components/ui/sheet";
 import { Config } from "@mlem-user/config";
 import { cn } from "@mlem-user/lib/utils";
-import ButtonLogout from "@mlem-user/modules/core/button-logout";
-import { Menu } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import ButtonLogout from "@mlem-user/modules/@core/button-logout";
 
 import { UserNav } from "./user-nav";
-import { ButtonConnect } from "../../../../core/button-connect";
+import { ButtonConnect } from "../../../../@core/button-connect";
 
 const navLinkClassName =
   "text-lg md:text-sm font-medium transition-colors hover:text-primary text text-start";

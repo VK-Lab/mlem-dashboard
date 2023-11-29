@@ -1,6 +1,7 @@
 "use client";
 
 import { useAccount } from "@casperdash/usewallet";
+
 import { GradientAvatar } from "@mlem-user/components/avatar/gradient-avatar";
 
 export const UserCover = () => {

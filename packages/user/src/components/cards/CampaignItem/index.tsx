@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import { Badge } from "@mlem-user/components/ui/badge";
 import {
   Card,
@@ -8,8 +11,6 @@ import {
 } from "@mlem-user/components/ui/card";
 import { Campaign } from "@mlem-user/types/campaign";
 import { cn } from "@mlem-user/utils";
-import Image from "next/image";
-import Link from "next/link";
 
 type CampaignItemProps = {
   className?: string;

@@ -1,6 +1,6 @@
 import { BaseContainer } from "@mlem-user/components/container";
+import { UserCover } from "@mlem-user/modules/@layouts/user-cover";
 import { ListNFTs } from "@mlem-user/modules/nft/list-nfts";
-import { UserCover } from "@mlem-user/modules/user/user-cover";
 
 export default function MyNFTs() {
   return (
