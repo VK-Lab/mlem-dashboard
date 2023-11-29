@@ -41,7 +41,7 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
   const maxOwnedTokens = nftCollection?.broker?.maxOwnedTokens || 0;
   const mintingFee = nftCollection?.broker?.mintingFee || 0;
   const filteredNFTs = nfts?.filter(
-    (nft) => nft.tokenAddress === nftCollection?.tokenAddress
+    (nft) => nft.contractPackageHash === nftCollection?.contractPackageHash
   );
 
   const handleOnMintClick = () => {

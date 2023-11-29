@@ -10,7 +10,7 @@ import { ClaimStatusEnum } from "@mlem-user/types/claim";
 type Props = {
   benefit: Benefit;
   nftId: string;
-  tokenAddress: string;
+  contractPackageHash: string;
   tokenId: string;
 };
 
@@ -45,7 +45,7 @@ const getButtonStatus = (benefit: Benefit) => {
 export const BenefitItem = ({
   benefit,
   nftId,
-  tokenAddress,
+  contractPackageHash,
   tokenId,
 }: Props) => {
   const buttonStatus = getButtonStatus(benefit);
@@ -54,7 +54,7 @@ export const BenefitItem = ({
     onSuccess: async () => {
       await queryClient.invalidateQueries([
         QueryKeys.NFT,
-        tokenAddress,
+        contractPackageHash,
         tokenId,
       ]);
     },

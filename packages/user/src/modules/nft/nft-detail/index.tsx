@@ -12,13 +12,13 @@ import { TokenDetails } from "./components/token-details";
 
 type NFTDetailProps = {
   className?: string;
-  tokenAddress: string;
+  contractPackageHash: string;
   tokenId: string;
 };
 
-export const NFTDetail = ({ tokenAddress, tokenId }: NFTDetailProps) => {
+export const NFTDetail = ({ contractPackageHash, tokenId }: NFTDetailProps) => {
   const { data, isLoading } = useGetNFT({
-    tokenAddress,
+    contractPackageHash,
     tokenId,
   });
   const { publicKey } = useAccount();
@@ -59,7 +59,7 @@ export const NFTDetail = ({ tokenAddress, tokenId }: NFTDetailProps) => {
                 key={`benefit-${benefit.id}`}
                 nftId={data.id}
                 benefit={benefit}
-                tokenAddress={tokenAddress}
+                contractPackageHash={contractPackageHash}
                 tokenId={tokenId}
               />
             ))}

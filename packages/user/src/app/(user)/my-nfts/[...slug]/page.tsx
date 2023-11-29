@@ -8,15 +8,15 @@ type Props = {
 
 export default function MyNFT({ params }: Props) {
   const { slug } = params;
-  const [tokenAddress, tokenId] = slug;
+  const [contractPackageHash, tokenId] = slug;
 
-  if (!tokenAddress || !tokenId) {
+  if (!contractPackageHash || !tokenId) {
     return <div>Not found</div>;
   }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between px-24 py-8">
-      <NFTDetail tokenAddress={tokenAddress} tokenId={tokenId} />
+      <NFTDetail contractPackageHash={contractPackageHash} tokenId={tokenId} />
     </main>
   );
 }
