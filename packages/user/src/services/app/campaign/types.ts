@@ -29,3 +29,7 @@ export type CheckUserInWhiteListParams = {
 export type CheckUserInWhiteListResponse = {
   isExisted: boolean;
 };
+
+export type GetTotalWhitelistUsersParams = {
+  total: number;
+};
