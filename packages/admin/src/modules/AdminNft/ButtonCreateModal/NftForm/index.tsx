@@ -38,15 +38,16 @@ type SelectTiersFieldProps = {
 };
 
 const SelectTiersFieldWatch = ({ nftCollections }: SelectTiersFieldProps) => {
-  const tokenAddress = useWatch({
-    name: 'tokenAddress',
+  const contractPackageHash = useWatch({
+    name: 'contractPackageHash',
   });
 
   const foundNftCollection = useMemo(() => {
     return nftCollections.find(
-      (nftCollection) => nftCollection.tokenAddress === tokenAddress
+      (nftCollection) =>
+        nftCollection.contractPackageHash === contractPackageHash
     );
-  }, [nftCollections, tokenAddress]);
+  }, [nftCollections, contractPackageHash]);
 
   return (
     <SelectTiersField

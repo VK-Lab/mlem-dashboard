@@ -49,7 +49,14 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
       return;
     }
 
-    mutate(nftCollection);
+    mutate({
+      name: nftCollection.name,
+      description: nftCollection.description,
+      tokenAddress: nftCollection.tokenAddress,
+      imageUrl: nftCollection.nftImageUrl,
+      contractPackageHash: nftCollection.contractPackageHash,
+      broker: nftCollection.broker,
+    });
   };
 
   const isMinting = isPending || isLoading;
