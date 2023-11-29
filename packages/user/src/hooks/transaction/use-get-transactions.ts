@@ -1,4 +1,8 @@
-import { UseQueryOptions, useQuery } from "@tanstack/react-query";
+import {
+  UseQueryOptions,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import _map from "lodash-es/map";
 
 import { DeployStatusEnum } from "@mlem-user/enums";
@@ -19,6 +23,7 @@ export const useGetTransactions = (
     "queryKey" | "queryFn" | "enabled"
   >
 ) => {
+  const queryClient = useQueryClient();
   return useQuery(
     [QueryKeys.TRANSACTIONS, publicKey],
     async () => {
@@ -54,6 +59,8 @@ export const useGetTransactions = (
           }
         );
         const mappedTxHistories = await Promise.all(promisesMappedTxHistories);
+
+        await queryClient.invalidateQueries([QueryKeys.LIST_NFTS]);
 
         await transactionHistoryStorage.setItem(mappedTxHistories);
 

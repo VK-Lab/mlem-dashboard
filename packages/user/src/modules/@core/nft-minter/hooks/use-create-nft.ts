@@ -94,7 +94,7 @@ export const useCreateNFT = (
       }
 
       await mutateAsync({
-        fromPublicKeyHex: publicKey!,
+        fromPublicKeyHex: publicKey,
         toPublicKeyHex: params.tokenAddress,
         status: DeployStatusEnum.PENDING,
         deployHash: deployHash,
