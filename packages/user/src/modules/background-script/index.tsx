@@ -14,45 +14,51 @@ import { Message, useEventSource } from "./hooks/use-event-source";
 
 const BackgroundScript = () => {
   const { publicKey } = useAccount();
-  const handleOnMessage = useCallback(async (event: Message) => {
-    const { data } = event;
-    try {
-      const { deployHash, status } = JSON.parse(data);
-      const transactionHistoryStorage = new TransactionHistoryStorage(
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        publicKey!
-      );
-
-      const transactionHistories =
-        await transactionHistoryStorage.getTransactionHistories();
-      const pendingTransactionHistories = transactionHistories.filter(
-        (transactionHistory: Transaction) =>
-          transactionHistory.status === DeployStatusEnum.PENDING
-      );
-
-      if (pendingTransactionHistories.length === 0) {
+  const handleOnMessage = useCallback(
+    async (event: Message) => {
+      if (!publicKey) {
+        console.log("publicKey is not available");
         return;
       }
+      const { data } = event;
+      try {
+        const { deployHash, status } = JSON.parse(data);
+        const transactionHistoryStorage = new TransactionHistoryStorage(
+          publicKey
+        );
 
-      const mappedTxHistories = _map(
-        transactionHistories,
-        (txHistory: Transaction) => {
-          if (txHistory.deployHash !== deployHash) {
-            return txHistory;
-          }
+        const transactionHistories =
+          await transactionHistoryStorage.getTransactionHistories();
+        const pendingTransactionHistories = transactionHistories.filter(
+          (transactionHistory: Transaction) =>
+            transactionHistory.status === DeployStatusEnum.PENDING
+        );
 
-          return {
-            ...txHistory,
-            status,
-          };
+        if (pendingTransactionHistories.length === 0) {
+          return;
         }
-      );
 
-      await transactionHistoryStorage.setItem(mappedTxHistories);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
+        const mappedTxHistories = _map(
+          transactionHistories,
+          (txHistory: Transaction) => {
+            if (txHistory.deployHash !== deployHash) {
+              return txHistory;
+            }
+
+            return {
+              ...txHistory,
+              status,
+            };
+          }
+        );
+
+        await transactionHistoryStorage.setItem(mappedTxHistories);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [publicKey]
+  );
 
   const { connectionStatus, openStream, closeStream } = useEventSource(
     Config.sseBaseUrl,

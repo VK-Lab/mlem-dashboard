@@ -14,7 +14,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { ThemeProvider } from "@mlem-user/components/theme-provider/theme-provider";
 import { Toaster } from "@mlem-user/components/ui/toaster";
-import BackgroundTransactions from "@mlem-user/modules/background-script";
+import BackgroundScript from "@mlem-user/modules/background-script";
 
 type Props = {
   children: React.ReactNode;
@@ -43,7 +43,7 @@ export const Providers = ({ children }: Props) => {
       <QueryClientProvider client={queryClient}>
         <CasperProvider client={useWalletClient}>
           {children}
-          <BackgroundTransactions />
+          <BackgroundScript />
           <Toaster />
         </CasperProvider>
       </QueryClientProvider>
