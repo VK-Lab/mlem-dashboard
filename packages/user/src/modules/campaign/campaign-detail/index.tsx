@@ -95,14 +95,14 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
               </div>
             </div>
             <div className="mt-7 mb-12">
-              {!data?.isOpenWhitelist && (
+              {data?.isOpenWhitelist && (
                 <>
-                  {/* <div className="mx-auto max-w-md progressbar-wrapper">
+                  <div className="max-w-md progressbar-wrapper">
                     <div className="relative pt-1">
                       <div className="flex mb-1 items-center justify-center">
                         <div className="text-center">
                           <span className="text-xs font-semibold inline-block text-gray-200">
-                            0 / 99
+                            70 / 99
                           </span>
                         </div>
                       </div>
@@ -113,8 +113,20 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                         ></div>
                       </div>
                     </div>
-                  </div> */}
+                  </div>
                   <div className="max-w-xl grid gap-1 grid-cols-3 mb-4">
+                    <div className="">
+                      <div className="px-4 py-1">
+                        <dl>
+                          <dt className="text-sm leading-5 text-gray-100 font-medium">
+                            Total Supply
+                          </dt>
+                          <dd className="mt-1 h-12 text-gray-50 text-5xl leading-none font-semibold">
+                            99
+                          </dd>
+                        </dl>
+                      </div>
+                    </div>
                     <div className="">
                       <div className="px-0 py-1">
                         <dl>
