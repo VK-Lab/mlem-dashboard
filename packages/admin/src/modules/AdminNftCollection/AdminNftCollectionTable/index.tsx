@@ -109,20 +109,20 @@ const AdminNftCollectionTable = () => {
         state={{
           isLoading: isLoading,
           columnPinning: {
-            right: ['deployStatus', 'mrt-row-actions'],
+            right: ['mrt-row-actions'],
             left: ['name'],
           },
         }}
         displayColumnDefOptions={{
           'mrt-row-actions': {
             header: 'Actions', //change header text
-            size: 500, //make actions column wider
+            size: 380, //make actions column wider
           },
         }}
         enableRowActions={true}
         renderRowActions={({ row }) => {
           return (
-            <Box display="flex" gap="10px">
+            <Box display="flex" flexWrap={'wrap'} gap="10px">
               <ButtonUpdateModal nftCollection={row.original} />
               <ButtonViewTiers nftCollectionId={row.original.id} />
               {row.original.mintingMode == MintingMode.ACL && (

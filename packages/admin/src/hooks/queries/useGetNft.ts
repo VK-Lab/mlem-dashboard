@@ -4,20 +4,20 @@ import { Nft } from '@mlem-admin/types/nft';
 import { useQuery, UseQueryOptions } from 'react-query';
 
 type Props = {
-  tokenAddress: string;
+  contractPackageHash: string;
   tokenId: string;
 };
 
 export const useGetNft = (
-  { tokenAddress, tokenId }: Props,
+  { contractPackageHash, tokenId }: Props,
   options: Omit<
-    UseQueryOptions<unknown, unknown, Nft, Array<string>>,
+    UseQueryOptions<Nft, Error, Nft, Array<string>>,
     'queryKey' | 'queryFn'
   >
 ) => {
   return useQuery(
-    [QueryKeys.NFT, tokenAddress, tokenId],
-    () => getNft(tokenAddress, tokenId),
+    [QueryKeys.NFT, contractPackageHash, tokenId],
+    () => getNft(contractPackageHash, tokenId),
     {
       ...options,
     }

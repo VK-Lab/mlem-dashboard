@@ -99,7 +99,7 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
               />
 
               <Box mt="1rem">
-                <Box>Description</Box>
+                <Box mb="0.5rem">Description</Box>
                 <MarkdownField />
               </Box>
               <StyledTextFieldElement name="imageUrl" label="Image URL" />

@@ -20,6 +20,7 @@ export const MarkdownField = () => {
             value={value}
             onBlur={onBlur}
             ref={ref}
+            data-color-mode="light"
           />
         )}
       />
