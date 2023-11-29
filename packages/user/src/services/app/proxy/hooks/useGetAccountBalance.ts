@@ -1,20 +1,16 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import _get from "lodash-es/get";
 
 import { QueryKeys } from "@mlem-user/enums/queryKeys";
-import { hexToNumber } from "@mlem-user/lib/format";
+import { toCSPR } from "@mlem-user/lib/format";
 
-import { getAccounts } from "../user.service";
-
-type GetAccountBalanceResponse = {
-  balanace: number;
-};
+import { getAccountBalance } from "..";
+import { GetAccountBalanceResponse } from "../types";
 
 export const useGetAccountBalance = (
   { publicKey }: { publicKey?: string | null },
   options?: Omit<
     UseQueryOptions<
-      GetAccountBalanceResponse,
+      unknown,
       unknown,
       GetAccountBalanceResponse,
       [QueryKeys.ACCOUNT_BALANCE, string | null | undefined]
@@ -25,19 +21,13 @@ export const useGetAccountBalance = (
   return useQuery(
     [QueryKeys.ACCOUNT_BALANCE, publicKey],
     async () => {
-      const accounts = await getAccounts({
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        publicKeys: [publicKey!],
-      });
-      if (!accounts || accounts.length === 0) {
+      if (!publicKey) {
         throw new Error("Can not get account");
       }
-
-      const [account] = accounts;
-      const balanceHex = _get(account, "balance.hex", "");
+      const { balance } = await getAccountBalance(publicKey);
 
       return {
-        balanace: hexToNumber(balanceHex),
+        balance: toCSPR(balance),
       };
     },
     {

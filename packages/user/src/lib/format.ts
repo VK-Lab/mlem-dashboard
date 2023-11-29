@@ -6,7 +6,7 @@ export const formatAddress = (address?: string) => {
   return address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "";
 };
 
-export const toCSPR = (rawAmount: number) => {
+export const toCSPR = (rawAmount: number | string) => {
   try {
     const amount = Big(rawAmount)
       .div(MOTE_RATE)
