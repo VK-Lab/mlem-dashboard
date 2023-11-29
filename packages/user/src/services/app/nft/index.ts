@@ -10,10 +10,10 @@ import {
 import request from "../request";
 
 export const getNft = (
-  contractAddress: string,
+  contractPackageHash: string,
   tokenId: string
 ): Promise<NFT> => {
-  return request.get(`/nfts/${contractAddress}/${tokenId}`);
+  return request.get(`/nfts/${contractPackageHash}/${tokenId}`);
 };
 
 export const getNfts = (): Promise<NFT[]> => {

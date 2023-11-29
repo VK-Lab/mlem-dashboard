@@ -41,7 +41,7 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
   const maxOwnedTokens = nftCollection?.broker?.maxOwnedTokens || 0;
   const mintingFee = nftCollection?.broker?.mintingFee || 0;
   const filteredNFTs = nfts?.filter(
-    (nft) => nft.tokenAddress === nftCollection?.tokenAddress
+    (nft) => nft.contractPackageHash === nftCollection?.contractPackageHash
   );
 
   const handleOnMintClick = () => {
@@ -49,7 +49,14 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
       return;
     }
 
-    mutate(nftCollection);
+    mutate({
+      name: nftCollection.name,
+      description: nftCollection.description,
+      tokenAddress: nftCollection.tokenAddress,
+      imageUrl: nftCollection.nftImageUrl,
+      contractPackageHash: nftCollection.contractPackageHash,
+      broker: nftCollection.broker,
+    });
   };
 
   const isMinting = isPending || isLoading;

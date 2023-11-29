@@ -33,7 +33,7 @@ const UserNFTDetail = () => {
 
   const { data: nft } = useGetNft(
     {
-      tokenAddress: tokenAddress as string,
+      contractPackageHash: tokenAddress as string,
       tokenId: tokenId as string,
     },
     {

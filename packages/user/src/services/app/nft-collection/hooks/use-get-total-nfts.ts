@@ -4,7 +4,7 @@ import { QueryKeys } from "@mlem-user/enums/queryKeys";
 import { getTotalNFTs } from "@mlem-user/services/app/nft-collection";
 
 export const useGetTotalNFTs = (
-  contractAddress: string,
+  contractPackageHash: string,
   options?: Omit<
     UseQueryOptions<
       unknown,
@@ -16,15 +16,15 @@ export const useGetTotalNFTs = (
   >
 ) => {
   return useQuery(
-    [QueryKeys.NFT_COLLECTIONS, contractAddress, "total"],
+    [QueryKeys.NFT_COLLECTIONS, contractPackageHash, "total"],
     async () => {
-      const { total } = await getTotalNFTs(contractAddress);
+      const { total } = await getTotalNFTs(contractPackageHash);
 
       return total;
     },
     {
       ...options,
-      enabled: !!contractAddress,
+      enabled: !!contractPackageHash,
     }
   );
 };

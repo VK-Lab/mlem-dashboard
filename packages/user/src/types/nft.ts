@@ -23,6 +23,7 @@ export type NFT = {
   imageUrl: string;
   name: string;
   tokenAddress: string;
+  contractPackageHash: string;
   tokenId: string;
   updatedAt: string;
   contractType: string;

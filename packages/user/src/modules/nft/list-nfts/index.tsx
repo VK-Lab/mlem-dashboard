@@ -13,7 +13,7 @@ export const ListNFTs = () => {
       {nfts.map((item) => {
         return (
           <div key={item.id}>
-            <Link href={`/my-nfts/${item.tokenAddress}/${item.tokenId}`}>
+            <Link href={`/my-nfts/${item.contractPackageHash}/${item.tokenId}`}>
               <NFTItem nft={item} />
             </Link>
           </div>
