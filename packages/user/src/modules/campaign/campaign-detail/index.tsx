@@ -113,7 +113,9 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                       </div>
                       <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
                         <div
-                          style={{ width: `${totalWhiteListUser}%` }}
+                          style={{
+                            width: `${(totalWhiteListUser / 99) * 100}%`,
+                          }}
                           className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-700-X bg-gradient-to-r from-yellow-300 to-pink-600"
                         ></div>
                       </div>
