@@ -14,6 +14,7 @@
     "lint:fix": "pnpm lint --fix",
     "lint:format": "prettier --write",
     "build": "pnpm -r --filter './packages/**' build",
+    "build:admin": "pnpm -r --filter './packages/admin' build",
     "build:user": "pnpm -r --filter './packages/user' build",
     "play": "pnpm --filter example-react dev",
     "play:no-ledger": "pnpm --filter example-react-not-ledger dev",
