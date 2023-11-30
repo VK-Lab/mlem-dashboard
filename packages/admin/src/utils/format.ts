@@ -1,3 +1,4 @@
+import { MintingMode } from '@mlem-admin/contracts/cep78/types';
 import Big from 'big.js';
 const MOTE_RATE = 1_000_000_000;
 
@@ -44,4 +45,14 @@ export const slugify = (str: string) => {
     .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
     .replace(/\s+/g, '-') // replace spaces with hyphens
     .replace(/-+/g, '-'); // remove consecutive hyphens
+};
+
+export const getMintingModeName = (mintingMode: MintingMode) => {
+  return mintingMode == MintingMode.Installer
+    ? 'Installer'
+    : mintingMode == MintingMode.Public
+    ? 'Public'
+    : mintingMode == MintingMode.ACL
+    ? 'ACL (Custom with Broker)'
+    : 'Unknown';
 };
