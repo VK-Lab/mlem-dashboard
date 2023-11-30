@@ -15,8 +15,6 @@ import { NFTMinter } from "@mlem-user/modules/@core/nft-minter";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
 import { useGetTotalWhitelistUsers } from "@mlem-user/services/app/campaign/hooks/useGetTotalWhitelistUsers";
 
-import WhiteListForm from "./WhiteListForm";
-
 type CampaignDetailProps = {
   campaignId: string;
 };
@@ -170,20 +168,14 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
               />
             ) : (
               <>
-                {data?.isOpenWhitelist ? (
-                  <WhiteListForm campaignId={campaignId} />
+                {isFinishedCampaign ? (
+                  <Button disabled className="disabled px-8 h-12">
+                    Campaign ended
+                  </Button>
                 ) : (
-                  <>
-                    {isFinishedCampaign ? (
-                      <Button disabled className="disabled px-8 h-12">
-                        Campaign ended
-                      </Button>
-                    ) : (
-                      <div>
-                        <NFTMinter nftCollection={nftCollection} />
-                      </div>
-                    )}
-                  </>
+                  <div>
+                    <NFTMinter nftCollection={nftCollection} />
+                  </div>
                 )}
               </>
             )}
