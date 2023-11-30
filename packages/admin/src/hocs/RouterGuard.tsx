@@ -10,7 +10,14 @@ import { useRouter } from 'next/router';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const RouterGuard = ({ children }: { children: any }) => {
   const router = useRouter();
-  const { publicKey, status } = useAccount();
+  const { publicKey, status, connector } = useAccount({
+    onDisconnect: () => {
+      console.log('onDisconnect');
+      router.push({
+        pathname: PublicPaths.HOME,
+      });
+    },
+  });
 
   const isPublicPath = useCallback(
     (url: string) => {
@@ -74,10 +81,9 @@ const RouterGuard = ({ children }: { children: any }) => {
   }, [router.isReady, status]);
 
   useEffect(() => {
-    if (!router.isReady) {
+    if (!router.isReady || !connector?.isReady) {
       return;
     }
-
     if (status === 'connecting') {
       return;
     }
@@ -91,9 +97,8 @@ const RouterGuard = ({ children }: { children: any }) => {
         pathname: PublicPaths.HOME,
       });
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.isReady, status, publicKey]);
+  }, [router.isReady, status, publicKey, connector?.isReady]);
 
   return children;
 };
