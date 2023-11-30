@@ -60,7 +60,11 @@ const NftForm = ({ onSuccess }: Props) => {
         name="shortDescription"
         label="Short Description"
       />
-      <MarkdownField />
+
+      <Box mt="1rem">
+        <Box mb="0.5rem">Description</Box>
+        <MarkdownField />
+      </Box>
       <Box mt="1rem">
         <SelectElement
           label="Type"

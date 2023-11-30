@@ -1,7 +1,8 @@
 import { MintingMode } from '@mlem-admin/contracts/cep78';
 import { DeployStatusEnum } from '@mlem-admin/enums';
-import { useGetPublicNftCollections } from '@mlem-admin/hooks/queries/useGetPublicNftCollections';
+import { useGetAllNftCollections } from '@mlem-admin/hooks/queries';
 import { NftCollection } from '@mlem-admin/types/nft-collection';
+import { getMintingModeName } from '@mlem-admin/utils/format';
 import { AutocompleteElement } from 'react-hook-form-mui';
 
 type Props = {
@@ -13,7 +14,7 @@ const SelectNftCollectionsField = ({ name, campaignId }: Props) => {
   const {
     data: { items: nftCollections = [] } = { items: [], total: 0 },
     isLoading,
-  } = useGetPublicNftCollections();
+  } = useGetAllNftCollections();
 
   console.log('nftCollections: ', nftCollections);
 
@@ -35,8 +36,6 @@ const SelectNftCollectionsField = ({ name, campaignId }: Props) => {
               return false;
             }
 
-            console.log(nftCollection.brokerDeployStatus);
-
             if (
               nftCollection.brokerDeployStatus !== DeployStatusEnum.COMPLETED
             ) {
@@ -51,7 +50,7 @@ const SelectNftCollectionsField = ({ name, campaignId }: Props) => {
         .map((item: NftCollection) => {
           return {
             id: item.id,
-            label: item.name,
+            label: `${item.name} (${getMintingModeName(item.mintingMode)})`,
           };
         })}
     />

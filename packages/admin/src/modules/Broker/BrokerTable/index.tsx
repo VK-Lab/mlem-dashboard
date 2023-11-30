@@ -27,12 +27,12 @@ const BrokerTable = () => {
         header: 'Description',
       },
       {
-        accessorKey: 'contractHash',
-        header: 'Contract Hash',
+        accessorKey: 'maxOwnedTokens',
+        header: 'Max Owned Tokens',
       },
       {
-        accessorKey: 'contractPackageHash',
-        header: 'Contract Package Hash',
+        accessorKey: 'mintingFee',
+        header: 'Minting Fee (CSPR)',
       },
       {
         accessorKey: 'deployHash',
@@ -89,20 +89,20 @@ const BrokerTable = () => {
             left: ['name'],
           },
         }}
-        displayColumnDefOptions={{
-          'mrt-row-actions': {
-            header: 'Actions', //change header text
-            size: 300, //make actions column wider
-          },
-        }}
-        enableRowActions={true}
-        renderRowActions={({ row }) => {
-          return (
-            <Box display="flex" gap="10px">
-              <ButtonUpdateModal broker={row.original} />
-            </Box>
-          );
-        }}
+        // displayColumnDefOptions={{
+        //   'mrt-row-actions': {
+        //     header: 'Actions', //change header text
+        //     size: 300, //make actions column wider
+        //   },
+        // }}
+        // enableRowActions={true}
+        // renderRowActions={({ row }) => {
+        //   return (
+        //     <Box display="flex" gap="10px">
+        //       <ButtonUpdateModal broker={row.original} />
+        //     </Box>
+        //   );
+        // }}
       />
     </Box>
   );

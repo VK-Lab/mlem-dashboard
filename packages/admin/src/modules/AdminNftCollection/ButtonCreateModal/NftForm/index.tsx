@@ -54,7 +54,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
       defaultValues={{
         name: '',
         contractType: ContractType.CEP78,
-        mintingMode: MintingMode.Public,
+        mintingMode: MintingMode.ACL,
       }}
       onSuccess={handleOnSubmitForm}
     >
