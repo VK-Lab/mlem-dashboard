@@ -97,6 +97,10 @@ const RouterGuard = ({ children }: { children: any }) => {
         pathname: PublicPaths.HOME,
       });
     }
+
+    router.push({
+      pathname: PublicPaths.HOME,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady, status, publicKey, connector?.isReady]);
 
