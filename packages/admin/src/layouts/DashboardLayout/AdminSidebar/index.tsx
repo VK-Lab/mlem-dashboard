@@ -10,6 +10,11 @@ import { useRouter } from 'next/router';
 
 const MENU_ITEMS = [
   {
+    name: 'Campaigns',
+    path: AdminPaths.CAMPAIGNS,
+    icon: <AppsIcon />,
+  },
+  {
     name: 'NFT Collections',
     path: AdminPaths.NFT_COLLECTIONS,
     icon: <AppsIcon />,
@@ -20,6 +25,11 @@ const MENU_ITEMS = [
     icon: <AppsIcon />,
   },
   {
+    name: 'NFTs',
+    path: AdminPaths.NFTS,
+    icon: <AppsIcon />,
+  },
+  {
     name: 'Benefit Categories',
     path: AdminPaths.BENEFIT_CATEGORIES,
     icon: <AppsIcon />,
@@ -27,16 +37,6 @@ const MENU_ITEMS = [
   {
     name: 'Benefits',
     path: AdminPaths.BENEFITS,
-    icon: <AppsIcon />,
-  },
-  {
-    name: 'Campaigns',
-    path: AdminPaths.CAMPAIGNS,
-    icon: <AppsIcon />,
-  },
-  {
-    name: 'NFTs',
-    path: AdminPaths.NFTS,
     icon: <AppsIcon />,
   },
   {

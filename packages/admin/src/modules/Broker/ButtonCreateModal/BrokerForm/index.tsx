@@ -16,7 +16,7 @@ type BrokerFormProps = {
   onSuccess?: () => void;
 };
 
-const ESTIMATE_FEE = 200;
+const ESTIMATE_FEE = 110;
 
 const BrokerForm = ({ onSuccess }: BrokerFormProps) => {
   const queryClient = useQueryClient();
@@ -64,13 +64,13 @@ const BrokerForm = ({ onSuccess }: BrokerFormProps) => {
       <StyledTextFieldElement
         type="number"
         name="maxOwnedTokens"
-        label="maxOwnedTokens"
+        label="Max Owned Tokens"
         required
       />
       <StyledTextFieldElement
         type="number"
         name="mintingFee"
-        label="mintingFee"
+        label="Minting Fee (CSPR)"
         required
       />
 

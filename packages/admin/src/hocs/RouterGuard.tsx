@@ -82,7 +82,7 @@ const RouterGuard = ({ children }: { children: any }) => {
       return;
     }
 
-    if (status !== 'connected' && !publicKey) {
+    if ((!status || status === 'disconnected') && !publicKey) {
       if (isPublicPath(router.asPath)) {
         return;
       }
