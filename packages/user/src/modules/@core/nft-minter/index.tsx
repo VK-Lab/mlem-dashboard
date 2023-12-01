@@ -101,7 +101,7 @@ export const NFTMinter = ({
   if ((data?.balance || 0) < totalFee) {
     return (
       <div className="h-[72px]">
-        You need at least {totalFee} CSPR to mint this NFT
+        To mint this NFT, you require {totalFee} CSPR in your balance.
       </div>
     );
   }
@@ -112,7 +112,13 @@ export const NFTMinter = ({
       whitelistChecked?.isInvalid ||
       !whitelistChecked?.isExisted
     ) {
-      return <div className=" h-12">You are not in the whitelist</div>;
+      return (
+        <div className=" h-12">
+          You are currently ineligible to mint NFTs in the Whitelisted Round.
+          Please return during the public round scheduled from December 3rd to
+          December 4th, 2023.
+        </div>
+      );
     }
   }
 
@@ -122,7 +128,10 @@ export const NFTMinter = ({
       completedTransactions?.length >= maxOwnedTokens)
   ) {
     return (
-      <div className=" h-12">You have reached the maximum number of tokens</div>
+      <div className=" h-12">
+        Jes ser! You&apos;ve officially become a Jasperian. Your wallet has
+        already hit the maximum entry limit.
+      </div>
     );
   }
 
