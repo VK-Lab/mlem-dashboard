@@ -13,7 +13,7 @@ import { cn } from "@mlem-user/lib/utils";
 import { ButtonConnect } from "@mlem-user/modules/@core/button-connect";
 import { NFTMinter } from "@mlem-user/modules/@core/nft-minter";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
-import { useGetTotalWhitelistUsers } from "@mlem-user/services/app/campaign/hooks/useGetTotalWhitelistUsers";
+import { useGetTotalNFTs } from "@mlem-user/services/app/nft-collection/hooks/use-get-total-nfts";
 
 import WhiteListForm from "./WhiteListForm";
 
@@ -37,10 +37,6 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
     return false;
   }, [data]);
 
-  const { data: totalWhiteListUser = 0 } = useGetTotalWhitelistUsers({
-    campaignId,
-  });
-
   const nftCollection = useMemo(() => {
     if (!data?.nftCollections) {
       return;
@@ -48,6 +44,10 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
 
     return data?.nftCollections[0];
   }, [data]);
+
+  const { data: totalNFTs = 0 } = useGetTotalNFTs(
+    nftCollection?.contractPackageHash
+  );
 
   if (isLoading) {
     return (
@@ -101,21 +101,21 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
               </div>
             </div>
             <div className="mt-7 mb-12">
-              {data?.isOpenWhitelist && (
+              {data?.isAllowWhitelistUser && (
                 <>
                   <div className="max-w-md progressbar-wrapper">
                     <div className="relative pt-1">
                       <div className="flex mb-1 items-center justify-center">
                         <div className="text-center">
                           <span className="text-xs font-semibold inline-block text-gray-200">
-                            {totalWhiteListUser} / 99
+                            {totalNFTs} / 99
                           </span>
                         </div>
                       </div>
                       <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
                         <div
                           style={{
-                            width: `${(totalWhiteListUser / 99) * 100}%`,
+                            width: `${(totalNFTs / 99) * 100}%`,
                           }}
                           className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-700-X bg-gradient-to-r from-yellow-300 to-pink-600"
                         ></div>
@@ -165,7 +165,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
             </div>
             {!publicKey ? (
               <ButtonConnect
-                className="px-8 h-12"
+                className="px-8 h-12 w-[160px]"
                 buttonText="Connect Wallet"
               />
             ) : (

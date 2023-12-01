@@ -31,11 +31,13 @@ export const NFTMinter = ({
     contractPackageHash: nftCollection?.contractPackageHash,
     action: DeployActionsEnum.MINT,
   });
-  const { transactions: completedTransactions = [] } =
-    useGetCompletedTransactions({
-      contractPackageHash: nftCollection?.contractPackageHash,
-      action: DeployActionsEnum.MINT,
-    });
+  const {
+    transactions: completedTransactions = [],
+    isLoading: isLoadingCompletedTransactions,
+  } = useGetCompletedTransactions({
+    contractPackageHash: nftCollection?.contractPackageHash,
+    action: DeployActionsEnum.MINT,
+  });
 
   const { data, isLoading: isLoadingBalance } = useGetAccountBalance({
     publicKey,
@@ -79,10 +81,14 @@ export const NFTMinter = ({
 
   const isMinting = isPending || isLoading;
 
-  if (isLoadingBalance || isLoadingWhitelist) {
+  if (
+    isLoadingBalance ||
+    isLoadingWhitelist ||
+    isLoadingCompletedTransactions
+  ) {
     return (
       <div>
-        <Skeleton className="h-12 w-[250px]" />
+        <Skeleton className="h-[72px] w-[160px]" />
       </div>
     );
   }
@@ -91,42 +97,45 @@ export const NFTMinter = ({
     return null;
   }
 
-  const totalFee = mintingFee + 20;
-  if ((data?.balance || 0) < totalFee) {
-    return (
-      <div className="h-12">
-        You need at least {totalFee} CSPR to mint this NFT
-      </div>
-    );
-  }
+  // const totalFee = mintingFee + 20;
+  // if ((data?.balance || 0) < totalFee) {
+  //   return (
+  //     <div className="h-[72px]">
+  //       You need at least {totalFee} CSPR to mint this NFT
+  //     </div>
+  //   );
+  // }
 
-  if (isAllowWhitelistUser) {
-    if (
-      !whitelistChecked ||
-      whitelistChecked?.isInvalid ||
-      !whitelistChecked?.isExisted
-    ) {
-      return <div className=" h-12">You are not in the whitelist</div>;
-    }
-  }
+  // if (isAllowWhitelistUser) {
+  //   if (
+  //     !whitelistChecked ||
+  //     whitelistChecked?.isInvalid ||
+  //     !whitelistChecked?.isExisted
+  //   ) {
+  //     return <div className=" h-12">You are not in the whitelist</div>;
+  //   }
+  // }
 
-  if (
-    maxOwnedTokens &&
-    (filteredNFTs?.length >= maxOwnedTokens ||
-      completedTransactions?.length >= maxOwnedTokens)
-  ) {
-    return (
-      <div className=" h-12">You have reached the maximum number of tokens</div>
-    );
-  }
+  // if (
+  //   maxOwnedTokens &&
+  //   (filteredNFTs?.length >= maxOwnedTokens ||
+  //     completedTransactions?.length >= maxOwnedTokens)
+  // ) {
+  //   return (
+  //     <div className=" h-12">You have reached the maximum number of tokens</div>
+  //   );
+  // }
 
   return (
-    <Button
-      className="px-8 h-12"
-      isLoading={isMinting}
-      onClick={handleOnMintClick}
-    >
-      {isMinting ? "Minting..." : "Mint Now"}
-    </Button>
+    <div className="w-[180px]">
+      <Button
+        className="px-8 h-12 min-w-[160px]"
+        isLoading={isMinting}
+        onClick={handleOnMintClick}
+      >
+        {isMinting ? "Minting..." : "Mint Now"}
+      </Button>
+      <p className="mt-2 text-xs">Estimated network Fee: 20 CSPR</p>
+    </div>
   );
 };
