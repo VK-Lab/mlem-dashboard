@@ -6,6 +6,7 @@ import { Button } from "@mlem-user/components/ui/button";
 import { Skeleton } from "@mlem-user/components/ui/skeleton";
 import { useToast } from "@mlem-user/components/ui/use-toast";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
+import { useCheckUserInWhiteList } from "@mlem-user/services/app/campaign/hooks/useCheckUserInWhiteList";
 import { useGetNFTs } from "@mlem-user/services/app/nft/hooks/useGetNFTs";
 import { useGetAccountBalance } from "@mlem-user/services/app/proxy/hooks/useGetAccountBalance";
 import { NftCollection } from "@mlem-user/types/nft-collection";
@@ -27,6 +28,11 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
   const { data, isLoading: isLoadingBalance } = useGetAccountBalance({
     publicKey,
   });
+  const { data: whitelistChecked, isLoading: isLoadingWhitelist } =
+    useCheckUserInWhiteList({
+      campaignId: nftCollection?.campaignId,
+      publicKey: publicKey!,
+    });
   const { data: nfts = [] } = useGetNFTs();
   const { toast } = useToast();
   const { mutate, isLoading } = useCreateNFT({
@@ -61,7 +67,7 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
 
   const isMinting = isPending || isLoading;
 
-  if (isLoadingBalance) {
+  if (isLoadingBalance || isLoadingWhitelist) {
     return (
       <div>
         <Skeleton className="h-12 w-[250px]" />
@@ -89,6 +95,14 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
   if (maxOwnedTokens && filteredNFTs?.length >= maxOwnedTokens) {
     return (
       <div className=" h-12">You have reached the maximum number of tokens</div>
+    );
+  }
+
+  if (whitelistChecked?.isInvalid) {
+    return (
+      <div className=" h-12">
+        You are not in the whitelist. Please register to the whitelist first
+      </div>
     );
   }
 

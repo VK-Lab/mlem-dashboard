@@ -3,6 +3,7 @@ import { Campaign } from "@mlem-user/types/campaign";
 import {
   AddUserToWhiteListParams,
   CheckUserInWhiteListParams,
+  CheckUserInWhiteListResponse,
   GetCampaignsResponse,
   GetTotalWhitelistUsersParams,
 } from "./types";
@@ -32,7 +33,7 @@ export const addUserToWhitelist = async (
 
 export const checkUserInWhiteList = async (
   params: CheckUserInWhiteListParams
-): Promise<void> => {
+): Promise<CheckUserInWhiteListResponse> => {
   return request.get(
     `/campaigns/${params.campaignId}/whitelist/${params.publicKey}`
   );
