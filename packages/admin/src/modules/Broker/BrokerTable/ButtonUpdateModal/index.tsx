@@ -1,11 +1,16 @@
 import { useState } from 'react';
 
+import { useAccount } from '@casperdash/usewallet';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
-import { useMutateUpdateNftCollection } from '@mlem-admin/hooks/mutations';
+import {
+  UseMutateUpdateBrokerParams,
+  useMutateUpdateBroker,
+} from '@mlem-admin/hooks/mutations/useMutateUpdateBroker';
+import { useGetAccountBalance } from '@mlem-admin/hooks/queries/useGetAccountBalance';
 import { useI18nToast } from '@mlem-admin/hooks/useToast';
-import { UpdateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
 import { Broker } from '@mlem-admin/types/broker';
 import { LoadingButton } from '@mui/lab';
+import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -30,15 +35,21 @@ type ButtonUpdateModalProps = {
   broker: Broker;
 };
 
+const ESTIMATED_FEE = 5;
+
 const ButtonUpdateModal = ({ broker }: ButtonUpdateModalProps) => {
   const queryClient = useQueryClient();
+  const { publicKey } = useAccount();
+  const { data: { balance = 0 } = { balance: 0 } } = useGetAccountBalance({
+    publicKey,
+  });
   const { toastSuccess } = useI18nToast();
   const [open, setOpen] = useState(false);
-  const updateNftMutation = useMutateUpdateNftCollection({
+  const updateNftMutation = useMutateUpdateBroker({
     onSuccess: async () => {
-      toastSuccess('update_nft_collection_success');
+      toastSuccess('update_broker_success');
       await queryClient.invalidateQueries({
-        queryKey: [QueryKeys.NFT_COLLECTIONS],
+        queryKey: [QueryKeys.BROKERS],
       });
       handleClose();
     },
@@ -46,12 +57,11 @@ const ButtonUpdateModal = ({ broker }: ButtonUpdateModalProps) => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleOnSubmitForm = (
-    updateNftCollectionParams: UpdateNftCollectionParams
-  ) => {
+  const handleOnSubmitForm = (params: UseMutateUpdateBrokerParams) => {
     updateNftMutation.mutate({
-      ...updateNftCollectionParams,
+      ...params,
       id: broker.id,
+      contractHash: broker.contractHash,
     });
   };
 
@@ -68,18 +78,43 @@ const ButtonUpdateModal = ({ broker }: ButtonUpdateModalProps) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Update Nft
+            Update Broker
           </Typography>
           <Box mt={2}>
             <FormContainer
               defaultValues={{
-                name: broker.name,
-                description: broker.description,
+                // name: broker.name,
+                // description: broker.description,
+                // maxOwnedTokens: broker.maxOwnedTokens,
+                mintingFee: broker.mintingFee,
               }}
               onSuccess={handleOnSubmitForm}
             >
-              <StyledTextFieldElement name="name" label="Name" required />
-              <StyledTextFieldElement name="description" label="Description" />
+              {/* <StyledTextFieldElement name="description" label="Description" /> */}
+              {/* <StyledTextFieldElement
+                type="number"
+                name="maxOwnedTokens"
+                label="Max Owned Tokens"
+                required
+              /> */}
+              <StyledTextFieldElement
+                type="number"
+                name="mintingFee"
+                label="Minting Fee (CSPR)"
+                required
+              />
+
+              <Box mt="1rem">
+                <Divider />
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  mt="1rem"
+                >
+                  <Box>Estimated Fee:</Box>
+                  <Box>{ESTIMATED_FEE} CSPR</Box>
+                </Box>
+              </Box>
 
               <Box mt="1rem">
                 <LoadingButton
@@ -87,7 +122,9 @@ const ButtonUpdateModal = ({ broker }: ButtonUpdateModalProps) => {
                   type={'submit'}
                   color={'primary'}
                   variant={'contained'}
-                  disabled={updateNftMutation.isLoading}
+                  disabled={
+                    updateNftMutation.isLoading || balance < ESTIMATED_FEE
+                  }
                   loading={updateNftMutation.isLoading}
                 >
                   Update

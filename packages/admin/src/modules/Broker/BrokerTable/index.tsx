@@ -7,6 +7,8 @@ import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
+import ButtonUpdateModal from './ButtonUpdateModal';
+
 const BrokerTable = () => {
   const { data: { items = [] } = { items: [] }, isLoading } = useGetBrokers();
 
@@ -87,20 +89,20 @@ const BrokerTable = () => {
             left: ['name'],
           },
         }}
-        // displayColumnDefOptions={{
-        //   'mrt-row-actions': {
-        //     header: 'Actions', //change header text
-        //     size: 300, //make actions column wider
-        //   },
-        // }}
-        // enableRowActions={true}
-        // renderRowActions={({ row }) => {
-        //   return (
-        //     <Box display="flex" gap="10px">
-        //       <ButtonUpdateModal broker={row.original} />
-        //     </Box>
-        //   );
-        // }}
+        displayColumnDefOptions={{
+          'mrt-row-actions': {
+            header: 'Actions', //change header text
+            size: 300, //make actions column wider
+          },
+        }}
+        enableRowActions={true}
+        renderRowActions={({ row }) => {
+          return (
+            <Box display="flex" gap="10px">
+              <ButtonUpdateModal broker={row.original} />
+            </Box>
+          );
+        }}
       />
     </Box>
   );

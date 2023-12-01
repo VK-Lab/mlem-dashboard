@@ -7,11 +7,21 @@ import {
   Contracts,
   RuntimeArgs,
 } from 'casper-js-sdk';
+import { BigNumberish } from 'ethers';
 
 import { InstallArgs } from './types';
 import ContractWasm from './wasm/broker.wasm';
 
 const { Contract } = Contracts;
+
+const convertHashStrToHashBuff = (hashStr: string) => {
+  let hashHex = hashStr;
+  if (hashStr.startsWith('hash-')) {
+    hashHex = hashStr.slice(5);
+  }
+  return Buffer.from(hashHex, 'hex');
+};
+
 export class BrokerContract {
   private casperClient: CasperClient;
 
@@ -46,6 +56,32 @@ export class BrokerContract {
       paymentAmount,
       deploySender,
       this.networkName,
+      []
+    );
+  }
+
+  public setContractHash(contractHash: string, contractPackageHash?: string) {
+    this.contractClient.setContractHash(contractHash, contractPackageHash);
+    this.contractHashKey = CLValueBuilder.key(
+      CLValueBuilder.byteArray(convertHashStrToHashBuff(contractHash))
+    );
+  }
+
+  public setMintingFee(
+    args: { amount: BigNumberish },
+    paymentAmount: string,
+    deploySender: CLPublicKey
+  ) {
+    const runtimeArgs = RuntimeArgs.fromMap({
+      amount: CLValueBuilder.u512(args.amount),
+    });
+
+    return this.contractClient.callEntrypoint(
+      'set_minting_fee',
+      runtimeArgs,
+      deploySender,
+      this.networkName,
+      paymentAmount,
       []
     );
   }
