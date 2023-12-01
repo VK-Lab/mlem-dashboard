@@ -97,34 +97,34 @@ export const NFTMinter = ({
     return null;
   }
 
-  // const totalFee = mintingFee + 20;
-  // if ((data?.balance || 0) < totalFee) {
-  //   return (
-  //     <div className="h-[72px]">
-  //       You need at least {totalFee} CSPR to mint this NFT
-  //     </div>
-  //   );
-  // }
+  const totalFee = mintingFee + 20;
+  if ((data?.balance || 0) < totalFee) {
+    return (
+      <div className="h-[72px]">
+        You need at least {totalFee} CSPR to mint this NFT
+      </div>
+    );
+  }
 
-  // if (isAllowWhitelistUser) {
-  //   if (
-  //     !whitelistChecked ||
-  //     whitelistChecked?.isInvalid ||
-  //     !whitelistChecked?.isExisted
-  //   ) {
-  //     return <div className=" h-12">You are not in the whitelist</div>;
-  //   }
-  // }
+  if (isAllowWhitelistUser) {
+    if (
+      !whitelistChecked ||
+      whitelistChecked?.isInvalid ||
+      !whitelistChecked?.isExisted
+    ) {
+      return <div className=" h-12">You are not in the whitelist</div>;
+    }
+  }
 
-  // if (
-  //   maxOwnedTokens &&
-  //   (filteredNFTs?.length >= maxOwnedTokens ||
-  //     completedTransactions?.length >= maxOwnedTokens)
-  // ) {
-  //   return (
-  //     <div className=" h-12">You have reached the maximum number of tokens</div>
-  //   );
-  // }
+  if (
+    maxOwnedTokens &&
+    (filteredNFTs?.length >= maxOwnedTokens ||
+      completedTransactions?.length >= maxOwnedTokens)
+  ) {
+    return (
+      <div className=" h-12">You have reached the maximum number of tokens</div>
+    );
+  }
 
   return (
     <div className="w-[180px]">
