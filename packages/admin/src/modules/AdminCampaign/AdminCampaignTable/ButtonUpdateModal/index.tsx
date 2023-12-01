@@ -89,6 +89,7 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
                 thumbnailUrl: campaign.thumbnailUrl,
                 isOpenWhitelist: campaign.isOpenWhitelist,
                 shortDescription: campaign.shortDescription || '',
+                isAllowWhitelistUser: campaign.isAllowWhitelistUser,
               }}
               onSuccess={handleOnSubmitForm}
             >
@@ -118,6 +119,13 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
                 <CheckboxElement
                   name="isOpenWhitelist"
                   label="Is Open Whitelist"
+                />
+              </Box>
+
+              <Box mt="1rem">
+                <CheckboxElement
+                  name="isAllowWhitelistUser"
+                  label="Is Allow Whitelist User To Mint"
                 />
               </Box>
 

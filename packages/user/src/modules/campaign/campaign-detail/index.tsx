@@ -180,7 +180,11 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                       </Button>
                     ) : (
                       <div>
-                        <NFTMinter nftCollection={nftCollection} />
+                        <NFTMinter
+                          nftCollection={nftCollection}
+                          campaignId={campaignId}
+                          isAllowWhitelistUser={data?.isAllowWhitelistUser}
+                        />
                       </div>
                     )}
                   </>
