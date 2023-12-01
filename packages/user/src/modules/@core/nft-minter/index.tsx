@@ -12,6 +12,7 @@ import { useGetAccountBalance } from "@mlem-user/services/app/proxy/hooks/useGet
 import { NftCollection } from "@mlem-user/types/nft-collection";
 
 import { useCreateNFT } from "./hooks/use-create-nft";
+import { useGetCompletedTransactions } from "./hooks/use-get-completed-transaction";
 import { useGetPendingTransaction } from "./hooks/use-get-pending-transaction";
 
 type NFTMinterProps = {
@@ -30,6 +31,12 @@ export const NFTMinter = ({
     contractPackageHash: nftCollection?.contractPackageHash,
     action: DeployActionsEnum.MINT,
   });
+  const { transactions: completedTransactions = [] } =
+    useGetCompletedTransactions({
+      contractPackageHash: nftCollection?.contractPackageHash,
+      action: DeployActionsEnum.MINT,
+    });
+
   const { data, isLoading: isLoadingBalance } = useGetAccountBalance({
     publicKey,
   });
@@ -103,7 +110,11 @@ export const NFTMinter = ({
     }
   }
 
-  if (maxOwnedTokens && filteredNFTs?.length >= maxOwnedTokens) {
+  if (
+    maxOwnedTokens &&
+    (filteredNFTs?.length >= maxOwnedTokens ||
+      completedTransactions?.length >= maxOwnedTokens)
+  ) {
     return (
       <div className=" h-12">You have reached the maximum number of tokens</div>
     );
