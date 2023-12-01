@@ -5,7 +5,7 @@ export type CreateBrokerParams = Omit<Broker, 'id'> &
 
 export type CreateBrokerResponse = Broker;
 
-export type UpdateBrokerParams = Partial<CreateBrokerParams>;
+export type UpdateBrokerParams = Pick<Broker, 'mintingFee'>;
 
 export type UpdateBrokerResponse = {
   id: string;

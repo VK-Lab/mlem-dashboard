@@ -6,6 +6,8 @@ import {
   CreateBrokerResponse,
   GetBrokersParams,
   GetBrokersResponse,
+  UpdateBrokerParams,
+  UpdateBrokerResponse,
 } from './types';
 
 export const getBrokers = (
@@ -24,4 +26,11 @@ export const createBroker = (
   params: CreateBrokerParams
 ): Promise<CreateBrokerResponse> => {
   return request.post('/admin/brokers', params);
+};
+
+export const updateBroker = (
+  id: string,
+  params: UpdateBrokerParams
+): Promise<UpdateBrokerResponse> => {
+  return request.put(`/admin/brokers/${id}`, params);
 };
