@@ -21,4 +21,5 @@ export type Campaign = {
   nftCollections: NftCollection[];
   isOpenWhitelist?: boolean;
   shortDescription?: string;
+  isAllowWhitelistUser?: boolean;
 };

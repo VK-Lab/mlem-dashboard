@@ -23,6 +23,7 @@ export type UpdateCampaignParams = {
   type?: string;
   isOpenWhitelist?: boolean;
   shortDescription?: string;
+  isAllowWhitelistUser?: boolean;
 };
 
 export type UpdateCampaignResponse = {

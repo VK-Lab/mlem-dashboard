@@ -13,13 +13,18 @@ import { NftCollection } from "@mlem-user/types/nft-collection";
 
 import { useCreateNFT } from "./hooks/use-create-nft";
 import { useGetPendingTransaction } from "./hooks/use-get-pending-transaction";
-import { ButtonConnect } from "../button-connect";
 
 type NFTMinterProps = {
   nftCollection?: NftCollection;
+  isAllowWhitelistUser?: boolean;
+  campaignId: string;
 };
 
-export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
+export const NFTMinter = ({
+  nftCollection,
+  campaignId,
+  isAllowWhitelistUser,
+}: NFTMinterProps) => {
   const { publicKey } = useAccount();
   const { isPending } = useGetPendingTransaction({
     contractPackageHash: nftCollection?.contractPackageHash,
@@ -30,7 +35,7 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
   });
   const { data: whitelistChecked, isLoading: isLoadingWhitelist } =
     useCheckUserInWhiteList({
-      campaignId: nftCollection?.campaignId,
+      campaignId,
       publicKey: publicKey!,
     });
   const { data: nfts = [] } = useGetNFTs();
@@ -88,21 +93,19 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
     );
   }
 
-  if (!publicKey) {
-    return <ButtonConnect className="px-8 h-12" buttonText="Connect Wallet" />;
+  if (isAllowWhitelistUser) {
+    if (
+      !whitelistChecked ||
+      whitelistChecked?.isInvalid ||
+      !whitelistChecked?.isExisted
+    ) {
+      return <div className=" h-12">You are not in the whitelist</div>;
+    }
   }
 
   if (maxOwnedTokens && filteredNFTs?.length >= maxOwnedTokens) {
     return (
       <div className=" h-12">You have reached the maximum number of tokens</div>
-    );
-  }
-
-  if (whitelistChecked?.isInvalid) {
-    return (
-      <div className=" h-12">
-        You are not in the whitelist. Please register to the whitelist first
-      </div>
     );
   }
 
