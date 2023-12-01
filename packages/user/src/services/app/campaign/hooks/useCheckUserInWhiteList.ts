@@ -5,13 +5,13 @@ import { QueryKeys } from "@mlem-user/enums/queryKeys";
 import { checkUserInWhiteList } from "..";
 import { CheckUserInWhiteListResponse } from "../types";
 
-type Params = { publicKey: string; campaignId: string };
+type Params = { publicKey: string; campaignId?: string };
 
 export const useCheckUserInWhiteList = (
   { publicKey, campaignId }: Params,
   options?: Omit<
     UseQueryOptions<
-      unknown,
+      CheckUserInWhiteListResponse,
       unknown,
       CheckUserInWhiteListResponse,
       [QueryKeys.CAMPAIGN, QueryKeys.WHITELIST, Params]
@@ -28,10 +28,16 @@ export const useCheckUserInWhiteList = (
         campaignId,
       },
     ],
-    () => checkUserInWhiteList({ publicKey, campaignId }),
+    async () => {
+      if (!campaignId) {
+        throw new Error("campaignId is required");
+      }
+
+      return checkUserInWhiteList({ publicKey, campaignId });
+    },
     {
       ...options,
-      enabled: !!publicKey,
+      enabled: !!publicKey && !!campaignId,
     }
   );
 };

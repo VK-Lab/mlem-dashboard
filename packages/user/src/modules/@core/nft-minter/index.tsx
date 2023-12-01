@@ -6,19 +6,25 @@ import { Button } from "@mlem-user/components/ui/button";
 import { Skeleton } from "@mlem-user/components/ui/skeleton";
 import { useToast } from "@mlem-user/components/ui/use-toast";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
+import { useCheckUserInWhiteList } from "@mlem-user/services/app/campaign/hooks/useCheckUserInWhiteList";
 import { useGetNFTs } from "@mlem-user/services/app/nft/hooks/useGetNFTs";
 import { useGetAccountBalance } from "@mlem-user/services/app/proxy/hooks/useGetAccountBalance";
 import { NftCollection } from "@mlem-user/types/nft-collection";
 
 import { useCreateNFT } from "./hooks/use-create-nft";
 import { useGetPendingTransaction } from "./hooks/use-get-pending-transaction";
-import { ButtonConnect } from "../button-connect";
 
 type NFTMinterProps = {
   nftCollection?: NftCollection;
+  isAllowWhitelistUser?: boolean;
+  campaignId: string;
 };
 
-export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
+export const NFTMinter = ({
+  nftCollection,
+  campaignId,
+  isAllowWhitelistUser,
+}: NFTMinterProps) => {
   const { publicKey } = useAccount();
   const { isPending } = useGetPendingTransaction({
     contractPackageHash: nftCollection?.contractPackageHash,
@@ -27,6 +33,11 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
   const { data, isLoading: isLoadingBalance } = useGetAccountBalance({
     publicKey,
   });
+  const { data: whitelistChecked, isLoading: isLoadingWhitelist } =
+    useCheckUserInWhiteList({
+      campaignId,
+      publicKey: publicKey!,
+    });
   const { data: nfts = [] } = useGetNFTs();
   const { toast } = useToast();
   const { mutate, isLoading } = useCreateNFT({
@@ -61,7 +72,7 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
 
   const isMinting = isPending || isLoading;
 
-  if (isLoadingBalance) {
+  if (isLoadingBalance || isLoadingWhitelist) {
     return (
       <div>
         <Skeleton className="h-12 w-[250px]" />
@@ -82,8 +93,14 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
     );
   }
 
-  if (!publicKey) {
-    return <ButtonConnect className="px-8 h-12" buttonText="Connect Wallet" />;
+  if (isAllowWhitelistUser) {
+    if (
+      !whitelistChecked ||
+      whitelistChecked?.isInvalid ||
+      !whitelistChecked?.isExisted
+    ) {
+      return <div className=" h-12">You are not in the whitelist</div>;
+    }
   }
 
   if (maxOwnedTokens && filteredNFTs?.length >= maxOwnedTokens) {

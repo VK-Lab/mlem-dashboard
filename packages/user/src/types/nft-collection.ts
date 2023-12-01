@@ -12,7 +12,6 @@ export type NftCollection = {
   contractPackageHash: string;
   contractType: string;
   chainId: string;
-  campaignId?: string;
   benefitIds?: string[];
   createdAt: string;
   deployHash: string;
