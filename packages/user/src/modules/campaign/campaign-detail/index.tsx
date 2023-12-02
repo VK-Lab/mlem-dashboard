@@ -8,6 +8,7 @@ import Markdown from "react-markdown";
 
 import { Button } from "@mlem-user/components/ui/button";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
+import { CampaignStatusEnum } from "@mlem-user/enums/campaign-status";
 import { formatDate } from "@mlem-user/lib/date";
 import { cn } from "@mlem-user/lib/utils";
 import { ButtonConnect } from "@mlem-user/modules/@core/button-connect";
@@ -101,7 +102,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
               </div>
             </div>
             <div className="mt-7 mb-12">
-              {data?.isAllowWhitelistUser && (
+              {data?.status === CampaignStatusEnum.RUNNING && (
                 <>
                   <div className="max-w-md progressbar-wrapper">
                     <div className="relative pt-1">
@@ -154,7 +155,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                             Price
                           </dt>
                           <dd className="mt-1 h-12 text-gray-50 text-xl md:text-2xl leading-none font-semibold items-center flex">
-                            299 CSPR
+                            389 CSPR
                           </dd>
                         </dl>
                       </div>
