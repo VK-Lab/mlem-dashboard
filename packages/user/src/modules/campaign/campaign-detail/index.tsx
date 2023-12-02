@@ -165,9 +165,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
               )}
             </div>
             {totalNFTs >= 99 ? (
-              <div className="h-[72px]">
-                Sold out, hope you get it next time!
-              </div>
+              <div className="h-[72px]">SOLD OUT. Thanks for your support.</div>
             ) : (
               <>
                 {!publicKey ? (
