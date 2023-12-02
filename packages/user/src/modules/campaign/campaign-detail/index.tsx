@@ -164,29 +164,35 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 </>
               )}
             </div>
-            {!publicKey ? (
-              <ButtonConnect
-                className="px-8 h-12 w-[160px]"
-                buttonText="Connect Wallet"
-              />
+            {totalNFTs >= 99 ? (
+              <div className="h-[72px]">SOLD OUT. Thanks for your support.</div>
             ) : (
               <>
-                {data?.isOpenWhitelist ? (
-                  <WhiteListForm campaignId={campaignId} />
+                {!publicKey ? (
+                  <ButtonConnect
+                    className="px-8 h-12 w-[160px]"
+                    buttonText="Connect Wallet"
+                  />
                 ) : (
                   <>
-                    {isFinishedCampaign ? (
-                      <Button disabled className="disabled px-8 h-12">
-                        Campaign ended
-                      </Button>
+                    {data?.isOpenWhitelist ? (
+                      <WhiteListForm campaignId={campaignId} />
                     ) : (
-                      <div>
-                        <NFTMinter
-                          nftCollection={nftCollection}
-                          campaignId={campaignId}
-                          isAllowWhitelistUser={data?.isAllowWhitelistUser}
-                        />
-                      </div>
+                      <>
+                        {isFinishedCampaign ? (
+                          <Button disabled className="disabled px-8 h-12">
+                            Campaign ended
+                          </Button>
+                        ) : (
+                          <div>
+                            <NFTMinter
+                              nftCollection={nftCollection}
+                              campaignId={campaignId}
+                              isAllowWhitelistUser={data?.isAllowWhitelistUser}
+                            />
+                          </div>
+                        )}
+                      </>
                     )}
                   </>
                 )}
