@@ -41,16 +41,16 @@ export const NFTDetail = ({ contractPackageHash, tokenId }: NFTDetailProps) => {
 
   if (isLoading) {
     return (
-      <div className="mt-10">
+      <div className="mt-20 flex justify-center">
         <SpinLoader />
       </div>
     );
   }
 
   return (
-    <div className="w-[800px] flex flex-row gap-8">
-      <div className="basis-[360px]">
-        <NFTAsset className="w-[360px] h-[360px]" url={data?.imageUrl} />
+    <div className="flex flex-row flex-wrap gap-8">
+      <div className="basis-[320px]">
+        <NFTAsset className="w-[320px] h-[360px]" url={data?.imageUrl} />
         {isLuckyBox && (
           <div className="mt-6">
             <ButtonOpenBox

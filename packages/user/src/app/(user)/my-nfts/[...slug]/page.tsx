@@ -1,3 +1,4 @@
+import { BaseContainer } from "@mlem-user/components/container";
 import { NFTDetail } from "@mlem-user/modules/nft/nft-detail";
 
 type Props = {
@@ -15,8 +16,8 @@ export default function MyNFT({ params }: Props) {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between px-24 py-8">
+    <BaseContainer className="mt-4">
       <NFTDetail contractPackageHash={contractPackageHash} tokenId={tokenId} />
-    </main>
+    </BaseContainer>
   );
 }
