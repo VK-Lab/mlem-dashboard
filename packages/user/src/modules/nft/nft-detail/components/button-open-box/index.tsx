@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useQueryClient } from "@tanstack/react-query";
 import Confetti from "react-confetti";
@@ -21,6 +21,7 @@ export const ButtonOpenBox = ({
 }: Props) => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const timeoutRef = useRef<any>();
   const [isComplete, setIsComplete] = useState(false);
   const { width, height } = useWindowSize();
   const [isExploding, setIsExploding] = useState(false);
@@ -33,11 +34,12 @@ export const ButtonOpenBox = ({
       ]);
       toast({
         title: "🎊 Congratulations",
-        description: "🌟 Bravo! Your NFT character has arrived! 🎉",
+        description:
+          "🌟 Bravo! Your NFT has been revealed. Enjoy your NFT Journey with Melem. 🎉",
       });
       setIsExploding(true);
 
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setIsComplete(true);
       }, 8000);
     },
@@ -49,6 +51,14 @@ export const ButtonOpenBox = ({
       tokenId,
     });
   };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
