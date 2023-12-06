@@ -35,3 +35,11 @@ export type UpdateTempNftParams = Partial<CreateTempNftParams> & {
 export type UpdateTempNftResponse = {
   id: string;
 };
+
+export type CheckNftIsLuckyBoxResponse = {
+  isLuckyBox: boolean;
+};
+
+export type OpenLuckyBoxResponse = {
+  isSuccess: boolean;
+};

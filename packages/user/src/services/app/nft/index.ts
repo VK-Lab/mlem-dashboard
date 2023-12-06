@@ -1,10 +1,12 @@
 import { NFT } from "@mlem-user/types/nft";
 
 import {
+  CheckNftIsLuckyBoxResponse,
   ClaimNftBenefitParams,
   ClaimNftBenefitResponse,
   CreateTempNftParams,
   CreateTempNftResponse,
+  OpenLuckyBoxResponse,
   UpdateTempNftParams,
 } from "./types";
 import request from "../request";
@@ -14,6 +16,20 @@ export const getNft = (
   tokenId: string
 ): Promise<NFT> => {
   return request.get(`/nfts/${contractPackageHash}/${tokenId}`);
+};
+
+export const checkNftIsLuckyBox = (
+  contractPackageHash: string,
+  tokenId: string
+): Promise<CheckNftIsLuckyBoxResponse> => {
+  return request.get(`/nfts/${contractPackageHash}/${tokenId}/lucky-box`);
+};
+
+export const openLuckyBox = (
+  contractPackageHash: string,
+  tokenId: string
+): Promise<OpenLuckyBoxResponse> => {
+  return request.post(`/nfts/${contractPackageHash}/${tokenId}/lucky-box/open`);
 };
 
 export const getNfts = (): Promise<NFT[]> => {
