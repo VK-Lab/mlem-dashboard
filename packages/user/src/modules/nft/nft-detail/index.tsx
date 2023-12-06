@@ -29,8 +29,6 @@ export const NFTDetail = ({ contractPackageHash, tokenId }: NFTDetailProps) => {
     tokenId,
   });
 
-  console.log("isLuckyBox", isLuckyBox);
-
   if (isLoading) {
     return (
       <div className="mt-10">
