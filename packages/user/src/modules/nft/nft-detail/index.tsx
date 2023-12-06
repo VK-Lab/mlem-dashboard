@@ -1,10 +1,12 @@
 "use client";
 
 import { useAccount } from "@casperdash/usewallet";
+import { useRouter } from "next/navigation";
 
 import { GradientAvatar } from "@mlem-user/components/avatar/gradient-avatar";
 import { NFTAsset } from "@mlem-user/components/nft-asset";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
+import { Paths } from "@mlem-user/enums/paths";
 import { useCheckNFTIsLuckyBox } from "@mlem-user/services/app/nft/hooks/useCheckNFTIsLuckyBox";
 import { useGetNFT } from "@mlem-user/services/app/nft/hooks/useGetNFT";
 
@@ -19,10 +21,18 @@ type NFTDetailProps = {
 };
 
 export const NFTDetail = ({ contractPackageHash, tokenId }: NFTDetailProps) => {
-  const { data, isLoading } = useGetNFT({
-    contractPackageHash,
-    tokenId,
-  });
+  const router = useRouter();
+  const { data, isLoading } = useGetNFT(
+    {
+      contractPackageHash,
+      tokenId,
+    },
+    {
+      onError: () => {
+        router.push(Paths.MY_NFTS);
+      },
+    }
+  );
   const { publicKey } = useAccount();
   const { data: isLuckyBox } = useCheckNFTIsLuckyBox({
     contractPackageHash,
