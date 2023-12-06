@@ -48,9 +48,9 @@ export const NFTDetail = ({ contractPackageHash, tokenId }: NFTDetailProps) => {
   }
 
   return (
-    <div className="flex flex-row flex-wrap gap-8">
-      <div className="basis-[320px]">
-        <NFTAsset className="w-[320px] h-[360px]" url={data?.imageUrl} />
+    <div className="flex flex-row flex-wrap gap-8 justify-center">
+      <div className="basis-[300px]">
+        <NFTAsset className="w-[300px] h-[350px]" url={data?.imageUrl} />
         {isLuckyBox && (
           <div className="mt-6">
             <ButtonOpenBox
@@ -60,7 +60,7 @@ export const NFTDetail = ({ contractPackageHash, tokenId }: NFTDetailProps) => {
           </div>
         )}
       </div>
-      <div className="flex-1">
+      <div className="flex-1 max-w-[300px]">
         <div className="typo-h3">{data?.name}</div>
         <div className="mt-4 flex items-center gap-2">
           <GradientAvatar name={publicKey || ""} size={20} />
