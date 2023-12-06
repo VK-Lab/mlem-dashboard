@@ -6,7 +6,7 @@ export default function MyNFTs() {
   return (
     <div className="flex flex-col items-center justify-between">
       <UserCover />
-      <BaseContainer className="mt-4">
+      <BaseContainer className="mt-12">
         <ListNFTs />
       </BaseContainer>
     </div>

@@ -25,6 +25,7 @@ export const NFTAsset = ({ url, className }: NFTAssetProps) => {
           className="w-full h-full rounded-lg"
           fill={true}
           loading="lazy"
+          objectFit="contain"
         />
       )}
     </div>
