@@ -24,7 +24,7 @@ export const NFTItem = ({ className, nft }: NFTItemProps) => {
 
   return (
     <Card className={cn("h-[400px] w-[260px]", className)}>
-      <CardHeader className="relative h-[240px]">
+      <CardHeader className="h-[240px]">
         <NFTAsset url={nft?.imageUrl} className="h-full" />
       </CardHeader>
       <CardContent className="mt-4 h-[90px]">
