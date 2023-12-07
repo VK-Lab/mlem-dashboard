@@ -2,21 +2,12 @@
 const removeImports = require('next-remove-imports')();
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { i18n } = require('./next-i18next.config');
 
 module.exports = removeImports({
-  i18n,
+  output: 'export',
   reactStrictMode: false,
   experimental: {
     forceSwcTransforms: true,
-  },
-  rewrites: () => {
-    return [
-      {
-        source: '/rpc',
-        destination: 'http://138.201.51.197:7777/rpc',
-      },
-    ];
   },
   images: {
     unoptimized: true,
