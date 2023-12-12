@@ -72,7 +72,8 @@ export const useGetTransactions = (
     {
       ...options,
       enabled: !!publicKey,
-      refetchInterval: 60 * 1000,
+      refetchInterval: 6 * 1000,
+      refetchIntervalInBackground: true,
     }
   );
 };
