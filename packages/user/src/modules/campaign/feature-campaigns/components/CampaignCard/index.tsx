@@ -19,8 +19,8 @@ type CampaignCardProps = {
 export const CampaignCard = ({ className, campaign }: CampaignCardProps) => {
   return (
     <Link href={`/campaigns/${campaign?.id}`}>
-      <Card className={cn("w-full", className)}>
-        <CardHeader className="relative h-[400px] ">
+      <Card className={cn("w-full h-[400px]", className)}>
+        <CardHeader className="relative h-[300px]">
           <Image
             src={campaign?.imageUrl || ""}
             alt="Campaign Image"

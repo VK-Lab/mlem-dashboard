@@ -25,6 +25,7 @@ import {
   NFTKind,
   OwnerReverseLookupMode,
 } from "./types";
+import MintCallWasm from "./wasm/mint_call.wasm";
 import MintFeeWasm from "./wasm/mint_fee.wasm";
 
 const { Contract } = Contracts;
@@ -209,6 +210,22 @@ export class CEP78Client {
     return preparedDeploy;
   }
 
+  public async mintWithRegisterOwner(
+    args: MintArgs,
+    paymentAmount: string,
+    deploySender: CLPublicKey
+  ) {
+    return this.mint(
+      {
+        ...args,
+      },
+      { useSessionCode: true },
+      paymentAmount,
+      deploySender,
+      MintCallWasm
+    );
+  }
+
   public async mintWithFee(
     args: MintArgs,
     mintingFee: number,
@@ -250,6 +267,13 @@ export class CEP78Client {
       runtimeArgs.insert("nft_contract_hash", this.contractHashKey);
       if (args.mintingFee !== undefined) {
         runtimeArgs.insert("amount", CLValueBuilder.u512(args.mintingFee));
+      }
+
+      if (args.collectionName !== undefined) {
+        runtimeArgs.insert(
+          "collection_name",
+          CLValueBuilder.string(args.collectionName)
+        );
       }
 
       const preparedDeploy = this.contractClient.install(

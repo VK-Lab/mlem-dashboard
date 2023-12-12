@@ -12,14 +12,9 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
-import {
-  CheckboxElement,
-  DatePickerElement,
-  FormContainer,
-} from 'react-hook-form-mui';
+import { DatePickerElement, FormContainer } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
-import MarkdownField from './MarkdownField';
 import { StyledTextFieldElement } from './styled';
 
 const style = {
@@ -99,10 +94,10 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
                 label="Short Description"
               />
 
-              <Box mt="1rem">
+              {/* <Box mt="1rem">
                 <Box mb="0.5rem">Description</Box>
                 <MarkdownField />
-              </Box>
+              </Box> */}
               <StyledTextFieldElement name="imageUrl" label="Image URL" />
               <StyledTextFieldElement
                 name="thumbnailUrl"
@@ -115,19 +110,19 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
                 <DatePickerElement name="endDate" label="End Date" required />
               </Box>
 
-              <Box mt="1rem">
+              {/* <Box mt="1rem">
                 <CheckboxElement
                   name="isOpenWhitelist"
                   label="Is Open Whitelist"
                 />
-              </Box>
+              </Box> */}
 
-              <Box mt="1rem">
+              {/* <Box mt="1rem">
                 <CheckboxElement
                   name="isAllowWhitelistUser"
                   label="Is Allow Whitelist User To Mint"
                 />
-              </Box>
+              </Box> */}
 
               <Box mt="1rem">
                 <SelectNftCollectionsField

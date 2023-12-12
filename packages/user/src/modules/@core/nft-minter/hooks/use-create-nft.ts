@@ -4,6 +4,7 @@ import { useAccount, useSign } from "@casperdash/usewallet";
 import { UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { DeployUtil } from "casper-js-sdk";
 import dayjs from "dayjs";
+import _kebabCase from "lodash-es/kebabCase";
 import _omit from "lodash-es/omit";
 import _pick from "lodash-es/pick";
 
@@ -54,9 +55,8 @@ export const useCreateNFT = (
         ...params,
       });
 
-      const paymentAmount = 5_000_000_000;
-
       let deployResponse;
+      const paymentAmount = 15_000_000_000;
 
       if (params.broker) {
         deployResponse = await signDeployBrokerMintNft(
@@ -71,6 +71,7 @@ export const useCreateNFT = (
         );
       } else {
         deployResponse = await signDeployNft({
+          collectionName: _kebabCase(params.collectionName),
           publicKeyHex: publicKey,
           name: params.name,
           nftId: id,
