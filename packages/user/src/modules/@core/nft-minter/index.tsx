@@ -6,7 +6,6 @@ import { Button } from "@mlem-user/components/ui/button";
 import { Skeleton } from "@mlem-user/components/ui/skeleton";
 import { useToast } from "@mlem-user/components/ui/use-toast";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
-import { useCheckUserInWhiteList } from "@mlem-user/services/app/campaign/hooks/useCheckUserInWhiteList";
 import { useGetNFTs } from "@mlem-user/services/app/nft/hooks/useGetNFTs";
 import { useGetAccountBalance } from "@mlem-user/services/app/proxy/hooks/useGetAccountBalance";
 import { NftCollection } from "@mlem-user/types/nft-collection";
@@ -21,11 +20,7 @@ type NFTMinterProps = {
   campaignId: string;
 };
 
-export const NFTMinter = ({
-  nftCollection,
-  campaignId,
-  isAllowWhitelistUser,
-}: NFTMinterProps) => {
+export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
   const { publicKey } = useAccount();
   const { isPending } = useGetPendingTransaction({
     contractPackageHash: nftCollection?.contractPackageHash,
@@ -42,11 +37,6 @@ export const NFTMinter = ({
   const { data, isLoading: isLoadingBalance } = useGetAccountBalance({
     publicKey,
   });
-  const { data: whitelistChecked, isLoading: isLoadingWhitelist } =
-    useCheckUserInWhiteList({
-      campaignId,
-      publicKey: publicKey!,
-    });
   const { data: nfts = [] } = useGetNFTs();
   const { toast } = useToast();
   const { mutate, isLoading } = useCreateNFT({
@@ -70,6 +60,7 @@ export const NFTMinter = ({
     }
 
     mutate({
+      collectionName: nftCollection.name,
       name: nftCollection.name,
       description: nftCollection.description,
       tokenAddress: nftCollection.tokenAddress,
@@ -81,11 +72,7 @@ export const NFTMinter = ({
 
   const isMinting = isPending || isLoading;
 
-  if (
-    isLoadingBalance ||
-    isLoadingWhitelist ||
-    isLoadingCompletedTransactions
-  ) {
+  if (isLoadingBalance || isLoadingCompletedTransactions) {
     return (
       <div>
         <Skeleton className="h-[72px] w-[160px]" />
@@ -106,21 +93,21 @@ export const NFTMinter = ({
     );
   }
 
-  if (isAllowWhitelistUser) {
-    if (
-      !whitelistChecked ||
-      whitelistChecked?.isInvalid ||
-      !whitelistChecked?.isExisted
-    ) {
-      return (
-        <div className=" h-12">
-          You are currently ineligible to mint NFTs in the Whitelisted Round.
-          Please return during the public round scheduled from December 3rd to
-          December 4th, 2023.
-        </div>
-      );
-    }
-  }
+  // if (isAllowWhitelistUser) {
+  //   if (
+  //     !whitelistChecked ||
+  //     whitelistChecked?.isInvalid ||
+  //     !whitelistChecked?.isExisted
+  //   ) {
+  //     return (
+  //       <div className=" h-12">
+  //         You are currently ineligible to mint NFTs in the Whitelisted Round.
+  //         Please return during the public round scheduled from December 3rd to
+  //         December 4th, 2023.
+  //       </div>
+  //     );
+  //   }
+  // }
 
   if (
     maxOwnedTokens &&
@@ -128,7 +115,7 @@ export const NFTMinter = ({
       completedTransactions?.length >= maxOwnedTokens)
   ) {
     return (
-      <div className=" h-12">
+      <div className="h-12">
         Jes ser! You&apos;ve officially become a Jasperian. Your wallet has
         already hit the maximum entry limit.
       </div>

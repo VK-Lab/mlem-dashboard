@@ -6,7 +6,6 @@ import { CreateCampaignParams } from '@mlem-admin/services/admin/campaign/types'
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import {
-  CheckboxElement,
   DatePickerElement,
   FormContainer,
   SelectElement,
@@ -14,7 +13,6 @@ import {
 import { useQueryClient } from 'react-query';
 
 import { StyledTextFieldElement } from './styled';
-import MarkdownField from '../../AdminCampaignTable/ButtonUpdateModal/MarkdownField';
 
 type Props = {
   onSuccess?: () => void;
@@ -61,10 +59,10 @@ const NftForm = ({ onSuccess }: Props) => {
         label="Short Description"
       />
 
-      <Box mt="1rem">
+      {/* <Box mt="1rem">
         <Box mb="0.5rem">Description</Box>
         <MarkdownField />
-      </Box>
+      </Box> */}
       <Box mt="1rem">
         <SelectElement
           label="Type"
@@ -88,9 +86,9 @@ const NftForm = ({ onSuccess }: Props) => {
         <DatePickerElement name="endDate" label="End Date" required />
       </Box>
 
-      <Box mt="1rem">
+      {/* <Box mt="1rem">
         <CheckboxElement name="isOpenWhitelist" label="Is Open Whitelist" />
-      </Box>
+      </Box> */}
 
       <Box mt="1rem">
         <SelectNftCollectionsField name="nftCollectionIds" />

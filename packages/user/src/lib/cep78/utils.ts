@@ -8,6 +8,7 @@ import { Config } from "@mlem-user/config";
 import { CEP78ClientInstance } from ".";
 
 export type SignDeployNftParams = {
+  collectionName: string;
   publicKeyHex: string;
   name: string;
   nftId: string;
@@ -22,6 +23,7 @@ export const generateMetadataUrl = (nftId: string) => {
 };
 
 export const signDeployNft = async ({
+  collectionName,
   publicKeyHex,
   name,
   nftId,
@@ -36,15 +38,15 @@ export const signDeployNft = async ({
   const checksum = btoa(JSON.stringify(meta));
   CEP78ClientInstance.setContractHash(`hash-${tokenAddress}`, undefined);
 
-  const deploy = await CEP78ClientInstance.mint(
+  const deploy = await CEP78ClientInstance.mintWithRegisterOwner(
     {
+      collectionName,
       owner: cliPublicKey,
       meta: {
         ...meta,
         checksum,
       },
     },
-    { useSessionCode: false },
     paymentAmount,
     cliPublicKey
   );

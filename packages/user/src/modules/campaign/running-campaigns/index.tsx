@@ -56,9 +56,11 @@ export const RunningCampaigns = () => {
 
   return (
     <div>
-      <div>
-        <p className="typo-h4">Running Campaigns</p>
-      </div>
+      {!!data?.length && (
+        <div>
+          <p className="typo-h4">Running Campaigns</p>
+        </div>
+      )}
       {isUsingSlide ? (
         <div className="mt-10 flex items-center justify-between">
           <PrevArrow

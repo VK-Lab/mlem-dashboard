@@ -8,7 +8,6 @@ import Markdown from "react-markdown";
 
 import { Button } from "@mlem-user/components/ui/button";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
-import { CampaignStatusEnum } from "@mlem-user/enums/campaign-status";
 import { formatDate } from "@mlem-user/lib/date";
 import { cn } from "@mlem-user/lib/utils";
 import { ButtonConnect } from "@mlem-user/modules/@core/button-connect";
@@ -75,7 +74,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
         </div>
         <div className="md:w-3/5 px-2 md:px-16 text-gray-50 pb-12 pt-12 md:justify-center md:flex md:flex-col">
           <div>
-            <div className="max-w-2xl">
+            <div className="max-w-2xl mb-12">
               <h1
                 className={cn(font.className, "font-bold text-2xl md:text-5xl")}
               >
@@ -101,7 +100,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 </Markdown>
               </div>
             </div>
-            <div className="mt-7 mb-12">
+            {/* <div className="mt-7 mb-12">
               {data?.status === CampaignStatusEnum.RUNNING && (
                 <>
                   <div className="max-w-md progressbar-wrapper">
@@ -163,8 +162,8 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                   </div>
                 </>
               )}
-            </div>
-            {totalNFTs >= 99 ? (
+            </div> */}
+            {totalNFTs >= (nftCollection?.totalTokenSupply || 999999) ? (
               <div className="h-[72px]">SOLD OUT. Thanks for your support.</div>
             ) : (
               <>
