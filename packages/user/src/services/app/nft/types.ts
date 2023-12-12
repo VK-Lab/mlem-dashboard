@@ -14,6 +14,7 @@ export type ClaimNftBenefitResponse = {
 };
 
 export type CreateTempNftParams = {
+  collectionName?: string;
   name: string;
   description: string;
   tokenAddress: string;
