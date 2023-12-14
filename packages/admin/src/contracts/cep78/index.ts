@@ -36,6 +36,7 @@ import {
   OwnerReverseLookupMode,
 } from './types';
 import ContractWasm from './wasm/contract.wasm';
+import MintCallWasm from './wasm/mint_call.wasm';
 import MintFeeWasm from './wasm/mint_fee.wasm';
 
 const { Contract } = Contracts;
@@ -386,9 +387,15 @@ export class CEP78Client {
 
     if (config.useSessionCode) {
       runtimeArgs.insert('nft_contract_hash', this.contractHashKey);
+      if (args.collectionName) {
+        runtimeArgs.insert(
+          'collection_name',
+          CLValueBuilder.string(args.collectionName)
+        );
+      }
 
       const preparedDeploy = this.contractClient.install(
-        wasm!,
+        wasm || MintCallWasm,
         runtimeArgs,
         paymentAmount,
         deploySender,
