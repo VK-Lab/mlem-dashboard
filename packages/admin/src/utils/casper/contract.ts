@@ -37,6 +37,7 @@ export type SignDeployNftParams = {
   nftId: string;
   paymentAmount?: string;
   tokenAddress: string;
+  collectionName?: string;
 };
 
 export type SignDeployBrokerParams = {
@@ -130,6 +131,7 @@ export const signDeployNft = async (
     nftId,
     paymentAmount = `${5_000_000_000}`,
     tokenAddress,
+    collectionName,
   }: SignDeployNftParams,
   { isWaiting = false }: { isWaiting: boolean } = { isWaiting: false }
 ) => {
@@ -148,8 +150,9 @@ export const signDeployNft = async (
         ...meta,
         checksum,
       },
+      collectionName: collectionName ? _kebabCase(collectionName) : undefined,
     },
-    { useSessionCode: false },
+    { useSessionCode: true },
     paymentAmount,
     cliPublicKey
   );

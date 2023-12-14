@@ -31,7 +31,7 @@ type NftFormProps = {
   onSuccess: () => void;
 };
 
-const ESTIMATE_FEE = 5;
+const ESTIMATE_FEE = 20;
 
 type SelectTiersFieldProps = {
   nftCollections: NftCollection[];
@@ -93,6 +93,7 @@ const NftForm = ({ onSuccess }: NftFormProps) => {
     createNftMutation.mutate({
       ...createNftParams,
       contractPackageHash: foundNftCollection?.contractPackageHash,
+      collectionName: foundNftCollection?.name,
     });
   };
 

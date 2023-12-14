@@ -10,7 +10,9 @@ import {
 import { signDeployNft } from '@mlem-admin/utils/casper/contract';
 import { useMutation, UseMutationOptions } from 'react-query';
 
-export type UseCreateNftParams = CreateNftParams;
+export type UseCreateNftParams = CreateNftParams & {
+  collectionName?: string;
+};
 
 export const useMutateCreateNft = (
   options?: UseMutationOptions<
@@ -24,7 +26,7 @@ export const useMutateCreateNft = (
 
   return useMutation({
     ...options,
-    mutationFn: async (params: UseCreateNftParams) => {
+    mutationFn: async ({ collectionName, ...params }: UseCreateNftParams) => {
       if (!publicKey) {
         throw new Error('Public key does not exist');
       }
@@ -41,6 +43,8 @@ export const useMutateCreateNft = (
         name: params.name,
         nftId: id,
         tokenAddress: params.tokenAddress,
+        paymentAmount: `${20_000_000_000}`,
+        collectionName,
       });
 
       const { deployHash, checksum } = deployResponse;
