@@ -8,5 +8,6 @@ export type Benefit = {
   description: string;
   categoryId: string;
   category?: BenefitCategory;
+  generatedCode?: string;
   status: ClaimStatusEnum;
 };
