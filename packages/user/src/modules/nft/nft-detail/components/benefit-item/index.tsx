@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { match } from "ts-pattern";
+import { P, match } from "ts-pattern";
 
 import { Button } from "@mlem-user/components/ui/button";
 import { QueryKeys } from "@mlem-user/enums/queryKeys";
@@ -16,6 +16,18 @@ type Props = {
 
 const getButtonStatus = (benefit: Benefit) => {
   return match(benefit)
+    .with(
+      {
+        status: ClaimStatusEnum.ACCEPTED,
+        generatedCode: P.string.minLength(0),
+      },
+      () => {
+        return {
+          text: benefit.generatedCode,
+          isDisabled: true,
+        };
+      }
+    )
     .with({ status: ClaimStatusEnum.ACCEPTED }, () => {
       return {
         text: "Claimed",
