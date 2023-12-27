@@ -1,10 +1,7 @@
 "use client";
-import { useMemo } from "react";
 
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
-import { useGetTotalTokenSupply } from "@mlem-user/hooks/contract/useGetTotalTokenSupply";
 import { useGetCampaign } from "@mlem-user/services/app/campaign/hooks/useGetCampaign";
-import { useGetTotalNFTs } from "@mlem-user/services/app/nft-collection/hooks/use-get-total-nfts";
 
 import { CampaignInformation } from "./campaign-information";
 
