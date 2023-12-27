@@ -7,6 +7,7 @@ import {
   Contracts,
   Keys,
   CLValueBuilder,
+  CasperClient,
 } from "casper-js-sdk";
 
 import { Config } from "@mlem-user/config";
@@ -56,8 +57,8 @@ export class CEP78Client {
 
   public contractHashKey!: CLKey;
 
-  constructor(public networkName: string) {
-    this.contractClient = new Contract();
+  constructor(public networkName: string, casperClient?: CasperClient) {
+    this.contractClient = new Contract(casperClient);
   }
 
   public setContractHash(contractHash: string, contractPackageHash?: string) {

@@ -6,9 +6,8 @@ import _get from "lodash-es/get";
 import { DeployStatusEnum } from "@mlem-user/enums";
 import { DeployActionsEnum } from "@mlem-user/enums/deployActions";
 import { DeployContextEnum } from "@mlem-user/enums/deployContext";
+import { useGetTransactions } from "@mlem-user/hooks/transaction/use-get-transactions";
 import { Transaction } from "@mlem-user/types/transaction";
-
-import { useGetTransactions } from "../../../../hooks/transaction/use-get-transactions";
 
 type Params = {
   contractPackageHash?: string;
