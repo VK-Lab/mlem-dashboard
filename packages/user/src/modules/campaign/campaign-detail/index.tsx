@@ -8,6 +8,7 @@ import Markdown from "react-markdown";
 
 import { Button } from "@mlem-user/components/ui/button";
 import { SpinLoader } from "@mlem-user/components/ui/spin-loader";
+import { CampaignStatusEnum } from "@mlem-user/enums/campaign-status";
 import { formatDate } from "@mlem-user/lib/date";
 import { cn } from "@mlem-user/lib/utils";
 import { ButtonConnect } from "@mlem-user/modules/@core/button-connect";
@@ -100,7 +101,7 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                 </Markdown>
               </div>
             </div>
-            {/* <div className="mt-7 mb-12">
+            <div className="mt-7 mb-12">
               {data?.status === CampaignStatusEnum.RUNNING && (
                 <>
                   <div className="max-w-md progressbar-wrapper">
@@ -122,47 +123,51 @@ export const CampaignDetail = ({ campaignId }: CampaignDetailProps) => {
                       </div>
                     </div>
                   </div>
-                  <div className="max-w-xl grid gap-1 grid-cols-3 mb-4">
-                    <div className="">
-                      <div className="px-4 py-1">
-                        <dl>
-                          <dt className="text-sm leading-5 text-gray-100 font-medium">
-                            Total Supply
-                          </dt>
-                          <dd className="mt-1 h-12 text-gray-50 text-5xl leading-none font-semibold">
-                            99
-                          </dd>
-                        </dl>
+                  {nftCollection?.broker && (
+                    <>
+                      <div className="max-w-xl grid gap-1 grid-cols-3 mb-4 margin-auto">
+                        <div className="">
+                          <div className="px-4 py-1">
+                            <dl>
+                              <dt className="text-sm leading-5 text-gray-100 font-medium">
+                                Total Supply
+                              </dt>
+                              <dd className="mt-1 h-12 text-gray-50 text-5xl leading-none font-semibold">
+                                99
+                              </dd>
+                            </dl>
+                          </div>
+                        </div>
+                        <div className="">
+                          <div className="px-0 py-1">
+                            <dl>
+                              <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
+                                Max entry per Wallet
+                              </dt>
+                              <dd className="mt-1 h-12 text-gray-50 text-4xl md:text-5xl leading-none font-semibold">
+                                {nftCollection?.broker.maxOwnedTokens}
+                              </dd>
+                            </dl>
+                          </div>
+                        </div>
+                        <div className="">
+                          <div className="px-0 py-1">
+                            <dl>
+                              <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
+                                Price (CSPR)
+                              </dt>
+                              <dd className="mt-1 h-12 text-gray-50 text-4xl md:text-5xl leading-none font-semibold">
+                                {nftCollection?.broker.mintingFee}
+                              </dd>
+                            </dl>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="">
-                      <div className="px-0 py-1">
-                        <dl>
-                          <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
-                            Max entry per Wallet
-                          </dt>
-                          <dd className="mt-1 h-12 text-gray-50 text-4xl md:text-5xl leading-none font-semibold">
-                            1
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div className="">
-                      <div className="px-0 py-1">
-                        <dl>
-                          <dt className="text-sm min-h-[40px] md:min-h-0 leading-5 text-gray-100 font-medium">
-                            Price
-                          </dt>
-                          <dd className="mt-1 h-12 text-gray-50 text-xl md:text-2xl leading-none font-semibold items-center flex">
-                            389 CSPR
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </div>
+                    </>
+                  )}
                 </>
               )}
-            </div> */}
+            </div>
             {totalNFTs >= (nftCollection?.totalTokenSupply || 999999) ? (
               <div className="h-[72px]">SOLD OUT. Thanks for your support.</div>
             ) : (
