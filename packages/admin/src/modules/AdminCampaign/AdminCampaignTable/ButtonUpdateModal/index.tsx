@@ -15,6 +15,7 @@ import dayjs from 'dayjs';
 import { DatePickerElement, FormContainer } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
+import MarkdownField from './MarkdownField';
 import { StyledTextFieldElement } from './styled';
 
 const style = {
@@ -94,20 +95,26 @@ const ButtonUpdateModal = ({ campaign }: ButtonUpdateModalProps) => {
                 label="Short Description"
               />
 
-              {/* <Box mt="1rem">
+              <Box mt="1rem">
                 <Box mb="0.5rem">Description</Box>
                 <MarkdownField />
-              </Box> */}
+              </Box>
               <StyledTextFieldElement name="imageUrl" label="Image URL" />
               <StyledTextFieldElement
                 name="thumbnailUrl"
                 label="Thumbnail URL"
               />
-              <Box mt="18px">
-                <DatePickerElement name="startDate" label="Start Date" />
-              </Box>
-              <Box mt="18px">
-                <DatePickerElement name="endDate" label="End Date" required />
+              <Box mt="18px" display={'flex'} gap={'10px'}>
+                <Box>
+                  <DatePickerElement
+                    name="startDate"
+                    label="Start Date"
+                    required
+                  />
+                </Box>
+                <Box>
+                  <DatePickerElement name="endDate" label="End Date" required />
+                </Box>
               </Box>
 
               {/* <Box mt="1rem">

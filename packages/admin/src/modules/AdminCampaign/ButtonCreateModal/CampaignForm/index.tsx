@@ -13,6 +13,7 @@ import {
 import { useQueryClient } from 'react-query';
 
 import { StyledTextFieldElement } from './styled';
+import MarkdownField from '../../AdminCampaignTable/ButtonUpdateModal/MarkdownField';
 
 type Props = {
   onSuccess?: () => void;
@@ -59,31 +60,42 @@ const NftForm = ({ onSuccess }: Props) => {
         label="Short Description"
       />
 
-      {/* <Box mt="1rem">
+      <Box mt="1rem">
         <Box mb="0.5rem">Description</Box>
         <MarkdownField />
-      </Box> */}
-      <Box mt="1rem">
-        <SelectElement
-          label="Type"
-          name="type"
-          options={[
-            {
-              id: 'free_mint',
-              label: 'Free Mint',
-            },
-          ]}
-          required
-        />
       </Box>
-      <StyledTextFieldElement name="thumbnailUrl" label="Thumbnail URL" />
-      <StyledTextFieldElement name="imageUrl" label="Image URL" required />
+      <Box display={'flex'} gap={'10px'}>
+        <StyledTextFieldElement name="thumbnailUrl" label="Thumbnail URL" />
+        <StyledTextFieldElement name="imageUrl" label="Image URL" required />
+      </Box>
 
-      <Box mt="18px">
-        <DatePickerElement name="startDate" label="Start Date" required />
+      <Box mt="1rem" display={'flex'} gap="10px">
+        <Box>
+          <SelectElement
+            label="Type"
+            name="type"
+            style={{ width: '100%' }}
+            options={[
+              {
+                id: 'free_mint',
+                label: 'Free Mint',
+              },
+            ]}
+            required
+          />
+        </Box>
+        <Box width={'100%'}>
+          <SelectNftCollectionsField name="nftCollectionIds" />
+        </Box>
       </Box>
-      <Box mt="18px">
-        <DatePickerElement name="endDate" label="End Date" required />
+
+      <Box mt="18px" display={'flex'} gap={'10px'}>
+        <Box>
+          <DatePickerElement name="startDate" label="Start Date" required />
+        </Box>
+        <Box>
+          <DatePickerElement name="endDate" label="End Date" required />
+        </Box>
       </Box>
 
       {/* <Box mt="1rem">
@@ -91,14 +103,12 @@ const NftForm = ({ onSuccess }: Props) => {
       </Box> */}
 
       <Box mt="1rem">
-        <SelectNftCollectionsField name="nftCollectionIds" />
-      </Box>
-      <Box mt="1rem">
         <LoadingButton
           loading={createCampaignMutation.isLoading}
           type={'submit'}
           color={'primary'}
           variant={'contained'}
+          style={{ width: '100%' }}
         >
           Create
         </LoadingButton>
