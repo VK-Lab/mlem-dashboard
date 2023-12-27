@@ -61,6 +61,8 @@ export const useGetTransactions = (
         const mappedTxHistories = await Promise.all(promisesMappedTxHistories);
 
         await queryClient.invalidateQueries([QueryKeys.LIST_NFTS]);
+        await queryClient.invalidateQueries([QueryKeys.TOTAL_TOKEN_SUPPLY]);
+        await queryClient.invalidateQueries([QueryKeys.CAMPAIGN]);
 
         await transactionHistoryStorage.setItem(mappedTxHistories);
 

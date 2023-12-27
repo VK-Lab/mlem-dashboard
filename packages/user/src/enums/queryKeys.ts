@@ -16,4 +16,5 @@ export enum QueryKeys {
   CAMPAIGN = "campaign",
   GET_CAMPAIGNS = "get-campaigns",
   WHITELIST = "whitelist",
+  TOTAL_TOKEN_SUPPLY = "total-token-supply",
 }
