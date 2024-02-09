@@ -84,7 +84,7 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
     return null;
   }
 
-  const totalFee = mintingFee + 20;
+  const totalFee = mintingFee + 25;
   if ((data?.balance || 0) < totalFee) {
     return (
       <div className="h-[72px]">
@@ -131,7 +131,7 @@ export const NFTMinter = ({ nftCollection }: NFTMinterProps) => {
       >
         {isMinting ? "Minting..." : "Mint Now"}
       </Button>
-      <p className="mt-2 text-xs">Estimated network Fee: 20 CSPR</p>
+      <p className="mt-2 text-xs">Estimated network Fee: 25 CSPR</p>
     </div>
   );
 };

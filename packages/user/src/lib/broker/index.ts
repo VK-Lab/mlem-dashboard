@@ -56,7 +56,7 @@ export class BrokerContract {
     const preparedDeploy = this.contractClient.install(
       wasmToCall,
       runtimeArgs,
-      `${20_000_000_000}`,
+      `${25_000_000_000}`,
       deploySender,
       this.networkName
     );
