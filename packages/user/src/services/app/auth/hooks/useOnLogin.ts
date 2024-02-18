@@ -1,13 +1,15 @@
 import { useAccount, useSignMessage } from "@casperdash/usewallet";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 
 import { CookieKeys } from "@mlem-user/enums/cookieKeys";
+import { QueryKeys } from "@mlem-user/enums/queryKeys";
 
 import { login } from "..";
 import { LoginResponse } from "../types";
 
 export const useOnLogin = () => {
+  const queryClient = useQueryClient();
   const { signMessageAsync, isLoading } = useSignMessage();
   const onLoginSuccess = (data: LoginResponse) => {
     Cookies.set(CookieKeys.TOKEN, data.accessToken);
@@ -15,8 +17,9 @@ export const useOnLogin = () => {
   const loginMutation = useMutation({
     mutationKey: ["login"],
     mutationFn: login,
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       onLoginSuccess?.(data);
+      await queryClient.invalidateQueries([QueryKeys.LIST_NFTS]);
     },
   });
 
