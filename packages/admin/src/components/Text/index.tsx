@@ -4,13 +4,13 @@ const sizeClasses = {
   txtLexendRegular14Gray600: "font-lexend font-normal",
   txtBasierCircleMedium14: "font-basiercircle font-medium",
   txtLexendRegular14Bluegray50: "font-lexend font-normal",
-  txtBeVietnamProSemiBold14Bluegray100: "font-bevietnampro font-semibold",
   txtLexendSemiBold16: "font-lexend font-semibold",
   txtBeVietnamProSemiBold24: "font-bevietnampro font-semibold",
   txtLexendBold64: "font-bold font-lexend",
   txtLexendSemiBold12: "font-lexend font-semibold",
   txtLexendSemiBold14: "font-lexend font-semibold",
   txtBeVietnamProSemiBold16: "font-bevietnampro font-semibold",
+  txtBeVietnamProSemiBold14Deeppurple20001: "font-bevietnampro font-semibold",
   txtLexendSemiBold16WhiteA700: "font-lexend font-semibold",
   txtLexendSemiBold14Gray300: "font-lexend font-semibold",
   txtLexendRegular8: "font-lexend font-normal",
@@ -26,9 +26,25 @@ const sizeClasses = {
   txtInterRegular12: "font-inter font-normal",
   txtInterRegular14: "font-inter font-normal",
   txtBeVietnamProSemiBold16WhiteA700: "font-bevietnampro font-semibold",
-};
+} as const;
 
-const Text = ({ children, className = "", size, as, ...restProps }) => {
+export type TextProps = Partial<{
+  className: string;
+  size: keyof typeof sizeClasses;
+  as: any;
+}> &
+  React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLSpanElement>,
+    HTMLSpanElement
+  >;
+
+const Text: React.FC<React.PropsWithChildren<TextProps>> = ({
+  children,
+  className = "",
+  size,
+  as,
+  ...restProps
+}) => {
   const Component = as || "p";
 
   return (

@@ -49,7 +49,7 @@ const Welcome = () => {
           <div className="h-[1184px] md:h-[887px] md:px-5 relative w-full">
             <Img
               className="absolute bottom-[0] h-[453px] object-cover right-[0] w-[5%]"
-              src="v2/images/img_object.png"
+              src="/v2/images/img_object.png"
               alt="object"
             />
             <div className="absolute flex flex-col h-[887px] md:h-auto inset-x-[0] items-center justify-start mx-auto top-[0] w-auto md:w-full">
@@ -57,7 +57,7 @@ const Welcome = () => {
                 <div className="bg-indigo-900 flex flex-col items-center justify-start my-auto w-[56%]">
                   <Img
                     className="h-[887px] md:h-auto object-cover w-full"
-                    src="v2/images/img_freepik13276189.png"
+                    src="/v2/images/img_freepik13276189.png"
                     alt="freepik13276189"
                   />
                 </div>
@@ -67,7 +67,7 @@ const Welcome = () => {
                       <div className="flex flex-col items-center justify-start w-auto">
                         <Img
                           className="h-[66px] md:h-auto object-cover w-[69px]"
-                          src="v2/images/img_logo1.png"
+                          src="/v2/images/img_logo1.png"
                           alt="logoOne"
                         />
                       </div>

@@ -1,8 +1,8 @@
-import AdminCampaign from '@mlem-admin/modules/AdminCampaign';
+import AdmDashboard from '@mlem-admin/modules/AdmDashboard';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {
-  return <AdminCampaign />;
+  return <AdmDashboard />;
 };
 
 export const getStaticProps = async ({ locale }: { locale: string }) => {
