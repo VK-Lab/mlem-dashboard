@@ -1,8 +1,8 @@
-import AdmCampaignItemCreate from '@mlem-admin/modules/AdmDashboard/ItemCreate';
+import AdmNftCollectionItemCreate from '@mlem-admin/modules/AdmNftCollection/ItemCreate';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {
-  return <AdmCampaignItemCreate />;
+  return <AdmNftCollectionItemCreate />;
 };
 
 export const getStaticProps = async ({ locale }: { locale: string }) => {

@@ -3,9 +3,9 @@ import React from "react";
 import {Img} from '@mlem-admin/components/Img';
 import Header from '@mlem-admin/components/Header';
 import Footer from '@mlem-admin/components/Footer';
-import CreateNftCollection from '@mlem-admin/components/CreateNftCollection';
+import CreateCampaign from '@mlem-admin/components/CreateCampaign';
 
-const AdmNftCollectionItemCreate = () => {
+const AdmCampaignItemCreate = () => {
   return (
     <>
       <div className="bg-black-900 flex flex-col font-lexend items-start justify-end mx-auto w-full">
@@ -25,7 +25,7 @@ const AdmNftCollectionItemCreate = () => {
                   alt="freepik13276189"
                 />
               </div>
-              <CreateNftCollection className="flex flex-col gap-14 items-center justify-center max-w-[1440px] sm:px-5 px-9 py-24 w-full" />
+              <CreateCampaign className="flex flex-col gap-14 items-center justify-center max-w-[1440px] sm:px-5 px-9 py-24 w-full" />
 
               <Footer className="bg-indigo-900 flex flex-col font-bevietnampro gap-4 items-center justify-start max-w-[1440px] py-24 w-full" />
             </div>
@@ -36,4 +36,4 @@ const AdmNftCollectionItemCreate = () => {
   );
 };
 
-export default AdmNftCollectionItemCreate;
+export default AdmCampaignItemCreate;

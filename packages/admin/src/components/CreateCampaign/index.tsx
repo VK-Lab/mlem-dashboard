@@ -8,7 +8,7 @@ import {Text} from '@mlem-admin/components/Text';
 import ListLeftInfo from '@mlem-admin/components/ListLeftInfo';
 import CreateItemStep from "@mlem-admin/components/CreateItemStep";
 
-type CreateNftCollectionProps = Omit<
+type CreateCampaignProps = Omit<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
   | "username"
   | "useraddress"
@@ -78,7 +78,7 @@ type CreateNftCollectionProps = Omit<
     addbrokerbutton: string;
   }>;
 
-const CreateNftCollection: React.FC<CreateNftCollectionProps> = (props) => {
+const CreateCampaign: React.FC<CreateCampaignProps> = (props) => {
   return (
     <>
       <div className={props.className}>
@@ -112,7 +112,7 @@ const CreateNftCollection: React.FC<CreateNftCollectionProps> = (props) => {
                   className="text-blue_gray-100 text-sm w-auto"
                   size="txtLexendSemiBold14"
                 >
-                  Symbol (*)
+                  Short Description
                 </Text>
                 <Input
                   name="input"
@@ -132,7 +132,7 @@ const CreateNftCollection: React.FC<CreateNftCollectionProps> = (props) => {
                   className="text-blue_gray-100 text-sm w-auto"
                   size="txtLexendSemiBold14"
                 >
-                  Minting Mode (*)
+                  Type (*)
                 </Text>
                 <Input
                   name="input"
@@ -152,7 +152,7 @@ const CreateNftCollection: React.FC<CreateNftCollectionProps> = (props) => {
                   className="text-blue_gray-100 text-sm w-auto"
                   size="txtLexendSemiBold14"
                 >
-                  Total Token Supply (*)
+                  Thumbnail URL
                 </Text>
                 <Input
                   name="input"
@@ -172,7 +172,7 @@ const CreateNftCollection: React.FC<CreateNftCollectionProps> = (props) => {
                   className="text-blue_gray-100 text-sm w-auto"
                   size="txtLexendSemiBold14"
                 >
-                  Description
+                  Image URL (*)
                 </Text>
                 <Input
                   name="input"
@@ -192,7 +192,7 @@ const CreateNftCollection: React.FC<CreateNftCollectionProps> = (props) => {
                   className="text-blue_gray-100 text-sm w-auto"
                   size="txtLexendSemiBold14"
                 >
-                  Contact Type (*)
+                  Start Date
                 </Text>
                 <Input
                   name="input"
@@ -212,7 +212,27 @@ const CreateNftCollection: React.FC<CreateNftCollectionProps> = (props) => {
                   className="text-blue_gray-100 text-sm w-auto"
                   size="txtLexendSemiBold14"
                 >
-                  Benefits (*)
+                  End Date
+                </Text>
+                <Input
+                  name="input"
+                  placeholder="select..."
+                  className="!placeholder:text-gray-600 !text-gray-600 font-lexend p-0 text-left text-sm w-full"
+                  wrapClassName="border border-indigo-50_0c border-solid w-full"
+                  shape="round"
+                  color="indigo_900_cc"
+                  size="xs"
+                  variant="fill"
+                ></Input>
+              </div>
+            </div>
+            <div className="flex flex-col items-start justify-start max-w-[724px] w-full">
+              <div className="flex flex-col gap-1.5 items-start justify-start w-full">
+                <Text
+                  className="text-blue_gray-100 text-sm w-auto"
+                  size="txtLexendSemiBold14"
+                >
+                  NFT Collections (*)
                 </Text>
                 <Input
                   name="input"
@@ -241,7 +261,7 @@ const CreateNftCollection: React.FC<CreateNftCollectionProps> = (props) => {
               variant="fill"
             >
               <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
-                Create NFT Collection
+                {props?.createcampaignbutton}
               </div>
             </Button>
           </div>
@@ -253,7 +273,7 @@ const CreateNftCollection: React.FC<CreateNftCollectionProps> = (props) => {
   );
 };
 
-CreateNftCollection.defaultProps = {
+CreateCampaign.defaultProps = {
   username: "Your Name",
   useraddress: "0x12...282723f1",
   label: "Label",
@@ -288,4 +308,4 @@ CreateNftCollection.defaultProps = {
   addbrokerbutton: "Add broker",
 };
 
-export default CreateNftCollection;
+export default CreateCampaign;
