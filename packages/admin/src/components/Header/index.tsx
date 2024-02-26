@@ -174,6 +174,6 @@ const Header: React.FC<HeaderProps> = (props) => {
   );
 };
 
-// Header.defaultProps = {};
+Header.defaultProps = {};
 
 export default Header;

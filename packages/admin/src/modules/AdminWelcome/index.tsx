@@ -46,12 +46,7 @@ const Welcome = () => {
     <>
       <div className="bg-black-900 flex flex-col font-bevietnampro items-center justify-end mx-auto w-full">
         <div className="flex flex-col md:gap-10 gap-[583px] items-center justify-end w-full">
-          <div className="h-[1184px] md:h-[887px] md:px-5 relative w-full">
-            <Img
-              className="absolute bottom-[0] h-[453px] object-cover right-[0] w-[5%]"
-              src="/v2/images/img_object.png"
-              alt="object"
-            />
+          <div className="h-[910px] md:h-[887px] md:px-5 relative w-full">
             <div className="absolute flex flex-col h-[887px] md:h-auto inset-x-[0] items-center justify-start mx-auto top-[0] w-auto md:w-full">
               <div className="relative w-[1440px] md:w-full">
                 <div className="bg-indigo-900 flex flex-col items-center justify-start my-auto w-[56%]">

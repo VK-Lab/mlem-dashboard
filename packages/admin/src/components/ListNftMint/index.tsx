@@ -2,15 +2,15 @@ import React from "react";
 
 import TabContentHeader from '@mlem-admin/components/TabContentHeader';
 import ListLeftInfo from '@mlem-admin/components/ListLeftInfo';
-import AdminCampaignTable from '@mlem-admin/modules/AdmDashboard/AdminCampaignTable';
+import AdminNftTable from '@mlem-admin/modules/AdmNftMint/AdminNftTable';
 
-type ListCampaignProps = React.DetailedHTMLProps<
+type ListNftMintProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
   > &
   Partial<{}>;
 
-const ListCampaign: React.FC<ListCampaignProps> = (props) => {
+const ListNftMint: React.FC<ListNftMintProps> = (props) => {
   return (
     <>
       <div className={props.className}>
@@ -21,7 +21,7 @@ const ListCampaign: React.FC<ListCampaignProps> = (props) => {
               <TabContentHeader />
             </div>
             <div className="flex md:flex-col flex-row md:gap-5 items-start justify-start w-full">
-              <AdminCampaignTable />
+              <AdminNftTable />
             </div>
           </div>
         </div>
@@ -30,6 +30,6 @@ const ListCampaign: React.FC<ListCampaignProps> = (props) => {
   );
 };
 
-ListCampaign.defaultProps = {};
+ListNftMint.defaultProps = {};
 
-export default ListCampaign;
+export default ListNftMint;
