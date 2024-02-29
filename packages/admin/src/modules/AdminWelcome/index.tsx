@@ -53,7 +53,7 @@ const Welcome = () => {
                   <Img
                     className="h-[887px] md:h-auto object-cover w-full"
                     src="/v2/images/img_freepik13276189.png"
-                    alt="freepik13276189"
+                    alt="image"
                   />
                 </div>
                 <div className="absolute flex flex-col h-max inset-y-[0] items-center justify-start max-w-[792px] my-auto outline outline-[12px] outline-deep_purple-800_99 right-[3%] rounded w-full">

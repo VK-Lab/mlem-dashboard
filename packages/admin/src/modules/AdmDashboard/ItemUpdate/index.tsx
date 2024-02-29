@@ -11,9 +11,9 @@ import {useState} from 'react';
 
 import {useQueryClient} from 'react-query';
 import {useMutateUpdateCampaign} from "@mlem-admin/hooks/mutations";
-import ToastMessage from "@mlem-admin/components/Toast";
 import {QueryKeys} from "@mlem-admin/enums/queryKeys.enum";
 import {UpdateCampaignParams} from "@mlem-admin/services/admin/campaign/types";
+import {useI18nToast} from "@mlem-admin/hooks/useToast";
 
 const AdmCampaignItemUpdate = (props) => {
 
@@ -21,12 +21,10 @@ const AdmCampaignItemUpdate = (props) => {
   const [modalPlacement] = useState('center');
 
   const queryClient = useQueryClient();
+  const {toastSuccess} = useI18nToast();
   const updateCampaignMutation = useMutateUpdateCampaign({
     onSuccess: async () => {
-      ToastMessage({
-        type: 'success',
-        message: 'Updated campaign successfully!',
-      });
+      toastSuccess('item_updated');
       await queryClient.invalidateQueries({queryKey: [QueryKeys.CAMPAIGNS]});
       setOpenModal(false);
     },

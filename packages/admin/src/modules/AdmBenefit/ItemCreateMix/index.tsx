@@ -5,7 +5,7 @@ import Header from '@mlem-admin/components/Header';
 import Footer from '@mlem-admin/components/Footer';
 import CreateBenefit from '@mlem-admin/components/CreateBenefit';
 
-const AdmBenefitItemCreate = () => {
+const AdmBenefitItemCreateMix = () => {
   return (
     <>
       <div className="bg-black-900 flex flex-col font-lexend items-start justify-end mx-auto w-full">
@@ -36,4 +36,4 @@ const AdmBenefitItemCreate = () => {
   );
 };
 
-export default AdmBenefitItemCreate;
+export default AdmBenefitItemCreateMix;

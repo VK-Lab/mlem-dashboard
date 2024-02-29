@@ -3,10 +3,9 @@ import { useState } from 'react'
 import {MintingMode} from '@mlem-admin/contracts/cep78';
 
 import AdmNftCollectionItemUpdateInfo from "@mlem-admin/modules/AdmNftCollection/ItemUpdate/Info";
-import AdmNftCollectionItemUpdateTierList from "@mlem-admin/modules/AdmNftCollection/ItemUpdate/TierList";
-import AdmNftCollectionItemUpdateTierCreate from "@mlem-admin/modules/AdmNftCollection/ItemUpdate/TierCreate";
 import AdmNftCollectionItemUpdateBroker from "@mlem-admin/modules/AdmNftCollection/ItemUpdate/Broker";
 import {Button} from "@mlem-admin/components/Button";
+import Link from 'next/link';
 
 const AdmNftCollectionItemUpdate = (props) => {
   const [open, setOpen] = useState(false);
@@ -25,8 +24,11 @@ const AdmNftCollectionItemUpdate = (props) => {
           : "opacity-0 h-0 transition-all duration-200"
       }`}>
         <AdmNftCollectionItemUpdateInfo item={props.item}/>
-        <AdmNftCollectionItemUpdateTierList item={props.item}/>
-        <AdmNftCollectionItemUpdateTierCreate item={props.item}/>
+        <div className="px-1 py-1 cursor-pointer hover:text-white-A700 hover:bg-gray-500">
+          <Link href={`/adm/nft-collections/${props.item.id}/tiers`}>
+            <Button>Manage Tiers</Button>
+          </Link>
+        </div>
         {props.item.mintingMode == MintingMode.ACL && (
           <AdmNftCollectionItemUpdateBroker item={props.item}/>
         )}

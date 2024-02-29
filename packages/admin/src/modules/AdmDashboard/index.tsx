@@ -22,7 +22,7 @@ const AdmDashboard = () => {
                 <Img
                   className="h-40 sm:h-auto object-cover w-full"
                   src="/v2/images/img_freepik13276189_160x1440.png"
-                  alt="freepik13276189"
+                  alt="image"
                 />
               </div>
               <ListCampaign className="flex flex-col gap-14 items-center justify-center max-w-[1440px] sm:px-5 px-9 py-24 w-full" />

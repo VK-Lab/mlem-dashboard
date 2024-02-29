@@ -1,4 +1,4 @@
-import AdmCampaignItemCreate from '@mlem-admin/modules/AdmDashboard/ItemCreate';
+import AdmCampaignItemCreate from '@mlem-admin/modules/AdmDashboard/ItemCreateMix';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {

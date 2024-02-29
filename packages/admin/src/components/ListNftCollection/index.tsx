@@ -3,6 +3,7 @@ import React from "react";
 import TabContentHeader from '@mlem-admin/components/TabContentHeader';
 import ListLeftInfo from '@mlem-admin/components/ListLeftInfo';
 import ItemListNftCollection from '@mlem-admin/modules/AdmNftCollection/ItemList';
+import ItemNftCollectionCreate from '@mlem-admin/modules/AdmNftCollection/ItemCreate';
 
 type ListNftCollectionProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
@@ -20,6 +21,7 @@ const ListNftCollection: React.FC<ListNftCollectionProps> = (props) => {
             <div className="flex flex-col h-11 md:h-auto items-center justify-start w-auto">
               <TabContentHeader />
             </div>
+            <ItemNftCollectionCreate />
             <div className="grid grid-cols-3 gap-4 items-start justify-start w-full">
               <ItemListNftCollection />
             </div>

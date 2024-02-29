@@ -1,37 +1,78 @@
 import React from "react";
 
+import {Modal} from 'flowbite-react';
+import {useState} from 'react';
+
+import {DatePickerElement, FormContainer, TextFieldElement, SelectElement} from 'react-hook-form-mui';
 import {Img} from '@mlem-admin/components/Img';
-import Header from '@mlem-admin/components/Header';
-import Footer from '@mlem-admin/components/Footer';
-import CreateNftCollection from '@mlem-admin/components/CreateNftCollection';
+import {Button} from "@mlem-admin/components/Button";
+import {Text} from "@mlem-admin/components/Text";
+import SelectBrokerField from "@mlem-admin/modules/AdmNftCollection/SelectBrokerField";
+import SelectBenefitsField from "@mlem-admin/modules/AdmNftCollection/SelectBenefitsField";
 
 const AdmNftCollectionItemCreate = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [modalPlacement] = useState('center');
+
+  function openPopup() {
+    setOpenModal(true);
+  }
+
   return (
     <>
-      <div className="bg-black-900 flex flex-col font-lexend items-start justify-end mx-auto w-full">
-        <div className="flex flex-col items-center w-full">
-          <div className="h-[1184px] sm:h-[1222px] md:h-[2313px] md:px-5 relative w-full">
+      <div className="flex justify-end items-end">
+        <Button
+          className="cursor-pointer flex items-center justify-center min-w-[192px]"
+          leftIcon={
             <Img
-              className="absolute bottom-[0] h-[453px] object-cover right-[0] w-[5%]"
-              src="/v2/images/img_object_4.png"
-              alt="object"
+              className="h-6 mr-2"
+              src="/v2/images/img_lock.svg"
+              alt="lock"
             />
-            <div className="absolute flex flex-col inset-x-[0] items-center justify-start mx-auto top-[0] w-auto md:w-full">
-              <Header />
-              <div className="bg-indigo-900 flex flex-col items-center justify-start w-full">
-                <Img
-                  className="h-40 sm:h-auto object-cover w-full"
-                  src="/v2/images/img_freepik13276189_160x1440.png"
-                  alt="freepik13276189"
-                />
-              </div>
-              <CreateNftCollection className="flex flex-col gap-14 items-center justify-center max-w-[1440px] sm:px-5 px-9 py-24 w-full" />
-
-              <Footer className="bg-indigo-900 flex flex-col font-bevietnampro gap-4 items-center justify-start max-w-[1440px] py-24 w-full" />
-            </div>
+          }
+          shape="round"
+          color="amber_500"
+          size="sm"
+          variant="fill"
+          type="button"
+          onClick={openPopup}
+        >
+          <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
+            Create NFT Collection
           </div>
-        </div>
+        </Button>
       </div>
+
+      <Modal show={openModal} onClose={() => setOpenModal(false)} position={modalPlacement} size="3xl">
+        <FormContainer
+          defaultValues={{
+            // name: props.item.name,
+            // description: props.item.description,
+            // benefitIds: props.item.benefitIds,
+            // nftImageUrl: props.item.nftImageUrl,
+            // brokerId: props.item.brokerId,
+          }}
+          // onSuccess={handleOnSubmitForm}
+          onSuccess={data => console.log(data)}
+        >
+          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">Create NFT Collection</Modal.Header>
+          <Modal.Body className="bg-gray-50">
+            <div className="flex md:flex-1 flex-col gap-2 items-start justify-start w-full">
+
+            </div>
+          </Modal.Body>
+          <Modal.Footer className="bg-gray-50 relative">
+            <div className="relative w-full h-[20px]">
+              <Button
+                className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-gray-500"
+                onClick={() => setOpenModal(false)}>Decline</Button>
+              <Button
+                className="absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-indigo-500"
+                type="submit">Confirm</Button>
+            </div>
+          </Modal.Footer>
+        </FormContainer>
+      </Modal>
     </>
   );
 };

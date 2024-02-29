@@ -1,4 +1,4 @@
-import AdmNftCollectionItemCreate from '@mlem-admin/modules/AdmNftCollection/ItemCreate';
+import AdmNftCollectionItemCreate from '@mlem-admin/modules/AdmNftCollection/ItemCreateMix';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {

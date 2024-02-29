@@ -1,4 +1,4 @@
-import AdmBenefitItemCreate from '@mlem-admin/modules/AdmBenefit/ItemCreate';
+import AdmBenefitItemCreate from '@mlem-admin/modules/AdmBenefit/ItemCreateMix';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {
