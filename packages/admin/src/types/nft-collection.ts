@@ -1,5 +1,6 @@
 import { MintingMode } from '@mlem-admin/contracts/cep78';
 import { DeployStatusEnum } from '@mlem-admin/enums';
+import { Benefit } from './benefit';
 
 export type NftCollection = {
   id: string;
@@ -13,6 +14,7 @@ export type NftCollection = {
   chainId: string;
   campaignId?: string;
   benefitIds?: string[];
+  benefits: Benefit[];
   createdAt: string;
   deployHash: string;
   deployStatus: DeployStatusEnum;
