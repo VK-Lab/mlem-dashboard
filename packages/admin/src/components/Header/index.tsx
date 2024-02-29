@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 
 import {Img} from '@mlem-admin/components/Img';
 import {Text} from '@mlem-admin/components/Text';
@@ -41,6 +42,17 @@ export type Props = {
 };
 
 const Header: React.FC<HeaderProps> = (props) => {
+  const [loggedUser, setLoggedUser] = useState({})
+
+  useEffect(() => {
+    let value
+    // Get the value from local storage if it exists
+    value = localStorage.getItem("loggedUser") || ""
+    if (value) {
+      value = JSON.parse(value)
+      setLoggedUser(value)
+    }
+  }, [])
 
   const router = useRouter();
   const { disconnectAsync } = useDisconnect();
@@ -117,7 +129,7 @@ const Header: React.FC<HeaderProps> = (props) => {
               size="sm"
               variant="fill"
               type="button"
-              onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN_STEP_BENEFIT)}
+              onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN)}
             >
               <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
                 Create Campaign
@@ -135,7 +147,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                     className="text-base text-center text-white-A700 w-auto"
                     size="txtBeVietnamProSemiBold16WhiteA700"
                   >
-                    0x12...282723f1
+                    {loggedUser?.userId}
                   </Text>
                 </IconButton>
               </Tooltip>

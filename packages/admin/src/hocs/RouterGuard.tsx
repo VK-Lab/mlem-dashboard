@@ -1,16 +1,16 @@
 'use client';
-import { useEffect, useCallback } from 'react';
+import {useEffect, useCallback} from 'react';
 
-import { useAccount } from '@casperdash/usewallet';
-import { AdminPaths, PublicPaths } from '@mlem-admin/enums/paths.enum';
-import { checkUser } from '@mlem-admin/services/auth';
-import { isAdmin } from '@mlem-admin/utils/permission';
-import { useRouter } from 'next/router';
+import {useAccount} from '@casperdash/usewallet';
+import {AdminPaths, PublicPaths} from '@mlem-admin/enums/paths.enum';
+import {checkUser, setUserInfo} from '@mlem-admin/services/auth';
+import {isAdmin} from '@mlem-admin/utils/permission';
+import {useRouter} from 'next/router';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const RouterGuard = ({ children }: { children: any }) => {
+const RouterGuard = ({children}: { children: any }) => {
   const router = useRouter();
-  const { publicKey, status, connector } = useAccount({
+  const {publicKey, status, connector} = useAccount({
     onDisconnect: () => {
       console.log('onDisconnect');
       router.push({
@@ -40,6 +40,8 @@ const RouterGuard = ({ children }: { children: any }) => {
 
       try {
         const user = await checkUser();
+
+        setUserInfo(JSON.stringify(user));
 
         if (isAdmin(user)) {
           return;

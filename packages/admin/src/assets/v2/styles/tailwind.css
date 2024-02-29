@@ -114,3 +114,56 @@ li:hover{
 .acm-link-welcome {
   color: #7040F2 !important;
 }
+
+.acm-ele-wrapper {
+  background-color: #0f0a5bcc;
+  border-radius: 5px;
+}
+
+.acm-ele-wrapper fieldset {
+  border: none !important;
+}
+
+.acm-ele-wrapper .MuiInputBase-root {
+  background-color: #0f0a5bcc;
+}
+
+.acm-ele-wrapper .MuiInputBase-root .MuiChip-filled {
+  background-color: #ffffff;
+}
+
+/*.MuiAutocomplete-option[selected="true"].Mui-focused {*/
+/*  background-color: #0f0a5bcc !important;*/
+/*  color: #f6f6f6;*/
+/*}*/
+
+.acm-ele-wrapper .MuiSelect-select,
+.acm-ele-wrapper input {
+  background-color: #0f0a5bcc;
+  border-radius: 5px;
+  color: #f6f6f6;
+
+  padding: 0.5rem 0.75rem !important;
+}
+
+.acm-ele-wrapper svg {
+  color: #f6f6f6;
+}
+
+
+.acm-ele-wrapper button {
+  color: white;
+}
+
+.acm-ele-wrapper .css-1h51icj-MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 0;
+}
+
+.acm-ele-wrapper .css-wf2zs7-MuiFormHelperText-root.Mui-error {
+  color: #fa0000;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  font-size: 14px;
+}

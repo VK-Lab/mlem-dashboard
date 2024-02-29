@@ -6,7 +6,7 @@ import {Text} from '@mlem-admin/components/Text';
 import {AdminPaths} from '@mlem-admin/enums/paths.enum';
 import { useRouter } from 'next/router';
 
-const CreateItemStep: React.FC<CreateItemStepProps> = (props) => {
+const CreateItemStep = (props) => {
   const router = useRouter();
 
   return (
@@ -24,7 +24,7 @@ const CreateItemStep: React.FC<CreateItemStepProps> = (props) => {
                 </Text>
               </div>
               <Img
-                className="h-[85px] w-full"
+                className="h-[15px] w-full"
                 src="/v2/images/img_frame1321315162.svg"
                 alt="step 1"
               />
@@ -59,26 +59,10 @@ const CreateItemStep: React.FC<CreateItemStepProps> = (props) => {
               <Text
                 className="text-blue_gray-50 text-sm w-full cursor-pointer"
                 size="txtLexendRegular14Bluegray50"
-                onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN_STEP_BENEFIT)}
+                onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN)}
               >
-                Step 1: Configure Benefit
+                Step 1: Configure Campaign
               </Text>
-              <div className="flex flex-col gap-2 items-start justify-start w-full">
-                <div className="flex flex-col h-11 md:h-auto items-center justify-start w-full">
-                  <div className="bg-gray-900 flex flex-row h-11 md:h-auto items-start justify-start rounded w-w-full">
-                    <Button
-                      className="!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm w-full"
-                      shape="round"
-                      color="gray_900"
-                      size="sm"
-                      variant="fill"
-                      onClick={() => alert('popup create benefit category')}
-                    >
-                      Create Benefit Category
-                    </Button>
-                  </div>
-                </div>
-              </div>
               <Text
                 className="text-blue_gray-50 text-sm w-full cursor-pointer"
                 size="txtLexendRegular14Bluegray50"
@@ -115,9 +99,9 @@ const CreateItemStep: React.FC<CreateItemStepProps> = (props) => {
               <Text
                 className="text-blue_gray-50 text-sm w-full cursor-pointer"
                 size="txtLexendRegular14Bluegray50"
-                onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN)}
+                onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN_STEP_BENEFIT)}
               >
-                Step 3: Configure Campaign
+                Step 3: Configure Benefit
               </Text>
             </div>
           </div>
