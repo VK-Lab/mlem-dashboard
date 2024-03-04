@@ -2,26 +2,26 @@ import React from "react";
 
 import TabContentHeader from '@mlem-admin/components/TabContentHeader';
 import ListLeftInfo from '@mlem-admin/components/ListLeftInfo';
-import AdmBenefit from '@mlem-admin/modules/AdmBenefit/AdminBenefitTable';
+import ItemTierList from '@mlem-admin/modules/AdmNftCollection/ItemTiers/List';
+import ItemTierCreate from '@mlem-admin/modules/AdmNftCollection/ItemTiers/Create';
 
-type ListBenefitProps = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
-  > &
-  Partial<{}>;
+type Props = {
+  nftCollectionId: string;
+};
 
-const ListBenefit: React.FC<ListBenefitProps> = (props) => {
+const ListNftCollectionTier = ({ nftCollectionId }: Props) => {
   return (
     <>
-      <div className={props.className}>
+      <div>
         <div className="flex md:flex-col flex-row gap-3 items-start justify-center w-full">
           <ListLeftInfo />
           <div className="flex flex-1 flex-col gap-3 items-start justify-start w-full !min-w-[1092px] !max-w-[1092px]">
             <div className="flex flex-col h-11 md:h-auto items-center justify-start w-auto">
               <TabContentHeader />
             </div>
-            <div className="flex md:flex-col flex-row md:gap-5 items-start justify-start w-full">
-              <AdmBenefit />
+            <ItemTierCreate nftCollectionId={nftCollectionId} />
+            <div className="grid grid-cols-3 gap-4 items-start justify-start w-full">
+              <ItemTierList nftCollectionId={nftCollectionId} />
             </div>
           </div>
         </div>
@@ -30,6 +30,4 @@ const ListBenefit: React.FC<ListBenefitProps> = (props) => {
   );
 };
 
-ListBenefit.defaultProps = {};
-
-export default ListBenefit;
+export default ListNftCollectionTier;

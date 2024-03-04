@@ -17,6 +17,7 @@
     "gas_fee_balance": "Oops, Insufficient funds for gas price, please try again with higer gas fee",
     "update_nft_collection_error": "Oops, can not update your NFT collection, please try again later",
 
+    "item_update_missing_required": "Oops, invalid update, please try again later!",
     "item_update_error": "Oops, your changes have been rejected, please try again later!"
   },
   "apiError": {

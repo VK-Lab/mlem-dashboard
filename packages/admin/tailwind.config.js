@@ -1,3 +1,5 @@
+const {nextui} = require("@nextui-org/react");
+
 module.exports = {
   mode: "jit",
   content: [
@@ -9,6 +11,8 @@ module.exports = {
     "./node_modules/flowbite-react/lib/**/*.js",
     "./pages/**/*.{ts,tsx}",
     "./public/**/*.html",
+
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
   theme: {
@@ -62,5 +66,6 @@ module.exports = {
   plugins: [
     require("@tailwindcss/forms"),
     require("flowbite/plugin"),
+    nextui()
   ],
 };
