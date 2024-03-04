@@ -129,7 +129,7 @@ const Header: React.FC<HeaderProps> = (props) => {
               size="sm"
               variant="fill"
               type="button"
-              onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN)}
+              onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)}
             >
               <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
                 Create Campaign

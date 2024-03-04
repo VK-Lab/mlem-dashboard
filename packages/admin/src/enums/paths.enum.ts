@@ -12,7 +12,6 @@ export enum AdminPaths {
   LIST_BENEFITS = '/adm/benefits',
   LIST_BENEFIT_CATEGORIES = '/adm/benefit-categories',
   LIST_CLAIMS = '/adm/claims',
-  CREATE_CAMPAIGN_STEP_BENEFIT = '/adm/campaign/create/benefit',
   CREATE_CAMPAIGN_STEP_NFT_COLLECTION = '/adm/campaign/create/nft-collection',
   CREATE_CAMPAIGN = '/adm/campaign/create',
 

@@ -4,7 +4,6 @@ import LayoutTab from '@mlem-admin/components/LayoutTab';
 import LayoutInfo from '@mlem-admin/components/LayoutInfo';
 import ItemList from '@mlem-admin/modules/AdmNftCollection/components/ItemList';
 import ItemCreate from '@mlem-admin/modules/AdmNftCollection/components/ItemCreate';
-import {Text} from "@mlem-admin/components/Text";
 
 const AdmList = (props) => {
   return (

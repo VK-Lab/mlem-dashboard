@@ -4,9 +4,9 @@ import {Campaign} from '@mlem-admin/types/campaign';
 import {Img} from '@mlem-admin/components/Img';
 import {Text} from '@mlem-admin/components/Text';
 
-import AdmCampaignItemUpdate from '@mlem-admin/modules/AdmDashboard/ItemUpdate';
+import ItemUpdate from '@mlem-admin/modules/AdmDashboard/components/ItemUpdate';
 
-const AdmCampaignItemList = () => {
+const ItemList = () => {
   const {data: {items = []} = {items: [], total: 0}, isLoading} =
     useGetAllCampaigns();
 
@@ -18,7 +18,7 @@ const AdmCampaignItemList = () => {
             <div key={item.id}>
               <div className="bg-indigo-900_cc flex flex-1 flex-col gap-2.5 h-auto items-center justify-center p-4 m-1 rounded-lg w-full">
                 <div className="flex gap-3 items-start justify-start w-full relative">
-                  <AdmCampaignItemUpdate item={item} />
+                  <ItemUpdate item={item} />
                   <div className="flex flex-col justify-start w-full">
                     <Text
                       className="text-gray-600 text-sm w-auto truncate pr-8"
@@ -80,4 +80,4 @@ const AdmCampaignItemList = () => {
   );
 };
 
-export default AdmCampaignItemList;
+export default ItemList;

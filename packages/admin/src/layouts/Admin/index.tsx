@@ -11,7 +11,7 @@ const LayoutAdmin = ({children}: Props) => {
       <div className="bg-black-900 flex flex-col font-lexend items-start justify-end mx-auto w-full">
         <div className="flex flex-col items-center w-full">
           <div className="h-[1184px] sm:h-[1222px] md:h-[2313px] md:px-5 relative w-full">
-            <div className="absolute flex flex-col inset-x-[0] items-center justify-start mx-auto top-[0] w-auto md:w-full">
+            <div className="bg-black-900 absolute flex flex-col inset-x-[0] items-center justify-start mx-auto top-[0] w-auto md:w-full">
               <LayoutHeader/>
               <main>{children}</main>
               <LayoutFooter/>

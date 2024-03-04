@@ -1,11 +1,17 @@
-import AdmCampaignItemCreate from '@mlem-admin/modules/AdmDashboard/ItemCreateMix';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import LayoutAdmin from '@mlem-admin/layouts/Admin';
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
+import AdmCreateCampaignStepCampaign
+  from '@mlem-admin/modules/AdmDashboard/components/ItemCreate/StepCampaign';
 
 const Index = () => {
-  return <AdmCampaignItemCreate />;
+  return (
+    <LayoutAdmin>
+      <AdmCreateCampaignStepCampaign/>
+    </LayoutAdmin>
+  );
 };
 
-export const getStaticProps = async ({ locale }: { locale: string }) => {
+export const getStaticProps = async ({locale}: { locale: string }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),

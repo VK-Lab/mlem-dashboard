@@ -1,5 +1,5 @@
 import {DatePickerElement, FormContainer, TextFieldElement, SelectElement} from 'react-hook-form-mui';
-import SelectNftCollectionsField from '@mlem-admin/modules/AdmDashboard/SelectNftCollectionsField';
+import FormNftCollections from '@mlem-admin/modules/AdmDashboard/components/FormNftCollections';
 
 import {Button} from '@mlem-admin/components/Button';
 import {Text} from "@mlem-admin/components/Text";
@@ -15,7 +15,7 @@ import {QueryKeys} from "@mlem-admin/enums/queryKeys.enum";
 import {UpdateCampaignParams} from "@mlem-admin/services/admin/campaign/types";
 import {useI18nToast} from "@mlem-admin/hooks/useToast";
 
-const AdmCampaignItemUpdate = (props) => {
+const ItemUpdate = (props) => {
 
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
@@ -170,7 +170,7 @@ const AdmCampaignItemUpdate = (props) => {
                     NFT Collections (*)
                   </Text>
                   <div className="acm-ele-wrapper w-full">
-                    <SelectNftCollectionsField
+                    <FormNftCollections
                       name="nftCollectionIds"
                       campaignId={props.item.id}
                     />
@@ -195,4 +195,4 @@ const AdmCampaignItemUpdate = (props) => {
   );
 };
 
-export default AdmCampaignItemUpdate;
+export default ItemUpdate;

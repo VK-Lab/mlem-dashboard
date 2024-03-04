@@ -10,7 +10,7 @@ type Props = {
   campaignId?: string;
 };
 
-const SelectNftCollectionsField = ({ name, campaignId }: Props) => {
+const FormNftCollections = ({ name, campaignId }: Props) => {
   const {
     data: { items: nftCollections = [] } = { items: [], total: 0 },
     isLoading,
@@ -56,4 +56,4 @@ const SelectNftCollectionsField = ({ name, campaignId }: Props) => {
   );
 };
 
-export default SelectNftCollectionsField;
+export default FormNftCollections;
