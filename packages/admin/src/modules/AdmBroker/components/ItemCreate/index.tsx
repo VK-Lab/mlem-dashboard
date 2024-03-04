@@ -4,21 +4,24 @@ import {Modal} from 'flowbite-react';
 import {useState} from 'react';
 
 import {DatePickerElement, FormContainer, TextFieldElement, SelectElement} from 'react-hook-form-mui';
-import {QueryKeys} from '@mlem-admin/enums/queryKeys.enum';
-import {useMutateUpdateTier} from '@mlem-admin/hooks/mutations/useMutateUpdateTier';
-import {useI18nToast} from '@mlem-admin/hooks/useToast';
-import FormBenefits from '@mlem-admin/modules/AdmNftCollection/components/FormBenefits';
-import {UpdateTierParams} from '@mlem-admin/services/admin/tier/types';
-import {Tier} from '@mlem-admin/types/tier';
-import {useQueryClient} from 'react-query';
-import {BsPencil} from "react-icons/bs";
+import {Img} from '@mlem-admin/components/Img';
 import {Button} from "@mlem-admin/components/Button";
 import {Text} from "@mlem-admin/components/Text";
 
-type TierItem = {
-  tier: Tier;
+import {useI18nToast} from '@mlem-admin/hooks/useToast';
+import { useAccount } from '@casperdash/usewallet';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateBroker } from '@mlem-admin/hooks/mutations/useMutateCreateBroker';
+import { useGetAccountBalance } from '@mlem-admin/hooks/queries/useGetAccountBalance';
+import { CreateBrokerParams } from '@mlem-admin/services/admin/broker/types';
+import { useQueryClient } from 'react-query';
+
+type FormProps = {
+  onSuccess?: () => void;
 };
-const TierUpdate = ({tier}: TierItem) => {
+const ESTIMATE_FEE = 110;
+
+const ItemCreate = ({onSuccess}: FormProps) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 
@@ -26,49 +29,64 @@ const TierUpdate = ({tier}: TierItem) => {
     setOpenModal(true);
   }
 
+  const {toastSuccess, toastError} = useI18nToast();
   const queryClient = useQueryClient();
-  const {toastSuccess} = useI18nToast();
-  const updateTierMutation = useMutateUpdateTier({
+  const createBrokerMutation = useMutateCreateBroker({
     onSuccess: async () => {
       toastSuccess('item_updated');
       await queryClient.invalidateQueries({
-        queryKey: [QueryKeys.NFT_COLLECTIONS],
+        queryKey: [QueryKeys.BROKERS],
       });
-      setOpenModal(false);
+      onSuccess?.();
     },
   });
+  const { publicKey } = useAccount();
+  const { data: { balance = 0 } = { balance: 0 }, isLoading } =
+    useGetAccountBalance({
+      publicKey,
+    });
 
-  const handleOnSubmitForm = (updateTierParams: UpdateTierParams) => {
-    updateTierMutation.mutate({
-      ...updateTierParams,
-      id: tier.id,
+  const handleOnSubmitForm = async (createBrokerParams: CreateBrokerParams) => {
+    createBrokerMutation.mutate({
+      ...createBrokerParams,
     });
   };
 
   return (
     <>
-      <div className="flex justify-start items-center">
+      <div className="flex justify-start items-center w-full">
         <Button
-          className="!text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
+          className="cursor-pointer flex items-center justify-center w-full"
+          leftIcon={
+            <Img
+              className="h-6 mr-2"
+              src="/v2/images/img_lock.svg"
+              alt="lock"
+            />
+          }
+          shape="round"
+          color="amber_500"
+          size="sm"
+          variant="fill"
           type="button"
           onClick={openPopup}
         >
-          <BsPencil/>
+          <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
+            Create Broker
+          </div>
         </Button>
       </div>
 
       <Modal show={openModal} onClose={() => setOpenModal(false)} position={modalPlacement} size="3xl">
         <FormContainer
           defaultValues={{
-            name: tier.name,
-            description: tier.description,
-            slug: tier.slug,
-            benefitIds: tier.benefitIds,
+            name: '',
+            description: '',
           }}
           onSuccess={handleOnSubmitForm}
           // onSuccess={data => console.log(data)}
         >
-          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">Update Tier</Modal.Header>
+          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">Create Broker</Modal.Header>
           <Modal.Body className="bg-gray-50">
             <div className="flex md:flex-1 flex-col gap-2 items-start justify-start w-full">
               <div className="flex flex-col items-start justify-start w-full">
@@ -80,18 +98,6 @@ const TierUpdate = ({tier}: TierItem) => {
                     Name (*)
                   </Text>
                   <TextFieldElement name="name" required
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
-                </div>
-              </div>
-              <div className="flex flex-col items-start justify-start w-full">
-                <div className="flex flex-col gap-1 items-start justify-start w-full">
-                  <Text
-                    className="text-gray-950 text-sm w-auto"
-                    size="txtLexendSemiBold14"
-                  >
-                    Slug
-                  </Text>
-                  <TextFieldElement name="slug"
                                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
                 </div>
               </div>
@@ -113,12 +119,37 @@ const TierUpdate = ({tier}: TierItem) => {
                     className="text-gray-950 text-sm w-auto"
                     size="txtLexendSemiBold14"
                   >
-                    Benefits
+                    Max Owned Token (*)
                   </Text>
-                  <div className="acm-ele-wrapper w-full">
-                    <FormBenefits
-                      name="benefitIds"
-                    />
+                  <TextFieldElement name="maxOwnedTokens" required type="number"
+                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                </div>
+              </div>
+              <div className="flex flex-col items-start justify-start w-full">
+                <div className="flex flex-col gap-1 items-start justify-start w-full">
+                  <Text
+                    className="text-gray-950 text-sm w-auto"
+                    size="txtLexendSemiBold14"
+                  >
+                    Minting Fee (CSPR) (*)
+                  </Text>
+                  <TextFieldElement name="mintingFee" required type="number"
+                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                </div>
+              </div>
+              <div className="flex flex-col items-start justify-start w-full">
+                <div className="flex flex-col gap-1 items-start justify-start w-full relative">
+                  <Text
+                    className="text-gray-950 text-sm w-auto"
+                    size="txtLexendSemiBold14"
+                  >
+                    Estimated Fee
+                  </Text>
+                  <div className="absolute right-5">
+                    <Text
+                      className="bg-red-600 px-2 py-0.5 rounded-sm text-[13px] m-1 text-white-A700 w-auto"
+                      size="txtLexendSemiBold14Gray300"
+                    >{ESTIMATE_FEE} CSPR</Text>
                   </div>
                 </div>
               </div>
@@ -130,8 +161,14 @@ const TierUpdate = ({tier}: TierItem) => {
                 className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-gray-500"
                 onClick={() => setOpenModal(false)}>Decline</Button>
               <Button
-                className="absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-indigo-500"
-                type="submit">Confirm</Button>
+                className={`absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded  ${
+                  createBrokerMutation.isLoading || balance < ESTIMATE_FEE ? 'bg-gray-500' : 'bg-indigo-500'
+                }`}
+                type="submit"
+                disabled={
+                  createBrokerMutation.isLoading || balance < ESTIMATE_FEE
+                }
+              >Confirm</Button>
             </div>
           </Modal.Footer>
         </FormContainer>
@@ -140,4 +177,4 @@ const TierUpdate = ({tier}: TierItem) => {
   );
 };
 
-export default TierUpdate;
+export default ItemCreate;
