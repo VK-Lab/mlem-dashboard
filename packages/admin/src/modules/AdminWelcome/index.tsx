@@ -52,7 +52,7 @@ const Welcome = () => {
                 <div className="bg-indigo-900 flex flex-col items-center justify-start my-auto w-[56%]">
                   <Img
                     className="h-[887px] md:h-auto object-cover w-full"
-                    src="/v2/images/img_freepik13276189.png"
+                    src="/v2/images/banner_login.png"
                     alt="image"
                   />
                 </div>

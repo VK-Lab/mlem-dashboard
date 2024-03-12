@@ -183,7 +183,7 @@ const Header: React.FC<HeaderProps> = (props) => {
       <div className="bg-indigo-900 flex flex-col items-center justify-start w-full">
         <Img
           className="h-40 sm:h-auto object-cover w-full"
-          src="/v2/images/img_freepik13276189_160x1440.png"
+          src="/v2/images/banner_menu.png"
           alt="image"
         />
       </div>
