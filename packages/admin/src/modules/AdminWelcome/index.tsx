@@ -1,5 +1,5 @@
 import React from "react";
-
+import LayoutFooter from '@mlem-admin/components/LayoutFooter';
 import {Img} from '@mlem-admin/components/Img';
 import {Text} from '@mlem-admin/components/Text';
 
@@ -45,20 +45,21 @@ const Welcome = () => {
   return (
     <>
       <div className="bg-black-900 flex flex-col font-bevietnampro items-center justify-end mx-auto w-full">
-        <div className="flex flex-col md:gap-10 gap-[583px] items-center justify-end w-full">
-          <div className="h-[910px] md:h-[887px] md:px-5 relative w-full">
+        <div className="flex flex-col items-center justify-end w-full md:h-full">
+          <div className="h-[910px] relative w-full md:h-full sm:w-[100%]">
             <div className="absolute flex flex-col h-[887px] md:h-auto inset-x-[0] items-center justify-start mx-auto top-[0] w-auto md:w-full">
               <div className="relative w-[1440px] md:w-full">
-                <div className="bg-indigo-900 flex flex-col items-center justify-start my-auto w-[56%]">
+                <div className="bg-indigo-900 flex flex-col items-center justify-start w-[56%] md:w-[180%] md:h-full sm:w-[100%] sm:h-[910px]">
                   <Img
-                    className="h-[887px] md:h-auto object-cover w-full"
+                    className="h-[887px] object-cover w-full sm:h-[100%]"
                     src="/v2/images/banner_login.png"
                     alt="image"
                   />
                 </div>
-                <div className="absolute flex flex-col h-max inset-y-[0] items-center justify-start max-w-[792px] my-auto outline outline-[12px] outline-deep_purple-800_99 right-[3%] rounded w-full">
-                  <div className="bg-indigo-900_cc flex flex-col items-center justify-start p-16 md:px-10 sm:px-5 rounded w-full">
-                    <div className="flex flex-col gap-8 items-start justify-center w-[600px] md:w-full">
+                <div className="absolute flex flex-col h-max inset-y-[0] items-center justify-start max-w-[792px] my-auto outline outline-[12px] outline-deep_purple-800_99 right-[3%] rounded w-full
+                md:right-0 md:left-0 md:outline-0 md:h-[80%]">
+                  <div className="bg-indigo-900_cc flex flex-col items-center justify-start p-16 rounded w-full md:w-auto md:bg-transparent md:p-0">
+                    <div className="flex flex-col gap-8 items-start justify-center w-[600px] md:w-[80%]">
                       <div className="flex flex-col items-center justify-start w-auto">
                         <Img
                           className="h-[66px] md:h-auto object-cover w-[69px]"
@@ -69,7 +70,7 @@ const Welcome = () => {
                       <div className="flex flex-col gap-4 items-start justify-start w-full">
                         <div className="flex flex-col font-lexend items-start justify-start w-full">
                           <Text
-                            className="leading-[64.00px] md:text-5xl text-[48px] text-blue_gray-50"
+                            className="leading-[64.00px] text-[48px] text-blue_gray-50 md:text-3xl "
                             size="txtLexendBold64"
                           >
                             <>
