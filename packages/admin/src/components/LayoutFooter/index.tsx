@@ -13,17 +13,17 @@ type FooterProps = Omit<
 const Footer: React.FC<FooterProps> = (props) => {
   return (
     <>
-      <div className="bg-indigo-900 flex flex-col font-bevietnampro gap-3 items-center justify-start max-w-[1440px] py-24 w-full">
-        <div className="flex flex-col items-start justify-between md:px-10 sm:px-5 px-[174px] w-full">
-          <div className="flex sm:flex-col flex-row gap-3 h-full items-start justify-between w-full">
-            <div className="flex flex-col gap-3 items-start justify-center w-auto">
+      <div className="bg-indigo-900 flex flex-col font-bevietnampro gap-3 items-center justify-start py-24 w-full">
+        <div className="flex flex-col items-start justify-between px-[174px] w-full md:px-10">
+          <div className="flex flex-row gap-3 h-full items-start justify-between w-full md:flex-col md:items-center">
+            <div className="flex flex-col gap-3 items-start justify-center w-auto md:items-center">
               <Img
-                className="h-[66px] md:h-auto object-cover w-[69px] sm:w-full"
+                className="h-[66px] object-cover w-[69px] "
                 src="/v2/images/img_logo1.png"
-                alt="logoOne_One"
+                alt="logo"
               />
               <Text
-                className="text-blue_gray-50 text-sm w-auto"
+                className="text-blue_gray-50 text-sm w-auto md:hidden"
                 size="txtBeVietnamProRegular14"
               >
                 {props?.copyrighttext}
@@ -31,7 +31,7 @@ const Footer: React.FC<FooterProps> = (props) => {
             </div>
             <div className="flex flex-col gap-3 items-center justify-center w-auto">
               <Text
-                className="text-2xl md:text-[22px] text-center text-white-A700 sm:text-xl w-auto"
+                className="text-2xl text-center text-white-A700 w-auto md:text-xl"
                 size="txtBeVietnamProSemiBold24"
               >
                 {props?.joincommunitytext}
@@ -86,6 +86,12 @@ const Footer: React.FC<FooterProps> = (props) => {
                   />
                 </Link>
               </div>
+              <Text
+                className="text-blue_gray-50 text-sm w-auto hidden md:block"
+                size="txtBeVietnamProRegular14"
+              >
+                {props?.copyrighttext}
+              </Text>
             </div>
           </div>
         </div>

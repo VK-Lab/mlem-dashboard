@@ -1,49 +1,24 @@
 import React from "react";
-import { useEffect } from "react";
+import {useEffect} from "react";
 
 import {Img} from '@mlem-admin/components/Img';
 import {Text} from '@mlem-admin/components/Text';
 import {Button} from '@mlem-admin/components/Button';
 import Link from "next/link";
 import {AdminPaths, PublicPaths} from '@mlem-admin/enums/paths.enum';
+import {useI18nToast} from '@mlem-admin/hooks/useToast';
 
-type HeaderProps = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
-> &
-  Partial<{}>;
-
-// old
-import { ReactNode, useState, MouseEvent } from 'react';
-
-import { useDisconnect } from '@casperdash/usewallet';
-import { CookieKeys } from '@mlem-admin/enums/cookieKeys.enum';
-import { logout } from '@mlem-admin/services/auth';
-import {
-  Typography,
-  Tooltip,
-  IconButton,
-  Menu,
-  MenuItem,
-} from '@mui/material';
+import {useState} from 'react';
+import {useDisconnect} from '@casperdash/usewallet';
+import {CookieKeys} from '@mlem-admin/enums/cookieKeys.enum';
+import {logout} from '@mlem-admin/services/auth';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
-import { useMutation } from 'react-query';
+import {useRouter} from 'next/router';
+import {useMutation} from 'react-query';
 
-const settings = [
-  {
-    title: 'Logout',
-    key: 'logout',
-  },
-];
-export type Props = {
-  children?: ReactNode;
-  drawerWidth?: number;
-};
-
-const Header: React.FC<HeaderProps> = (props) => {
+const Header = (props) => {
+  const {toastSuccess, toastError} = useI18nToast()
   const [loggedUser, setLoggedUser] = useState({})
-
   useEffect(() => {
     let value
     // Get the value from local storage if it exists
@@ -53,55 +28,40 @@ const Header: React.FC<HeaderProps> = (props) => {
       setLoggedUser(value)
     }
   }, [])
-
   const router = useRouter();
-  const { disconnectAsync } = useDisconnect();
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-
+  const {disconnectAsync} = useDisconnect();
   const logoutMutation = useMutation({
     mutationFn: logout,
     mutationKey: 'logout',
     onSuccess: async () => {
       await disconnectAsync();
+      toastSuccess('logout_ok');
       Cookies.remove(CookieKeys.TOKEN);
-      router.push(PublicPaths.HOME, undefined, { shallow: true });
+      router.push(PublicPaths.HOME, undefined, {shallow: true});
     },
   });
 
-  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const handleClickSetting = (key: string) => {
-    switch (key) {
-      case 'logout':
-        logoutMutation.mutate();
-        break;
-      default:
-    }
-  };
+  const [open, setOpen] = useState(false)
+  const [openMobi, setOpenMobi] = useState(false)
 
   return (
     <>
-      <header className="bg-gray-900 flex items-center justify-between md:px-10 sm:px-5 px-[174px] py-3 w-full">
-        <div className="flex md:flex-col flex-row gap-3 items-center justify-between w-full">
-          <div className="flex flex-1 flex-row gap-3 items-center justify-start max-w-[660px] w-full">
+      <header
+        className="bg-gray-900 flex flex-col items-center justify-between md:px-10 sm:px-5 px-[174px] py-3 w-full">
+        <div className="flex flex-row gap-3 items-center justify-between w-full">
+          <div className="flex flex-1 flex-row gap-3 w-full md:w-auto">
             <div className="flex flex-col items-center justify-start w-auto">
               <Link href={AdminPaths.DASHBOARD}>
                 <Img
-                  className="h-[39px] md:h-auto object-cover w-[41px]"
+                  className="h-[39px] object-cover w-[41px]"
                   src="/v2/images/img_logo1.png"
-                  alt="logoOne"
+                  alt="logo"
                 />
               </Link>
             </div>
-            <div className="flex flex-col items-center justify-start w-auto">
+            <div className="flex flex-col items-center justify-start w-auto md:hidden">
               <div className="flex flex-row items-start justify-start w-auto">
-                <div className="flex flex-col h-11 md:h-auto items-center justify-center px-4 py-2 rounded w-auto">
+                <div className="flex flex-col h-11 items-center justify-center px-4 py-2 rounded w-auto">
                   <Text
                     className="text-base text-center text-white-A700 w-auto"
                     size="txtLexendSemiBold16WhiteA700"
@@ -114,14 +74,14 @@ const Header: React.FC<HeaderProps> = (props) => {
               </div>
             </div>
           </div>
-          <div className="flex sm:flex-1 sm:flex-col flex-row gap-3 items-center justify-end w-[430px] sm:w-full">
+          <div className="flex flex-1 flex-row gap-3 items-center justify-end md:hidden">
             <Button
-              className="cursor-pointer flex items-center justify-center min-w-[192px]"
+              className="cursor-pointer flex items-center justify-center"
               leftIcon={
                 <Img
                   className="h-6 mr-2"
                   src="/v2/images/img_lock.svg"
-                  alt="lock"
+                  alt="campaign_create"
                 />
               }
               shape="round"
@@ -135,46 +95,59 @@ const Header: React.FC<HeaderProps> = (props) => {
                 Create Campaign
               </div>
             </Button>
-            <div className="bg-indigo-500 flex flex-row gap-3 items-center justify-center px-4 py-2 rounded w-auto">
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+
+            <div className="relative">
+              <Button
+                className="cursor-pointer flex items-center justify-center bg-indigo-500"
+                leftIcon={
                   <Img
-                    className="h-8 md:h-auto rounded-[50%] w-8 mr-1"
+                    className="h-6 mr-2"
                     src="/v2/images/img_yeve.png"
-                    alt="yeve"
+                    alt="user"
                   />
-                  <Text
-                    className="text-base text-center text-white-A700 w-auto"
-                    size="txtBeVietnamProSemiBold16WhiteA700"
-                  >
-                    {loggedUser?.userId}
-                  </Text>
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
+                }
+                shape="round"
+                size="sm"
+                variant="fill"
+                type="button"
+                onClick={() => setOpen((prev) => !prev)}
               >
-                {settings.map(({ title, key }) => (
-                  <MenuItem key={title} onClick={() => handleClickSetting(key)}>
-                    <Typography sx={{ fontSize: 16 }} textAlign="center">
-                      {title}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
+                <div className="!text-white-A700 font-lexend font-semibold text-base text-center">
+                  {loggedUser?.userId}
+                </div>
+              </Button>
+              <div className={`absolute right-0 top-13 bg-gray-300 rounded w-auto ${
+                open
+                  ? "opacity-100 h-auto"
+                  : "opacity-0 h-0 transition-all duration-200"
+              }`}>
+                <div className="cursor-pointer px-8 py-3"
+                     onClick={() => logoutMutation.mutate()}
+                >Logout
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-row gap-3 items-end justify-end relative hidden md:block">
+            <Img
+              className="w-[40px] cursor-pointer relative -right-2"
+              src="/v2/images/m_header_profile.png"
+              alt="menu_header"
+              onClick={() => setOpenMobi((prev) => !prev)}
+            />
+            <div className={`absolute right-0 top-13 bg-gray-300 items-center rounded w-auto ${
+              openMobi
+                ? "opacity-100 h-auto"
+                : "opacity-0 h-0 transition-all duration-200"
+            }`}>
+              <div className="cursor-pointer px-1 py-2 text-right w-[150px] border-b-1 border-b-gray-600"
+                   onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)}
+              >Create Campaign
+              </div>
+              <div className="cursor-pointer px-1 py-2 text-right"
+                   onClick={() => logoutMutation.mutate()}
+              >Logout
+              </div>
             </div>
           </div>
         </div>
@@ -182,15 +155,18 @@ const Header: React.FC<HeaderProps> = (props) => {
 
       <div className="bg-indigo-900 flex flex-col items-center justify-start w-full">
         <Img
-          className="h-40 sm:h-auto object-cover w-full"
+          className="h-40 sm:h-auto object-cover w-full md:hidden"
           src="/v2/images/banner_menu.png"
+          alt="image"
+        />
+        <Img
+          className="h-40 sm:h-auto object-cover w-full hidden md:block"
+          src="/v2/images/m_banner_menu.png"
           alt="image"
         />
       </div>
     </>
   );
 };
-
-Header.defaultProps = {};
 
 export default Header;

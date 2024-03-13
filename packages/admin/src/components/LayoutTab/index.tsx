@@ -13,7 +13,7 @@ const TabContentHeader = (TabProps) => {
 
   return (
     <>
-      <div className="bg-gray-900 flex flex-row h-11 md:h-auto items-start justify-start rounded">
+      <div className="bg-gray-900 flex flex-row h-11 items-start justify-start rounded md:flex-col">
         <Button
           className="!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm w-[100px]"
           shape="round"

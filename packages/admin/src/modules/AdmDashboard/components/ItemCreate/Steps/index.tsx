@@ -11,9 +11,9 @@ const CreateItemStep = (props) => {
 
   return (
     <>
-      <div className="flex flex-col items-start justify-center w-auto">
-        <div className="flex flex-row gap-3 items-start justify-start w-auto">
-          <div className="flex flex-col w-[60px] h-[300px] md:h-auto items-start justify-start">
+      <div className="flex flex-col items-start justify-center w-full px-3 md:py-8 md:px-8">
+        <div className="flex flex-row gap-3 items-start justify-start w-full">
+          <div className="flex flex-col w-[30px] h-[300px] items-center justify-start md:h-auto">
             <div
               className="bg-deep_purple-900 border-2 border-indigo-900_02 border-solid flex flex-col h-6 items-center justify-start p-0.5 rounded w-6">
               <Text
@@ -23,13 +23,8 @@ const CreateItemStep = (props) => {
                 1
               </Text>
             </div>
-            <Img
-              className="h-[15px] w-full"
-              src="/v2/images/img_frame1321315162.svg"
-              alt="step 1"
-            />
             <div
-              className="bg-deep_purple-900 border-2 border-indigo-900_02 border-solid flex flex-col h-6 items-center justify-start p-0.5 rounded w-6">
+              className="bg-deep_purple-900 border-2 border-indigo-900_02 border-solid flex flex-col h-6 items-center justify-start p-0.5 rounded w-6 mt-5">
               <Text
                 className="text-center text-deep_purple-200_01 text-sm"
                 size="txtBeVietnamProSemiBold14Deeppurple20001"
@@ -37,22 +32,21 @@ const CreateItemStep = (props) => {
                 2
               </Text>
             </div>
-            <Img
-              className="h-[15px] w-full"
-              src="/v2/images/img_frame1321315162.svg"
-              alt="step 2"
-            />
           </div>
-          <div className="flex flex-col gap-3 items-start justify-start w-[316px]">
+          <div className="flex flex-col gap-3 items-start justify-start">
             <Text
-              className="text-blue_gray-50 text-sm w-full cursor-pointer"
+              className={`text-blue_gray-50 w-full cursor-pointer ${
+                props.current == 1 ? 'bg-red-600 py-1 px-1 rounded' : ''
+              }`}
               size="txtLexendRegular14Bluegray50"
               onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)}
             >
               Step 1: Configure NFT Collection
             </Text>
             <Text
-              className="text-blue_gray-50 text-sm w-full cursor-pointer"
+              className={`text-blue_gray-50 w-full cursor-pointer relative top-1 ${
+                props.current == 2 ? 'bg-red-600 py-1 px-1 rounded top-2' : ''
+              }`}
               size="txtLexendRegular14Bluegray50"
               onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN)}
             >

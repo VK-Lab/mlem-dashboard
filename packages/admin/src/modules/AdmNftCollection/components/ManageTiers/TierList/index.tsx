@@ -24,7 +24,7 @@ const TierList = ({nftCollectionId}: Props) => {
   return (
     <>
       <Table removeWrapper isHeaderSticky
-             className="!text-gray-400 flex-1 font-lexend w-full p-[5px] bg-indigo-900"
+             className="!text-gray-400 flex-1 font-lexend w-full p-[5px] bg-indigo-900 overflow-x-scroll"
       >
         <TableHeader>
           <TableColumn className="!text-gray-400 flex-1 bg-indigo-900 border-b-2">Created At</TableColumn>

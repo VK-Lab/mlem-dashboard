@@ -7,19 +7,22 @@ import ItemCreate from '@mlem-admin/modules/AdmDashboard/components/ItemCreate/S
 const StepCampaign = (props) => {
   return (
     <>
-      <div className="flex flex-col gap-3 items-center justify-center max-w-[1440px] sm:px-5 px-9 py-24 w-full">
-        <div className="flex md:flex-col flex-row gap-3 items-start justify-center w-full">
-
-          <div className="flex flex-col gap-3 items-center justify-start !w-[264px] !min-w-[264px]">
+      <div className="flex flex-col gap-3 py-24 w-full md:py-5">
+        <div className="flex flex-row gap-3 px-10 w-full md:flex-col md:px-3">
+          <div className="gap-3 !w-[264px] !min-w-[264px] md:!w-full">
             <LayoutInfo/>
           </div>
 
-          <div className="flex md:flex-1 flex-col gap-3 items-start justify-start w-full !min-w-[700px]">
+          <div className="gap-3 !min-w-[330px] hidden md:block">
+            <Steps current={2}/>
+          </div>
+
+          <div className="gap-3 w-full items-center justify-self-center">
             <ItemCreate/>
           </div>
 
-          <div className="flex flex-1 flex-col items-start justify-start w-full !min-w-[380px]">
-            <Steps/>
+          <div className="gap-3 !min-w-[330px] md:hidden">
+            <Steps current={2}/>
           </div>
         </div>
       </div>

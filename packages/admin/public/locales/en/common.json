@@ -7,7 +7,8 @@
     "update_nft_collection_success": "Success, your NFT collection has been updated",
 
     "item_created": "Your changes have been saved successfully!",
-    "item_updated": "Your changes have been updated successfully!"
+    "item_updated": "Your changes have been updated successfully!",
+    "logout_ok": "You have been logged out successfully!"
   },
   "error" : {
     "default": "Oops, something went wrong!",

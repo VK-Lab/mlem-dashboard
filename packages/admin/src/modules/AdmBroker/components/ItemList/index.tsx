@@ -16,9 +16,8 @@ const ItemList = () => {
 
   return (
     <>
-      <div className="overflow-x-scroll max-w-[1092px]">
       <Table removeWrapper isHeaderSticky
-             className="!text-gray-400 flex-1 font-lexend p-[5px] bg-indigo-900"
+             className="!text-gray-400 flex-1 font-lexend p-[5px] bg-indigo-900 overflow-x-scroll"
              css={{
                height: "auto",
                minWidth: "100%",
@@ -84,7 +83,6 @@ const ItemList = () => {
           )}
         </TableBody>
       </Table>
-      </div>
     </>
   );
 };
