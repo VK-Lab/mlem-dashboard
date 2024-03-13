@@ -27,7 +27,7 @@ const ListLeftInfo = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-6 items-center justify-start !w-[264px] !min-w-[264px]">
+      <div className="flex flex-col gap-3 items-center justify-start !w-[264px] !min-w-[264px]">
         <div className="flex flex-row items-center justify-start rounded w-full">
           <Img
             className="h-20 md:h-auto rounded-[50%] w-20"

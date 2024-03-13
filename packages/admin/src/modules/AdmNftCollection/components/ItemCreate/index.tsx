@@ -95,7 +95,7 @@ const ItemCreate = ({onSuccess}: FormProps) => {
         >
           <Modal.Header className="bg-gray-50 text-gray-950 uppercase">Create NFT Collection</Modal.Header>
           <Modal.Body className="bg-gray-50">
-            <div className="flex md:flex-1 flex-col gap-2 items-start justify-start w-full">
+            <div className="flex md:flex-1 flex-col gap-3 items-start justify-start w-full">
               <div className="flex flex-col items-start justify-start w-full">
                 <div className="flex flex-col gap-1 items-start justify-start w-full">
                   <Text

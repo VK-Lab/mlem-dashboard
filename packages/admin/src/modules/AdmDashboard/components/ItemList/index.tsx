@@ -16,7 +16,7 @@ const ItemList = () => {
         return (
           <>
             <div key={item.id}>
-              <div className="bg-indigo-900_cc flex flex-1 flex-col gap-2.5 h-auto items-center justify-center p-4 m-1 rounded-lg w-full">
+              <div className="bg-indigo-900_cc flex flex-1 flex-col gap-3 h-auto items-center justify-center p-4 m-1 rounded-lg w-full">
                 <div className="flex gap-3 items-start justify-start w-full relative">
                   <ItemUpdate item={item} />
                   <div className="flex flex-col justify-start w-full">

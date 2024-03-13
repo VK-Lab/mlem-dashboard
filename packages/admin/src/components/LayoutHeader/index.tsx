@@ -88,8 +88,8 @@ const Header: React.FC<HeaderProps> = (props) => {
   return (
     <>
       <header className="bg-gray-900 flex items-center justify-between md:px-10 sm:px-5 px-[174px] py-3 w-full">
-        <div className="flex md:flex-col flex-row gap-6 items-center justify-between w-full">
-          <div className="flex flex-1 flex-row gap-6 items-center justify-start max-w-[660px] w-full">
+        <div className="flex md:flex-col flex-row gap-3 items-center justify-between w-full">
+          <div className="flex flex-1 flex-row gap-3 items-center justify-start max-w-[660px] w-full">
             <div className="flex flex-col items-center justify-start w-auto">
               <Link href={AdminPaths.DASHBOARD}>
                 <Img
@@ -114,7 +114,7 @@ const Header: React.FC<HeaderProps> = (props) => {
               </div>
             </div>
           </div>
-          <div className="flex sm:flex-1 sm:flex-col flex-row gap-2 items-center justify-end w-[430px] sm:w-full">
+          <div className="flex sm:flex-1 sm:flex-col flex-row gap-3 items-center justify-end w-[430px] sm:w-full">
             <Button
               className="cursor-pointer flex items-center justify-center min-w-[192px]"
               leftIcon={
@@ -135,7 +135,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                 Create Campaign
               </div>
             </Button>
-            <div className="bg-indigo-500 flex flex-row gap-2 items-center justify-center px-4 py-2 rounded w-auto">
+            <div className="bg-indigo-500 flex flex-row gap-3 items-center justify-center px-4 py-2 rounded w-auto">
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Img

@@ -12,7 +12,7 @@ const CreateItemStep = (props) => {
   return (
     <>
       <div className="flex flex-col items-start justify-center w-auto">
-        <div className="flex flex-row gap-4 items-start justify-start w-auto">
+        <div className="flex flex-row gap-3 items-start justify-start w-auto">
           <div className="flex flex-col w-[60px] h-[300px] md:h-auto items-start justify-start">
             <div
               className="bg-deep_purple-900 border-2 border-indigo-900_02 border-solid flex flex-col h-6 items-center justify-start p-0.5 rounded w-6">
@@ -43,7 +43,7 @@ const CreateItemStep = (props) => {
               alt="step 2"
             />
           </div>
-          <div className="flex flex-col gap-6 items-start justify-start w-[316px]">
+          <div className="flex flex-col gap-3 items-start justify-start w-[316px]">
             <Text
               className="text-blue_gray-50 text-sm w-full cursor-pointer"
               size="txtLexendRegular14Bluegray50"

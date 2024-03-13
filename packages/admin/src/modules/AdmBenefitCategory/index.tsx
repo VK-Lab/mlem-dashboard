@@ -8,10 +8,10 @@ import ItemCreate from '@mlem-admin/modules/AdmBenefitCategory/components/ItemCr
 const AdmList = (props) => {
   return (
     <>
-      <div className="flex flex-col gap-14 items-center justify-center max-w-[1440px] sm:px-5 px-9 py-24 w-full">
+      <div className="flex flex-col gap-3 items-center justify-center max-w-[1440px] sm:px-5 px-9 py-24 w-full">
         <div className="flex md:flex-col flex-row gap-3 items-start justify-center w-full">
 
-          <div className="flex flex-col gap-6 items-center justify-start !w-[264px] !min-w-[264px]">
+          <div className="flex flex-col gap-3 items-center justify-start !w-[264px] !min-w-[264px]">
             <LayoutInfo/>
 
             <div className="flex flex-col items-center justify-start w-full">
@@ -24,7 +24,7 @@ const AdmList = (props) => {
               <LayoutTab/>
             </div>
 
-            <div className="flex flex-col gap-4 items-start justify-start w-full">
+            <div className="flex flex-col gap-3 items-start justify-start w-full">
               <ItemList/>
             </div>
           </div>

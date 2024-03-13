@@ -13,10 +13,10 @@ type FooterProps = Omit<
 const Footer: React.FC<FooterProps> = (props) => {
   return (
     <>
-      <div className="bg-indigo-900 flex flex-col font-bevietnampro gap-4 items-center justify-start max-w-[1440px] py-24 w-full">
+      <div className="bg-indigo-900 flex flex-col font-bevietnampro gap-3 items-center justify-start max-w-[1440px] py-24 w-full">
         <div className="flex flex-col items-start justify-between md:px-10 sm:px-5 px-[174px] w-full">
-          <div className="flex sm:flex-col flex-row gap-6 h-full items-start justify-between w-full">
-            <div className="flex flex-col gap-2 items-start justify-center w-auto">
+          <div className="flex sm:flex-col flex-row gap-3 h-full items-start justify-between w-full">
+            <div className="flex flex-col gap-3 items-start justify-center w-auto">
               <Img
                 className="h-[66px] md:h-auto object-cover w-[69px] sm:w-full"
                 src="/v2/images/img_logo1.png"
@@ -29,14 +29,14 @@ const Footer: React.FC<FooterProps> = (props) => {
                 {props?.copyrighttext}
               </Text>
             </div>
-            <div className="flex flex-col gap-6 items-center justify-center w-auto">
+            <div className="flex flex-col gap-3 items-center justify-center w-auto">
               <Text
                 className="text-2xl md:text-[22px] text-center text-white-A700 sm:text-xl w-auto"
                 size="txtBeVietnamProSemiBold24"
               >
                 {props?.joincommunitytext}
               </Text>
-              <div className="flex flex-row gap-6 items-center justify-start w-auto">
+              <div className="flex flex-row gap-3 items-center justify-start w-auto">
                 <Link
                   href="https://www.youtube.com/@casperdashofficialchannel5444"
                   target="_blank"

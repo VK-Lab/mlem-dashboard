@@ -57,7 +57,7 @@ const StepNftCollectionCreate = ({onSuccess}: FormProps) => {
 
   return (
     <>
-      <div className="flex md:flex-1 flex-col gap-6 items-start justify-start w-full">
+      <div className="flex md:flex-1 flex-col gap-3 items-start justify-start w-full">
         <FormContainer
           defaultValues={{
             name: '',

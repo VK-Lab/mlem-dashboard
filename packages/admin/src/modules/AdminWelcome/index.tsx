@@ -59,7 +59,7 @@ const Welcome = () => {
                 <div className="absolute flex flex-col h-max inset-y-[0] items-center justify-start max-w-[792px] my-auto outline outline-[12px] outline-deep_purple-800_99 right-[3%] rounded w-full
                 md:right-0 md:left-0 md:outline-0 md:h-[80%]">
                   <div className="bg-indigo-900_cc flex flex-col items-center justify-start p-16 rounded w-full md:w-auto md:bg-transparent md:p-0">
-                    <div className="flex flex-col gap-8 items-start justify-center w-[600px] md:w-[80%]">
+                    <div className="flex flex-col gap-3 items-start justify-center w-[600px] md:w-[80%]">
                       <div className="flex flex-col items-center justify-start w-auto">
                         <Img
                           className="h-[66px] md:h-auto object-cover w-[69px]"
@@ -67,7 +67,7 @@ const Welcome = () => {
                           alt="logoOne"
                         />
                       </div>
-                      <div className="flex flex-col gap-4 items-start justify-start w-full">
+                      <div className="flex flex-col gap-3 items-start justify-start w-full">
                         <div className="flex flex-col font-lexend items-start justify-start w-full">
                           <Text
                             className="leading-[64.00px] text-[48px] text-blue_gray-50 md:text-3xl "
@@ -101,7 +101,7 @@ const Welcome = () => {
                       <div className="flex md:flex-col flex-row gap-3 items-start justify-start w-full">
                         <div
                           onClick={() => connectCasperDashAsync()}
-                          className="bg-amber-500 flex flex-1 flex-row gap-2 items-center justify-start p-4 rounded w-full cursor-pointer">
+                          className="bg-amber-500 flex flex-1 flex-row gap-3 items-center justify-start p-4 rounded w-full cursor-pointer">
                           <div className="bg-white-A700 h-10 rounded w-10">
                             <Image
                               alt="casperdash-logo"
@@ -118,7 +118,7 @@ const Welcome = () => {
                         </div>
                         <div
                           onClick={() => connectCasperWalletAsync()}
-                          className="bg-amber-500 flex flex-1 flex-row gap-2 items-center justify-start p-4 rounded w-full cursor-pointer">
+                          className="bg-amber-500 flex flex-1 flex-row gap-3 items-center justify-start p-4 rounded w-full cursor-pointer">
                           <div className="bg-white-A700 h-10 rounded w-10">
                             <Image
                               alt="casper-wallet-logo"
