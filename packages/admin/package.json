@@ -62,7 +62,7 @@
     "material-react-table": "^1.14.0",
     "material-ui-popup-state": "^4.1.0",
     "mui-tel-input": "^2.0.4",
-    "next": "^13.4.19",
+    "next": "^13.5.6",
     "next-i18next": "^13.2.2",
     "next-pwa": "^5.6.0",
     "next-remove-imports": "^1.0.12",
