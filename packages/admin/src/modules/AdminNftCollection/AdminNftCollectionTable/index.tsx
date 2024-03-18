@@ -4,7 +4,7 @@ import { MintingMode } from '@mlem-admin/contracts/cep78';
 import { useGetAllNftCollections } from '@mlem-admin/hooks/queries/useGetAllNftCollections';
 import ButtonViewTiers from '@mlem-admin/modules/AdminNftCollection/AdminNftCollectionTable/ButtonViewTiers';
 import { NftCollection } from '@mlem-admin/types/nft-collection';
-import { mapDeployStatus } from '@mlem-admin/utils/status';
+// import { mapDeployStatus } from '@mlem-admin/utils/status';
 import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
@@ -70,7 +70,7 @@ const AdminNftCollectionTable = () => {
           return (
             <Chip
               label={deployStatus}
-              color={mapDeployStatus(deployStatus)}
+              // color={mapDeployStatus(deployStatus)}
               variant="outlined"
             />
           );

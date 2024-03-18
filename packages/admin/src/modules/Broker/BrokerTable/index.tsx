@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useGetBrokers } from '@mlem-admin/hooks/queries/useGetBrokers';
 import { Broker } from '@mlem-admin/types/broker';
-import { mapDeployStatus } from '@mlem-admin/utils/status';
+// import { mapDeployStatus } from '@mlem-admin/utils/status';
 import { Box, Chip } from '@mui/material';
 import dayjs from 'dayjs';
 import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
@@ -47,7 +47,7 @@ const BrokerTable = () => {
           return (
             <Chip
               label={deployStatus}
-              color={mapDeployStatus(deployStatus)}
+              // color={mapDeployStatus(deployStatus)}
               variant="outlined"
             />
           );
