@@ -42,23 +42,25 @@ export const checkUser = (): Promise<CheckUserResponse> => {
   return request.post('/auth/check');
 };
 
-export function setUserInfo(rsp): boolean {
+export function setUserInfo(rsp : string): boolean {
   if (rsp) {
     rsp = JSON.parse(rsp);
 
-    localStorage.setItem(
-      'loggedUser',
-      JSON.stringify({
-        userId:
-          rsp.userId.substring(0, 5) +
-          '...' +
-          rsp.userId.substring(rsp.userId.length - 5),
-        walletAddress:
-          rsp.walletAddress.substring(0, 5) +
-          '...' +
-          rsp.walletAddress.substring(rsp.walletAddress.length - 5),
-      })
-    );
+    if (rsp) {
+      localStorage.setItem(
+        'loggedUser',
+        JSON.stringify({
+          userId:
+            rsp.userId.substring(0, 5) +
+            '...' +
+            rsp.userId.substring(rsp.userId.length - 5),
+          walletAddress:
+            rsp.walletAddress.substring(0, 5) +
+            '...' +
+            rsp.walletAddress.substring(rsp.walletAddress.length - 5),
+        })
+      );
+    }
 
     return true;
   }

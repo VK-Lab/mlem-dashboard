@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   CasperDashConnector,
   CasperWalletConnector,
@@ -7,12 +6,10 @@ import {
   useConnect,
 } from '@casperdash/usewallet';
 import { Img } from '@mlem-admin/components/Img';
-import LayoutFooter from '@mlem-admin/components/LayoutFooter';
 import { Text } from '@mlem-admin/components/Text';
 import { useOnLogin } from '@mlem-admin/hooks/useOnLogin';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import CasperWalletLogo from '~/public/img/casper-wallet.png';
 import CasperdashLogo from '~/public/img/casperdash-logo.webp';
 

@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { Button } from '@mlem-admin/components/Button';
 import { Text } from '@mlem-admin/components/Text';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
 import { useMutateUpdateCampaign } from '@mlem-admin/hooks/mutations';
@@ -40,12 +38,12 @@ const ItemUpdate = (props) => {
 
   return (
     <>
-      <Button
-        onClick={() => setOpenModal(true)}
-        className="absolute -right-1 -top-1 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
+      <button className="absolute -right-1 -top-1 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
+              type="button"
+              onClick={() => setOpenModal(true)}
       >
         <BsPencil />
-      </Button>
+      </button>
 
       <Modal
         show={openModal}
@@ -208,18 +206,19 @@ const ItemUpdate = (props) => {
           </Modal.Body>
           <Modal.Footer className="bg-gray-50 relative">
             <div className="relative w-full h-[20px]">
-              <Button
-                className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-gray-500"
+              <button
+                className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[8px] rounded bg-gray-500"
+                type="button"
                 onClick={() => setOpenModal(false)}
               >
                 Decline
-              </Button>
-              <Button
-                className="absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-indigo-500"
+              </button>
+              <button
+                className="absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[8px] rounded bg-indigo-500"
                 type="submit"
               >
                 Confirm
-              </Button>
+              </button>
             </div>
           </Modal.Footer>
         </FormContainer>

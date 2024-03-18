@@ -1,9 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
 import { useDisconnect } from '@casperdash/usewallet';
-import { Button } from '@mlem-admin/components/Button';
 import { Img } from '@mlem-admin/components/Img';
 import { Text } from '@mlem-admin/components/Text';
 import { CookieKeys } from '@mlem-admin/enums/cookieKeys.enum';
@@ -15,8 +13,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
 
-const Header = (props) => {
-  const { toastSuccess, toastError } = useI18nToast();
+const Header = () => {
+  const { toastSuccess } = useI18nToast();
   const [loggedUser, setLoggedUser] = useState({});
   useEffect(() => {
     let value;
@@ -71,49 +69,35 @@ const Header = (props) => {
             </div>
           </div>
           <div className="flex flex-1 flex-row gap-3 items-center justify-end md:hidden">
-            <Button
-              className="cursor-pointer flex items-center justify-center"
-              leftIcon={
-                <Img
-                  className="h-6 mr-2"
-                  src="/v2/images/img_lock.svg"
-                  alt="campaign_create"
-                />
-              }
-              shape="round"
-              color="amber_500"
-              size="sm"
-              variant="fill"
-              type="button"
-              onClick={() =>
-                router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)
-              }
+            <button className="cursor-pointer flex items-center justify-center rounded p-[13px] bg-amber-500"
+                    type="button"
+                    onClick={() =>
+                      router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)
+                    }
             >
+              <Img
+                className="h-6 mr-2"
+                src="/v2/images/img_lock.svg"
+                alt="campaign_create"
+              />
               <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
                 Create Campaign
               </div>
-            </Button>
-
+            </button>
             <div className="relative">
-              <Button
-                className="cursor-pointer flex items-center justify-center bg-indigo-500"
-                leftIcon={
-                  <Img
-                    className="h-6 mr-2"
-                    src="/v2/images/img_yeve.png"
-                    alt="user"
-                  />
-                }
-                shape="round"
-                size="sm"
-                variant="fill"
-                type="button"
-                onClick={() => setOpen((prev) => !prev)}
+              <button className="cursor-pointer flex items-center justify-center bg-indigo-500 rounded p-[13px]"
+                      type="button"
+                      onClick={() => setOpen((prev) => !prev)}
               >
+                <Img
+                  className="h-6 mr-2"
+                  src="/v2/images/img_yeve.png"
+                  alt="user"
+                />
                 <div className="!text-white-A700 font-lexend font-semibold text-base text-center">
                   {loggedUser?.userId}
                 </div>
-              </Button>
+              </button>
               <div
                 className={`absolute right-0 top-13 bg-gray-300 rounded w-auto ${
                   open

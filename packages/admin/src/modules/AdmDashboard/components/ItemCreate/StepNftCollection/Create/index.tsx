@@ -1,8 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
-
 import { useAccount } from '@casperdash/usewallet';
-import { Button } from '@mlem-admin/components/Button';
 import { Img } from '@mlem-admin/components/Img';
 import { Text } from '@mlem-admin/components/Text';
 import { MintingMode } from '@mlem-admin/contracts/cep78';
@@ -14,10 +11,8 @@ import { useGetAccountBalance } from '@mlem-admin/hooks/queries/useGetAccountBal
 import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import FormBenefits from '@mlem-admin/modules/AdmNftCollection/components/FormBenefits';
 import { CreateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
-import { Benefit } from '@mlem-admin/types/benefit';
 import { useRouter } from 'next/router';
 import {
-  DatePickerElement,
   FormContainer,
   TextFieldElement,
   SelectElement,
@@ -32,7 +27,7 @@ const ESTIMATE_FEE = 300;
 const StepNftCollectionCreate = ({ onSuccess }: FormProps) => {
   const router = useRouter();
 
-  const { toastSuccess, toastError } = useI18nToast();
+  const { toastSuccess } = useI18nToast();
   const queryClient = useQueryClient();
   const createNftCollectionMutation = useMutateCreateNftCollection({
     onSuccess: async () => {
@@ -210,24 +205,18 @@ const StepNftCollectionCreate = ({ onSuccess }: FormProps) => {
           </div>
         </div>
         <div className="flex justify-end items-end w-full mt-4">
-          <Button
-            className="cursor-pointer flex items-center justify-center min-w-[192px]"
-            leftIcon={
-              <Img
-                className="h-6 mr-2"
-                src="/v2/images/img_lock.svg"
-                alt="lock"
-              />
-            }
-            shape="round"
-            color="amber_500"
-            size="sm"
-            variant="fill"
+          <button className="cursor-pointer flex items-center justify-center rounded p-[13px] bg-amber-500"
+                  type="submit"
           >
+            <Img
+              className="h-6 mr-2"
+              src="/v2/images/img_lock.svg"
+              alt="create"
+            />
             <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
               Next Step
             </div>
-          </Button>
+          </button>
         </div>
       </FormContainer>
     </>

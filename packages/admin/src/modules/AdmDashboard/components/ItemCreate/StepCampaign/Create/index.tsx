@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { Button } from '@mlem-admin/components/Button';
 import { Img } from '@mlem-admin/components/Img';
 import { Text } from '@mlem-admin/components/Text';
 import { AdminPaths } from '@mlem-admin/enums/paths.enum';
@@ -26,7 +24,7 @@ const StepCampaignCreate = ({ onSuccess }: FormProps) => {
   const router = useRouter();
 
   const queryClient = useQueryClient();
-  const { toastSuccess, toastError } = useI18nToast();
+  const { toastSuccess } = useI18nToast();
   const createCampaignMutation = useMutateCreateCampaign({
     onSuccess: async () => {
       toastSuccess('item_updated');
@@ -186,24 +184,18 @@ const StepCampaignCreate = ({ onSuccess }: FormProps) => {
           </div>
         </div>
         <div className="flex justify-end items-end w-full mt-4">
-          <Button
-            className="cursor-pointer flex items-center justify-center min-w-[192px]"
-            leftIcon={
-              <Img
-                className="h-6 mr-2"
-                src="/v2/images/img_lock.svg"
-                alt="lock"
-              />
-            }
-            shape="round"
-            color="amber_500"
-            size="sm"
-            variant="fill"
+          <button className="cursor-pointer flex items-center justify-center rounded p-[13px] bg-amber-500"
+                  type="submit"
           >
+            <Img
+              className="h-6 mr-2"
+              src="/v2/images/img_lock.svg"
+              alt="create"
+            />
             <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
               Create Campaign
             </div>
-          </Button>
+          </button>
         </div>
       </FormContainer>
     </>

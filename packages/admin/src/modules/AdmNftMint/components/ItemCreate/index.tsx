@@ -1,9 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useMemo } from 'react';
-
 import { useAccount } from '@casperdash/usewallet';
-import { Button } from '@mlem-admin/components/Button';
 import { Img } from '@mlem-admin/components/Img';
 import { Text } from '@mlem-admin/components/Text';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
@@ -61,7 +59,7 @@ const ItemCreate = ({ onSuccess }: FormProps) => {
     setOpenModal(true);
   }
 
-  const { toastSuccess, toastError } = useI18nToast();
+  const { toastSuccess } = useI18nToast();
   const queryClient = useQueryClient();
   const { publicKey } = useAccount();
   const { data: { balance = 0 } = { balance: 0 } } = useGetAccountBalance({
@@ -106,26 +104,19 @@ const ItemCreate = ({ onSuccess }: FormProps) => {
   return (
     <>
       <div className="flex justify-start items-center w-full">
-        <Button
-          className="cursor-pointer flex items-center justify-center w-full"
-          leftIcon={
-            <Img
-              className="h-6 mr-2"
-              src="/v2/images/img_lock.svg"
-              alt="lock"
-            />
-          }
-          shape="round"
-          color="amber_500"
-          size="sm"
-          variant="fill"
-          type="button"
-          onClick={openPopup}
+        <button className="cursor-pointer flex items-center justify-center w-full rounded p-[13px] bg-amber-500"
+                type="button"
+                onClick={openPopup}
         >
+          <Img
+            className="h-6 mr-2"
+            src="/v2/images/img_lock.svg"
+            alt="popup_create"
+          />
           <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
             Mint NFT
           </div>
-        </Button>
+        </button>
       </div>
 
       <Modal
@@ -273,17 +264,16 @@ const ItemCreate = ({ onSuccess }: FormProps) => {
           </Modal.Body>
           <Modal.Footer className="bg-gray-50 relative">
             <div className="relative w-full h-[20px]">
-              <Button
-                className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-gray-500"
+              <button
+                className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[8px] rounded bg-gray-500"
+                type="button"
                 onClick={() => setOpenModal(false)}
               >
                 Decline
-              </Button>
-              <Button
-                className={`absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded  ${
-                  isLoadingCollections ||
-                  isLoadingBenefits ||
-                  createNftMutation.isLoading
+              </button>
+              <button
+                className={`absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[8px] rounded ${
+                  isLoadingCollections || isLoadingBenefits || createNftMutation.isLoading
                     ? 'bg-gray-500'
                     : 'bg-indigo-500'
                 }`}
@@ -291,7 +281,7 @@ const ItemCreate = ({ onSuccess }: FormProps) => {
                 disabled={balance < ESTIMATE_FEE}
               >
                 Confirm
-              </Button>
+              </button>
             </div>
           </Modal.Footer>
         </FormContainer>
