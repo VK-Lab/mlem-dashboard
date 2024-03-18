@@ -1,18 +1,16 @@
 import { useState } from 'react';
 
 import ItemUpdateInfo from '@mlem-admin/modules/AdmNftMint/components/ItemUpdateInfo';
+import { Nft } from '@mlem-admin/types/nft';
 import { generateMetadataUrl } from '@mlem-admin/utils/metadata';
 import Link from 'next/link';
 import { BsPencil } from 'react-icons/bs';
 
 interface ItemUpdateProps {
-  item: {
-    _id: string;
-    // other properties of the 'item' object
-  };
+  item: Nft;
 }
 
-const ItemUpdate: React.FC<ItemUpdateProps> = (props) => {
+const ItemUpdate = ({ item }: ItemUpdateProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -32,11 +30,11 @@ const ItemUpdate: React.FC<ItemUpdateProps> = (props) => {
             : 'opacity-0 h-0 transition-all duration-200'
         }`}
       >
-        <ItemUpdateInfo item={props.item} />
+        <ItemUpdateInfo item={item} />
 
         <div className="px-1 py-1 cursor-pointer hover:text-white-A700 hover:bg-gray-500">
           <Link
-            href={generateMetadataUrl(props.item._id)}
+            href={generateMetadataUrl(item._id)}
             rel="noopener noreferrer"
             target="_blank"
           >

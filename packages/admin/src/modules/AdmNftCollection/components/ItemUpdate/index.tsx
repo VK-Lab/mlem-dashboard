@@ -3,18 +3,15 @@ import { useState } from 'react';
 import { MintingMode } from '@mlem-admin/contracts/cep78';
 import ItemUpdateBroker from '@mlem-admin/modules/AdmNftCollection/components/ItemUpdateBroker';
 import ItemUpdateInfo from '@mlem-admin/modules/AdmNftCollection/components/ItemUpdateInfo';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
 import Link from 'next/link';
 import { BsPencil } from 'react-icons/bs';
 
 interface ItemUpdateProps {
-  item: {
-    id: string;
-    mintingMode: MintingMode;
-    // Other properties of the 'item' object
-  };
+  item: NftCollection;
 }
 
-const ItemUpdate: React.FC<ItemUpdateProps> = (props) => {
+const ItemUpdate = ({ item }: ItemUpdateProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -34,16 +31,16 @@ const ItemUpdate: React.FC<ItemUpdateProps> = (props) => {
             : 'opacity-0 h-0 transition-all duration-200'
         }`}
       >
-        <ItemUpdateInfo item={props.item} />
+        <ItemUpdateInfo item={item} />
 
         <div className="px-1 py-1 cursor-pointer hover:text-white-A700 hover:bg-gray-500">
-          <Link href={`/adm/nft-collections/${props.item.id}/tiers`}>
+          <Link href={`/adm/nft-collections/${item.id}/tiers`}>
             <button type="button">Manage Tiers</button>
           </Link>
         </div>
 
-        {props.item.mintingMode == MintingMode.ACL && (
-          <ItemUpdateBroker item={props.item} />
+        {item.mintingMode == MintingMode.ACL && (
+          <ItemUpdateBroker item={item} />
         )}
       </div>
     </>

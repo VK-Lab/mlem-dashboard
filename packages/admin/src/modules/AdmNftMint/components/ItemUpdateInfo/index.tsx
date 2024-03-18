@@ -8,6 +8,7 @@ import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import FormTiers from '@mlem-admin/modules/AdmNftMint/components/FormTiers';
 import { UpdateNftParams } from '@mlem-admin/services/admin/nft/types';
 import { Benefit } from '@mlem-admin/types/benefit';
+import { Nft } from '@mlem-admin/types/nft';
 import { Modal } from 'flowbite-react';
 import {
   FormContainer,
@@ -17,19 +18,10 @@ import {
 import { useQueryClient } from 'react-query';
 
 interface ItemUpdateInfoProps {
-  item: {
-    tierId: string | undefined;
-    id: string;
-    name: string;
-    description: string;
-    benefits: Benefit[];
-    nftCollection?: {
-      id: string;
-    };
-  };
+  item: Nft;
 }
 
-const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
+const ItemUpdateInfo = ({ item }: ItemUpdateInfoProps) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 
@@ -51,7 +43,7 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
   const handleOnSubmitForm = (updateNftParams: UpdateNftParams) => {
     updateNftMutation.mutate({
       ...updateNftParams,
-      id: props.item.id,
+      id: item.id,
     });
   };
 
@@ -72,14 +64,12 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
       >
         <FormContainer
           defaultValues={{
-            name: props.item.name,
-            description: props.item.description,
-            benefits: props.item.benefits
-              ? props.item.benefits.map((benefit: Benefit) =>
-                  benefit.id.toString()
-                )
+            name: item.name,
+            description: item.description,
+            benefits: item.benefits
+              ? item.benefits.map((benefit: Benefit) => benefit.id.toString())
               : [],
-            tierId: props.item.tierId,
+            tierId: item.tierId,
           }}
           onSuccess={handleOnSubmitForm}
           // onSuccess={data => console.log(data)}
@@ -100,7 +90,7 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
                   <TextFieldElement
                     name="name"
                     required
-                    value={props.item.name}
+                    value={item.name}
                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                   />
                 </div>
@@ -115,7 +105,7 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
                   </Text>
                   <TextFieldElement
                     name="description"
-                    value={props.item.description}
+                    value={item.description}
                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                   />
                 </div>
@@ -155,7 +145,7 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
                   <div className="acm-ele-wrapper w-full">
                     <FormTiers
                       name={'tierId'}
-                      nftCollectionId={props.item?.nftCollection?.id}
+                      nftCollectionId={item?.nftCollection?.id}
                     />
                   </div>
                 </div>

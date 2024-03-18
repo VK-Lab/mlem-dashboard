@@ -8,21 +8,16 @@ import { useMutateDeleteBrokerOnNftCollection } from '@mlem-admin/hooks/mutation
 import { useGetBrokers } from '@mlem-admin/hooks/queries/useGetBrokers';
 import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import FormBroker from '@mlem-admin/modules/AdmNftCollection/components/FormBroker';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { Modal } from 'flowbite-react';
 import { FormContainer } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
 interface ItemUpdateBrokerProps {
-  item: {
-    id: string;
-    brokerId: string;
-    brokerDeployStatus: DeployStatusEnum;
-    tokenAddress: string;
-    // Other properties of the 'item' object
-  };
+  item: NftCollection;
 }
 
-const ItemUpdateBroker: React.FC<ItemUpdateBrokerProps> = (props) => {
+const ItemUpdateBroker = ({ item }: ItemUpdateBrokerProps) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 
@@ -66,13 +61,13 @@ const ItemUpdateBroker: React.FC<ItemUpdateBrokerProps> = (props) => {
     );
 
     if (!broker) {
-      if (!props.item.brokerId) {
+      if (!item.brokerId) {
         toastError('item_update_error');
         return;
       }
 
       deleteBrokerMutation.mutate({
-        nftCollectionId: props.item.id,
+        nftCollectionId: item.id,
       });
 
       return;
@@ -80,9 +75,9 @@ const ItemUpdateBroker: React.FC<ItemUpdateBrokerProps> = (props) => {
 
     assignContractBrokerMutation.mutate({
       ...updateParams,
-      nftCollectionId: props.item.id,
+      nftCollectionId: item.id,
       brokerContractHash: broker.contractHash,
-      nftContractHash: props.item.tokenAddress,
+      nftContractHash: item.tokenAddress,
     });
   };
 
@@ -103,7 +98,7 @@ const ItemUpdateBroker: React.FC<ItemUpdateBrokerProps> = (props) => {
       >
         <FormContainer
           defaultValues={{
-            brokerId: props.item.brokerId,
+            brokerId: item.brokerId,
           }}
           onSuccess={handleOnSubmitForm}
           // onSuccess={data => console.log(data)}
@@ -140,8 +135,7 @@ const ItemUpdateBroker: React.FC<ItemUpdateBrokerProps> = (props) => {
                     Integrated Status
                   </Text>
                   <div className="absolute right-5">
-                    {props.item.brokerDeployStatus ===
-                      DeployStatusEnum.PENDING && (
+                    {item.brokerDeployStatus === DeployStatusEnum.PENDING && (
                       <Text
                         className="bg-teal-A700 px-2 py-0.5 rounded-sm text-[13px] m-1 text-black-900_01 w-auto"
                         size="txtLexendSemiBold14Gray300"
@@ -149,8 +143,7 @@ const ItemUpdateBroker: React.FC<ItemUpdateBrokerProps> = (props) => {
                         Pending
                       </Text>
                     )}
-                    {props.item.brokerDeployStatus ===
-                      DeployStatusEnum.COMPLETED && (
+                    {item.brokerDeployStatus === DeployStatusEnum.COMPLETED && (
                       <Text
                         className="bg-cyan-400 px-2 py-0.5 rounded-sm text-[13px] m-1 text-white-A700 w-auto"
                         size="txtLexendSemiBold14Gray300"

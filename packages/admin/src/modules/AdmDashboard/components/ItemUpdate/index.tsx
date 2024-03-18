@@ -6,6 +6,7 @@ import { useMutateUpdateCampaign } from '@mlem-admin/hooks/mutations';
 import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import FormNftCollections from '@mlem-admin/modules/AdmDashboard/components/FormNftCollections';
 import { UpdateCampaignParams } from '@mlem-admin/services/admin/campaign/types';
+import { Campaign } from '@mlem-admin/types/campaign';
 import dayjs from 'dayjs';
 import { Modal } from 'flowbite-react';
 import {
@@ -17,22 +18,11 @@ import {
 import { BsPencil } from 'react-icons/bs';
 import { useQueryClient } from 'react-query';
 
-interface Item {
-  id: string;
-  name: string;
-  description: string;
-  startDate?: Date;
-  endDate?: Date;
-  imageUrl: string;
-  nftCollectionIds: string[];
-  thumbnailUrl: string;
-}
+type ItemUpdateProps = {
+  item: Campaign;
+};
 
-interface ItemUpdateProps {
-  item: Item;
-}
-
-const ItemUpdate: React.FC<ItemUpdateProps> = ({ item }) => {
+const ItemUpdate = ({ item }: ItemUpdateProps) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 

@@ -7,23 +7,16 @@ import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import FormBenefits from '@mlem-admin/modules/AdmNftCollection/components/FormBenefits';
 import FormBroker from '@mlem-admin/modules/AdmNftCollection/components/FormBroker';
 import { UpdateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
+import { NftCollection } from '@mlem-admin/types/nft-collection';
 import { Modal } from 'flowbite-react';
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
 interface ItemUpdateInfoProps {
-  item: {
-    id: string;
-    name: string;
-    description: string;
-    benefitIds: string[];
-    nftImageUrl: string;
-    brokerId: string;
-    // other properties of the 'item' object
-  };
+  item: NftCollection;
 }
 
-const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
+const ItemUpdateInfo = ({ item }: ItemUpdateInfoProps) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 
@@ -48,7 +41,7 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
   ) => {
     updateNftMutation.mutate({
       ...updateNftCollectionParams,
-      id: props.item.id,
+      id: item.id,
     });
   };
 
@@ -69,11 +62,11 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
       >
         <FormContainer
           defaultValues={{
-            name: props.item.name,
-            description: props.item.description,
-            benefitIds: props.item.benefitIds,
-            nftImageUrl: props.item.nftImageUrl,
-            brokerId: props.item.brokerId,
+            name: item.name,
+            description: item.description,
+            benefitIds: item.benefitIds,
+            nftImageUrl: item.nftImageUrl,
+            brokerId: item.brokerId,
           }}
           onSuccess={handleOnSubmitForm}
           // onSuccess={data => console.log(data)}
@@ -94,7 +87,7 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
                   <TextFieldElement
                     name="name"
                     required
-                    value={props.item.name}
+                    value={item.name}
                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                   />
                 </div>
@@ -109,7 +102,7 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
                   </Text>
                   <TextFieldElement
                     name="description"
-                    value={props.item.description}
+                    value={item.description}
                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                   />
                 </div>
@@ -124,7 +117,7 @@ const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
                   </Text>
                   <TextFieldElement
                     name="nftImageUrl"
-                    value={props.item.nftImageUrl}
+                    value={item.nftImageUrl}
                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                   />
                 </div>
