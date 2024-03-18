@@ -6,12 +6,12 @@ import ItemUpdate from '@mlem-admin/modules/AdmNftCollection/components/ItemUpda
 import { NftCollection } from '@mlem-admin/types/nft-collection';
 
 const ItemList = () => {
-  const { data: { items = [] } = { items: [], total: 0 }, isLoading } =
+  const { data: { items = [] } = { items: [], total: 0 } } =
     useGetAllNftCollections();
 
   return (
     <>
-      {items.map((item: NftCollection, indexItem) => {
+      {items.map((item: NftCollection) => {
         const itemMode =
           item.mintingMode == MintingMode.Installer
             ? 'Installer'
@@ -68,7 +68,7 @@ const ItemList = () => {
                 />
                 <div className="flex flex-col items-start justify-start w-full">
                   {item.benefits &&
-                    item.benefits.map((nftBenefit, indexBenefit) => {
+                    item.benefits.map((nftBenefit) => {
                       return (
                         <>
                           <div key={nftBenefit.id}>

@@ -3,17 +3,13 @@ import { Text } from '@mlem-admin/components/Text';
 import { useGetAdminNfts } from '@mlem-admin/hooks/queries';
 import ItemUpdate from '@mlem-admin/modules/AdmNftMint/components/ItemUpdate';
 import { Nft } from '@mlem-admin/types/nft';
-import { generateMetadataUrl } from '@mlem-admin/utils/metadata';
-import { mapDeployStatus } from '@mlem-admin/utils/status';
-import dayjs from 'dayjs';
 
 const ItemList = () => {
-  const { data: { items = [] } = { items: [], total: 0 }, isLoading } =
-    useGetAdminNfts();
+  const { data: { items = [] } = { items: [], total: 0 } } = useGetAdminNfts();
 
   return (
     <>
-      {items.map((item: Nft, indexItem) => {
+      {items.map((item: Nft) => {
         return (
           <>
             <div key={item.id}>

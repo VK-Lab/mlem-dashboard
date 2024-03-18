@@ -5,12 +5,12 @@ import ItemUpdate from '@mlem-admin/modules/AdmDashboard/components/ItemUpdate';
 import { Campaign } from '@mlem-admin/types/campaign';
 
 const ItemList = () => {
-  const { data: { items = [] } = { items: [], total: 0 }, isLoading } =
+  const { data: { items = [] } = { items: [], total: 0 } } =
     useGetAllCampaigns();
 
   return (
     <>
-      {items.map((item: Campaign, indexItem) => {
+      {items.map((item: Campaign) => {
         return (
           <>
             <div key={item.id}>
@@ -43,26 +43,24 @@ const ItemList = () => {
                 />
                 <div className="flex flex-col items-start justify-start w-full">
                   {item.nftCollections &&
-                    item.nftCollections.map(
-                      (nftCollectionItem, indexCollection) => {
-                        return (
-                          <>
-                            <div key={nftCollectionItem.id}>
-                              <Text
-                                className="bg-amber-500 px-2 py-0.5 rounded-sm text-[13px] m-1 text-black-900_01 w-auto"
-                                size="txtLexendRegular8"
-                              >
-                                {nftCollectionItem.name}
-                              </Text>
-                            </div>
-                          </>
-                        );
-                      }
-                    )}
+                    item.nftCollections.map((nftCollectionItem) => {
+                      return (
+                        <>
+                          <div key={nftCollectionItem.id}>
+                            <Text
+                              className="bg-amber-500 px-2 py-0.5 rounded-sm text-[13px] m-1 text-black-900_01 w-auto"
+                              size="txtLexendRegular8"
+                            >
+                              {nftCollectionItem.name}
+                            </Text>
+                          </div>
+                        </>
+                      );
+                    })}
                 </div>
                 <div className="flex flex-col items-start justify-start w-full">
                   {item.benefits &&
-                    item.benefits.map((nftBenefit, indexBenefit) => {
+                    item.benefits.map((nftBenefit) => {
                       return (
                         <>
                           <div key={nftBenefit.id}>

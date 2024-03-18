@@ -4,7 +4,7 @@ import LayoutInfo from '@mlem-admin/components/LayoutInfo';
 import ItemCreate from '@mlem-admin/modules/AdmDashboard/components/ItemCreate/StepCampaign/Create';
 import Steps from '@mlem-admin/modules/AdmDashboard/components/ItemCreate/Steps';
 
-const StepCampaign = (props) => {
+const StepCampaign = () => {
   return (
     <>
       <div className="flex flex-col gap-3 py-24 w-full md:py-5">

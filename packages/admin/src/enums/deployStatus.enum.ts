@@ -3,4 +3,5 @@ export enum DeployStatusEnum {
   COMPLETED = 'completed',
   CONFIRMING = 'confirming',
   FAILED = 'failed',
+  WARNING = 'warning',
 }

@@ -3,7 +3,6 @@
 import { Text } from '@mlem-admin/components/Text';
 import { useGetTiersByNftCollection } from '@mlem-admin/hooks/queries/useGetTiersByNftCollection';
 import TierUpdate from '@mlem-admin/modules/AdmNftCollection/components/ManageTiers/TierUpdate';
-import { Benefit } from '@mlem-admin/types/benefit';
 import { Tier } from '@mlem-admin/types/tier';
 import {
   Table,
@@ -20,10 +19,9 @@ type Props = {
 };
 
 const TierList = ({ nftCollectionId }: Props) => {
-  const { data: { items = [] } = { items: [] }, isLoading } =
-    useGetTiersByNftCollection({
-      nftCollectionId,
-    });
+  const { data: { items = [] } = { items: [] } } = useGetTiersByNftCollection({
+    nftCollectionId,
+  });
 
   return (
     <>
@@ -76,7 +74,7 @@ const TierList = ({ nftCollectionId }: Props) => {
               </TableCell>
               <TableCell>
                 {item.benefits &&
-                  item.benefits.map((nftBenefit, indexBenefit) => {
+                  item.benefits.map((nftBenefit) => {
                     return (
                       <>
                         <div key={nftBenefit.id} className="min-w-[150px]">

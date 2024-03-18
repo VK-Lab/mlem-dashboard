@@ -9,7 +9,7 @@ type Props = {
   campaignId?: string;
 };
 
-const FormBroker = ({ name, label = 'Broker' }: Props) => {
+const FormBroker = ({ name }: Props) => {
   const { data: { items: brokers = [] } = { items: [], total: 0 }, isLoading } =
     useGetBrokers();
 
