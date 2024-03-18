@@ -4,7 +4,11 @@ import { Text } from '@mlem-admin/components/Text';
 import { AdminPaths } from '@mlem-admin/enums/paths.enum';
 import { useRouter } from 'next/router';
 
-const CreateItemStep = (props) => {
+interface CreateItemStepProps {
+  current: number;
+}
+
+const CreateItemStep: React.FC<CreateItemStepProps> = ({ current }) => {
   const router = useRouter();
 
   return (
@@ -32,7 +36,7 @@ const CreateItemStep = (props) => {
           <div className="flex flex-col gap-3 items-start justify-start">
             <Text
               className={`text-blue_gray-50 w-full cursor-pointer ${
-                props.current == 1 ? 'bg-red-600 py-1 px-1 rounded' : ''
+                current == 1 ? 'bg-red-600 py-1 px-1 rounded' : ''
               }`}
               size="txtLexendRegular14Bluegray50"
               onClick={() =>
@@ -43,7 +47,7 @@ const CreateItemStep = (props) => {
             </Text>
             <Text
               className={`text-blue_gray-50 w-full cursor-pointer relative top-1 ${
-                props.current == 2 ? 'bg-red-600 py-1 px-1 rounded top-2' : ''
+                current == 2 ? 'bg-red-600 py-1 px-1 rounded top-2' : ''
               }`}
               size="txtLexendRegular14Bluegray50"
               onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN)}

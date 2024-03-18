@@ -8,8 +8,15 @@ import { AdminPaths } from '@mlem-admin/enums/paths.enum';
 import { useGetAccountBalance } from '@mlem-admin/hooks/queries/useGetAccountBalance';
 import { useRouter } from 'next/router';
 
+// error TS2339: Property 'userId' does not exist on type '{}'.
+// Define interface for loggedUser object
+interface LoggedUser {
+  userId: string; // Assuming userId is a string
+  // Add other properties if necessary
+}
+
 const ListLeftInfo = () => {
-  const [loggedUser, setLoggedUser] = useState({});
+  const [loggedUser, setLoggedUser] = useState<LoggedUser | null>(null);
   useEffect(() => {
     let value;
     // Get the value from local storage if it exists

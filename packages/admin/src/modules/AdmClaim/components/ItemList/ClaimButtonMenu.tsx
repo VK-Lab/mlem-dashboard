@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { ClaimStatusEnum } from '@mlem-admin/types/claim';
 import Button from '@mui/material/Button';
@@ -8,21 +8,21 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { PopupState as PopupStateProps } from 'material-ui-popup-state/core';
 
 type ClaimButtonMenuProps = {
-  onClick?: (claimStatus: ClaimStatusEnum, { close }: PopupStateProps) => void;
+  onClick?: (claimStatus: ClaimStatusEnum, popupState: PopupStateProps) => void;
   defaultValue?: ClaimStatusEnum;
   popupId?: string;
 };
 
-const ClaimButtonMenu = ({
+const ClaimButtonMenu: React.FC<ClaimButtonMenuProps> = ({
   onClick,
   defaultValue = ClaimStatusEnum.PENDING,
   popupId,
-}: ClaimButtonMenuProps) => {
+}) => {
   const handleOnClick = (
     status: ClaimStatusEnum,
-    popupStatus: PopupStateProps
+    popupState: PopupStateProps
   ) => {
-    onClick?.(status, popupStatus);
+    onClick?.(status, popupState);
   };
 
   return (

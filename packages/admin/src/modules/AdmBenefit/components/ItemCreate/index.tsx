@@ -16,56 +16,16 @@ import {
   TextFieldElement,
   SelectElement,
   useForm,
-  useFormContext,
-  useWatch,
 } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 import * as yup from 'yup';
+
+import DiscountsField from './DiscountsField';
 
 export enum BeneiftSourceEnum {
   WOOCOMMERCE = 'woocommerce',
   MANUAL = 'manual',
 }
-
-type FormProps = {
-  onSuccess: (data: Benefit) => void;
-  isSubmitting: boolean;
-};
-
-const DiscountsField = () => {
-  const { control } = useFormContext();
-  const source = useWatch({
-    control,
-    name: 'source',
-  });
-
-  if (source !== BeneiftSourceEnum.WOOCOMMERCE) {
-    return null;
-  }
-
-  return (
-    <>
-      <div className="flex md:flex-1 flex-col gap-3 items-start justify-start w-full">
-        <div className="flex flex-col items-start justify-start w-full">
-          <div className="flex flex-col gap-1 items-start justify-start w-full">
-            <Text
-              className="text-gray-950 text-sm w-auto"
-              size="txtLexendSemiBold14"
-            >
-              Discounts (%) (*)
-            </Text>
-            <TextFieldElement
-              name="amount"
-              required
-              type="number"
-              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
-            />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
 
 const validationSchema = yup.object({
   amount: yup
@@ -77,7 +37,7 @@ const validationSchema = yup.object({
   name: yup.string().required('This field is required'),
 });
 
-const ItemCreate = ({ onSuccess, isSubmitting }: FormProps) => {
+const ItemCreate = () => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 
@@ -140,7 +100,6 @@ const ItemCreate = ({ onSuccess, isSubmitting }: FormProps) => {
           formContext={formContext}
           defaultValues={{ name: '' }}
           onSuccess={handleOnSubmitForm}
-          isSubmitting={createBenefitMutation.isLoading}
           // onSuccess={data => console.log(data)}
         >
           <Modal.Header className="bg-gray-50 text-gray-950 uppercase">

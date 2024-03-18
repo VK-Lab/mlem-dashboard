@@ -7,4 +7,6 @@ export type Benefit = {
   description: string;
   categoryId: string;
   category?: BenefitCategory;
+  source: string;
+  createdAt: string;
 };

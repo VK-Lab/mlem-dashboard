@@ -14,9 +14,16 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
 
+// error TS2339: Property 'userId' does not exist on type '{}'.
+// Define interface for loggedUser object
+interface LoggedUser {
+  userId: string; // Assuming userId is a string
+  // Add other properties if necessary
+}
+
 const Header = () => {
   const { toastSuccess } = useI18nToast();
-  const [loggedUser, setLoggedUser] = useState({});
+  const [loggedUser, setLoggedUser] = useState<LoggedUser | null>(null);
   useEffect(() => {
     let value;
     // Get the value from local storage if it exists

@@ -42,10 +42,9 @@ const StepNftCollectionCreate = ({ onSuccess }: FormProps) => {
     },
   });
   const { publicKey } = useAccount();
-  const { data: { balance = 0 } = { balance: 0 }, isLoading } =
-    useGetAccountBalance({
-      publicKey,
-    });
+  const { data: { balance = 0 } = { balance: 0 } } = useGetAccountBalance({
+    publicKey,
+  });
 
   const handleOnSubmitForm = async (
     createNftCollectionParams: CreateNftCollectionParams
@@ -209,6 +208,9 @@ const StepNftCollectionCreate = ({ onSuccess }: FormProps) => {
           <button
             className="cursor-pointer flex items-center justify-center rounded p-[13px] bg-amber-500"
             type="submit"
+            disabled={
+              createNftCollectionMutation.isLoading || balance < ESTIMATE_FEE
+            }
           >
             <Img
               className="h-6 mr-2"

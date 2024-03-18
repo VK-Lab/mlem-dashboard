@@ -4,7 +4,7 @@ import LayoutInfo from '@mlem-admin/components/LayoutInfo';
 import LayoutTab from '@mlem-admin/components/LayoutTab';
 import ItemList from '@mlem-admin/modules/AdmDashboard/components/ItemList';
 
-const AdmList = (props) => {
+const AdmList = () => {
   return (
     <>
       <div className="flex flex-col gap-3 py-24 w-full md:py-5">

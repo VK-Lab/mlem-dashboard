@@ -11,11 +11,7 @@ import { Modal } from 'flowbite-react';
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
-type FormProps = {
-  onSuccess?: () => void;
-};
-
-const ItemCreate = ({ onSuccess }: FormProps) => {
+const ItemCreate = () => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 

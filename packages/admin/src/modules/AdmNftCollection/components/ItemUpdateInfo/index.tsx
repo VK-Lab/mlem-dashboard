@@ -11,7 +11,19 @@ import { Modal } from 'flowbite-react';
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
-const ItemUpdateInfo = (props) => {
+interface ItemUpdateInfoProps {
+  item: {
+    id: string;
+    name: string;
+    description: string;
+    benefitIds: string[];
+    nftImageUrl: string;
+    brokerId: string;
+    // other properties of the 'item' object
+  };
+}
+
+const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 

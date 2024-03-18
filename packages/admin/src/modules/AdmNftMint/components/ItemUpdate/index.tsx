@@ -5,7 +5,14 @@ import { generateMetadataUrl } from '@mlem-admin/utils/metadata';
 import Link from 'next/link';
 import { BsPencil } from 'react-icons/bs';
 
-const ItemUpdate = (props) => {
+interface ItemUpdateProps {
+  item: {
+    _id: string;
+    // other properties of the 'item' object
+  };
+}
+
+const ItemUpdate: React.FC<ItemUpdateProps> = (props) => {
   const [open, setOpen] = useState(false);
 
   return (

@@ -133,6 +133,7 @@ const ItemUpdate = ({ broker }: BrokerItem) => {
               <button
                 className="absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[8px] rounded bg-indigo-500"
                 type="submit"
+                disabled={updateNftMutation.isLoading || balance < ESTIMATE_FEE}
               >
                 Confirm
               </button>

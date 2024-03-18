@@ -7,7 +7,8 @@ type TabProps = {
   activeTab: string;
 };
 
-const TabContentHeader = (TabProps) => {
+const TabContentHeader = ({ activeTab }: TabProps) => {
+  // Destructure TabProps
   const router = useRouter();
 
   return (
@@ -26,7 +27,7 @@ const TabContentHeader = (TabProps) => {
         <button
           className={`!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm hover:bg-indigo-500_7f rounded p-[13px] ${
             router.pathname == AdminPaths.LIST_NFT_COLLECTIONS ||
-            TabProps.activeTab == 'nft_collection'
+            activeTab == 'nft_collection'
               ? 'bg-indigo-500_7f'
               : 'bg-gray_900'
           }`}

@@ -16,7 +16,20 @@ import {
 } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
-const ItemUpdateInfo = (props) => {
+interface ItemUpdateInfoProps {
+  item: {
+    tierId: string | undefined;
+    id: string;
+    name: string;
+    description: string;
+    benefits: Benefit[];
+    nftCollection?: {
+      id: string;
+    };
+  };
+}
+
+const ItemUpdateInfo: React.FC<ItemUpdateInfoProps> = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 

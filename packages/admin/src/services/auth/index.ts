@@ -44,25 +44,24 @@ export const checkUser = (): Promise<CheckUserResponse> => {
 
 export function setUserInfo(rsp: string): boolean {
   if (rsp) {
-    rsp = JSON.parse(rsp);
+    const userInfo = JSON.parse(rsp);
 
-    if (rsp) {
+    if (userInfo) {
       localStorage.setItem(
         'loggedUser',
         JSON.stringify({
           userId:
-            rsp.userId.substring(0, 5) +
+            userInfo.userId.substring(0, 5) +
             '...' +
-            rsp.userId.substring(rsp.userId.length - 5),
+            userInfo.userId.substring(userInfo.userId.length - 5),
           walletAddress:
-            rsp.walletAddress.substring(0, 5) +
+            userInfo.walletAddress.substring(0, 5) +
             '...' +
-            rsp.walletAddress.substring(rsp.walletAddress.length - 5),
+            userInfo.walletAddress.substring(userInfo.walletAddress.length - 5),
         })
       );
+      return true;
     }
-
-    return true;
   }
 
   return false;

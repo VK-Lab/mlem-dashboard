@@ -26,7 +26,7 @@ const ItemCreate = ({ onSuccess }: FormProps) => {
     setOpenModal(true);
   }
 
-  const { toastSuccess, toastError } = useI18nToast();
+  const { toastSuccess } = useI18nToast();
   const queryClient = useQueryClient();
   const createBrokerMutation = useMutateCreateBroker({
     onSuccess: async () => {
@@ -38,10 +38,9 @@ const ItemCreate = ({ onSuccess }: FormProps) => {
     },
   });
   const { publicKey } = useAccount();
-  const { data: { balance = 0 } = { balance: 0 }, isLoading } =
-    useGetAccountBalance({
-      publicKey,
-    });
+  const { data: { balance = 0 } = { balance: 0 } } = useGetAccountBalance({
+    publicKey,
+  });
 
   const handleOnSubmitForm = async (createBrokerParams: CreateBrokerParams) => {
     createBrokerMutation.mutate({

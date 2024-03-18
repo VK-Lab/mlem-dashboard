@@ -17,7 +17,22 @@ import {
 import { BsPencil } from 'react-icons/bs';
 import { useQueryClient } from 'react-query';
 
-const ItemUpdate = (props) => {
+interface Item {
+  id: string;
+  name: string;
+  description: string;
+  startDate?: Date;
+  endDate?: Date;
+  imageUrl: string;
+  nftCollectionIds: string[];
+  thumbnailUrl: string;
+}
+
+interface ItemUpdateProps {
+  item: Item;
+}
+
+const ItemUpdate: React.FC<ItemUpdateProps> = ({ item }) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 
@@ -33,7 +48,7 @@ const ItemUpdate = (props) => {
   const handleOnSubmitForm = (updateCampaignParams: UpdateCampaignParams) => {
     updateCampaignMutation.mutate({
       ...updateCampaignParams,
-      id: props.item.id,
+      id: item.id,
     });
   };
 
@@ -55,17 +70,15 @@ const ItemUpdate = (props) => {
       >
         <FormContainer
           defaultValues={{
-            name: props.item.name,
-            description: props.item.description,
-            startDate: props.item.startDate
-              ? dayjs(props.item.startDate)
-              : undefined,
-            endDate: props.item.endDate ? dayjs(props.item.endDate) : undefined,
-            imageUrl: props.item.imageUrl,
-            nftCollectionIds: props.item.nftCollectionIds,
-            thumbnailUrl: props.item.thumbnailUrl,
+            name: item.name,
+            description: item.description,
+            startDate: item.startDate ? dayjs(item.startDate) : undefined,
+            endDate: item.endDate ? dayjs(item.endDate) : undefined,
+            imageUrl: item.imageUrl,
+            nftCollectionIds: item.nftCollectionIds,
+            thumbnailUrl: item.thumbnailUrl,
             type: 'free_mint',
-            shortDescription: props.item.description,
+            shortDescription: item.description,
           }}
           onSuccess={handleOnSubmitForm}
           // onSuccess={data => console.log(data)}
@@ -86,7 +99,7 @@ const ItemUpdate = (props) => {
                   <TextFieldElement
                     name="name"
                     required
-                    value={props.item.name}
+                    value={item.name}
                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                   />
                 </div>
@@ -101,7 +114,7 @@ const ItemUpdate = (props) => {
                   </Text>
                   <TextFieldElement
                     name="description"
-                    value={props.item.description}
+                    value={item.description}
                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                   />
                 </div>
@@ -137,7 +150,7 @@ const ItemUpdate = (props) => {
                   </Text>
                   <TextFieldElement
                     name="thumbnailUrl"
-                    value={props.item.thumbnailUrl}
+                    value={item.thumbnailUrl}
                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                   />
                 </div>
@@ -153,7 +166,7 @@ const ItemUpdate = (props) => {
                   <TextFieldElement
                     name="imageUrl"
                     required
-                    value={props.item.imageUrl}
+                    value={item.imageUrl}
                     className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                   />
                 </div>
@@ -199,7 +212,7 @@ const ItemUpdate = (props) => {
                   <div className="acm-ele-wrapper w-full">
                     <FormNftCollections
                       name="nftCollectionIds"
-                      campaignId={props.item.id}
+                      campaignId={item.id}
                     />
                   </div>
                 </div>

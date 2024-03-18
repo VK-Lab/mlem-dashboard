@@ -6,7 +6,15 @@ import ItemUpdateInfo from '@mlem-admin/modules/AdmNftCollection/components/Item
 import Link from 'next/link';
 import { BsPencil } from 'react-icons/bs';
 
-const ItemUpdate = (props) => {
+interface ItemUpdateProps {
+  item: {
+    id: string;
+    mintingMode: MintingMode;
+    // Other properties of the 'item' object
+  };
+}
+
+const ItemUpdate: React.FC<ItemUpdateProps> = (props) => {
   const [open, setOpen] = useState(false);
 
   return (

@@ -12,7 +12,17 @@ import { Modal } from 'flowbite-react';
 import { FormContainer } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
-const ItemUpdateBroker = (props) => {
+interface ItemUpdateBrokerProps {
+  item: {
+    id: string;
+    brokerId: string;
+    brokerDeployStatus: DeployStatusEnum;
+    tokenAddress: string;
+    // Other properties of the 'item' object
+  };
+}
+
+const ItemUpdateBroker: React.FC<ItemUpdateBrokerProps> = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 

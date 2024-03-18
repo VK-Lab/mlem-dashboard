@@ -11,8 +11,7 @@ import {
 import dayjs from 'dayjs';
 
 const ItemList = () => {
-  const { data: { items = [] } = { items: [], total: 0 }, isLoading } =
-    useGetBenefits();
+  const { data: { items = [] } = { items: [], total: 0 } } = useGetBenefits();
 
   return (
     <>
@@ -20,10 +19,6 @@ const ItemList = () => {
         removeWrapper
         isHeaderSticky
         className="!text-gray-400 flex-1 font-lexend p-[5px] bg-indigo-900 overflow-x-scroll"
-        css={{
-          height: 'auto',
-          minWidth: '100%',
-        }}
       >
         <TableHeader>
           <TableColumn className="!text-gray-400 flex-1 bg-indigo-900 border-b-2">
