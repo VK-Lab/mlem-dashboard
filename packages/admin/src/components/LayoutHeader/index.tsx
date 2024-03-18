@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+
 import { useDisconnect } from '@casperdash/usewallet';
 import { Img } from '@mlem-admin/components/Img';
 import { Text } from '@mlem-admin/components/Text';
@@ -69,11 +70,12 @@ const Header = () => {
             </div>
           </div>
           <div className="flex flex-1 flex-row gap-3 items-center justify-end md:hidden">
-            <button className="cursor-pointer flex items-center justify-center rounded p-[13px] bg-amber-500"
-                    type="button"
-                    onClick={() =>
-                      router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)
-                    }
+            <button
+              className="cursor-pointer flex items-center justify-center rounded p-[13px] bg-amber-500"
+              type="button"
+              onClick={() =>
+                router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)
+              }
             >
               <Img
                 className="h-6 mr-2"
@@ -85,9 +87,10 @@ const Header = () => {
               </div>
             </button>
             <div className="relative">
-              <button className="cursor-pointer flex items-center justify-center bg-indigo-500 rounded p-[13px]"
-                      type="button"
-                      onClick={() => setOpen((prev) => !prev)}
+              <button
+                className="cursor-pointer flex items-center justify-center bg-indigo-500 rounded p-[13px]"
+                type="button"
+                onClick={() => setOpen((prev) => !prev)}
               >
                 <Img
                   className="h-6 mr-2"

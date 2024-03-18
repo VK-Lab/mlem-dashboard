@@ -42,7 +42,7 @@ export const checkUser = (): Promise<CheckUserResponse> => {
   return request.post('/auth/check');
 };
 
-export function setUserInfo(rsp : string): boolean {
+export function setUserInfo(rsp: string): boolean {
   if (rsp) {
     rsp = JSON.parse(rsp);
 
