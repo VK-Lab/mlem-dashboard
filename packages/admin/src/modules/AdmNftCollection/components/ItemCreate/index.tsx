@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+
 import { useAccount } from '@casperdash/usewallet';
 import { Img } from '@mlem-admin/components/Img';
 import { Text } from '@mlem-admin/components/Text';
@@ -60,9 +61,10 @@ const ItemCreate = ({ onSuccess }: FormProps) => {
   return (
     <>
       <div className="flex justify-start items-center w-full">
-        <button className="cursor-pointer flex items-center justify-center w-full rounded p-[13px] bg-amber-500"
-                type="button"
-                onClick={openPopup}
+        <button
+          className="cursor-pointer flex items-center justify-center w-full rounded p-[13px] bg-amber-500"
+          type="button"
+          onClick={openPopup}
         >
           <Img
             className="h-6 mr-2"
@@ -255,7 +257,8 @@ const ItemCreate = ({ onSuccess }: FormProps) => {
               </button>
               <button
                 className={`absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[8px] rounded ${
-                  createNftCollectionMutation.isLoading || balance < ESTIMATE_FEE
+                  createNftCollectionMutation.isLoading ||
+                  balance < ESTIMATE_FEE
                     ? 'bg-gray-500'
                     : 'bg-indigo-500'
                 }`}

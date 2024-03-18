@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import ItemUpdateInfo from '@mlem-admin/modules/AdmNftMint/components/ItemUpdateInfo';
 import { generateMetadataUrl } from '@mlem-admin/utils/metadata';
 import Link from 'next/link';
@@ -9,9 +10,10 @@ const ItemUpdate = (props) => {
 
   return (
     <>
-      <button className="absolute -right-1 -top-1 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
-              type="button"
-              onClick={() => setOpen((prev) => !prev)}
+      <button
+        className="absolute -right-1 -top-1 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
       >
         <BsPencil />
       </button>
@@ -31,9 +33,7 @@ const ItemUpdate = (props) => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <button type="button">
-              Metadata
-            </button>
+            <button type="button">Metadata</button>
           </Link>
         </div>
       </div>

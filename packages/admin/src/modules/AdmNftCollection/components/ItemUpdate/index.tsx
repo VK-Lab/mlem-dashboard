@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { MintingMode } from '@mlem-admin/contracts/cep78';
 import ItemUpdateBroker from '@mlem-admin/modules/AdmNftCollection/components/ItemUpdateBroker';
 import ItemUpdateInfo from '@mlem-admin/modules/AdmNftCollection/components/ItemUpdateInfo';
@@ -10,9 +11,10 @@ const ItemUpdate = (props) => {
 
   return (
     <>
-      <button className="absolute -right-1 -top-1 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
-              type="button"
-              onClick={() => setOpen((prev) => !prev)}
+      <button
+        className="absolute -right-1 -top-1 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
       >
         <BsPencil />
       </button>
@@ -28,9 +30,7 @@ const ItemUpdate = (props) => {
 
         <div className="px-1 py-1 cursor-pointer hover:text-white-A700 hover:bg-gray-500">
           <Link href={`/adm/nft-collections/${props.item.id}/tiers`}>
-            <button type="button">
-              Manage Tiers
-            </button>
+            <button type="button">Manage Tiers</button>
           </Link>
         </div>
 

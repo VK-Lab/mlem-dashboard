@@ -114,9 +114,10 @@ const ItemCreate = ({ onSuccess, isSubmitting }: FormProps) => {
   return (
     <>
       <div className="flex justify-start items-center w-full">
-        <button className="cursor-pointer flex items-center justify-center w-full rounded p-[13px] bg-amber-500"
-                type="button"
-                onClick={openPopup}
+        <button
+          className="cursor-pointer flex items-center justify-center w-full rounded p-[13px] bg-amber-500"
+          type="button"
+          onClick={openPopup}
         >
           <Img
             className="h-6 mr-2"

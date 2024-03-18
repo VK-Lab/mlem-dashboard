@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { Text } from '@mlem-admin/components/Text';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
 import { useMutateUpdateCampaign } from '@mlem-admin/hooks/mutations';
@@ -38,9 +39,10 @@ const ItemUpdate = (props) => {
 
   return (
     <>
-      <button className="absolute -right-1 -top-1 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
-              type="button"
-              onClick={() => setOpenModal(true)}
+      <button
+        className="absolute -right-1 -top-1 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
+        type="button"
+        onClick={() => setOpenModal(true)}
       >
         <BsPencil />
       </button>

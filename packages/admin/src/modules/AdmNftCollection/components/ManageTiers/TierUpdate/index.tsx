@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+
 import { Text } from '@mlem-admin/components/Text';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
 import { useMutateUpdateTier } from '@mlem-admin/hooks/mutations/useMutateUpdateTier';
@@ -8,10 +9,7 @@ import FormBenefits from '@mlem-admin/modules/AdmNftCollection/components/FormBe
 import { UpdateTierParams } from '@mlem-admin/services/admin/tier/types';
 import { Tier } from '@mlem-admin/types/tier';
 import { Modal } from 'flowbite-react';
-import {
-  FormContainer,
-  TextFieldElement,
-} from 'react-hook-form-mui';
+import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import { BsPencil } from 'react-icons/bs';
 import { useQueryClient } from 'react-query';
 
@@ -48,9 +46,10 @@ const TierUpdate = ({ tier }: TierItem) => {
   return (
     <>
       <div className="flex justify-start items-center">
-        <button className="!text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
-                type="button"
-                onClick={openPopup}
+        <button
+          className="!text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
+          type="button"
+          onClick={openPopup}
         >
           <BsPencil />
         </button>

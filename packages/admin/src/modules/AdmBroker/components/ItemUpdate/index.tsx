@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+
 import { useAccount } from '@casperdash/usewallet';
 import { Text } from '@mlem-admin/components/Text';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
@@ -56,9 +57,10 @@ const ItemUpdate = ({ broker }: BrokerItem) => {
   return (
     <>
       <div className="flex justify-start items-center">
-        <button className="!text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
-                type="button"
-                onClick={openPopup}
+        <button
+          className="!text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center w-[26px] p-[5px] rounded bg-indigo-500"
+          type="button"
+          onClick={openPopup}
         >
           <BsPencil />
         </button>

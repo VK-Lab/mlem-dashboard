@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+
 import { Img } from '@mlem-admin/components/Img';
 import { Text } from '@mlem-admin/components/Text';
 import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
@@ -7,10 +8,7 @@ import { useMutateCreateTier } from '@mlem-admin/hooks/mutations/useMutateCreate
 import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import { CreateTierParams } from '@mlem-admin/services/admin/tier/types';
 import { Modal } from 'flowbite-react';
-import {
-  FormContainer,
-  TextFieldElement,
-} from 'react-hook-form-mui';
+import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import { useQueryClient } from 'react-query';
 
 type NftFormProps = {
@@ -53,9 +51,10 @@ const TierCreate = ({ onSuccess, nftCollectionId }: NftFormProps) => {
   return (
     <>
       <div className="flex justify-start items-center w-full">
-        <button className="cursor-pointer flex items-center justify-center w-full rounded p-[13px] bg-amber-500"
-                type="button"
-                onClick={openPopup}
+        <button
+          className="cursor-pointer flex items-center justify-center w-full rounded p-[13px] bg-amber-500"
+          type="button"
+          onClick={openPopup}
         >
           <Img
             className="h-6 mr-2"

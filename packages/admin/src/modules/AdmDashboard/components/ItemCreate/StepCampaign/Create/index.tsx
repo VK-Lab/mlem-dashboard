@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Img } from '@mlem-admin/components/Img';
 import { Text } from '@mlem-admin/components/Text';
 import { AdminPaths } from '@mlem-admin/enums/paths.enum';
@@ -184,8 +185,9 @@ const StepCampaignCreate = ({ onSuccess }: FormProps) => {
           </div>
         </div>
         <div className="flex justify-end items-end w-full mt-4">
-          <button className="cursor-pointer flex items-center justify-center rounded p-[13px] bg-amber-500"
-                  type="submit"
+          <button
+            className="cursor-pointer flex items-center justify-center rounded p-[13px] bg-amber-500"
+            type="submit"
           >
             <Img
               className="h-6 mr-2"
