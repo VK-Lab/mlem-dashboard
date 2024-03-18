@@ -20,7 +20,7 @@ export const useOnLogin = () => {
   const onLoginSuccess = (data: LoginResponse) => {
     Cookies.set(CookieKeys.TOKEN, data.accessToken);
 
-    router.push(AdminPaths.CAMPAIGNS);
+    router.push(AdminPaths.DASHBOARD);
   };
   const loginMutation = useMutation({
     mutationFn: login,

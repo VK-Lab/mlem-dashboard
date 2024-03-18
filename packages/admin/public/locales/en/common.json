@@ -4,7 +4,11 @@
     "default": "Your action has been successfully",
     "signup_success": "Success, your account has been synced with Loyalty app",
     "copied_to_clipboard": "Copied to clipboard",
-    "update_nft_collection_success": "Success, your NFT collection has been updated"
+    "update_nft_collection_success": "Success, your NFT collection has been updated",
+
+    "item_created": "Your changes have been saved successfully!",
+    "item_updated": "Your changes have been updated successfully!",
+    "logout_ok": "You have been logged out successfully!"
   },
   "error" : {
     "default": "Oops, something went wrong!",
@@ -12,7 +16,10 @@
     "connector_not_found_error": "MetaMask extension required to sign in",
     "chain_not_configured": "Ensure MetaMask is connected to the same network on Polygon Mumbai",
     "gas_fee_balance": "Oops, Insufficient funds for gas price, please try again with higer gas fee",
-    "update_nft_collection_error": "Oops, can not update your NFT collection, please try again later"
+    "update_nft_collection_error": "Oops, can not update your NFT collection, please try again later",
+
+    "item_update_missing_required": "Oops, invalid update, please try again later!",
+    "item_update_error": "Oops, your changes have been rejected, please try again later!"
   },
   "apiError": {
     "your_phone_does_not_match_with_cnv_loyalty": "Your phone number has not registered yet. Please download the Loyalty App and register new account with this phone number.",

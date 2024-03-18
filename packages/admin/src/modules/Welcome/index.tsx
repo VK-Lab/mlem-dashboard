@@ -24,6 +24,7 @@ const Welcome = () => {
           src={logoD2E}
           style={{ height: 'auto', width: 80 }}
         />
+        <div>hello userrrr</div>
       </div>
       <StyledBox className="left">
         <StyledImageOverlay />

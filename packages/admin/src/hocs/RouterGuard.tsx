@@ -3,7 +3,7 @@ import { useEffect, useCallback } from 'react';
 
 import { useAccount } from '@casperdash/usewallet';
 import { AdminPaths, PublicPaths } from '@mlem-admin/enums/paths.enum';
-import { checkUser } from '@mlem-admin/services/auth';
+import { checkUser, setUserInfo } from '@mlem-admin/services/auth';
 import { isAdmin } from '@mlem-admin/utils/permission';
 import { useRouter } from 'next/router';
 
@@ -40,6 +40,8 @@ const RouterGuard = ({ children }: { children: any }) => {
 
       try {
         const user = await checkUser();
+
+        setUserInfo(JSON.stringify(user));
 
         if (isAdmin(user)) {
           return;

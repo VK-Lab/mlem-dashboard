@@ -24,8 +24,12 @@ import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import '@uiw/react-md-editor/markdown-editor.css';
-import '@uiw/react-markdown-preview/markdown.css';
+//import '@uiw/react-markdown-preview/markdown.css';
 import '@mlem-admin/assets/styles.css';
+import '@mlem-admin/assets/v2/styles/color.css';
+import '@mlem-admin/assets/v2/styles/font.css';
+import '@mlem-admin/assets/v2/styles/index.css';
+import '@mlem-admin/assets/v2/styles/tailwind.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(

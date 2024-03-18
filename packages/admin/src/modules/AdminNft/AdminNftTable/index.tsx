@@ -4,7 +4,7 @@ import ToastMessage from '@mlem-admin/components/Toast';
 import { useGetAdminNfts } from '@mlem-admin/hooks/queries';
 import { Nft } from '@mlem-admin/types/nft';
 import { generateMetadataUrl } from '@mlem-admin/utils/metadata';
-import { mapDeployStatus } from '@mlem-admin/utils/status';
+// import { mapDeployStatus } from '@mlem-admin/utils/status';
 import { Box, Button, Chip } from '@mui/material';
 import copy from 'copy-to-clipboard';
 import dayjs from 'dayjs';
@@ -73,7 +73,7 @@ const AdminNftTable = () => {
           return (
             <Chip
               label={deployStatus}
-              color={mapDeployStatus(deployStatus)}
+              // color={mapDeployStatus(deployStatus)}
               variant="outlined"
             />
           );

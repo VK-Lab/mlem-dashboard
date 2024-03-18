@@ -41,3 +41,28 @@ export const registerPhoneNumber = (
 export const checkUser = (): Promise<CheckUserResponse> => {
   return request.post('/auth/check');
 };
+
+export function setUserInfo(rsp: string): boolean {
+  if (rsp) {
+    const userInfo = JSON.parse(rsp);
+
+    if (userInfo) {
+      localStorage.setItem(
+        'loggedUser',
+        JSON.stringify({
+          userId:
+            userInfo.userId.substring(0, 5) +
+            '...' +
+            userInfo.userId.substring(userInfo.userId.length - 5),
+          walletAddress:
+            userInfo.walletAddress.substring(0, 5) +
+            '...' +
+            userInfo.walletAddress.substring(userInfo.walletAddress.length - 5),
+        })
+      );
+      return true;
+    }
+  }
+
+  return false;
+}
