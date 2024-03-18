@@ -1,20 +1,22 @@
-import {Modal} from 'flowbite-react';
-import {useState} from 'react';
+import { useState } from 'react';
 
-import {FormContainer, TextFieldElement, AutocompleteElement} from 'react-hook-form-mui';
-import {Text} from "@mlem-admin/components/Text";
-import {Button} from "@mlem-admin/components/Button";
-
-import {useQueryClient} from 'react-query';
-import {useI18nToast} from "@mlem-admin/hooks/useToast";
-import {QueryKeys} from "@mlem-admin/enums/queryKeys.enum";
-
-import {useMutateUpdateNft} from '@mlem-admin/hooks/mutations';
-import {useGetBenefits} from '@mlem-admin/hooks/queries';
-import FormTiers from "@mlem-admin/modules/AdmNftMint/components/FormTiers";
-import {UpdateNftParams} from '@mlem-admin/services/admin/nft/types';
-import {Benefit} from '@mlem-admin/types/benefit';
-import {Nft} from '@mlem-admin/types/nft';
+import { Button } from '@mlem-admin/components/Button';
+import { Text } from '@mlem-admin/components/Text';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateUpdateNft } from '@mlem-admin/hooks/mutations';
+import { useGetBenefits } from '@mlem-admin/hooks/queries';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import FormTiers from '@mlem-admin/modules/AdmNftMint/components/FormTiers';
+import { UpdateNftParams } from '@mlem-admin/services/admin/nft/types';
+import { Benefit } from '@mlem-admin/types/benefit';
+import { Nft } from '@mlem-admin/types/nft';
+import { Modal } from 'flowbite-react';
+import {
+  FormContainer,
+  TextFieldElement,
+  AutocompleteElement,
+} from 'react-hook-form-mui';
+import { useQueryClient } from 'react-query';
 
 const ItemUpdateInfo = (props) => {
   const [openModal, setOpenModal] = useState(false);
@@ -24,13 +26,13 @@ const ItemUpdateInfo = (props) => {
     setOpenModal(true);
   }
 
-  const {toastSuccess} = useI18nToast();
-  const {data: {items = []} = {items: [], total: 0}} = useGetBenefits();
+  const { toastSuccess } = useI18nToast();
+  const { data: { items = [] } = { items: [], total: 0 } } = useGetBenefits();
   const queryClient = useQueryClient();
   const updateNftMutation = useMutateUpdateNft({
     onSuccess: async () => {
       toastSuccess('item_updated');
-      await queryClient.invalidateQueries({queryKey: [QueryKeys.LIST_NFTS]});
+      await queryClient.invalidateQueries({ queryKey: [QueryKeys.LIST_NFTS] });
       setOpenModal(false);
     },
   });
@@ -44,28 +46,36 @@ const ItemUpdateInfo = (props) => {
 
   return (
     <>
-      <div className="px-1 py-1 cursor-pointer hover:text-white-A700 hover:bg-gray-500"
-           onClick={openPopup}
+      <div
+        className="px-1 py-1 cursor-pointer hover:text-white-A700 hover:bg-gray-500"
+        onClick={openPopup}
       >
         Update
       </div>
 
-      <Modal show={openModal} onClose={() => setOpenModal(false)} position={modalPlacement} size="3xl">
+      <Modal
+        show={openModal}
+        onClose={() => setOpenModal(false)}
+        position={modalPlacement}
+        size="3xl"
+      >
         <FormContainer
           defaultValues={{
             name: props.item.name,
             description: props.item.description,
             benefits: props.item.benefits
               ? props.item.benefits.map((benefit: Benefit) =>
-                benefit.id.toString()
-              )
+                  benefit.id.toString()
+                )
               : [],
             tierId: props.item.tierId,
           }}
           onSuccess={handleOnSubmitForm}
           // onSuccess={data => console.log(data)}
         >
-          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">Update NFT</Modal.Header>
+          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">
+            Update NFT
+          </Modal.Header>
           <Modal.Body className="bg-gray-50">
             <div className="flex md:flex-1 flex-col gap-3 items-start justify-start w-full">
               <div className="flex flex-col items-start justify-start w-full">
@@ -76,8 +86,12 @@ const ItemUpdateInfo = (props) => {
                   >
                     Name (*)
                   </Text>
-                  <TextFieldElement name="name" required value={props.item.name}
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="name"
+                    required
+                    value={props.item.name}
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -88,8 +102,11 @@ const ItemUpdateInfo = (props) => {
                   >
                     Description
                   </Text>
-                  <TextFieldElement name="description" value={props.item.description}
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="description"
+                    value={props.item.description}
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -138,10 +155,16 @@ const ItemUpdateInfo = (props) => {
             <div className="relative w-full h-[20px]">
               <Button
                 className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-gray-500"
-                onClick={() => setOpenModal(false)}>Decline</Button>
+                onClick={() => setOpenModal(false)}
+              >
+                Decline
+              </Button>
               <Button
                 className="absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-indigo-500"
-                type="submit">Confirm</Button>
+                type="submit"
+              >
+                Confirm
+              </Button>
             </div>
           </Modal.Footer>
         </FormContainer>

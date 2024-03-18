@@ -1,24 +1,27 @@
 import LayoutAdmin from '@mlem-admin/layouts/Admin';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import AdmNftCollectionTiers from '@mlem-admin/modules/AdmNftCollection/components/ManageTiers';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type Props = {
   nftCollectionId: string;
 };
 
-const Index = ({nftCollectionId}: Props) => {
+const Index = ({ nftCollectionId }: Props) => {
   return (
     <LayoutAdmin>
-      <AdmNftCollectionTiers nftCollectionId={nftCollectionId}/>
+      <AdmNftCollectionTiers nftCollectionId={nftCollectionId} />
     </LayoutAdmin>
   );
 };
 
-export const getServerSideProps = async ({locale, query}: {
+export const getServerSideProps = async ({
+  locale,
+  query,
+}: {
   locale: string;
   query: { id: string };
 }) => {
-  const {id} = query;
+  const { id } = query;
 
   return {
     props: {

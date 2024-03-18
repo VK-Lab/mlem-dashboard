@@ -1,27 +1,32 @@
-import React from "react";
+import React from 'react';
 
-import {useI18nToast} from '@mlem-admin/hooks/useToast';
-import {QueryKeys} from '@mlem-admin/enums/queryKeys.enum';
-import {useMutateCreateCampaign} from '@mlem-admin/hooks/mutations';
+import { Button } from '@mlem-admin/components/Button';
+import { Img } from '@mlem-admin/components/Img';
+import { Text } from '@mlem-admin/components/Text';
+import { AdminPaths } from '@mlem-admin/enums/paths.enum';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateCampaign } from '@mlem-admin/hooks/mutations';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import FormNftCollections from '@mlem-admin/modules/AdmDashboard/components/FormNftCollections';
-import {CreateCampaignParams} from '@mlem-admin/services/admin/campaign/types';
-import {DatePickerElement, FormContainer, SelectElement, TextFieldElement} from 'react-hook-form-mui';
-import {useQueryClient} from 'react-query';
-import {Img} from '@mlem-admin/components/Img';
-import {Button} from "@mlem-admin/components/Button";
-import {Text} from "@mlem-admin/components/Text";
-import {AdminPaths} from "@mlem-admin/enums/paths.enum";
-import {useRouter} from "next/router";
+import { CreateCampaignParams } from '@mlem-admin/services/admin/campaign/types';
+import { useRouter } from 'next/router';
+import {
+  DatePickerElement,
+  FormContainer,
+  SelectElement,
+  TextFieldElement,
+} from 'react-hook-form-mui';
+import { useQueryClient } from 'react-query';
 
 type FormProps = {
   onSuccess?: () => void;
 };
 
-const StepCampaignCreate = ({onSuccess}: FormProps) => {
-  const router = useRouter()
+const StepCampaignCreate = ({ onSuccess }: FormProps) => {
+  const router = useRouter();
 
   const queryClient = useQueryClient();
-  const {toastSuccess, toastError} = useI18nToast();
+  const { toastSuccess, toastError } = useI18nToast();
   const createCampaignMutation = useMutateCreateCampaign({
     onSuccess: async () => {
       toastSuccess('item_updated');
@@ -30,7 +35,7 @@ const StepCampaignCreate = ({onSuccess}: FormProps) => {
       });
       onSuccess?.();
 
-      router.push(AdminPaths.LIST_CAMPAIGNS)
+      router.push(AdminPaths.LIST_CAMPAIGNS);
     },
   });
 
@@ -63,8 +68,11 @@ const StepCampaignCreate = ({onSuccess}: FormProps) => {
             >
               Name (*)
             </Text>
-            <TextFieldElement name="name" required
-                              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+            <TextFieldElement
+              name="name"
+              required
+              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+            />
           </div>
         </div>
         <div className="flex flex-col items-start justify-start w-full mt-2">
@@ -75,8 +83,10 @@ const StepCampaignCreate = ({onSuccess}: FormProps) => {
             >
               Short Description
             </Text>
-            <TextFieldElement name="description"
-                              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+            <TextFieldElement
+              name="description"
+              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+            />
           </div>
         </div>
         <div className="flex flex-col items-start justify-start w-full mt-2">
@@ -111,8 +121,10 @@ const StepCampaignCreate = ({onSuccess}: FormProps) => {
             >
               Thumbnail URL
             </Text>
-            <TextFieldElement name="thumbnailUrl"
-                              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+            <TextFieldElement
+              name="thumbnailUrl"
+              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+            />
           </div>
         </div>
         <div className="flex flex-col items-start justify-start w-full mt-2">
@@ -123,8 +135,11 @@ const StepCampaignCreate = ({onSuccess}: FormProps) => {
             >
               Image URL (*)
             </Text>
-            <TextFieldElement name="imageUrl" required
-                              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+            <TextFieldElement
+              name="imageUrl"
+              required
+              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+            />
           </div>
         </div>
         <div className="flex flex-col items-start justify-start w-full mt-2">
@@ -136,9 +151,9 @@ const StepCampaignCreate = ({onSuccess}: FormProps) => {
               Start Date (*)
             </Text>
             <DatePickerElement
-              name="startDate" required
+              name="startDate"
+              required
               className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
-
             />
           </div>
         </div>
@@ -151,9 +166,9 @@ const StepCampaignCreate = ({onSuccess}: FormProps) => {
               End Date (*)
             </Text>
             <DatePickerElement
-              name="endDate" required
+              name="endDate"
+              required
               className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
-
             />
           </div>
         </div>
@@ -166,9 +181,7 @@ const StepCampaignCreate = ({onSuccess}: FormProps) => {
               NFT Collections (*)
             </Text>
             <div className="acm-ele-wrapper w-full">
-              <FormNftCollections
-                name="nftCollectionIds"
-              />
+              <FormNftCollections name="nftCollectionIds" />
             </div>
           </div>
         </div>

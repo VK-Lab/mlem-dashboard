@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import {Button} from '@mlem-admin/components/Button';
-import {AdminPaths} from '@mlem-admin/enums/paths.enum';
-import {useRouter} from 'next/router';
+import { Button } from '@mlem-admin/components/Button';
+import { AdminPaths } from '@mlem-admin/enums/paths.enum';
+import { useRouter } from 'next/router';
 
 type TabProps = {
   activeTab: string;
@@ -17,7 +17,11 @@ const TabContentHeader = (TabProps) => {
         <Button
           className="!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm w-[100px]"
           shape="round"
-          color={router.pathname == AdminPaths.LIST_CAMPAIGNS ? "indigo_500_7f" : "gray_900"}
+          color={
+            router.pathname == AdminPaths.LIST_CAMPAIGNS
+              ? 'indigo_500_7f'
+              : 'gray_900'
+          }
           size="sm"
           variant="fill"
           onClick={() => router.push(AdminPaths.LIST_CAMPAIGNS)}
@@ -27,7 +31,12 @@ const TabContentHeader = (TabProps) => {
         <Button
           className="!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm w-[135px] hover:bg-indigo-500_7f"
           shape="round"
-          color={router.pathname == AdminPaths.LIST_NFT_COLLECTIONS || TabProps.activeTab == 'nft_collection' ? "indigo_500_7f" : "gray_900"}
+          color={
+            router.pathname == AdminPaths.LIST_NFT_COLLECTIONS ||
+            TabProps.activeTab == 'nft_collection'
+              ? 'indigo_500_7f'
+              : 'gray_900'
+          }
           size="sm"
           variant="fill"
           onClick={() => router.push(AdminPaths.LIST_NFT_COLLECTIONS)}
@@ -37,7 +46,11 @@ const TabContentHeader = (TabProps) => {
         <Button
           className="!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm w-[80px] hover:bg-indigo-500_7f"
           shape="round"
-          color={router.pathname == AdminPaths.LIST_BROKERS ? "indigo_500_7f" : "gray_900"}
+          color={
+            router.pathname == AdminPaths.LIST_BROKERS
+              ? 'indigo_500_7f'
+              : 'gray_900'
+          }
           size="sm"
           variant="fill"
           onClick={() => router.push(AdminPaths.LIST_BROKERS)}
@@ -47,7 +60,11 @@ const TabContentHeader = (TabProps) => {
         <Button
           className="!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm w-[60px] hover:bg-indigo-500_7f"
           shape="round"
-          color={router.pathname == AdminPaths.LIST_NFT_MINTS ? "indigo_500_7f" : "gray_900"}
+          color={
+            router.pathname == AdminPaths.LIST_NFT_MINTS
+              ? 'indigo_500_7f'
+              : 'gray_900'
+          }
           size="sm"
           variant="fill"
           onClick={() => router.push(AdminPaths.LIST_NFT_MINTS)}
@@ -57,7 +74,11 @@ const TabContentHeader = (TabProps) => {
         <Button
           className="!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm w-[90px] hover:bg-indigo-500_7f"
           shape="round"
-          color={router.pathname == AdminPaths.LIST_BENEFITS ? "indigo_500_7f" : "gray_900"}
+          color={
+            router.pathname == AdminPaths.LIST_BENEFITS
+              ? 'indigo_500_7f'
+              : 'gray_900'
+          }
           size="sm"
           variant="fill"
           onClick={() => router.push(AdminPaths.LIST_BENEFITS)}
@@ -67,7 +88,11 @@ const TabContentHeader = (TabProps) => {
         <Button
           className="!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm w-[160px] hover:bg-indigo-500_7f"
           shape="round"
-          color={router.pathname == AdminPaths.LIST_BENEFIT_CATEGORIES ? "indigo_500_7f" : "gray_900"}
+          color={
+            router.pathname == AdminPaths.LIST_BENEFIT_CATEGORIES
+              ? 'indigo_500_7f'
+              : 'gray_900'
+          }
           size="sm"
           variant="fill"
           onClick={() => router.push(AdminPaths.LIST_BENEFIT_CATEGORIES)}
@@ -77,7 +102,11 @@ const TabContentHeader = (TabProps) => {
         <Button
           className="!text-white-A700 cursor-pointer font-lexend h-11 text-center text-sm w-[70px] hover:bg-indigo-500_7f"
           shape="round"
-          color={router.pathname == AdminPaths.LIST_CLAIMS ? "indigo_500_7f" : "gray_900"}
+          color={
+            router.pathname == AdminPaths.LIST_CLAIMS
+              ? 'indigo_500_7f'
+              : 'gray_900'
+          }
           size="sm"
           variant="fill"
           onClick={() => router.push(AdminPaths.LIST_CLAIMS)}

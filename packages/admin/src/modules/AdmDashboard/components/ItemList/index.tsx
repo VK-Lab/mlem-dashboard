@@ -1,13 +1,11 @@
-import {useGetAllCampaigns} from '@mlem-admin/hooks/queries';
-import {Campaign} from '@mlem-admin/types/campaign';
-
-import {Img} from '@mlem-admin/components/Img';
-import {Text} from '@mlem-admin/components/Text';
-
+import { Img } from '@mlem-admin/components/Img';
+import { Text } from '@mlem-admin/components/Text';
+import { useGetAllCampaigns } from '@mlem-admin/hooks/queries';
 import ItemUpdate from '@mlem-admin/modules/AdmDashboard/components/ItemUpdate';
+import { Campaign } from '@mlem-admin/types/campaign';
 
 const ItemList = () => {
-  const {data: {items = []} = {items: [], total: 0}, isLoading} =
+  const { data: { items = [] } = { items: [], total: 0 }, isLoading } =
     useGetAllCampaigns();
 
   return (
@@ -36,40 +34,48 @@ const ItemList = () => {
                 </div>
                 <Img
                   className="h-[150px] md:h-auto object-cover rounded w-full"
-                  src={item.imageUrl ? item.imageUrl : '/v2/images/img_frame1321315620.png'}
+                  src={
+                    item.imageUrl
+                      ? item.imageUrl
+                      : '/v2/images/img_frame1321315620.png'
+                  }
                   alt={item.id}
                 />
                 <div className="flex flex-col items-start justify-start w-full">
-                  {item.nftCollections && item.nftCollections.map((nftCollectionItem, indexCollection) => {
-                    return (
-                      <>
-                        <div key={nftCollectionItem.id}>
-                          <Text
-                            className="bg-amber-500 px-2 py-0.5 rounded-sm text-[13px] m-1 text-black-900_01 w-auto"
-                            size="txtLexendRegular8"
-                          >
-                            {nftCollectionItem.name}
-                          </Text>
-                        </div>
-                      </>
-                    );
-                  })}
+                  {item.nftCollections &&
+                    item.nftCollections.map(
+                      (nftCollectionItem, indexCollection) => {
+                        return (
+                          <>
+                            <div key={nftCollectionItem.id}>
+                              <Text
+                                className="bg-amber-500 px-2 py-0.5 rounded-sm text-[13px] m-1 text-black-900_01 w-auto"
+                                size="txtLexendRegular8"
+                              >
+                                {nftCollectionItem.name}
+                              </Text>
+                            </div>
+                          </>
+                        );
+                      }
+                    )}
                 </div>
                 <div className="flex flex-col items-start justify-start w-full">
-                  {item.benefits && item.benefits.map((nftBenefit, indexBenefit) => {
-                    return (
-                      <>
-                        <div key={nftBenefit.id}>
-                          <Text
-                            className="bg-teal-A700 px-2 py-0.5 rounded-sm text-[13px] m-1 text-black-900_01 w-auto"
-                            size="txtLexendRegular8"
-                          >
-                            {nftBenefit.name}
-                          </Text>
-                        </div>
-                      </>
-                    );
-                  })}
+                  {item.benefits &&
+                    item.benefits.map((nftBenefit, indexBenefit) => {
+                      return (
+                        <>
+                          <div key={nftBenefit.id}>
+                            <Text
+                              className="bg-teal-A700 px-2 py-0.5 rounded-sm text-[13px] m-1 text-black-900_01 w-auto"
+                              size="txtLexendRegular8"
+                            >
+                              {nftBenefit.name}
+                            </Text>
+                          </div>
+                        </>
+                      );
+                    })}
                 </div>
               </div>
             </div>

@@ -1,15 +1,15 @@
-import {useGetTiersByNftCollection} from '@mlem-admin/hooks/queries/useGetTiersByNftCollection';
-import {Tier} from '@mlem-admin/types/tier';
-import {AutocompleteElement} from 'react-hook-form-mui';
+import { useGetTiersByNftCollection } from '@mlem-admin/hooks/queries/useGetTiersByNftCollection';
+import { Tier } from '@mlem-admin/types/tier';
+import { AutocompleteElement } from 'react-hook-form-mui';
 
 type Props = {
   name: string;
   nftCollectionId?: string;
 };
 
-const FormTiers = ({name, nftCollectionId}: Props) => {
+const FormTiers = ({ name, nftCollectionId }: Props) => {
   const {
-    data: {items: tiers = []} = {items: [], total: 0},
+    data: { items: tiers = [] } = { items: [], total: 0 },
     isLoading: isLoadingBenefits,
   } = useGetTiersByNftCollection({
     nftCollectionId: nftCollectionId,

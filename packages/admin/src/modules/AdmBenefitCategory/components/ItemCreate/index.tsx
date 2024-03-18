@@ -1,25 +1,22 @@
-import React from "react";
+import React from 'react';
+import { useState } from 'react';
 
-import {Modal} from 'flowbite-react';
-import {useState} from 'react';
-
-import {DatePickerElement, FormContainer, TextFieldElement, SelectElement} from 'react-hook-form-mui';
-import {Img} from '@mlem-admin/components/Img';
-import {Button} from "@mlem-admin/components/Button";
-import {Text} from "@mlem-admin/components/Text";
-
-import {useI18nToast} from '@mlem-admin/hooks/useToast';
-import {QueryKeys} from '@mlem-admin/enums/queryKeys.enum';
-import {useMutateCreateBenefitCategory} from '@mlem-admin/hooks/mutations';
-import {BenefitCategory} from '@mlem-admin/types/benefit-category';
-import {useQueryClient} from 'react-query';
+import { Button } from '@mlem-admin/components/Button';
+import { Img } from '@mlem-admin/components/Img';
+import { Text } from '@mlem-admin/components/Text';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateBenefitCategory } from '@mlem-admin/hooks/mutations';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import { BenefitCategory } from '@mlem-admin/types/benefit-category';
+import { Modal } from 'flowbite-react';
+import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
+import { useQueryClient } from 'react-query';
 
 type FormProps = {
   onSuccess?: () => void;
 };
-const ESTIMATE_FEE = 110;
 
-const ItemCreate = ({onSuccess}: FormProps) => {
+const ItemCreate = ({ onSuccess }: FormProps) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 
@@ -27,7 +24,7 @@ const ItemCreate = ({onSuccess}: FormProps) => {
     setOpenModal(true);
   }
 
-  const {toastSuccess, toastError} = useI18nToast();
+  const { toastSuccess, toastError } = useI18nToast();
   const queryClient = useQueryClient();
   const createBenefitMutation = useMutateCreateBenefitCategory({
     onSuccess: async () => {
@@ -68,7 +65,12 @@ const ItemCreate = ({onSuccess}: FormProps) => {
         </Button>
       </div>
 
-      <Modal show={openModal} onClose={() => setOpenModal(false)} position={modalPlacement} size="3xl">
+      <Modal
+        show={openModal}
+        onClose={() => setOpenModal(false)}
+        position={modalPlacement}
+        size="3xl"
+      >
         <FormContainer
           defaultValues={{
             name: '',
@@ -76,7 +78,9 @@ const ItemCreate = ({onSuccess}: FormProps) => {
           onSuccess={handleOnSubmitForm}
           // onSuccess={data => console.log(data)}
         >
-          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">Create Benefit Category</Modal.Header>
+          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">
+            Create Benefit Category
+          </Modal.Header>
           <Modal.Body className="bg-gray-50">
             <div className="flex md:flex-1 flex-col gap-3 items-start justify-start w-full">
               <div className="flex flex-col items-start justify-start w-full">
@@ -87,8 +91,11 @@ const ItemCreate = ({onSuccess}: FormProps) => {
                   >
                     Name (*)
                   </Text>
-                  <TextFieldElement name="name" required
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="name"
+                    required
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
             </div>
@@ -97,11 +104,16 @@ const ItemCreate = ({onSuccess}: FormProps) => {
             <div className="relative w-full h-[20px]">
               <Button
                 className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-gray-500"
-                onClick={() => setOpenModal(false)}>Decline</Button>
+                onClick={() => setOpenModal(false)}
+              >
+                Decline
+              </Button>
               <Button
                 className={`absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-indigo-500`}
                 type="submit"
-              >Confirm</Button>
+              >
+                Confirm
+              </Button>
             </div>
           </Modal.Footer>
         </FormContainer>

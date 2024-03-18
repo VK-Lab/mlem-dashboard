@@ -1,30 +1,26 @@
-import React from "react";
+import React from 'react';
+import { useState } from 'react';
 
-import {Modal} from 'flowbite-react';
-import {useState} from 'react';
-
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '@mlem-admin/components/Button';
+import { Img } from '@mlem-admin/components/Img';
+import { Text } from '@mlem-admin/components/Text';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateBenefit } from '@mlem-admin/hooks/mutations';
+import { useGetAdminBenefitCategories } from '@mlem-admin/hooks/queries';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import { Benefit } from '@mlem-admin/types/benefit';
+import { BenefitCategory } from '@mlem-admin/types/benefit-category';
+import { Modal } from 'flowbite-react';
 import {
-  DatePickerElement,
   FormContainer,
   TextFieldElement,
   SelectElement,
   useForm,
   useFormContext,
-  useWatch
+  useWatch,
 } from 'react-hook-form-mui';
-import {Img} from '@mlem-admin/components/Img';
-import {Button} from "@mlem-admin/components/Button";
-import {Text} from "@mlem-admin/components/Text";
-
-import {useI18nToast} from '@mlem-admin/hooks/useToast';
-import {yupResolver} from '@hookform/resolvers/yup';
-import ToastMessage from '@mlem-admin/components/Toast';
-import {QueryKeys} from '@mlem-admin/enums/queryKeys.enum';
-import {useMutateCreateBenefit} from '@mlem-admin/hooks/mutations';
-import {useGetAdminBenefitCategories} from '@mlem-admin/hooks/queries';
-import {Benefit} from '@mlem-admin/types/benefit';
-import {BenefitCategory} from '@mlem-admin/types/benefit-category';
-import {useQueryClient} from 'react-query';
+import { useQueryClient } from 'react-query';
 import * as yup from 'yup';
 
 export enum BeneiftSourceEnum {
@@ -38,7 +34,7 @@ type FormProps = {
 };
 
 const DiscountsField = () => {
-  const {control} = useFormContext();
+  const { control } = useFormContext();
   const source = useWatch({
     control,
     name: 'source',
@@ -59,8 +55,12 @@ const DiscountsField = () => {
             >
               Discounts (%) (*)
             </Text>
-            <TextFieldElement name="amount" required type="number"
-                              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+            <TextFieldElement
+              name="amount"
+              required
+              type="number"
+              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+            />
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ const validationSchema = yup.object({
   name: yup.string().required('This field is required'),
 });
 
-const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
+const ItemCreate = ({ onSuccess, isSubmitting }: FormProps) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 
@@ -86,7 +86,8 @@ const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
     setOpenModal(true);
   }
 
-  const {data: {items} = {items: []}} = useGetAdminBenefitCategories();
+  const { toastSuccess } = useI18nToast();
+  const { data: { items } = { items: [] } } = useGetAdminBenefitCategories();
   const formContext = useForm<Benefit>({
     defaultValues: {
       name: '',
@@ -98,10 +99,7 @@ const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
   const queryClient = useQueryClient();
   const createBenefitMutation = useMutateCreateBenefit({
     onSuccess: async () => {
-      ToastMessage({
-        type: 'success',
-        message: 'Created benefit successfully!',
-      });
+      toastSuccess('item_updated');
       await queryClient.invalidateQueries({ queryKey: [QueryKeys.BENEFITS] });
       setOpenModal(false);
     },
@@ -139,7 +137,12 @@ const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
         </Button>
       </div>
 
-      <Modal show={openModal} onClose={() => setOpenModal(false)} position={modalPlacement} size="3xl">
+      <Modal
+        show={openModal}
+        onClose={() => setOpenModal(false)}
+        position={modalPlacement}
+        size="3xl"
+      >
         <FormContainer
           formContext={formContext}
           defaultValues={{ name: '' }}
@@ -147,7 +150,9 @@ const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
           isSubmitting={createBenefitMutation.isLoading}
           // onSuccess={data => console.log(data)}
         >
-          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">Create Benefit</Modal.Header>
+          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">
+            Create Benefit
+          </Modal.Header>
           <Modal.Body className="bg-gray-50">
             <div className="flex md:flex-1 flex-col gap-3 items-start justify-start w-full">
               <div className="flex flex-col items-start justify-start w-full">
@@ -158,8 +163,11 @@ const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
                   >
                     Name (*)
                   </Text>
-                  <TextFieldElement name="name" required
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="name"
+                    required
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -170,8 +178,10 @@ const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
                   >
                     Description
                   </Text>
-                  <TextFieldElement name="description"
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="description"
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -182,7 +192,8 @@ const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
                   >
                     Benefit Category
                   </Text>
-                  <SelectElement className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  <SelectElement
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                     // label="Benefit Category"
                     name="categoryId"
                     sx={{
@@ -205,7 +216,8 @@ const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
                   >
                     Source (*)
                   </Text>
-                  <SelectElement className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  <SelectElement
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
                     // label="Source"
                     name="source"
                     sx={{
@@ -232,11 +244,16 @@ const ItemCreate = ({onSuccess, isSubmitting}: FormProps) => {
             <div className="relative w-full h-[20px]">
               <Button
                 className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-gray-500"
-                onClick={() => setOpenModal(false)}>Decline</Button>
+                onClick={() => setOpenModal(false)}
+              >
+                Decline
+              </Button>
               <Button
                 className={`absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-indigo-500`}
                 type="submit"
-              >Confirm</Button>
+              >
+                Confirm
+              </Button>
             </div>
           </Modal.Footer>
         </FormContainer>

@@ -1,17 +1,16 @@
-import {Modal} from 'flowbite-react';
-import {useState} from 'react';
+import { useState } from 'react';
 
-import {FormContainer, TextFieldElement} from 'react-hook-form-mui';
-import {Text} from "@mlem-admin/components/Text";
-import {Button} from "@mlem-admin/components/Button";
-
-import {useQueryClient} from 'react-query';
-import {useI18nToast} from "@mlem-admin/hooks/useToast";
-import {useMutateUpdateNftCollection} from "@mlem-admin/hooks/mutations";
-import {QueryKeys} from "@mlem-admin/enums/queryKeys.enum";
-import {UpdateNftCollectionParams} from "@mlem-admin/services/admin/nft-collection/types";
-import FormBroker from "@mlem-admin/modules/AdmNftCollection/components/FormBroker";
-import FormBenefits from "@mlem-admin/modules/AdmNftCollection/components/FormBenefits";
+import { Button } from '@mlem-admin/components/Button';
+import { Text } from '@mlem-admin/components/Text';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateUpdateNftCollection } from '@mlem-admin/hooks/mutations';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import FormBenefits from '@mlem-admin/modules/AdmNftCollection/components/FormBenefits';
+import FormBroker from '@mlem-admin/modules/AdmNftCollection/components/FormBroker';
+import { UpdateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
+import { Modal } from 'flowbite-react';
+import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
+import { useQueryClient } from 'react-query';
 
 const ItemUpdateInfo = (props) => {
   const [openModal, setOpenModal] = useState(false);
@@ -22,7 +21,7 @@ const ItemUpdateInfo = (props) => {
   }
 
   const queryClient = useQueryClient();
-  const {toastSuccess} = useI18nToast();
+  const { toastSuccess } = useI18nToast();
   const updateNftMutation = useMutateUpdateNftCollection({
     onSuccess: async () => {
       toastSuccess('item_updated');
@@ -44,13 +43,19 @@ const ItemUpdateInfo = (props) => {
 
   return (
     <>
-      <div className="px-1 py-1 cursor-pointer hover:text-white-A700 hover:bg-gray-500"
-           onClick={openPopup}
+      <div
+        className="px-1 py-1 cursor-pointer hover:text-white-A700 hover:bg-gray-500"
+        onClick={openPopup}
       >
         Update
       </div>
 
-      <Modal show={openModal} onClose={() => setOpenModal(false)} position={modalPlacement} size="3xl">
+      <Modal
+        show={openModal}
+        onClose={() => setOpenModal(false)}
+        position={modalPlacement}
+        size="3xl"
+      >
         <FormContainer
           defaultValues={{
             name: props.item.name,
@@ -62,7 +67,9 @@ const ItemUpdateInfo = (props) => {
           onSuccess={handleOnSubmitForm}
           // onSuccess={data => console.log(data)}
         >
-          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">Update NFT Collection</Modal.Header>
+          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">
+            Update NFT Collection
+          </Modal.Header>
           <Modal.Body className="bg-gray-50">
             <div className="flex md:flex-1 flex-col gap-3 items-start justify-start w-full">
               <div className="flex flex-col items-start justify-start w-full">
@@ -73,8 +80,12 @@ const ItemUpdateInfo = (props) => {
                   >
                     Name (*)
                   </Text>
-                  <TextFieldElement name="name" required value={props.item.name}
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="name"
+                    required
+                    value={props.item.name}
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -85,8 +96,11 @@ const ItemUpdateInfo = (props) => {
                   >
                     Short Description
                   </Text>
-                  <TextFieldElement name="description" value={props.item.description}
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="description"
+                    value={props.item.description}
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -97,8 +111,11 @@ const ItemUpdateInfo = (props) => {
                   >
                     NFT Image URL
                   </Text>
-                  <TextFieldElement name="nftImageUrl" value={props.item.nftImageUrl}
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="nftImageUrl"
+                    value={props.item.nftImageUrl}
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -110,9 +127,7 @@ const ItemUpdateInfo = (props) => {
                     Broker
                   </Text>
                   <div className="acm-ele-wrapper w-full">
-                    <FormBroker
-                      name="brokerId"
-                    />
+                    <FormBroker name="brokerId" />
                   </div>
                 </div>
               </div>
@@ -125,9 +140,7 @@ const ItemUpdateInfo = (props) => {
                     Benefits
                   </Text>
                   <div className="acm-ele-wrapper w-full">
-                    <FormBenefits
-                      name="benefitIds"
-                    />
+                    <FormBenefits name="benefitIds" />
                   </div>
                 </div>
               </div>
@@ -137,10 +150,16 @@ const ItemUpdateInfo = (props) => {
             <div className="relative w-full h-[20px]">
               <Button
                 className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-gray-500"
-                onClick={() => setOpenModal(false)}>Decline</Button>
+                onClick={() => setOpenModal(false)}
+              >
+                Decline
+              </Button>
               <Button
                 className="absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-indigo-500"
-                type="submit">Confirm</Button>
+                type="submit"
+              >
+                Confirm
+              </Button>
             </div>
           </Modal.Footer>
         </FormContainer>

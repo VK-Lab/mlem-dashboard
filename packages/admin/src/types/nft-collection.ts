@@ -1,5 +1,6 @@
 import { MintingMode } from '@mlem-admin/contracts/cep78';
 import { DeployStatusEnum } from '@mlem-admin/enums';
+
 import { Benefit } from './benefit';
 
 export type NftCollection = {

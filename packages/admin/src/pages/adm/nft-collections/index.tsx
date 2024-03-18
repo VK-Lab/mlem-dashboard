@@ -1,16 +1,16 @@
 import LayoutAdmin from '@mlem-admin/layouts/Admin';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 import AdmNftCollection from '@mlem-admin/modules/AdmNftCollection';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {
   return (
     <LayoutAdmin>
-      <AdmNftCollection/>
+      <AdmNftCollection />
     </LayoutAdmin>
   );
 };
 
-export const getStaticProps = async ({locale}: { locale: string }) => {
+export const getStaticProps = async ({ locale }: { locale: string }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),

@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import {Img} from '@mlem-admin/components/Img';
-import {Text} from '@mlem-admin/components/Text';
-import Link from "next/link";
+import { Img } from '@mlem-admin/components/Img';
+import { Text } from '@mlem-admin/components/Text';
+import Link from 'next/link';
 
 type FooterProps = Omit<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-  "copyrighttext" | "joincommunitytext"
+  'copyrighttext' | 'joincommunitytext'
 > &
   Partial<{ copyrighttext: string; joincommunitytext: string }>;
 
@@ -101,8 +101,8 @@ const Footer: React.FC<FooterProps> = (props) => {
 };
 
 Footer.defaultProps = {
-  copyrighttext: "© 2023 Casper Dash. All rights reserved.",
-  joincommunitytext: "Join our community",
+  copyrighttext: '© 2023 Casper Dash. All rights reserved.',
+  joincommunitytext: 'Join our community',
 };
 
 export default Footer;

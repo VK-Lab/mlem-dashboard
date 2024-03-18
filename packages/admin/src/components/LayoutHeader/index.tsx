@@ -1,35 +1,34 @@
-import React from "react";
-import {useEffect} from "react";
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
-import {Img} from '@mlem-admin/components/Img';
-import {Text} from '@mlem-admin/components/Text';
-import {Button} from '@mlem-admin/components/Button';
-import Link from "next/link";
-import {AdminPaths, PublicPaths} from '@mlem-admin/enums/paths.enum';
-import {useI18nToast} from '@mlem-admin/hooks/useToast';
-
-import {useState} from 'react';
-import {useDisconnect} from '@casperdash/usewallet';
-import {CookieKeys} from '@mlem-admin/enums/cookieKeys.enum';
-import {logout} from '@mlem-admin/services/auth';
+import { useDisconnect } from '@casperdash/usewallet';
+import { Button } from '@mlem-admin/components/Button';
+import { Img } from '@mlem-admin/components/Img';
+import { Text } from '@mlem-admin/components/Text';
+import { CookieKeys } from '@mlem-admin/enums/cookieKeys.enum';
+import { AdminPaths, PublicPaths } from '@mlem-admin/enums/paths.enum';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import { logout } from '@mlem-admin/services/auth';
 import Cookies from 'js-cookie';
-import {useRouter} from 'next/router';
-import {useMutation} from 'react-query';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useMutation } from 'react-query';
 
 const Header = (props) => {
-  const {toastSuccess, toastError} = useI18nToast()
-  const [loggedUser, setLoggedUser] = useState({})
+  const { toastSuccess, toastError } = useI18nToast();
+  const [loggedUser, setLoggedUser] = useState({});
   useEffect(() => {
-    let value
+    let value;
     // Get the value from local storage if it exists
-    value = localStorage.getItem("loggedUser") || ""
+    value = localStorage.getItem('loggedUser') || '';
     if (value) {
-      value = JSON.parse(value)
-      setLoggedUser(value)
+      value = JSON.parse(value);
+      setLoggedUser(value);
     }
-  }, [])
+  }, []);
   const router = useRouter();
-  const {disconnectAsync} = useDisconnect();
+  const { disconnectAsync } = useDisconnect();
   const logoutMutation = useMutation({
     mutationFn: logout,
     mutationKey: 'logout',
@@ -37,17 +36,16 @@ const Header = (props) => {
       await disconnectAsync();
       toastSuccess('logout_ok');
       Cookies.remove(CookieKeys.TOKEN);
-      router.push(PublicPaths.HOME, undefined, {shallow: true});
+      router.push(PublicPaths.HOME, undefined, { shallow: true });
     },
   });
 
-  const [open, setOpen] = useState(false)
-  const [openMobi, setOpenMobi] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [openMobi, setOpenMobi] = useState(false);
 
   return (
     <>
-      <header
-        className="bg-gray-900 flex flex-col items-center justify-between md:px-10 sm:px-5 px-[174px] py-3 w-full">
+      <header className="bg-gray-900 flex flex-col items-center justify-between md:px-10 sm:px-5 px-[174px] py-3 w-full">
         <div className="flex flex-row gap-3 items-center justify-between w-full">
           <div className="flex flex-1 flex-row gap-3 w-full md:w-auto">
             <div className="flex flex-col items-center justify-start w-auto">
@@ -66,9 +64,7 @@ const Header = (props) => {
                     className="text-base text-center text-white-A700 w-auto"
                     size="txtLexendSemiBold16WhiteA700"
                   >
-                    <Link href={AdminPaths.CAMPAIGNS}>
-                      Dashboard
-                    </Link>
+                    <Link href={AdminPaths.CAMPAIGNS}>Dashboard</Link>
                   </Text>
                 </div>
               </div>
@@ -89,7 +85,9 @@ const Header = (props) => {
               size="sm"
               variant="fill"
               type="button"
-              onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)}
+              onClick={() =>
+                router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)
+              }
             >
               <div className="!text-black-900_01 font-lexend font-semibold text-base text-center">
                 Create Campaign
@@ -116,14 +114,18 @@ const Header = (props) => {
                   {loggedUser?.userId}
                 </div>
               </Button>
-              <div className={`absolute right-0 top-13 bg-gray-300 rounded w-auto ${
-                open
-                  ? "opacity-100 h-auto"
-                  : "opacity-0 h-0 transition-all duration-200"
-              }`}>
-                <div className="cursor-pointer px-8 py-3"
-                     onClick={() => logoutMutation.mutate()}
-                >Logout
+              <div
+                className={`absolute right-0 top-13 bg-gray-300 rounded w-auto ${
+                  open
+                    ? 'opacity-100 h-auto'
+                    : 'opacity-0 h-0 transition-all duration-200'
+                }`}
+              >
+                <div
+                  className="cursor-pointer px-8 py-3"
+                  onClick={() => logoutMutation.mutate()}
+                >
+                  Logout
                 </div>
               </div>
             </div>
@@ -135,18 +137,26 @@ const Header = (props) => {
               alt="menu_header"
               onClick={() => setOpenMobi((prev) => !prev)}
             />
-            <div className={`absolute right-0 top-13 bg-gray-300 items-center rounded w-auto ${
-              openMobi
-                ? "opacity-100 h-auto"
-                : "opacity-0 h-0 transition-all duration-200"
-            }`}>
-              <div className="cursor-pointer px-1 py-2 text-right w-[150px] border-b-1 border-b-gray-600"
-                   onClick={() => router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)}
-              >Create Campaign
+            <div
+              className={`absolute right-0 top-13 bg-gray-300 items-center rounded w-auto ${
+                openMobi
+                  ? 'opacity-100 h-auto'
+                  : 'opacity-0 h-0 transition-all duration-200'
+              }`}
+            >
+              <div
+                className="cursor-pointer px-1 py-2 text-right w-[150px] border-b-1 border-b-gray-600"
+                onClick={() =>
+                  router.push(AdminPaths.CREATE_CAMPAIGN_STEP_NFT_COLLECTION)
+                }
+              >
+                Create Campaign
               </div>
-              <div className="cursor-pointer px-1 py-2 text-right"
-                   onClick={() => logoutMutation.mutate()}
-              >Logout
+              <div
+                className="cursor-pointer px-1 py-2 text-right"
+                onClick={() => logoutMutation.mutate()}
+              >
+                Logout
               </div>
             </div>
           </div>

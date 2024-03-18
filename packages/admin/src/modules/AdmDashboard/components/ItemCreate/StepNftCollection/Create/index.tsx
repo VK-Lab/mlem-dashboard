@@ -1,34 +1,38 @@
-import React from "react";
+import React from 'react';
+import { useState } from 'react';
 
-import {useState} from 'react';
-import {useRouter} from "next/router";
-
-import {DatePickerElement, FormContainer, TextFieldElement, SelectElement} from 'react-hook-form-mui';
-import {Img} from '@mlem-admin/components/Img';
-import {Button} from "@mlem-admin/components/Button";
-import {Text} from "@mlem-admin/components/Text";
-import FormBenefits from "@mlem-admin/modules/AdmNftCollection/components/FormBenefits";
-import {AdminPaths} from '@mlem-admin/enums/paths.enum';
-import {useAccount} from '@casperdash/usewallet';
-import {MintingMode} from '@mlem-admin/contracts/cep78';
-import {ContractType} from '@mlem-admin/enums/contractType.enum';
-import {QueryKeys} from '@mlem-admin/enums/queryKeys.enum';
-import {useMutateCreateNftCollection} from '@mlem-admin/hooks/mutations';
-import {useGetAccountBalance} from '@mlem-admin/hooks/queries/useGetAccountBalance';
-import {CreateNftCollectionParams} from '@mlem-admin/services/admin/nft-collection/types';
-import {useQueryClient} from 'react-query';
-import {useI18nToast} from '@mlem-admin/hooks/useToast';
-import {Benefit} from "@mlem-admin/types/benefit";
+import { useAccount } from '@casperdash/usewallet';
+import { Button } from '@mlem-admin/components/Button';
+import { Img } from '@mlem-admin/components/Img';
+import { Text } from '@mlem-admin/components/Text';
+import { MintingMode } from '@mlem-admin/contracts/cep78';
+import { ContractType } from '@mlem-admin/enums/contractType.enum';
+import { AdminPaths } from '@mlem-admin/enums/paths.enum';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateCreateNftCollection } from '@mlem-admin/hooks/mutations';
+import { useGetAccountBalance } from '@mlem-admin/hooks/queries/useGetAccountBalance';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
+import FormBenefits from '@mlem-admin/modules/AdmNftCollection/components/FormBenefits';
+import { CreateNftCollectionParams } from '@mlem-admin/services/admin/nft-collection/types';
+import { Benefit } from '@mlem-admin/types/benefit';
+import { useRouter } from 'next/router';
+import {
+  DatePickerElement,
+  FormContainer,
+  TextFieldElement,
+  SelectElement,
+} from 'react-hook-form-mui';
+import { useQueryClient } from 'react-query';
 
 type FormProps = {
   onSuccess?: () => void;
 };
 const ESTIMATE_FEE = 300;
 
-const StepNftCollectionCreate = ({onSuccess}: FormProps) => {
-  const router = useRouter()
+const StepNftCollectionCreate = ({ onSuccess }: FormProps) => {
+  const router = useRouter();
 
-  const {toastSuccess, toastError} = useI18nToast();
+  const { toastSuccess, toastError } = useI18nToast();
   const queryClient = useQueryClient();
   const createNftCollectionMutation = useMutateCreateNftCollection({
     onSuccess: async () => {
@@ -38,11 +42,11 @@ const StepNftCollectionCreate = ({onSuccess}: FormProps) => {
       });
       onSuccess?.();
 
-      router.push(AdminPaths.CREATE_CAMPAIGN)
+      router.push(AdminPaths.CREATE_CAMPAIGN);
     },
   });
-  const {publicKey} = useAccount();
-  const {data: {balance = 0} = {balance: 0}, isLoading} =
+  const { publicKey } = useAccount();
+  const { data: { balance = 0 } = { balance: 0 }, isLoading } =
     useGetAccountBalance({
       publicKey,
     });
@@ -74,8 +78,11 @@ const StepNftCollectionCreate = ({onSuccess}: FormProps) => {
             >
               Name (*)
             </Text>
-            <TextFieldElement name="name" required
-                              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+            <TextFieldElement
+              name="name"
+              required
+              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+            />
           </div>
         </div>
         <div className="flex flex-col items-start justify-start w-full mt-2">
@@ -86,8 +93,11 @@ const StepNftCollectionCreate = ({onSuccess}: FormProps) => {
             >
               Symbol (*)
             </Text>
-            <TextFieldElement name="symbol" required
-                              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+            <TextFieldElement
+              name="symbol"
+              required
+              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+            />
           </div>
         </div>
         <div className="flex flex-col items-start justify-start w-full mt-2">
@@ -122,8 +132,12 @@ const StepNftCollectionCreate = ({onSuccess}: FormProps) => {
             >
               Total Token Supply (*)
             </Text>
-            <TextFieldElement name="totalTokenSupply" required type="number"
-                              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+            <TextFieldElement
+              name="totalTokenSupply"
+              required
+              type="number"
+              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+            />
           </div>
         </div>
         <div className="flex flex-col items-start justify-start w-full mt-2">
@@ -134,8 +148,10 @@ const StepNftCollectionCreate = ({onSuccess}: FormProps) => {
             >
               Description
             </Text>
-            <TextFieldElement name="description"
-                              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+            <TextFieldElement
+              name="description"
+              className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+            />
           </div>
         </div>
         <div className="flex flex-col items-start justify-start w-full mt-2">
@@ -171,9 +187,7 @@ const StepNftCollectionCreate = ({onSuccess}: FormProps) => {
               Benefits
             </Text>
             <div className="  acm-ele-wrapper w-full">
-              <FormBenefits
-                name="benefitIds"
-              />
+              <FormBenefits name="benefitIds" />
             </div>
           </div>
         </div>
@@ -189,7 +203,9 @@ const StepNftCollectionCreate = ({onSuccess}: FormProps) => {
               <Text
                 className="bg-red-600 px-2 py-0.5 rounded-sm text-[13px] m-1 text-white-A700 w-auto"
                 size="txtLexendSemiBold14Gray300"
-              >{ESTIMATE_FEE} CSPR</Text>
+              >
+                {ESTIMATE_FEE} CSPR
+              </Text>
             </div>
           </div>
         </div>

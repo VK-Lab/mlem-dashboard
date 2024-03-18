@@ -1,12 +1,4 @@
-import React from "react";
-import LayoutFooter from '@mlem-admin/components/LayoutFooter';
-import {Img} from '@mlem-admin/components/Img';
-import {Text} from '@mlem-admin/components/Text';
-
-import Link from "next/link";
-import Image from "next/image";
-import CasperdashLogo from "~/public/img/casperdash-logo.webp";
-import CasperWalletLogo from "~/public/img/casper-wallet.png";
+import React from 'react';
 
 import {
   CasperDashConnector,
@@ -14,10 +6,17 @@ import {
   useAccount,
   useConnect,
 } from '@casperdash/usewallet';
+import { Img } from '@mlem-admin/components/Img';
+import LayoutFooter from '@mlem-admin/components/LayoutFooter';
+import { Text } from '@mlem-admin/components/Text';
 import { useOnLogin } from '@mlem-admin/hooks/useOnLogin';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import CasperWalletLogo from '~/public/img/casper-wallet.png';
+import CasperdashLogo from '~/public/img/casperdash-logo.webp';
 
 const Welcome = () => {
-
   const { publicKey } = useAccount({
     onConnect: async ({ publicKey }) => {
       if (publicKey) {
@@ -56,8 +55,10 @@ const Welcome = () => {
                     alt="image"
                   />
                 </div>
-                <div className="absolute flex flex-col h-max inset-y-[0] items-center justify-start max-w-[792px] my-auto outline outline-[12px] outline-deep_purple-800_99 right-[3%] rounded w-full
-                md:right-0 md:left-0 md:outline-0 md:h-[80%]">
+                <div
+                  className="absolute flex flex-col h-max inset-y-[0] items-center justify-start max-w-[792px] my-auto outline outline-[12px] outline-deep_purple-800_99 right-[3%] rounded w-full
+                md:right-0 md:left-0 md:outline-0 md:h-[80%]"
+                >
                   <div className="bg-indigo-900_cc flex flex-col items-center justify-start p-16 rounded w-full md:w-auto md:bg-transparent md:p-0">
                     <div className="flex flex-col gap-3 items-start justify-center w-[600px] md:w-[80%]">
                       <div className="flex flex-col items-center justify-start w-auto">
@@ -84,10 +85,12 @@ const Welcome = () => {
                           className="leading-[24.00px] max-w-[600px] md:max-w-full text-base text-blue_gray-50"
                           size="txtBeVietnamProSemiBold16"
                         >
-                          Connect your wallet to claim the exclusive benefits from Melem
+                          Connect your wallet to claim the exclusive benefits
+                          from Melem
                           <br />
                           To access the Beta Dashboard, please go to the{' '}
-                          <Link className="acm-link-welcome"
+                          <Link
+                            className="acm-link-welcome"
                             href=" https://t.me/melem_support_channel"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -101,7 +104,8 @@ const Welcome = () => {
                       <div className="flex md:flex-col flex-row gap-3 items-start justify-start w-full">
                         <div
                           onClick={() => connectCasperDashAsync()}
-                          className="bg-amber-500 flex flex-1 flex-row gap-3 items-center justify-start p-4 rounded w-full cursor-pointer">
+                          className="bg-amber-500 flex flex-1 flex-row gap-3 items-center justify-start p-4 rounded w-full cursor-pointer"
+                        >
                           <div className="bg-white-A700 h-10 rounded w-10">
                             <Image
                               alt="casperdash-logo"
@@ -118,7 +122,8 @@ const Welcome = () => {
                         </div>
                         <div
                           onClick={() => connectCasperWalletAsync()}
-                          className="bg-amber-500 flex flex-1 flex-row gap-3 items-center justify-start p-4 rounded w-full cursor-pointer">
+                          className="bg-amber-500 flex flex-1 flex-row gap-3 items-center justify-start p-4 rounded w-full cursor-pointer"
+                        >
                           <div className="bg-white-A700 h-10 rounded w-10">
                             <Image
                               alt="casper-wallet-logo"

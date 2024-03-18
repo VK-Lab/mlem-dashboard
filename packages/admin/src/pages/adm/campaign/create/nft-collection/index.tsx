@@ -1,17 +1,16 @@
 import LayoutAdmin from '@mlem-admin/layouts/Admin';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
-import AdmCreateCampaignStepNftCollection
-  from '@mlem-admin/modules/AdmDashboard/components/ItemCreate/StepNftCollection';
+import AdmCreateCampaignStepNftCollection from '@mlem-admin/modules/AdmDashboard/components/ItemCreate/StepNftCollection';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Index = () => {
   return (
     <LayoutAdmin>
-      <AdmCreateCampaignStepNftCollection/>
+      <AdmCreateCampaignStepNftCollection />
     </LayoutAdmin>
   );
 };
 
-export const getStaticProps = async ({locale}: { locale: string }) => {
+export const getStaticProps = async ({ locale }: { locale: string }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),

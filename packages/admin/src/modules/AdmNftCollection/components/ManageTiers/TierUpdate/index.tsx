@@ -1,24 +1,28 @@
-import React from "react";
+import React from 'react';
+import { useState } from 'react';
 
-import {Modal} from 'flowbite-react';
-import {useState} from 'react';
-
-import {DatePickerElement, FormContainer, TextFieldElement, SelectElement} from 'react-hook-form-mui';
-import {QueryKeys} from '@mlem-admin/enums/queryKeys.enum';
-import {useMutateUpdateTier} from '@mlem-admin/hooks/mutations/useMutateUpdateTier';
-import {useI18nToast} from '@mlem-admin/hooks/useToast';
+import { Button } from '@mlem-admin/components/Button';
+import { Text } from '@mlem-admin/components/Text';
+import { QueryKeys } from '@mlem-admin/enums/queryKeys.enum';
+import { useMutateUpdateTier } from '@mlem-admin/hooks/mutations/useMutateUpdateTier';
+import { useI18nToast } from '@mlem-admin/hooks/useToast';
 import FormBenefits from '@mlem-admin/modules/AdmNftCollection/components/FormBenefits';
-import {UpdateTierParams} from '@mlem-admin/services/admin/tier/types';
-import {Tier} from '@mlem-admin/types/tier';
-import {useQueryClient} from 'react-query';
-import {BsPencil} from "react-icons/bs";
-import {Button} from "@mlem-admin/components/Button";
-import {Text} from "@mlem-admin/components/Text";
+import { UpdateTierParams } from '@mlem-admin/services/admin/tier/types';
+import { Tier } from '@mlem-admin/types/tier';
+import { Modal } from 'flowbite-react';
+import {
+  DatePickerElement,
+  FormContainer,
+  TextFieldElement,
+  SelectElement,
+} from 'react-hook-form-mui';
+import { BsPencil } from 'react-icons/bs';
+import { useQueryClient } from 'react-query';
 
 type TierItem = {
   tier: Tier;
 };
-const TierUpdate = ({tier}: TierItem) => {
+const TierUpdate = ({ tier }: TierItem) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalPlacement] = useState('center');
 
@@ -27,7 +31,7 @@ const TierUpdate = ({tier}: TierItem) => {
   }
 
   const queryClient = useQueryClient();
-  const {toastSuccess} = useI18nToast();
+  const { toastSuccess } = useI18nToast();
   const updateTierMutation = useMutateUpdateTier({
     onSuccess: async () => {
       toastSuccess('item_updated');
@@ -53,11 +57,16 @@ const TierUpdate = ({tier}: TierItem) => {
           type="button"
           onClick={openPopup}
         >
-          <BsPencil/>
+          <BsPencil />
         </Button>
       </div>
 
-      <Modal show={openModal} onClose={() => setOpenModal(false)} position={modalPlacement} size="3xl">
+      <Modal
+        show={openModal}
+        onClose={() => setOpenModal(false)}
+        position={modalPlacement}
+        size="3xl"
+      >
         <FormContainer
           defaultValues={{
             name: tier.name,
@@ -68,7 +77,9 @@ const TierUpdate = ({tier}: TierItem) => {
           onSuccess={handleOnSubmitForm}
           // onSuccess={data => console.log(data)}
         >
-          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">Update Tier</Modal.Header>
+          <Modal.Header className="bg-gray-50 text-gray-950 uppercase">
+            Update Tier
+          </Modal.Header>
           <Modal.Body className="bg-gray-50">
             <div className="flex md:flex-1 flex-col gap-3 items-start justify-start w-full">
               <div className="flex flex-col items-start justify-start w-full">
@@ -79,8 +90,11 @@ const TierUpdate = ({tier}: TierItem) => {
                   >
                     Name (*)
                   </Text>
-                  <TextFieldElement name="name" required
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="name"
+                    required
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -91,8 +105,10 @@ const TierUpdate = ({tier}: TierItem) => {
                   >
                     Slug
                   </Text>
-                  <TextFieldElement name="slug"
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="slug"
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -103,8 +119,10 @@ const TierUpdate = ({tier}: TierItem) => {
                   >
                     Description
                   </Text>
-                  <TextFieldElement name="description"
-                                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"/>
+                  <TextFieldElement
+                    name="description"
+                    className="!placeholder:text-gray-600 !text-gray-100 font-lexend p-0 text-left text-sm w-full acm-ele-wrapper"
+                  />
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full">
@@ -116,9 +134,7 @@ const TierUpdate = ({tier}: TierItem) => {
                     Benefits
                   </Text>
                   <div className="acm-ele-wrapper w-full">
-                    <FormBenefits
-                      name="benefitIds"
-                    />
+                    <FormBenefits name="benefitIds" />
                   </div>
                 </div>
               </div>
@@ -128,10 +144,16 @@ const TierUpdate = ({tier}: TierItem) => {
             <div className="relative w-full h-[20px]">
               <Button
                 className="absolute left-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-gray-500"
-                onClick={() => setOpenModal(false)}>Decline</Button>
+                onClick={() => setOpenModal(false)}
+              >
+                Decline
+              </Button>
               <Button
                 className="absolute right-0 -top-4 !text-white-A700 cursor-pointer font-lexend font-semibold text-base text-center p-[13px] rounded bg-indigo-500"
-                type="submit">Confirm</Button>
+                type="submit"
+              >
+                Confirm
+              </Button>
             </div>
           </Modal.Footer>
         </FormContainer>
