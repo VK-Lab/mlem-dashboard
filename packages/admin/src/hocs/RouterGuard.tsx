@@ -43,6 +43,10 @@ const RouterGuard = ({ children }: { children: any }) => {
 
         setUserInfo(JSON.stringify(user));
 
+        //custome
+        //temporary open for testing user
+        return;
+
         if (isAdmin(user)) {
           return;
         }
