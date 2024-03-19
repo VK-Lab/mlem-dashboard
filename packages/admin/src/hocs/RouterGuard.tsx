@@ -44,7 +44,7 @@ const RouterGuard = ({ children }: { children: any }) => {
         setUserInfo(JSON.stringify(user));
 
         //custome
-        //temporary open for testing user
+        //temporary open for tester
         return;
 
         if (isAdmin(user)) {
@@ -60,6 +60,11 @@ const RouterGuard = ({ children }: { children: any }) => {
           pathname: PublicPaths.HOME,
         });
       } catch (error) {
+
+        //custome
+        //temporary open for tester
+        return;
+        
         router.push({
           pathname: PublicPaths.HOME,
         });
