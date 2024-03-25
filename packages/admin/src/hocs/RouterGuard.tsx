@@ -4,7 +4,7 @@ import { useEffect, useCallback } from 'react';
 import { useAccount } from '@casperdash/usewallet';
 import { AdminPaths, PublicPaths } from '@mlem-admin/enums/paths.enum';
 import { checkUser, setUserInfo } from '@mlem-admin/services/auth';
-// import { isAdmin } from '@mlem-admin/utils/permission';
+import { isAdmin } from '@mlem-admin/utils/permission';
 import { useRouter } from 'next/router';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -43,22 +43,22 @@ const RouterGuard = ({ children }: { children: any }) => {
 
         setUserInfo(JSON.stringify(user));
 
-        // if (isAdmin(user)) {
-        //   return;
-        // }
+        if (isAdmin(user)) {
+          return;
+        }
 
         const path = url.split('?')[0];
         if (!adminPaths.includes(path as string)) {
           return;
         }
 
-        // router.push({
-        //   pathname: PublicPaths.HOME,
-        // });
+        router.push({
+          pathname: PublicPaths.HOME,
+        });
       } catch (error) {
-        // router.push({
-        //   pathname: PublicPaths.HOME,
-        // });
+        router.push({
+          pathname: PublicPaths.HOME,
+        });
       }
 
       return;

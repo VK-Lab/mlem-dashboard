@@ -70,7 +70,7 @@ const Header = () => {
                     className="text-base text-center text-white-A700 w-auto"
                     size="txtLexendSemiBold16WhiteA700"
                   >
-                    <Link href={AdminPaths.CAMPAIGNS}>Dashboard</Link>
+                    <Link href={AdminPaths.DASHBOARD}>Dashboard</Link>
                   </Text>
                 </div>
               </div>
